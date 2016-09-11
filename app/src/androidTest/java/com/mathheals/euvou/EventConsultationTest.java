@@ -40,10 +40,8 @@ import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 
-/**
- * Created by marlonmendes on 04/11/15.
- */
-public class    EventConsultationTest extends ActivityInstrumentationTestCase2<HomePage>{
+public class    EventConsultationTest extends ActivityInstrumentationTestCase2<HomePage>
+{
 
     private static final int USER_LOGGED_OUT = -1;
 
@@ -51,41 +49,46 @@ public class    EventConsultationTest extends ActivityInstrumentationTestCase2<H
     private Activity activity;
     private Integer userId;
 
-    public EventConsultationTest() {
+    public EventConsultationTest()
+    {
         super(HomePage.class);
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         super.setUp();
         activity = getActivity();
         setUserId(new LoginUtility(activity).getUserId());
         setIsUserLoggedIn(getUserId() != USER_LOGGED_OUT);
     }
 
-    public void testIfEventConsultationIsOpened() {
+    public void testIfEventConsultationIsOpened()
+    {
         onView(withId(R.id.search)).perform(click());
         onView(withId(R.id.radio_events)).check(matches(isDisplayed()));
         onView(withId(R.id.radio_people)).check(matches(isDisplayed()));
     }
 
-    public void testIfAnyEventWasFound() {
+    public void testIfAnyEventWasFound()
+    {
         onView(withId(R.id.search)).perform(click());
         onView(isAssignableFrom(EditText.class)).perform(typeText("t"), pressKey(66));
         onData(hasToString(containsString("t")))
                 .inAdapterView(withId(R.id.events_list)).atPosition(0)
                 .perform(click());
         onView(withId(R.id.event_name_text)).check(matches(isDisplayed()));
-
     }
 
-    public void testIfEventConsultationReturnsToHomePage() {
+    public void testIfEventConsultationReturnsToHomePage()
+    {
         onView(withId(R.id.search)).perform(click());
         onView(withContentDescription("Navigate up")).perform(click());
         onView(withText("EuVou")).check(matches(isDisplayed()));
     }
 
-    public void testConsultationByCategory() {
+    public void testConsultationByCategory()
+    {
         onView(withId(R.id.search)).perform(click());
         onView(withId(R.id.radio_people))
                 .perform(click());
@@ -97,7 +100,8 @@ public class    EventConsultationTest extends ActivityInstrumentationTestCase2<H
                 .check(matches(isChecked()));
     }
     
-    public void testButtonToMap() {
+    public void testButtonToMap()
+    {
         onView(withId(R.id.search)).perform(click());
         onView(isAssignableFrom(EditText.class)).perform(typeText("t"), pressKey(66));
         onData(hasToString(containsString("t")))
@@ -107,22 +111,28 @@ public class    EventConsultationTest extends ActivityInstrumentationTestCase2<H
         onView(withId(R.id.map)).check(matches(isDisplayed()));
     }
 
-    public void testIfRatingBarIsAvailableForLoggedOutUser() {
-        if(isUserLoggedIn) {
+    public void testIfRatingBarIsAvailableForLoggedOutUser()
+    {
+        if(isUserLoggedIn)
+        {
             TestUtility.makeUserLogOut();
             isUserLoggedIn = false;
         }
         openShowEventFragment();
-        try {
+        try
+        {
             Thread.sleep(1000);
-        } catch (InterruptedException e) {
+        }catch (InterruptedException e)
+        {
             e.printStackTrace();
         }
         onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
     }
 
-    public void testIfRatingBarIsAvailableForLoggedInUser() {
-        if(!isUserLoggedIn) {
+    public void testIfRatingBarIsAvailableForLoggedInUser()
+    {
+        if(!isUserLoggedIn)
+        {
             TestUtility.makeUserLogIn();
             isUserLoggedIn = true;
         }
@@ -130,24 +140,29 @@ public class    EventConsultationTest extends ActivityInstrumentationTestCase2<H
         boolean result;
         openShowEventFragment();
 
-        try {
+        try
+        {
             int[] ratingNumbersForTest = new int[]{1, 3, 5};
 
             for(Integer ratingNumber : ratingNumbersForTest)
                 onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
-            try {
+            try
+            {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e)
+            {
                 e.printStackTrace();
             }
             result = true;
-        } catch (PerformException performException) {
+        }catch (PerformException performException)
+        {
             result = false;
         }
         assertTrue(result);
     }
 
-    private void openShowEventFragment() {
+    private void openShowEventFragment()
+    {
         onView(withId(R.id.search)).perform(click());
         onView(isAssignableFrom(EditText.class)).perform(typeText("t"), pressKey(66));
         onData(hasToString(containsString("t")))
@@ -155,20 +170,24 @@ public class    EventConsultationTest extends ActivityInstrumentationTestCase2<H
                 .perform(click());
     }
 
-    public Integer getUserId() {
+    public Integer getUserId()
+    {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Integer userId)
+    {
         this.userId = userId;
     }
 
-    public void setIsUserLoggedIn(boolean isUserLoggedIn) {
+    public void setIsUserLoggedIn(boolean isUserLoggedIn)
+    {
         this.isUserLoggedIn = isUserLoggedIn;
     }
     public void testMarkParticipateNotLoged()
     {
-        if(isUserLoggedIn){
+        if(isUserLoggedIn)
+        {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
             onView(withText("Sair")).perform(click());
         }
@@ -191,8 +210,10 @@ public class    EventConsultationTest extends ActivityInstrumentationTestCase2<H
     }
 
 
-    public void testMarkParticipateTwoTimeLoged() {
-        if (!isUserLoggedIn) {
+    public void testMarkParticipateTwoTimeLoged()
+    {
+        if (!isUserLoggedIn)
+        {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
             onView(withText("Entrar")).perform(click());
             onView(withId(R.id.usernameField)).perform(typeText("igodudu"));
@@ -211,8 +232,10 @@ public class    EventConsultationTest extends ActivityInstrumentationTestCase2<H
         onView(withId(R.id.EuVou)).perform(click());
     }
 
-    public void testMarkOffParticipateTwoTimeLoged() {
-        if (!isUserLoggedIn) {
+    public void testMarkOffParticipateTwoTimeLoged()
+    {
+        if (!isUserLoggedIn)
+        {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
             onView(withText("Entrar")).perform(click());
             onView(withId(R.id.usernameField)).perform(typeText("igodudu"));
