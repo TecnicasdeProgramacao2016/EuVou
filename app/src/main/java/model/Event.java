@@ -162,10 +162,13 @@ public class Event
             {
                 throw new EventException(EVENT_DATE_IS_EMPTY);
             }
-
-            if(hour.isEmpty() || hour==null)
+            else if(hour.isEmpty() || hour==null)
             {
                 throw new EventException(EVENT_HOUR_IS_EMPTY);
+            }
+            else
+            {
+                //NOTHING TO DO
             }
         }
     }
@@ -204,10 +207,13 @@ public class Event
             {
                 throw new EventException(PRICE_REAL_IS_EMPTY);
             }
-
-            if(priceDecimal == null || priceDecimal.isEmpty())
+            else if(priceDecimal == null || priceDecimal.isEmpty())
             {
                 throw new EventException(PRICE_DECIMAL_IS_EMPTY);
+            }
+            else
+            {
+                //NOTHING TO DO
             }
         }
     }

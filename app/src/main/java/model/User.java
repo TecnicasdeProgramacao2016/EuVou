@@ -11,7 +11,9 @@ import java.util.Date;
 
 import dao.UserDAO;
 import exception.UserException;
-
+/*
+Description: This class validates the user
+*/
 public class User
 {
     public static final String ID_IS_INVALID = "Id inválido";
@@ -180,6 +182,10 @@ public class User
             {
                 throw new UserException(EMAIL_ARE_NOT_EQUALS);
             }
+            else
+            {
+                //NOTHING TO DO
+            }
         }
         else
         {
@@ -195,7 +201,7 @@ public class User
             {
                 throw new UserException(USERNAME_EXISTENT);
             }
-            if(username.length() <= MAX_LENGTH_USERNAME)
+            else if(username.length() <= MAX_LENGTH_USERNAME)
             {
                 this.username = username;
             }
@@ -238,6 +244,10 @@ public class User
             if (!password.equals(confirmationPassword))
             {
                 throw new UserException(PASSWORD_ARE_NOT_EQUALS);
+            }
+            else
+            {
+                //NOTHING TO DO
             }
         }
         else

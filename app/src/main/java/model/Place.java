@@ -67,7 +67,11 @@ public class Place
 
     private void setName(String name) throws PlaceException
     {
-        if(name.isEmpty()) throw new PlaceException(INVALID_NAME);
+        if(name.isEmpty())
+            throw new PlaceException(INVALID_NAME);
+        else
+            //NOTHING TO DO
+
         this.name = name;
     }
 
@@ -80,8 +84,11 @@ public class Place
     {
         if(comment == null)
             throw new PlaceException(INVALID_COMMENT);
-        if(comment.isEmpty())
+        else if(comment.isEmpty())
             throw new PlaceException(INVALID_COMMENT);
+        else
+            //NOTHING TO DO
+
         this.comment.add(comment);
     }
 
@@ -104,6 +111,8 @@ public class Place
     {
         if(latitude.isEmpty())
             throw new PlaceException(INVALID_LATITUDE);
+        else
+            //NOTHING TO DO
         this.latitude = Double.parseDouble(latitude);
     }
 
@@ -111,6 +120,8 @@ public class Place
     {
         if(longitude.isEmpty())
             throw new PlaceException(INVALID_LONGITUDE);
+        else
+            //NOTHING TO DO
         this.longitude = Double.parseDouble(longitude);
     }
 
