@@ -5,11 +5,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
-//confirmar restrições de tamanho
 import exception.EventException;
 
-public class Event {
-
+public class Event
+{
     public static final String EVENT_NAME_CANT_BE_EMPTY_NAME = "Hey, acho que você está esquecendo de nos informar o nome do evento.";
     public static final String NAME_CANT_BE_GREATER_THAN_50 = "Hey, você ultrapassou o número de caracteres permitido para o nome do evento, tente novamente.";
     public static final String DESCRIPTION_CANT_BE_EMPTY = "Hey, acho que você esqueu de informar a descrição do evento.";
@@ -28,7 +27,6 @@ public class Event {
     public static final String EVENT_HOUR_IS_EMPTY = "Hey, você esqueceu de informar a hora";
     public static final String CATEGORY_IS_INVALID = "Hey, você esqueceu de informar a categoria do evento, preenche ela aí vai!";
 
-
     private int idEvent;
     private String nameEvent;
     private String dateTimeEvent;
@@ -44,7 +42,8 @@ public class Event {
     private static final int MAX_LENGTH_DESCRIPTION = 500;
     private int idOwner;
 
-    public Event(int idOwner, String nameEvent, String date, String hour, String priceReal, String priceDecimal, String address, String description, String latitude, String longitude, Vector<String> category) throws EventException, ParseException{
+    public Event(int idOwner, String nameEvent, String date,
+                 String hour, String priceReal, String priceDecimal, String address, String description, String latitude, String longitude, Vector<String> category) throws EventException, ParseException{
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
         setDateTimeEvent(date, hour);
