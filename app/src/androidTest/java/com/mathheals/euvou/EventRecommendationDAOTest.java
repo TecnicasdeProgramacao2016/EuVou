@@ -1,3 +1,11 @@
+/*
+* File name: EventRecomendationDAOTest.
+* File pourpose: Test eventRecommendation's DOA.
+* Created by: igor on 29/11/15.
+* Edited by: bernardohrl on 10/09/16
+*/
+
+
 package com.mathheals.euvou;
 
 import junit.framework.TestCase;
@@ -7,20 +15,23 @@ import org.json.JSONObject;
 
 import dao.EventRecommendationDAO;
 
-/**
- * Created by igor on 29/11/15.
- */
-public class EventRecommendationDAOTest extends TestCase {
-    public void testRecommendEvent(){
+
+public class EventRecommendationDAOTest extends TestCase
+{
+    //Test recommended events
+    public void testRecommendEvent()
+    {
         EventRecommendationDAO eventRecommendationDAO = new EventRecommendationDAO();
 
         JSONObject jsonObject = eventRecommendationDAO.recommendEvents(3);
 
         boolean check;
-        try {
+        try
+        {
             jsonObject.getJSONObject("0").getString("nameEvent");
 
             check = true;
+
         } catch (JSONException e) {
             check = false;
 

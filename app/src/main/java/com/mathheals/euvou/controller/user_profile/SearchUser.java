@@ -1,3 +1,11 @@
+/*
+* File name: SearchUser.
+* File pourpose: Search user's information.
+* Created by:
+* Edited by: bernardohrl on 10/09/16
+*/
+
+
 package com.mathheals.euvou.controller.user_profile;
 
 import android.support.v7.app.ActionBarActivity;
@@ -9,15 +17,18 @@ import android.widget.EditText;
 
 import com.mathheals.euvou.R;
 
-public class SearchUser extends ActionBarActivity implements View.OnClickListener {
+public class SearchUser extends ActionBarActivity implements View.OnClickListener
+{
 
     @Override
+    //Override method that create view
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_user);
     }
 
     @Override
+    //Override method that create menu
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_search_user, menu);
@@ -25,6 +36,7 @@ public class SearchUser extends ActionBarActivity implements View.OnClickListene
     }
 
     @Override
+    //Override iten's option
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -38,13 +50,15 @@ public class SearchUser extends ActionBarActivity implements View.OnClickListene
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
-    public void onClick(View v) {
+    //Override view creation
+    public void onClick(View view) {
 
         EditText searchName = (EditText) findViewById(R.id.searchNameField);
         String searchNameStr = searchName.getText().toString();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        switch (v.getId())
+        switch (view.getId())
         {
             case R.id.btnSearch:fragmentTransaction.replace(R.id.content_frame, new ShowUser());
                                 fragmentTransaction.addToBackStack(null);

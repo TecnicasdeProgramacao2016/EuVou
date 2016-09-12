@@ -1,9 +1,16 @@
+/*
+* File name: Show User.
+* File pourpose: Show user's information.
+* Created by:
+* Edited by: bernardohrl on 10/09/16
+*/
+
+
 package com.mathheals.euvou.controller.user_profile;
 
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,10 +43,13 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
     public ShowUser()
     {
+        //Required Empty Constructor
     }
 
+    //Create user's view
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
 
         setShowUserView(inflater.inflate(R.layout.show_user, container, false));
         UserDAO userDAO = new UserDAO(getActivity());
@@ -47,13 +57,16 @@ public class ShowUser extends android.support.v4.app.Fragment {
         userEvaluatedId=this.getArguments().getString("id");
         setCurrentUserId(new LoginUtility(getActivity()).getUserId());
         JSONObject userData = null;
-        try {
+        try
+        {
             userData = new JSONObject(userDAO.searchUserById(Integer.parseInt(userEvaluatedId)));
-        } catch (JSONException e) {
+        } catch (JSONException e)
+        {
             e.printStackTrace();
         }
 
-        try {
+        try
+        {
             String nameUserDB = userData.getJSONObject("0").getString("nameUser");
             String birthDateDB = userData.getJSONObject("0").getString("birthDate");
             String mailDB = userData.getJSONObject("0").getString("email");
@@ -65,7 +78,8 @@ public class ShowUser extends android.support.v4.app.Fragment {
             date.setText(birthDateDB);
             mail.setText(mailDB);
 
-        } catch (JSONException e) {
+        } catch (JSONException e)
+        {
             e.printStackTrace();
         }
 
@@ -76,11 +90,14 @@ public class ShowUser extends android.support.v4.app.Fragment {
         return showUserView;
     }
 
-    public void setIsUserLoggedIn(boolean isUserLoggedIn) {
+    //Set user's loggin status
+    public void setIsUserLoggedIn(boolean isUserLoggedIn)
+    {
         this.isUserLoggedIn = isUserLoggedIn;
     }
 
-    private void setRatingMessage(boolean isUserLoggedIn) {
+    private void setRatingMessage(boolean isUserLoggedIn)
+    {
         final String LOGGED_IN_MESSAGE = "Sua avaliação:";
         final String LOGGED_OUT_MESSAGE = "Faça login para avaliar este usuário!";
         String message = isUserLoggedIn ? LOGGED_IN_MESSAGE : LOGGED_OUT_MESSAGE;
@@ -89,20 +106,25 @@ public class ShowUser extends android.support.v4.app.Fragment {
         ratingMessage.setText(message);
     }
 
-    public void setShowUserView(View showUserView) {
+    public void setShowUserView(View showUserView)
+    {
         this.showUserView = showUserView;
     }
 
-    private void setRatingBarIfNeeded() {
+    private void setRatingBarIfNeeded()
+    {
         if(isUserLoggedIn)
             setRatingBar();
     }
 
-    public void setCurrentUserId(int currentUserId) {
+    public void setCurrentUserId(int currentUserId)
+    {
         this.currentUserId = currentUserId;
     }
 
-    private void setRatingBar() {
+    //Set Atribute Rate
+    private void setRatingBar()
+    {
         ratingBar = (RatingBar) showUserView.findViewById(R.id.ratingBar);
         ratingBar.setVisibility(View.VISIBLE);
 
@@ -110,53 +132,70 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
         JSONObject evaluationJSON = userEvaluationDAO.searchUserEvaluation(Integer.parseInt(userEvaluatedId), currentUserId);
 
-        if(evaluationJSON!=null){
+        if(evaluationJSON!=null)
+        {
             Float evaluation = null;
-            try {
+            try
+            {
                 evaluation = new Float(evaluationJSON.getJSONObject("0").getDouble("grade"));
-            } catch (JSONException e) {
+            } catch (JSONException e)
+            {
                 e.printStackTrace();
             }
 
             ratingBar.setRating(evaluation);
         }
 
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar arg0, float rateValue, boolean arg2) {
-                setUserEvaluation(rateValue, currentUserId, new Integer(userEvaluatedId));
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.
+                OnRatingBarChangeListener()
+                {
+                     @Override
+                     public void onRatingChanged(RatingBar arg0, float rateValue, boolean arg2)
+                     {
+                        setUserEvaluation(rateValue, currentUserId, new Integer(userEvaluatedId));
 
-                UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
+                         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
 
-                userEvaluationDAO.evaluateUser(getUserEvaluation());
-            }
-        });
+                       userEvaluationDAO.evaluateUser(getUserEvaluation());
+                     }
+                }
+        );
         setRatingBarStyle();
     }
 
-    public UserEvaluation getUserEvaluation() {
+    public UserEvaluation getUserEvaluation()
+    {
         return userEvaluation;
     }
 
-    public void setUserEvaluation(Float rating, Integer userId, Integer userEvaluatedId) {
-        try {
+    //Set atribut User Evaluation
+    public void setUserEvaluation(Float rating, Integer userId, Integer userEvaluatedId)
+    {
+        try
+        {
             this.userEvaluation = new UserEvaluation(rating, userId, userEvaluatedId);
             Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_EVALUATION_MESSAGE, Toast.LENGTH_LONG).show();
         }
-        catch (UserEvaluationException exception){
-            if(exception.getMessage()==UserEvaluation.EVALUATION_IS_INVALID){
+        catch (UserEvaluationException exception)
+        {
+            if(exception.getMessage()==UserEvaluation.EVALUATION_IS_INVALID)
+            {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
             }
-            if(exception.getMessage()==UserEvaluation.USER_EVALUATED_ID_IS_INVALID){
+            if(exception.getMessage()==UserEvaluation.USER_EVALUATED_ID_IS_INVALID)
+            {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
             }
-            if(exception.getMessage()==UserEvaluation.USER_ID_IS_INVALID){
+            if(exception.getMessage()==UserEvaluation.USER_ID_IS_INVALID)
+            {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private void setRatingBarStyle() {
+    //Set atribute Rating bar Style
+    private void setRatingBarStyle()
+    {
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);
     }

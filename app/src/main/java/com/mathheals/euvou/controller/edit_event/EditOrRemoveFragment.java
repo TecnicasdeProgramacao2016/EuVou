@@ -1,21 +1,24 @@
+/*
+* File name: EditOrRemoveFragment.
+* File pourpose: Edit or remove fragments.
+* Created by:
+* Edited by: bernardohrl on 10/09/16
+*/
+
+
 package com.mathheals.euvou.controller.edit_event;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.support.v4.app.Fragment;
-import android.widget.Toast;
 
 import com.mathheals.euvou.R;
-import com.mathheals.euvou.controller.search_event.ListEvents;
 import com.mathheals.euvou.controller.show_event.ShowEvent;
-import com.mathheals.euvou.controller.user_registration.RegisterFragment;
 import com.mathheals.euvou.controller.utility.Mask;
 
 import model.Event;

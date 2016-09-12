@@ -1,10 +1,16 @@
+/*
+* File name: EditEventFragment.
+* File pourpose: Format fragment text.
+* Created by:
+* Edited by: bernardohrl on 10/09/16
+*/
+
+
 package com.mathheals.euvou.controller.edit_event;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.RequiresPermission;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +26,6 @@ import com.mathheals.euvou.controller.showPlaceRanking.ShowTop5Rank;
 import com.mathheals.euvou.controller.utility.EditAndRegisterUtility;
 import com.mathheals.euvou.controller.utility.Mask;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,11 +54,13 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
 
 
+    //Constructor
     public EditEventFragment()
     {
         // Required empty public constructor
     }
 
+    //Format Date
     public void formatDate(JSONObject jsonEvent) throws JSONException
     {
 
@@ -71,6 +78,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     }
 
+    //Format Price
     public void formatPrice(JSONObject jsonEvent) throws JSONException
     {
         Integer priceEvent = jsonEvent.getJSONObject("0").getInt("price");
