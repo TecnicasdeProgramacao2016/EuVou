@@ -1,8 +1,6 @@
 /*
 * File name: EventRecomendationDAOTest.
 * File pourpose: Tests if map's place is valid.
-* Created by: viny on 04/11/15.
-* Edited by: bernardohrl on 10/09/16
 */
 
 package com.mathheals.euvou;

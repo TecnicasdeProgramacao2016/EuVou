@@ -1,8 +1,6 @@
 /*
 * File name: EventRecomendationDAOTest.
 * File pourpose: Set event Rating.
-* Created by: marlonmendes on 20/11/15.
-* Edited by: bernardohrl on 10/09/16
 */
 
 package com.mathheals.euvou;

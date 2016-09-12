@@ -1,8 +1,6 @@
 /*
 * File name: EventRecomendationDAOTest.
 * File pourpose: Search for users controller.
-* Created by: izabela on 04/11/15.
-* Edited by: bernardohrl on 10/09/16
 */
 
 package com.mathheals.euvou;

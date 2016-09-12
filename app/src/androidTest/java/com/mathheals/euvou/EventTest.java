@@ -1,8 +1,6 @@
 /*
 * File name: EventTest.
 * File pourpose: Test if an event is valid.
-* Created by:
-* Edited by: bernardohrl on 10/09/16
 */
 
 package com.mathheals.euvou;

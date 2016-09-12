@@ -1,8 +1,6 @@
 /*
 * File name: EventTest.
 * File pourpose: Test Place DAO's.
-* Created by: viny on 20/10/15.
-* Edited by: bernardohrl on 10/09/16
 */
 
 

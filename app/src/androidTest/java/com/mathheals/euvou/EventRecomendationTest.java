@@ -1,8 +1,6 @@
 /*
 * File name: EventRecomendationTest.
 * File pourpose: Test user's log status and test set list new list of recommended events.
-* Created by: marlonmendes on 28/11/15.
-* Edited by: bernardohrl on 10/09/16
 */
 
 

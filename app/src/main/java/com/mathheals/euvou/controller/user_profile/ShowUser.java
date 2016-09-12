@@ -1,8 +1,6 @@
 /*
 * File name: Show User.
 * File pourpose: Show user's information.
-* Created by:
-* Edited by: bernardohrl on 10/09/16
 */
 
 

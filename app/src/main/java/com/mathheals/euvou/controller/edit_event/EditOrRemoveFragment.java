@@ -1,8 +1,6 @@
 /*
 * File name: EditOrRemoveFragment.
 * File pourpose: Edit or remove fragments.
-* Created by:
-* Edited by: bernardohrl on 10/09/16
 */
 
 

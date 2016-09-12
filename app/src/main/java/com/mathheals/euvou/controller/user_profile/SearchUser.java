@@ -1,8 +1,6 @@
 /*
 * File name: SearchUser.
 * File pourpose: Search user's information.
-* Created by:
-* Edited by: bernardohrl on 10/09/16
 */
 
 

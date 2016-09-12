@@ -1,8 +1,6 @@
 /*
 * File name: EventRecomendationDAOTest.
 * File pourpose: Test eventRecommendation's DOA.
-* Created by: igor on 29/11/15.
-* Edited by: bernardohrl on 10/09/16
 */
 
 

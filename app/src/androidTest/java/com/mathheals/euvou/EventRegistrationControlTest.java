@@ -1,8 +1,6 @@
 /*
 * File name: EventRegistrationControlTest.
 * File pourpose: Test if an event can be registred.
-* Created by: izabela on 29/11/15.
-* Edited by: bernardohrl on 10/09/16
 */
 
 package com.mathheals.euvou;

@@ -1,8 +1,6 @@
 /*
 * File name: EditEventFragment.
 * File pourpose: Format fragment text.
-* Created by:
-* Edited by: bernardohrl on 10/09/16
 */
 
 
