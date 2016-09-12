@@ -3,9 +3,6 @@ package model;
 import exception.EventEvaluationException;
 import exception.UserEvaluationException;
 
-/**
- * Created by igor on 20/11/15.
- */
 public class UserEvaluation {
     private Float rating;
     private Integer userId;
