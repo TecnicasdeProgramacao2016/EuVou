@@ -40,9 +40,8 @@ import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 
-public class    EventConsultationTest extends ActivityInstrumentationTestCase2<HomePage>
+public class EventConsultationTest extends ActivityInstrumentationTestCase2<HomePage>
 {
-
     private static final int USER_LOGGED_OUT = -1;
 
     private boolean isUserLoggedIn;
@@ -190,6 +189,10 @@ public class    EventConsultationTest extends ActivityInstrumentationTestCase2<H
         {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
             onView(withText("Sair")).perform(click());
+        }
+        else
+        {
+            //NOTHING TO DO
         }
 
         onView(withId(R.id.search)).perform(click());

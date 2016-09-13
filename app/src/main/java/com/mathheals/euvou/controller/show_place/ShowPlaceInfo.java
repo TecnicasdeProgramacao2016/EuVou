@@ -20,7 +20,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.mathheals.euvou.R;//BAD CODE
+import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.utility.LoginUtility;
 
 import dao.EvaluatePlaceDAO;
@@ -29,45 +29,36 @@ import model.Place;
 
 public class ShowPlaceInfo extends FragmentActivity
 {
-
-    private final Integer LOGGED_OUT = -1;
-    protected GoogleMap mMap;
-
-    private String name;
-    private String phone;
-    private String operation;
     private String description;
     private double longitude;
     private double latitude;
     private String address;
     private float grade;
-    private int idPlace;
+    private void setPlaceInfo() {
+        Intent intent = getIntent();
+        setName(intent.getStringExtra("name"));
+        setPhone(intent.getStringExtra("phone"));
+        setAddress(intent.getStringExtra("address"));
+        setGrade(intent.getFloatExtra("grade", 0.0F));
+        setDescription(intent.getStringExtra("description"));
+        setLatitude(intent.getDoubleExtra("latitude", 0.0));
+        setLongitude(intent.getDoubleExtra("longitude", 0.0));
+        setOperation(intent.getStringExtra("operation"));
+        setIdPlace(intent.getIntExtra("idPlace", 0));
+    }
 
-    private TextView addressText;
-    private TextView operationText;
-    private TextView phoneText;
-    private TextView descriptionText;
-    private TextView gradeText;
-
-    private Button showMapButton;
-    private Button hideMapButton;
     private SupportMapFragment mMapFragment;
-
-    private TextView ratingMessage;
-    private RatingBar ratingBar;
     private Integer userId;
     private boolean isUserLoggedIn;
-
-    private Evaluation ratingEvaluation;
-
+    private final Integer LOGGED_OUT = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState)
-    { //BAD CODE Whats is onCreate?
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_place_info);//BAD CODE
+        setContentView(R.layout.activity_show_place_info);
 
-        setShowMapButton((Button) findViewById(R.id.button_show_map));//BAD CODE
-        setHideMapButton((Button) findViewById(R.id.button_hide_map));//BAD CODE
+        setShowMapButton((Button) findViewById(R.id.button_show_map));
+        setHideMapButton((Button) findViewById(R.id.button_hide_map));
 
         setUserId(new LoginUtility(this).getUserId());
         setIsUserLoggedIn(userId != LOGGED_OUT);
@@ -87,14 +78,17 @@ public class ShowPlaceInfo extends FragmentActivity
             setRatingBar();
     }
 
+    private int idPlace;
+    private RatingBar ratingBar;
+    private Evaluation ratingEvaluation;
     private void setRatingBar()
     {
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);//BAD CODE
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         ratingBar.setVisibility(View.VISIBLE);
         ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar arg0, float rateValue, boolean arg2)
-            {//BAD CODE agr0 arg2
+            {
                 setRatingEvaluation(idPlace, userId, rateValue);
                 EvaluatePlaceDAO evaluatePlaceDAO = new EvaluatePlaceDAO();
                 evaluatePlaceDAO.evaluatePlace(ratingEvaluation);
@@ -106,18 +100,16 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setRatingBarStyle()
     {
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getBaseContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);//BAD CODE
+        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getBaseContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);
     }
 
+    protected GoogleMap mMap;
     private void setUpMapIfNeeded()
     {
-        // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null)
         {
-            // Try to obtain the map from the SupportMapFragment.
             mMapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_show_place_info_map));
             mMap = mMapFragment.getMap();
-            // Check if we were successful in obtaining the map.
             if (mMap != null)
             {
                 setUpMap();
@@ -142,6 +134,9 @@ public class ShowPlaceInfo extends FragmentActivity
         );
     }
 
+
+    private Button showMapButton;
+    private Button hideMapButton;
     public void showPlaceInfoOnClick(View view) {
         switch(view.getId()) {
             case R.id.button_show_map:
@@ -157,18 +152,8 @@ public class ShowPlaceInfo extends FragmentActivity
                 break;
         }
     }
-    private void setPlaceInfo() {
-        Intent intent = getIntent();
-        setName(intent.getStringExtra("name"));
-        setPhone(intent.getStringExtra("phone"));
-        setAddress(intent.getStringExtra("address"));
-        setGrade(intent.getFloatExtra("grade", 0.0F));
-        setDescription(intent.getStringExtra("description"));
-        setLatitude(intent.getDoubleExtra("latitude", 0.0));
-        setLongitude(intent.getDoubleExtra("longitude", 0.0));
-        setOperation(intent.getStringExtra("operation"));
-        setIdPlace(intent.getIntExtra("idPlace", 0));
-    }
+
+
 
     private void setGrade(float grade) {
         this.grade = grade;
@@ -194,14 +179,17 @@ public class ShowPlaceInfo extends FragmentActivity
         this.description = description;
     }
 
+    private String operation;
     private void setOperation(String operation) {
         this.operation = operation;
     }
 
+    private String phone;
     private void setPhone(String phone) {
         this.phone = phone;
     }
 
+    private String name;
     private String getName() {
         return name;
     }
@@ -218,28 +206,33 @@ public class ShowPlaceInfo extends FragmentActivity
         this.latitude = latitude;
     }
 
+    private TextView addressText;
     private void setAddressText(String adressText) {
         this.addressText = (TextView) findViewById(R.id.address_text);
         this.addressText.setText(adressText);
         this.addressText.setMovementMethod(new ScrollingMovementMethod());
     }
 
+    private TextView operationText;
     private void setOperationText(String operationText) {
         this.operationText = (TextView) findViewById(R.id.operation_text);
         this.operationText.setText(operationText);
         this.operationText.setMovementMethod(new ScrollingMovementMethod());
     }
 
+    private TextView phoneText;
     private void setPhoneText(String phoneText) {
         this.phoneText = (TextView) findViewById(R.id.phone_text);
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    this.phoneText.setText(phoneText);
     }
 
+    private TextView gradeText;
     private void setGradeText(String gradeText) {
         this.gradeText = (TextView) findViewById(R.id.grade_text);
         this.gradeText.setText(gradeText);
     }
 
+    private TextView descriptionText;
     private void setDescriptionText(String descriptionText) {
         this.descriptionText = (TextView) findViewById(R.id.description_text);
         this.descriptionText.setText(descriptionText);
@@ -262,6 +255,7 @@ public class ShowPlaceInfo extends FragmentActivity
         this.hideMapButton = hideMapButton;
     }
 
+    private TextView ratingMessage;
     private void setRatingMessage(boolean isUserLoggedIn) {
         String message = isUserLoggedIn ? "Sua avaliação:" : "Faça login para avaliar!";
         ratingMessage = (TextView) findViewById(R.id.rate_it_text);

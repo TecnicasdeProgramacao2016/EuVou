@@ -59,7 +59,8 @@ public class Event
 
     public Event(int idOwner, String nameEvent, String dateTimeEvent,
                  Integer price, String address, String description,
-                 String latitude, String longitude, Vector<String> category) throws EventException,
+                 String latitude, String longitude,
+                 Vector<String> category) throws EventException, ParseException
     {
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
@@ -72,7 +73,8 @@ public class Event
         setCategory(category);
     }
 
-    public Event(int idOwner, String nameEvent, int eventEvaluation) throws EventException, ParseException{
+    public Event(int idOwner, String nameEvent,
+                 int eventEvaluation) throws EventException, ParseException{
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
         setEvaluation(eventEvaluation);

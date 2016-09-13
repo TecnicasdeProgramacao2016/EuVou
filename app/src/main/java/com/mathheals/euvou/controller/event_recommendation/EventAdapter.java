@@ -13,23 +13,8 @@ import java.util.List;
 
 import model.Event;
 
-/*
-Created by igor on 27/11/15.
-*/
-
 public class EventAdapter extends ArrayAdapter<Event>
 {
-    public EventAdapter(Context context, List<Event> events)
-    {
-        super(context, 0, events);
-    }
-
-    private static class ViewHolder
-    {
-        TextView eventName;
-        TextView eventEvaluation;
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
@@ -53,5 +38,16 @@ public class EventAdapter extends ArrayAdapter<Event>
         viewHolder.eventEvaluation.setText(event.getEvaluation().toString());
 
         return convertView;
+    }
+
+    public EventAdapter(Context context, List<Event> events)
+    {
+        super(context, 0, events);
+    }
+
+    private static class ViewHolder
+    {
+        TextView eventName;
+        TextView eventEvaluation;
     }
 }

@@ -35,45 +35,11 @@ import dao.UserDAO;
 
 public class EventConsultation extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
 {
-
-    private RadioGroup radioGroup;
-    private ActionBar actionBar;
-    private SearchView searchView;
-    private ListView listView;
-    private Integer idItem;
     private JSONObject eventDATA;
-    private TextView event_not_found_text;
+    private SearchView searchView;
     private JSONObject peopleDATA;
     private String option;
     private static final String PEOPLE_NOT_FOUND_MESSAGE = "Nenhum usuário foi encontrado.";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_consultation);
-        listView = (ListView) findViewById(R.id.events_list);
-        event_not_found_text = (TextView) findViewById(R.id.event_not_found_text);
-        setListViewListener();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        /*
-        Inflate the menu.
-        This adds items to the action bar if it is present.
-        */
-        getMenuInflater().inflate(R.menu.menu_event_consultation, menu);
-        actionBar = getSupportActionBar();
-
-        setSearchBar(menu);
-        configActionBar();
-
-        radioGroup = (RadioGroup) findViewById(R.id.search_radio_group);
-        radioGroup.setOnCheckedChangeListener(this);
-        return true;
-    }
 
     private void setSearchBar(Menu menu)
     {
@@ -126,7 +92,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                         }
                         break;
 
-                    case R.id.radio_people://BAD CODE
+                    case R.id.radio_people:
                         option="people";
                         UserDAO userDAO = new UserDAO(getParent());
 
@@ -169,25 +135,40 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
             {
                 return true;
             }
-            
+
         });
     }
 
-    private void showEventsAsList(String[] eventNames)
-    {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
-                R.layout.event_consultation_list_view, eventNames);//BAD CODE
-        listView.setAdapter(adapter);
+    private ListView listView;
+    private TextView event_not_found_text;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_event_consultation);
+        listView = (ListView) findViewById(R.id.events_list);
+        event_not_found_text = (TextView) findViewById(R.id.event_not_found_text);
+        setListViewListener();
     }
 
-    private void showPeopleAsList(String[] peopleNames)
+    private ActionBar actionBar;
+    private RadioGroup radioGroup;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
     {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
-                R.layout.event_consultation_list_view, peopleNames);//BAD CODE
-        listView.setAdapter(adapter);
+        getMenuInflater().inflate(R.menu.menu_event_consultation, menu);
+        actionBar = getSupportActionBar();
+
+        setSearchBar(menu);
+        configActionBar();
+
+        radioGroup = (RadioGroup) findViewById(R.id.search_radio_group);
+        radioGroup.setOnCheckedChangeListener(this);
+        return true;
     }
 
+    private Integer idItem;
     private void setListViewListener()
     {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -219,6 +200,21 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         });
     }
 
+    private void showEventsAsList(String[] eventNames)
+    {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
+                R.layout.event_consultation_list_view, eventNames);
+        listView.setAdapter(adapter);
+
+    }
+
+    private void showPeopleAsList(String[] peopleNames)
+    {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
+                R.layout.event_consultation_list_view, peopleNames);
+        listView.setAdapter(adapter);
+    }
+
     private void configActionBar()
     {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00C0C3")));
@@ -229,7 +225,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch(item.getItemId()) {
-            case android.R.id.home://BAD CODE
+            case android.R.id.home:
                 Intent intent = new Intent(this, HomePage.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -243,9 +239,9 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         String query = searchView.getQuery().toString();
         switch(checkedId)
         {
-            case R.id.radio_events://BAD CODE
+            case R.id.radio_events:
                 break;
-            case R.id.radio_people://BAD CODE
+            case R.id.radio_people:
                 break;
         }
     }
