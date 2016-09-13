@@ -35,7 +35,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
 
     public RegisterEventFragment()
     {
-
+        //EMPTY CONSTRUCTOR
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,9 +62,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         return view;
     }
 
-    private void addCinemaToCategory(View v)
+    private void addCinemaToCategory(final View view)
     {
-        CheckBox cinemaCheckBox = (CheckBox) v;
+        CheckBox cinemaCheckBox = (CheckBox) view;
 
         if(cinemaCheckBox.isChecked())
         {
@@ -75,9 +75,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(cinemaCheckBox.getText().toString());
         }
     }
-    private void addToEducationCategory(View v)
+    private void addToEducationCategory(final View view)
     {
-        CheckBox educationCheckBox = (CheckBox) v;
+        CheckBox educationCheckBox = (CheckBox) view;
 
         if(educationCheckBox.isChecked())
         {
@@ -88,9 +88,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove("Educacao");
         }
     }
-    private void addToExpositionCategory(View v)
+    private void addToExpositionCategory(final View view)
     {
-        CheckBox expositionCheckBox = (CheckBox) v;
+        CheckBox expositionCheckBox = (CheckBox) view;
 
         if(expositionCheckBox.isChecked())
         {
@@ -101,9 +101,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove("Exposicao");
         }
     }
-    private void addToMuseumCategory(View v)
+    private void addToMuseumCategory(final View view)
     {
-        CheckBox museumCheckBox = (CheckBox) v;
+        CheckBox museumCheckBox = (CheckBox) view;
 
         if(museumCheckBox.isChecked())
         {
@@ -113,9 +113,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(museumCheckBox.getText().toString());
         }
     }
-    private void addToOthersCategory(View v)
+    private void addToOthersCategory(final View view)
     {
-        CheckBox othersCheckBox = (CheckBox) v;
+        CheckBox othersCheckBox = (CheckBox) view;
 
         if(othersCheckBox.isChecked())
         {
@@ -126,9 +126,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(othersCheckBox.getText().toString());
         }
     }
-    private void addToPartyCategory(View v)
+    private void addToPartyCategory(final View view)
     {
-        CheckBox partyCheckBox = (CheckBox) v;
+        CheckBox partyCheckBox = (CheckBox) view;
 
         if(partyCheckBox.isChecked())
         {
@@ -138,9 +138,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(partyCheckBox.getText().toString());
         }
     }
-    private void addToSportsCategory(View v)
+    private void addToSportsCategory(final View view)
     {
-        CheckBox sportsCheckBox = (CheckBox) v;
+        CheckBox sportsCheckBox = (CheckBox) view;
 
         if(sportsCheckBox.isChecked())
         {
@@ -151,9 +151,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(sportsCheckBox.getText().toString());
         }
     }
-    private void addToTheatreCategories(View v)
+    private void addToTheatreCategories(final View view)
     {
-        CheckBox theaterCheckBox = (CheckBox) v;
+        CheckBox theaterCheckBox = (CheckBox) view;
 
         if(theaterCheckBox.isChecked())
         {
@@ -164,9 +164,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(theaterCheckBox.getText().toString());
         }
     }
-    private void addToShowCategory(View v)
+    private void addToShowCategory(final View view)
     {
-        CheckBox showCheckBOx = (CheckBox) v;
+        CheckBox showCheckBOx = (CheckBox) view;
         if(showCheckBOx.isChecked())
         {
             categories.add(showCheckBOx.getText().toString());
@@ -175,45 +175,45 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(showCheckBOx.getText().toString());
         }
     }
-    private void addEventCategories(View v)
+    private void addEventCategories(final View view)
     {
-        if(v.getId() == R.id.optionCinema)
+        if(view.getId() == R.id.optionCinema)
         {
-            addCinemaToCategory(v);
+            addCinemaToCategory(view);
 
-        }else if(v.getId() == R.id.optionEducation)
+        }else if(view.getId() == R.id.optionEducation)
         {
-            addToEducationCategory(v);
+            addToEducationCategory(view);
 
-        }else if(v.getId() == R.id.optionExposition)
+        }else if(view.getId() == R.id.optionExposition)
         {
-            addToExpositionCategory(v);
-        }else if(v.getId() == R.id.optionMuseum)
+            addToExpositionCategory(view);
+        }else if(view.getId() == R.id.optionMuseum)
         {
-            addToMuseumCategory(v);
-        }else if(v.getId() == R.id.optionOthers)
+            addToMuseumCategory(view);
+        }else if(view.getId() == R.id.optionOthers)
         {
-            addToOthersCategory(v);
-        }else if(v.getId() == R.id.optionParty)
+            addToOthersCategory(view);
+        }else if(view.getId() == R.id.optionParty)
         {
-            addToPartyCategory(v);
-        }else if(v.getId() == R.id.optionShow)
+            addToPartyCategory(view);
+        }else if(view.getId() == R.id.optionShow)
         {
-            addToShowCategory(v);
-        }else if(v.getId() == R.id.optionSports)
+            addToShowCategory(view);
+        }else if(view.getId() == R.id.optionSports)
         {
-            addToSportsCategory(v);
-        }else if(v.getId() == R.id.optionTheater)
+            addToSportsCategory(view);
+        }else if(view.getId() == R.id.optionTheater)
         {
-            addToTheatreCategories(v);
+            addToTheatreCategories(view);
         }
     }
 
 
     @Override
-    public void onClick(View v)
+    public void onClick(View view)
     {
-        if(v.getId() == R.id.saveEvent)
+        if(view.getId() == R.id.saveEvent)
         {
             EditText nameEventField = (EditText) this.getActivity().findViewById(R.id.eventName);
             String nameEvent = nameEventField.getText().toString();
@@ -248,9 +248,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                 registerEvent(event);
 
                 Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE, Toast.LENGTH_LONG).show();
-            } catch (EventException e)
+            } catch (EventException exception)
             {
-                String message = e.getMessage();
+                String message = exception.getMessage();
 
                 //Verify address field
                 if(message.equals(Event.ADDRESS_IS_EMPTY))
@@ -259,7 +259,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     addressEventField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
                 if(message.equals(Event.INVALID_EVENT_HOUR))
@@ -268,7 +268,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     hourEventField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
                 if(message.equals(Event.EVENT_HOUR_IS_EMPTY))
@@ -277,7 +277,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     hourEventField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
                 if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
@@ -286,7 +286,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     descriptionEventField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
                 if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
@@ -295,7 +295,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     descriptionEventField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
                 if(message.equals(Event.EVENT_DATE_IS_EMPTY))
@@ -304,7 +304,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     dateEventField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
                 if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
@@ -313,7 +313,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     nameEventField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
                 if(message.equals(Event.INVALID_EVENT_DATE))
@@ -322,7 +322,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     dateEventField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
                 if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
@@ -331,7 +331,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     nameEventField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
                 if(message.equals(Event.PRICE_REAL_IS_EMPTY))
@@ -340,7 +340,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     priceEventRealField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
                 if(message.equals(Event.PRICE_DECIMAL_IS_EMPTY))
@@ -349,28 +349,28 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                     priceEventDecimalField.setError(message);
                 }else
                 {
-                    //nothing to do
+                    //NOTHING TO DO
                 }
 
-            } catch (ParseException e)
+            } catch (ParseException exception)
             {
-                e.printStackTrace();
+                exception.printStackTrace();
 
             }
         }
-        else if(v.getId() == R.id.eventLocal)
+        else if(view.getId() == R.id.eventLocal)
         {
             Intent map = new Intent(getActivity(), LocalEventActivity.class);
             startActivityForResult(map, 2);
         }else
         {
-            addEventCategories(v);
+            addEventCategories(view);
         }
 
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    public void onActivityResult(final int requestCode, final int resultCode, final Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode)
@@ -396,35 +396,36 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         eventDAO.saveEvent(event);
     }
 
-    private void addCheckBoxListeners(View v)
+    private void addCheckBoxListeners(View view)
     {
 
-        CheckBox showCategory = (CheckBox) v.findViewById(R.id.optionShow);
+        CheckBox showCategory = (CheckBox) view.findViewById(R.id.optionShow);
         showCategory.setOnClickListener(this);
 
-        CheckBox expositionCategory = (CheckBox) v.findViewById(R.id.optionExposition);
+        CheckBox expositionCategory = (CheckBox) view.findViewById(R.id.optionExposition);
         expositionCategory.setOnClickListener(this);
 
-        CheckBox museumCategory = (CheckBox) v.findViewById(R.id.optionMuseum);
+        CheckBox museumCategory = (CheckBox) view.findViewById(R.id.optionMuseum);
         museumCategory.setOnClickListener(this);
 
-        CheckBox cinemaCategory = (CheckBox) v.findViewById(R.id.optionCinema);
+        CheckBox cinemaCategory = (CheckBox) view.findViewById(R.id.optionCinema);
         cinemaCategory.setOnClickListener(this);
 
-        CheckBox theaterCategory = (CheckBox) v.findViewById(R.id.optionTheater);
+        CheckBox theaterCategory = (CheckBox) view.findViewById(R.id.optionTheater);
         theaterCategory.setOnClickListener(this);
 
-        CheckBox partyCategory = (CheckBox) v.findViewById(R.id.optionParty);
+        CheckBox partyCategory = (CheckBox) view.findViewById(R.id.optionParty);
         partyCategory.setOnClickListener(this);
 
-        CheckBox educationCategory = (CheckBox) v.findViewById(R.id.optionEducation);
+        CheckBox educationCategory = (CheckBox) view.findViewById(R.id.optionEducation);
         educationCategory.setOnClickListener(this);
 
-        CheckBox sportsCategory = (CheckBox) v.findViewById(R.id.optionSports);
+        CheckBox sportsCategory = (CheckBox) view.findViewById(R.id.optionSports);
         sportsCategory.setOnClickListener(this);
 
-        CheckBox othersCategory = (CheckBox) v.findViewById(R.id.optionOthers);
+        CheckBox othersCategory = (CheckBox) view.findViewById(R.id.optionOthers);
         othersCategory.setOnClickListener(this);
 
     }
+
 }

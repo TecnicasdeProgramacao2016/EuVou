@@ -194,7 +194,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
 
         }else
         {
-            //nothing to do
+            //NOTHING TO DO
         }
     }
 }
