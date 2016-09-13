@@ -10,23 +10,31 @@ import model.EventEvaluation;
 /**
  * Created by marlonmendes on 15/11/15.
  */
-public class EventEvaluationDAO extends DAO {
-    public EventEvaluationDAO() {}
+public class EventEvaluationDAO extends DAO
+{
+    public EventEvaluationDAO()
+    {
 
-    public EventEvaluationDAO(Activity activity) {
+    }
+
+    public EventEvaluationDAO(Activity activity)
+    {
         super(activity);
     }
 
-    public void evaluateEvent(EventEvaluation evaluation) {
+    public void evaluateEvent(EventEvaluation evaluation)
+    {
         final String QUERY;
 
         JSONObject findEvaluation = searchEventEvaluation(evaluation.getEventId(), evaluation.getUserId());
 
-        if(findEvaluation==null) {
+        if(findEvaluation==null)
+        {
             QUERY = "INSERT INTO participate(grade, idUser, idEvent) VALUES (\"" + evaluation.getRating() + "\"," +
                     "\"" + evaluation.getUserId() + "\"," +
                     "\"" + evaluation.getEventId() + "\")";
-        }else{
+        }else
+        {
             QUERY = "UPDATE participate SET grade = \"" +evaluation.getRating() + "\" " +
                     "WHERE idEvent = \"" + evaluation.getEventId() + "\" AND idUser = \"" + evaluation.getUserId() + "\"";
         }
@@ -34,7 +42,8 @@ public class EventEvaluationDAO extends DAO {
         executeQuery(QUERY);
     }
 
-    public JSONObject searchEventEvaluation(int eventId, int userId) {
+    public JSONObject searchEventEvaluation(int eventId, int userId)
+    {
         final String QUERY = "SELECT * FROM participate WHERE idUser = \"" + userId
                             + "\" AND idEvent = " + eventId;
         return executeConsult(QUERY);

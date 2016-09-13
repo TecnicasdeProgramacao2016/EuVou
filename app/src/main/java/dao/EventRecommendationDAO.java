@@ -7,14 +7,20 @@ import org.json.JSONObject;
 /**
  * Created by igor on 27/11/15.
  */
-public class EventRecommendationDAO extends DAO {
-    public EventRecommendationDAO() {}
+public class EventRecommendationDAO extends DAO
+{
+    public EventRecommendationDAO()
+    {
 
-    public EventRecommendationDAO(Activity activity) {
+    }
+
+    public EventRecommendationDAO(Activity activity)
+    {
         super(activity);
     }
 
-    public JSONObject recommendEvents(int idUser){
+    public JSONObject recommendEvents(int idUser)
+    {
         String QUERY =
                 "SELECT DISTINCT V.idEvent, V.nameEvent,\n" +
                 "(SELECT AVG(v.evaluate) FROM participate p \n" +

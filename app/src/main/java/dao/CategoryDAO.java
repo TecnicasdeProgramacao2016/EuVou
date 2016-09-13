@@ -7,13 +7,16 @@ import org.json.JSONObject;
 /**
  * Created by julliana on 28/10/15.
  */
-public class CategoryDAO extends DAO {
+public class CategoryDAO extends DAO
+{
 
-    public CategoryDAO(Activity currentActivity){
+    public CategoryDAO(Activity currentActivity)
+    {
         super(currentActivity);
     }
 
-    public JSONObject searchCategoryById(int idCategory){
+    public JSONObject searchCategoryById(int idCategory)
+    {
         return this.executeConsult("SELECT nameCategory FROM tb_category WHERE idCategory = " + idCategory);
     }
 }

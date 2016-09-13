@@ -21,7 +21,7 @@ public abstract class DAO {
 
     public DAO(){}
 
-    private String query(String query,String urlQuery)
+    private String query(final String query,final String urlQuery)
     {
         Consult consult = new Consult(query,urlQuery);
         consult.exec();
@@ -40,7 +40,7 @@ public abstract class DAO {
 
         return consult.getResult();
     }
-    public static boolean limitExceded(long timeLimit, long currentTime)
+    public static boolean limitExceded(final long timeLimit, long currentTime)
     {
         return (currentTime >= timeLimit);
     }

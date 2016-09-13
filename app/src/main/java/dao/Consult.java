@@ -22,7 +22,8 @@ import java.util.List;
 /**
  * Created by viny on 23/09/15.
  */
-public class Consult {
+public class Consult
+{
 
     private  String url;
     private String result;
@@ -63,17 +64,21 @@ public class Consult {
         this.result = result;
     }
 
-    private class Access extends AsyncTask<String, String, String> {
+    private class Access extends AsyncTask<String, String, String>
+    {
 
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute()
+        {
             super.onPreExecute();
         }
 
         @Override
-        protected String doInBackground(String... args) {
+        protected String doInBackground(String... args)
+        {
 
-            try {
+            try
+            {
                 HttpResponse response;
                 HttpClient client = new DefaultHttpClient();
                 HttpPost post = new HttpPost(url);
@@ -87,23 +92,27 @@ public class Consult {
                 result = inputStreamToString(response.getEntity().getContent()).toString();
                 setIsDoing(true);
 
-            } catch (Exception e) {
+            } catch (Exception e)
+            {
                 e.printStackTrace();
             }
             return null;
         }
 
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(String result)
+        {
 
             Consult.this.setIsDoing(true);
         }
 
-        private StringBuilder inputStreamToString(InputStream is) throws IOException {
+        private StringBuilder inputStreamToString(InputStream is) throws IOException
+        {
             String rLine = "";
             StringBuilder answer = new StringBuilder();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is));
 
-            while ((rLine = rd.readLine()) != null) {
+            while ((rLine = rd.readLine()) != null)
+            {
                 answer.append(rLine);
             }
             return answer;
