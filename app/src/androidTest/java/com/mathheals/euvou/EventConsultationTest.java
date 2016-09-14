@@ -245,6 +245,10 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
             onView(withId(R.id.passwordField)).perform(typeText("123456"));
             onView(withText("Login")).perform(click());
         }
+        else
+        {
+            //NOTHING TO DO
+        }
         markClique();
         onView(withId(R.id.EuVou)).perform(click());
         onView(withId(R.id.EuVou)).perform(click());

@@ -60,7 +60,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                 switch (checkedButton)
                 {
                     case R.id.radio_events:
-                        //Toast.makeText(getBaseContext(), "EVENTOS: " + query, Toast.LENGTH_LONG).show();
                         option="event";
                         EventDAO eventDAO = new EventDAO(getParent());
 
