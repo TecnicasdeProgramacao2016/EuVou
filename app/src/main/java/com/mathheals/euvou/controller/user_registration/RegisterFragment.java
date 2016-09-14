@@ -58,7 +58,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         return view;
     }
 
-    private void registerUser(final User user)
+    private void registerUser(final User user)//aplicar assertiva "não confie em ningúem"
     {
         UserDAO userDAO = new UserDAO(getActivity());
         userDAO.save(user);
@@ -110,7 +110,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
                                  password,
                                  passwordConfirm,
                                  birthDate);
-
+            //colocar acertiva para usuário validar se usuário está ok
             registerUser(user);
 
             Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE,

@@ -17,17 +17,18 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-/**
- * Created by izabela on 05/11/15.
- */
-public class ShowUserControlTest  extends ActivityInstrumentationTestCase2<HomePage> {
 
-    public ShowUserControlTest() {
+public class ShowUserControlTest  extends ActivityInstrumentationTestCase2<HomePage>
+{
+
+    public ShowUserControlTest()
+    {
         super(HomePage.class);
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         super.setUp();
         getActivity();
     }

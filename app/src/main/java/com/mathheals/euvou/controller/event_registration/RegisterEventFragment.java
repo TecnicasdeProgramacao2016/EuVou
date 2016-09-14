@@ -245,6 +245,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                 Event event = new Event(idOwner, nameEvent, dateEvent, eventHour,
                                         priceEventReal, priceEventDecimal, addressEvent,
                                         descriptionEvent, latitude, longitude, categories);
+                //testar criação do evento
                 registerEvent(event);
 
                 Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE, Toast.LENGTH_LONG).show();
@@ -392,6 +393,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
 
     private void registerEvent(Event event)
     {
+        //verificar evento que está em parâmetro
         EventDAO eventDAO = new EventDAO(getActivity());
         eventDAO.saveEvent(event);
     }

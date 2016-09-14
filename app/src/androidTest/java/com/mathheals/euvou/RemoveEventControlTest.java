@@ -35,10 +35,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
-/**
- * Created by izabela on 29/11/15.
- */
-public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<HomePage> {
+
+public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<HomePage>
+{
 
     private LoginUtility isLoged;
     private TestUtility setLogin;
@@ -46,37 +45,49 @@ public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<Hom
     private User user;
     private EventDAO eventDao = new EventDAO();
 
-    public RemoveEventControlTest() {
+    public RemoveEventControlTest()
+    {
         super(HomePage.class);
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         super.setUp();
         getActivity();
         isLoged = new LoginUtility(getActivity());
         device = UiDevice.getInstance(getInstrumentation());
     }
 
-    public void testIfRemoveEventOptionIsDisplayedForUserLoggedOut(){
-        if(isLoged.hasUserLoggedIn()){
+    public void testIfRemoveEventOptionIsDisplayedForUserLoggedOut()
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
+        }else
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Meus Eventos")).check(doesNotExist());
+
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Meus Eventos")).check(doesNotExist());
-    }
+            }
 
-    public void testRemoveEventButton() throws ParseException, EventException {
+    public void testRemoveEventButton() throws ParseException, EventException
+    {
 
-        if(!isLoged.hasUserLoggedIn()){
+        if(!isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogIn();
+        }else
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Meus Eventos")).perform(click());
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Meus Eventos")).perform(click());
 
-        onData(hasToString(containsString("Teste")))
-                .inAdapterView(withId(R.id.eventList)).atPosition(0)
-                .perform(click());
+
+        onData(hasToString(containsString("Teste"))).inAdapterView(withId(R.id.eventList)).atPosition(0)
+                                                    .perform(click());
+
         onView(withId(R.id.editRemoveButton)).perform(click());
         onView(withId(R.id.removeEvent)).perform(scrollTo());
         onView(withId(R.id.removeEvent)).perform(click());
