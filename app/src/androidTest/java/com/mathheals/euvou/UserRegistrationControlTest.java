@@ -27,8 +27,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
  * Created by izabela on 03/11/15.
+ * Modified by daniel on 15/09/15.
  */
-public class UserRegistrationControlTest extends ActivityInstrumentationTestCase2<HomePage> {
+public class UserRegistrationControlTest extends ActivityInstrumentationTestCase2<HomePage> 
+{
 
     private LoginUtility isLoged;
     private TestUtility setLogin;
@@ -36,20 +38,24 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
     private User user;
     private UserDAO userDao = new UserDAO();
 
-    public UserRegistrationControlTest() {
+    public UserRegistrationControlTest() 
+    {
         super(HomePage.class);
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception 
+    {
         super.setUp();
         getActivity();
         isLoged = new LoginUtility(getActivity());
         device = UiDevice.getInstance(getInstrumentation());
     }
 
-    public void testRegisterOptionInActionBarMenu() {
-        if(isLoged.hasUserLoggedIn()){
+    public void testRegisterOptionInActionBarMenu() 
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -58,8 +64,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.saveButton)).check(matches(withText("Cadastrar")));
     }
     
-    public void testIfNameLabelIsCorrect() {
-        if(isLoged.hasUserLoggedIn()){
+    public void testIfNameLabelIsCorrect() 
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -69,7 +77,8 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
     }
 
     public void testNameField(){
-        if(isLoged.hasUserLoggedIn()){
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -80,8 +89,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.nameField)).check(matches(withText("Ju Almeida")));
     }
 
-    public void testIfDateLabelIsCorrect() {
-        if(isLoged.hasUserLoggedIn()){
+    public void testIfDateLabelIsCorrect() 
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -90,8 +101,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.birthDateLabel)).check(matches(withText("Data de Nascimento")));
     }
 
-    public void testDateField(){
-        if(isLoged.hasUserLoggedIn()){
+    public void testDateField()
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -102,8 +115,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.dateField)).check(matches(withText("22/12/2000")));
     }
 
-    public void testIfMailLabelIsCorrect() {
-        if(isLoged.hasUserLoggedIn()){
+    public void testIfMailLabelIsCorrect() 
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -112,8 +127,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.userMailLabel)).check(matches(withText("E-mail")));
     }
 
-    public void testMailField(){
-        if(isLoged.hasUserLoggedIn()){
+    public void testMailField()
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -124,8 +141,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.mailField)).check(matches(withText("oi-xau@voltei.com")));
     }
 
-    public void testIfMailConfirmationLabelIsCorrect() {
-        if(isLoged.hasUserLoggedIn()){
+    public void testIfMailConfirmationLabelIsCorrect() 
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -134,8 +153,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.confirmUserMailLabel)).check(matches(withText("Confirme o e-mail")));
     }
 
-    public void testMailConfirmationField(){
-        if(isLoged.hasUserLoggedIn()){
+    public void testMailConfirmationField()
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -146,8 +167,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.confirmMailField)).check(matches(withText("oi-xau@voltei.com")));
     }
 
-    public void testIfLoginLabelIsCorrect() {
-        if(isLoged.hasUserLoggedIn()){
+    public void testIfLoginLabelIsCorrect() 
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -156,8 +179,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.userLoginLabel)).check(matches(withText("Login")));
     }
 
-    public void testLoginField(){
-        if(isLoged.hasUserLoggedIn()){
+    public void testLoginField()
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -168,8 +193,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.loginField)).check(matches(withText("oioioi123")));
     }
 
-    public void testIfPasswordLabelIsCorrect() {
-        if(isLoged.hasUserLoggedIn()){
+    public void testIfPasswordLabelIsCorrect() 
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -178,8 +205,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.userPasswordLabel)).check(matches(withText("Senha")));
     }
 
-    public void testPasswordField(){
-        if(isLoged.hasUserLoggedIn()){
+    public void testPasswordField()
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -190,8 +219,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.passwordField)).check(matches(withText("1234567")));
     }
 
-    public void testIfConfirmPasswordLabelIsCorrect() {
-        if(isLoged.hasUserLoggedIn()){
+    public void testIfConfirmPasswordLabelIsCorrect() 
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -200,8 +231,10 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.userConfirmPasswordLabel)).check(matches(withText("Confirme a senha")));
     }
 
-    public void testConfirmPasswordField(){
-        if(isLoged.hasUserLoggedIn()){
+    public void testConfirmPasswordField()
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -212,21 +245,27 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.confirmPasswordField)).check(matches(withText("1234567")));
     }
 
-    public void testRegisterUserButtonWithEmptyName(){
-        if(isLoged.hasUserLoggedIn()){
+    public void testRegisterUserButtonWithEmptyName()
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
         UiObject marker = device.findObject(new UiSelector().textContains("Cadastrar"));
-        try {
+        try 
+        {
             marker.click();
-        } catch (UiObjectNotFoundException e) {
+        } catch (UiObjectNotFoundException e) 
+        {
             e.printStackTrace();
         }
-        try {
+        try 
+        {
             Thread.sleep(3000);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e) 
+        {
             e.printStackTrace();
         }
         onView(withId(R.id.nameField)).check(matches(hasErrorText(user.NAME_CANT_BE_EMPTY_NAME)));
