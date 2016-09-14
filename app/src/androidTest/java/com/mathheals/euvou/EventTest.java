@@ -23,13 +23,15 @@ public class EventTest extends TestCase
         boolean ok = true;
         try
         {
-            event = new Event(3,"Swing na casa do Miranda",  10010, "casa do miranda", "25/10/2016", "e trenzinho e eu fico no meio", "1", "2", null);
+            event = new Event(3,"Swing na casa do Miranda",  10010, "casa do miranda",
+                                "25/10/2016", "e trenzinho e eu fico no meio",
+                                "1", "2", null);
         }
-        catch (EventException e)
+        catch (EventException eventException)
         {
             ok = false;
         }
-        catch (ParseException e)
+        catch (ParseException parseException)
         {
             ok = false;
         }
@@ -44,12 +46,14 @@ public class EventTest extends TestCase
         boolean ok = true;
         try
         {
-            event = new Event(3,"Swing na casa do Miranda", 10010, "casa do miranda", "25/10/2016", "e trenzinho e eu fico no meio","1", "2", categories);
-        } catch(EventException e)
+            event = new Event(3,"Swing na casa do Miranda", 10010, "casa do miranda",
+                                "25/10/2016", "e trenzinho e eu fico no meio","1",
+                                "2", categories);
+        } catch(EventException eventException)
         {
             ok = false;
         }
-        catch (ParseException e)
+        catch (ParseException parseException)
         {
             ok = false;
         }
@@ -62,11 +66,14 @@ public class EventTest extends TestCase
         boolean ok = true;
         Vector<String> categories = new Vector<String >();
         categories.add("Museus");
+
         try
         {
-            event = new Event(3,"Swing na casa do Miranda", 10010, "casa do miranda", "25/10/2016", "e trenzinho e eu fico no meio", "1", "2", categories);
+            event = new Event(3,"Swing na casa do Miranda", 10010, "casa do miranda",
+                                "25/10/2016", "e trenzinho e eu fico no meio", "1",
+                                "2", categories);
         }
-        catch (EventException e)
+        catch (EventException eventException)
         {
             ok = false;
         }
@@ -83,14 +90,18 @@ public class EventTest extends TestCase
     {
         Vector<String> categories = new Vector<String >();
         categories.add("Educacao");
+
         boolean ok = true;
+
         try
         {
-            event = new Event(3,"", 10010, "casa do miranda", "25/10/2016", "e trenzinho e eu fico no meio", "50.01","60.002", categories);
-        } catch(EventException e)
+            event = new Event(3,"", 10010, "casa do miranda", "25/10/2016",
+                                "e trenzinho e eu fico no meio", "50.01",
+                                "60.002", categories);
+        } catch(EventException eventException)
         {
             ok = false;
-        } catch(ParseException ex)
+        } catch(ParseException parsetException)
         {
             ok = false;
         }
@@ -103,13 +114,16 @@ public class EventTest extends TestCase
         Vector<String> categories = new Vector<String >();
         categories.add("Balada");
         boolean ok = true;
+
         try
         {
-            event =  new Event(3,"Geovanni", 10010, "casa do miranda", "25/10/2016", "e trenzinho e eu fico no meio","21.4","30.2", categories);
-        } catch(EventException e)
+            event =  new Event(3,"Geovanni", 10010, "casa do miranda", "25/10/2016",
+                                 "e trenzinho e eu fico no meio","21.4","30.2",
+                                 categories);
+        } catch(EventException eventException)
         {
             ok = false;
-        } catch(ParseException ex)
+        } catch(ParseException parseException)
         {
             ok = false;
         }
@@ -123,15 +137,18 @@ public class EventTest extends TestCase
         Vector<String> categories = new Vector<String >();
         categories.add("Museus");
         boolean ok = true;
+
         try
         {
-            event = new Event(3,"Joãozinho da Silva Gosta da Dilma, venham conhecer esse jovem muito jovem", 10010, "casa do miranda", "25/10/2016", "e trenzinho e eu fico no meio","50.8","60.2", categories);
+            event = new Event(3,"Joãozinho da Silva Gosta da Dilma, venham conhecer esse jovem muito jovem",
+                              10010, "casa do miranda", "25/10/2016",
+                              "e trenzinho e eu fico no meio","50.8","60.2", categories);
 
-        } catch (EventException e)
+        } catch (EventException eventException)
         {
-            e.printStackTrace();
+            eventException.printStackTrace();
             ok = false;
-        } catch(ParseException ex)
+        } catch(ParseException paseExecption)
         {
             ok = false;
         }
@@ -160,8 +177,11 @@ public class EventTest extends TestCase
         Vector<String> categories = new Vector<String >();
         categories.add("Show");
         boolean ok = true;
-        try{
-            event = new Event(3,"FG Party", 10010, "casa do miranda", "25/10/2016", "","44.2","46.2", categories);
+
+        try
+        {
+            event = new Event(3,"FG Party", 10010, "casa do miranda", "25/10/2016",
+                              "","44.2","46.2", categories);
             ok = true;
 
         } catch(EventException e)
@@ -180,12 +200,16 @@ public class EventTest extends TestCase
         Vector<String> categories = new Vector<String>();
         categories.add("Cinema");
         boolean ok = true;
-        try{
+        try
+        {
+            event = new Event(3,"FG a Party",10010, "FGA","10/10/2016",
+                              "Venha se perder com a gente!", "44.2","65.2",
+                              categories);
 
-            event = new Event(3,"FG a Party",10010, "FGA","10/10/2016","Venha se perder com a gente!", "44.2","65.2", categories);
-        }catch(EventException e){
+        }catch(EventException eventException)
+        {
             ok = false;
-        }catch(ParseException ex)
+        }catch(ParseException parseException)
         {
             ok = false;
         }
@@ -198,9 +222,10 @@ public class EventTest extends TestCase
         Vector<String> categories = new Vector<String >();
         categories.add("Teatro");
         boolean ok = true;
+
         try
         {
-            event = new Event(3,"FG a Party",10010, "FGA","10/10/2016","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
+            event = new Event(3,"FG a Party",10010, "FGA","10/10/2016",
                     "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
                     "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
                     "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
@@ -210,12 +235,14 @@ public class EventTest extends TestCase
                     "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
                     "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
                     "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", "55.2","79.9", categories);
+                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
+                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+                    "55.2","79.9", categories);
 
-        } catch(EventException e)
+        } catch(EventException eventException)
         {
             ok = false;
-        } catch(ParseException ex)
+        } catch(ParseException parseException)
         {
             ok = false;
         }
@@ -228,13 +255,15 @@ public class EventTest extends TestCase
         Vector<String> categories = new Vector<String >();
         categories.add("Esportes");
         boolean ok = true;
+
         try
         {
-            event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016", "Descrição","-90.9","140.2", categories);
-        } catch(EventException e)
+            event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
+                              "Descrição","-90.9","140.2", categories);
+        } catch(EventException eventException)
         {
             ok = false;
-        } catch(ParseException ex)
+        } catch(ParseException parseException)
         {
             ok = false;
         }
@@ -247,13 +276,15 @@ public class EventTest extends TestCase
         Vector<String> categories = new Vector<String >();
         categories.add("Museus");
         boolean ok = true;
+
         try
         {
-            event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016", "Descrição","99.2","130.2", categories);
-        } catch(EventException e)
+            event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
+                              "Descrição","99.2","130.2", categories);
+        } catch(EventException eventException)
         {
             ok = false;
-        } catch(ParseException ex)
+        } catch(ParseException parseException)
         {
             ok = false;
         }
@@ -268,11 +299,13 @@ public class EventTest extends TestCase
         boolean ok = true;
         try
         {
-            event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016", "Descrição","-40.9","140.2", categories);
-        }catch(EventException e)
+            event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
+                              "Descrição","-40.9","140.2", categories);
+
+        }catch(EventException eventException)
         {
             ok = false;
-        }catch(ParseException ex)
+        }catch(ParseException parseException)
         {
             ok = false;
         }
@@ -285,9 +318,12 @@ public class EventTest extends TestCase
         Vector<String> categories = new Vector<String >();
         categories.add("Outros");
         boolean ok = true;
+
         try
         {
-            event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016", "Descrição","90.0","-181.1", categories);
+            event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
+                                "Descrição","90.0","-181.1", categories);
+
         }catch(EventException e)
         {
             ok = false;

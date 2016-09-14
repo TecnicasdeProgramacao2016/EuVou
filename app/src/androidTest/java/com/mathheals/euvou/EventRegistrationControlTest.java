@@ -39,15 +39,14 @@ import static org.hamcrest.Matchers.not;
 public class EventRegistrationControlTest extends ActivityInstrumentationTestCase2<HomePage>
 {
 
-    private LoginUtility isLoged;
-    private TestUtility setLogin;
-    private UiDevice device;
-    private Event event;
-
     public EventRegistrationControlTest()
     {
         super(HomePage.class);
     }
+
+    private Event event;
+    private UiDevice device;
+    private LoginUtility isLoged;
 
     @Before
     //Set up user.
@@ -59,12 +58,18 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         device = UiDevice.getInstance(getInstrumentation());
     }
 
+    private TestUtility setLogin;
+
     //Test Categories Checkbox return
     public void testCategoriesCheckBox()
     {
         if(!isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogIn();
+        }
+        else
+        {
+            //NOTHING TO DO
         }
 
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -95,6 +100,10 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         if(!isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogIn();
+        }
+        else
+        {
+            //NOTHING TO DO
         }
 
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -128,11 +137,16 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
     //Test Choosen Place to the event
     public void testChoosePlaceOnMap()
     {
-        final String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";
+
         if(!isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogIn();
         }
+        else
+        {
+            //NOTHING TO DO
+        }
+
         openRegisterEvent();
         onView(withId(R.id.eventLocal)).perform(click());
         onView(withId(R.id.map)).perform(click());
@@ -144,6 +158,8 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         {
             e.printStackTrace();
         }
+
+        final String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";
 
         onView(withText(SUCESSFULL_CHOICE_MESSAGE))
                 .inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView()))))

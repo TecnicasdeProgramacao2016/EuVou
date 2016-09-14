@@ -13,7 +13,6 @@ import org.json.JSONObject;
 
 import dao.EventRecommendationDAO;
 
-
 public class EventRecommendationDAOTest extends TestCase
 {
     //Test recommended events
@@ -30,10 +29,10 @@ public class EventRecommendationDAOTest extends TestCase
 
             check = true;
 
-        } catch (JSONException e) {
+        } catch (JSONException JsonException) {
             check = false;
 
-            e.printStackTrace();
+            JsonException.printStackTrace();
         }
 
         assertTrue(check);

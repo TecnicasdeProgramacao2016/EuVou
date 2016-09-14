@@ -24,10 +24,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class EventRecomendationTest  extends ActivityInstrumentationTestCase2<HomePage>
 {
 
-    private Activity activity;
-    private ListView list;
     private static final int USER_LOGGED_OUT = -1;
-    private boolean isUserLoggedIn;
+    private Activity activity;
 
     //Constructor Method.
     public EventRecomendationTest()
@@ -44,6 +42,8 @@ public class EventRecomendationTest  extends ActivityInstrumentationTestCase2<Ho
         activity = getActivity();
         setIsUserLoggedIn(new LoginUtility(activity).getUserId() != USER_LOGGED_OUT);
     }
+
+    private ListView list;
 
     @Test
     //Test events and evaluate if its recommended.
@@ -73,6 +73,8 @@ public class EventRecomendationTest  extends ActivityInstrumentationTestCase2<Ho
         getInstrumentation().waitForIdleSync();
     }
 
+    private boolean isUserLoggedIn;
+
     //Test if user can loggin and sets a new list of events.
     public void testUserWithoutRecomendations()
     {
@@ -93,9 +95,9 @@ public class EventRecomendationTest  extends ActivityInstrumentationTestCase2<Ho
         try
         {
             Thread.sleep(2000);
-        } catch (InterruptedException e)
+        } catch (InterruptedException interrupted)
         {
-            e.printStackTrace();
+            interrupted.printStackTrace();
         }
 
         boolean result = false;
