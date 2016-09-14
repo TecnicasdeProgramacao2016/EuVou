@@ -324,10 +324,10 @@ public class EventTest extends TestCase
             event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
                                 "Descrição","90.0","-181.1", categories);
 
-        }catch(EventException e)
+        }catch(EventException eventException)
         {
             ok = false;
-        }catch(ParseException ex)
+        }catch(ParseException parseException)
         {
             ok = false;
         }
@@ -341,13 +341,16 @@ public class EventTest extends TestCase
         Vector<String> categories = new Vector<String >();
         categories.add("Museus");
         boolean ok = true;
+
         try
         {
-            event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016", "Descrição","19.2","190.2", categories);
-        }catch(EventException e)
+            event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
+                                "Descrição","19.2","190.2", categories);
+
+        }catch(EventException eventException)
         {
             ok = false;
-        }catch(ParseException ex)
+        }catch(ParseException parseException)
         {
             ok = false;
         }
@@ -360,13 +363,16 @@ public class EventTest extends TestCase
         Vector<String> categories = new Vector<>();
         categories.add("Museus");
         boolean ok = true;
+
         try
         {
-            event = new Event(3,"Evento teste", 10010, "endereco", "12/12/2016", "Descrição", "1", "2", categories);
-        }catch(EventException e)
+            event = new Event(3,"Evento teste", 10010, "endereco", "12/12/2016",
+                                "Descrição", "1", "2", categories);
+
+        }catch(EventException eventException)
         {
             ok = false;
-        }catch(ParseException parse)
+        }catch(ParseException parseException)
         {
             ok = false;
         }

@@ -13,13 +13,17 @@ import dao.PlaceDAO;
 
 public class PlaceDAOTest extends TestCase
 {
-    //Test search by name
+    //Test place search by name
     public void testSearchPlaceByPartName() throws Exception
     {
         PlaceDAO place = new PlaceDAO();
         if(place.searchPlaceByPartName("") != null)
+        {
             assertTrue(true);
+        }
         else
+        {
             fail();
+        }
     }
 }

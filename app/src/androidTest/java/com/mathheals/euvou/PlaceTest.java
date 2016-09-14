@@ -24,9 +24,10 @@ public class PlaceTest extends TestCase
         boolean ok = false;
         try
         {
-            Place place= new Place(null,"2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
+            Place place= new Place(null,"2","14.0025","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             ok = true;
-        } catch (Exception e)
+        } catch (Exception exception)
         {
             ok = false;
         } finally
@@ -41,9 +42,10 @@ public class PlaceTest extends TestCase
         boolean ok = false;
         try
         {
-            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
+            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             ok = true;
-        } catch (Exception e)
+        } catch (Exception exception)
         {
             ok = false;
         } finally
@@ -58,9 +60,10 @@ public class PlaceTest extends TestCase
         boolean ok = false;
         try
         {
-            Place place= new Place("Pizza","2",null,"14.0025","8h às 12h","Descrição","rua das flores","33613110");
+            Place place= new Place("Pizza","2",null,"14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             ok = true;
-        } catch (Exception e)
+        } catch (Exception eception)
         {
             ok = false;
         } finally
@@ -75,9 +78,10 @@ public class PlaceTest extends TestCase
         boolean ok = false;
         try
         {
-            Place place= new Place("Pizza","2","14.0025",null,"8h às 12h","Descrição","rua das flores","33613110");
+            Place place= new Place("Pizza","2","14.0025",null,"8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             ok = true;
-        } catch (Exception e)
+        } catch (Exception exception)
         {
             ok = false;
         } finally
@@ -92,9 +96,10 @@ public class PlaceTest extends TestCase
         boolean ok = false;
         try
         {
-            Place place = new Place("Pizza","2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
+            Place place = new Place("Pizza","2","14.0025","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             ok = true;
-        } catch (Exception e)
+        } catch (Exception exception)
         {
             ok = false;
         } finally
@@ -109,9 +114,10 @@ public class PlaceTest extends TestCase
         boolean ok = false;
         try
         {
-            Place place= new Place("Pizza","2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
+            Place place= new Place("Pizza","2","14.0025","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             ok = true;
-        } catch (Exception e)
+        } catch (Exception exception)
         {
             ok = false;
         } finally
@@ -126,9 +132,10 @@ public class PlaceTest extends TestCase
         boolean ok = false;
         try
         {
-            Place place= new Place("Pizza","2","","14.0025","8h às 12h","Descrição","rua das flores","33613110");
+            Place place= new Place("Pizza","2","","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             ok = true;
-        } catch (Exception e)
+        } catch (Exception exception)
         {
             ok = false;
         } finally
@@ -143,9 +150,10 @@ public class PlaceTest extends TestCase
         boolean ok = false;
         try
         {
-            Place place= new Place("Pizza","2","14.0025","","8h às 12h","Descrição","rua das flores","33613110");
+            Place place= new Place("Pizza","2","14.0025","","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             ok = true;
-        } catch (Exception e)
+        } catch (Exception exception)
         {
             ok = false;
         } finally
@@ -159,13 +167,14 @@ public class PlaceTest extends TestCase
     {
         try
         {
-            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
-
+            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             assertTrue(place.getName().equals("Nome"));
-        } catch (PlaceException e)
+
+        } catch (PlaceException placeException)
         {
             assertTrue(false);
-        } catch (ParseException e)
+        } catch (ParseException parseException)
         {
             assertTrue(false);
         }
@@ -176,13 +185,14 @@ public class PlaceTest extends TestCase
     {
         try
         {
-            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
-
+            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             assertTrue(place.getLatitude() == 14.0025);
-        } catch (PlaceException e)
+
+        } catch (PlaceException placeException)
         {
             assertTrue(false);
-        } catch (ParseException e)
+        } catch (ParseException parseException)
         {
             assertTrue(false);
         }
@@ -193,13 +203,14 @@ public class PlaceTest extends TestCase
     {
         try
         {
-            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
-
+            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             assertTrue(place.getLongitude() == 14.0025);
-        } catch (PlaceException e)
+
+        } catch (PlaceException placeException)
         {
             assertTrue(false);
-        } catch (ParseException e)
+        } catch (ParseException parseException)
         {
             assertTrue(false);
         }
@@ -210,13 +221,14 @@ public class PlaceTest extends TestCase
     {
         try
         {
-            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
-
+            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
             assertTrue(place.getAddress().equals("rua das flores"));
-        } catch (PlaceException e)
+
+        } catch (PlaceException placeException)
         {
             assertTrue(false);
-        } catch (ParseException e)
+        } catch (ParseException parseException)
         {
             assertTrue(false);
         }
@@ -227,13 +239,14 @@ public class PlaceTest extends TestCase
     {
         try
         {
-            Place place= new Place("","2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
+            Place place= new Place("","2","14.0025","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110");
 
             assertFalse(true);
-        } catch (PlaceException e)
+        } catch (PlaceException placeException)
         {
             assertFalse(false);
-        } catch (ParseException e)
+        } catch (ParseException parseException)
         {
             assertFalse(false);
         }
