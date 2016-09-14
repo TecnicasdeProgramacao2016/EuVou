@@ -15,8 +15,6 @@ import model.UserEvaluation;
 /*
  * File name: UserEvolationDAOTest.
  * File pourpose: Test of Data Access Object - DAD evaluation with true and falses parameters.
- * Created by izabela on 24/11/15.
- * Edited by: daniel on 13/09/16
  */
 
 public class UserEvaluationDAOTest extends TestCase 

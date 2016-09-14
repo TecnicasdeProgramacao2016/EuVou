@@ -13,36 +13,46 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
-/**
- * Created by geovanni on 18/11/15.
- */
-public class ShowPlaceRankingTest extends ActivityInstrumentationTestCase2<HomePage> {
 
-    public ShowPlaceRankingTest()  {
+/*
+ * File name: ShowPlaceRankingTest.
+ * File pourpose: This file have the pourpose to test the ranking of the show places with true and falses parameters.
+ */
+
+
+public class ShowPlaceRankingTest extends ActivityInstrumentationTestCase2<HomePage> 
+{
+
+    public ShowPlaceRankingTest()  
+    {
         super(HomePage.class);
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception 
+    {
         super.setUp();
         getActivity();
     }
 
-    public void testIfTop5IsDisplayed(){
+    public void testIfTopFiveIsDisplayed()
+    {
         onView(withId(R.id.rateEvent)).check(matches(isDisplayed()));
         onView(withId(R.id.more)).check(matches(isDisplayed()));
         onView(withId(R.id.labelRankingPlace)).check(matches(isDisplayed()));
 
     }
-    public void testIfPlaceRakingIsDisplayed(){
-        testIfTop5IsDisplayed();
+    public void testIfPlaceRakingIsDisplayed()
+    {
+        testIfTopFiveIsDisplayed();
         onView(withId(R.id.more)).perform(click());
         onView(withId(R.id.rateEvent)).check(matches(isDisplayed()));
 
     }
 
-    public void testclickPlaceRakingIsDisplayed(){
-        testIfTop5IsDisplayed();
+    public void testclickPlaceRakingIsDisplayed()
+    {
+        testIfTopFiveIsDisplayed();
         onView(withId(R.id.rateEvent)).perform(click());
 
     }

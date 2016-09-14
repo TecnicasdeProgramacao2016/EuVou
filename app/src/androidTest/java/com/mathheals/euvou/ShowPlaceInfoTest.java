@@ -36,11 +36,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
-/**
- * Created by marlonmendes on 12/11/15.
+/*
+ * File name: ShowPlaceInfoTest.
+ * File pourpose: This file have the pourpose to test if the information about the show's place will be show with true and falses parameters.
  */
 
-public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage>{
+public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage>
+{
 
     private static final String SELECTED_PLACE_NAME = "Parque Ecológico do Tororó";
     private static final int USER_LOGGED_OUT = -1;
@@ -48,68 +50,84 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
     private boolean isUserLoggedIn;
     private Activity activity;
 
-    public ShowPlaceInfoTest() {
+    public ShowPlaceInfoTest() 
+    {
         super(HomePage.class);
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception 
+    {
         super.setUp();
         activity = getActivity();
         setIsUserLoggedIn(new LoginUtility(activity).getUserId() != USER_LOGGED_OUT);
         device = UiDevice.getInstance(getInstrumentation());
     }
 
-    public void testShowPlaceStarting() {
+    public void testShowPlaceStarting() 
+    {
         startShowPlaceInfoForSettedUpPlace();
         onView(withId(R.id.address)).check(matches(isDisplayed()));
     }
 
-    public void testShowMapForSelectedPlace() {
+    public void testShowMapForSelectedPlace() 
+    {
         startShowPlaceInfoForSettedUpPlace();
         onView(withId(R.id.button_show_map)).perform(click());
         onView(withId(R.id.fragment_show_place_info_map)).check(matches(isDisplayed()));
     }
 
-    public void testHideMapForSelectedPlace() {
+    public void testHideMapForSelectedPlace() 
+    {
         startShowPlaceInfoForSettedUpPlace();
         onView(withId(R.id.button_show_map)).perform(click());
         onView(withId(R.id.button_hide_map)).perform(click());
         onView(withId(R.id.fragment_show_place_info_map)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
     }
 
-    public void testIfRatingBarIsAvailableForLoggedOutUser() {
-        if(isUserLoggedIn) {
+    public void testIfRatingBarIsAvailableForLoggedOutUser() 
+    {
+        if(isUserLoggedIn) 
+        {
             TestUtility.makeUserLogOut();
             isUserLoggedIn = false;
         }
         startShowPlaceInfoForSettedUpPlace();
-        try {
+        try 
+        {
             Thread.sleep(1000);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e) 
+        {
             e.printStackTrace();
         }
         onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
     }
 
-    public void testIfRatingBarIsAvailableForLoggedInUser() {
+    public void testIfRatingBarIsAvailableForLoggedInUser() 
+    {
         boolean result;
-        if(!isUserLoggedIn) {
+        if(!isUserLoggedIn) 
+        {
             TestUtility.makeUserLogIn();
             isUserLoggedIn = true;
         }
         startShowPlaceInfoForSettedUpPlace();
-        try {int[] ratingNumbersForTest = new int[]{1, 3, 5};
+        try 
+        {
+            int[] ratingNumbersForTest = new int[]{1, 3, 5};
 
             for(Integer ratingNumber : ratingNumbersForTest)
                 onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
-            try {
+            try 
+            {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e) 
+            {
                 e.printStackTrace();
             }
             result = true;
-        } catch (PerformException performException) {
+        } catch (PerformException performException) 
+        {
             result = false;
         }
         assertTrue(result);
@@ -122,22 +140,28 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
                 .perform(click());
     }
 
-    private void startShowPlaceInfoForSettedUpPlace() {
+    private void startShowPlaceInfoForSettedUpPlace() 
+    {
         clickOnTodosPlaceCategory();
-        try {
+        try 
+        {
             Thread.sleep(4000);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e) 
+        {
             e.printStackTrace();
         }
         UiObject marker = device.findObject(new UiSelector().descriptionContains(SELECTED_PLACE_NAME));
-        try {
+        try 
+        {
             marker.click();
-        } catch (UiObjectNotFoundException e) {
+        } catch (UiObjectNotFoundException e) 
+        {
             e.printStackTrace();
         }
     }
 
-    public void setIsUserLoggedIn(boolean isUserLoggedIn) {
+    public void setIsUserLoggedIn(boolean isUserLoggedIn) 
+    {
         this.isUserLoggedIn = isUserLoggedIn;
     }
 }
