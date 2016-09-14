@@ -25,9 +25,11 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-/**
+ /*
+ * File name: UserRegistrationControlTest.
+ * File pourpose: Test user's registration with true and falses parameters.
  * Created by izabela on 03/11/15.
- * Modified by daniel on 15/09/15.
+ * Edited by: daniel on 13/09/16
  */
 public class UserRegistrationControlTest extends ActivityInstrumentationTestCase2<HomePage> 
 {

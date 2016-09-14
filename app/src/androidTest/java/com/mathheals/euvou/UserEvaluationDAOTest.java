@@ -12,72 +12,92 @@ import exception.UserEvaluationException;
 import model.EventEvaluation;
 import model.UserEvaluation;
 
-/**
+/*
+ * File name: UserEvolationDAOTest.
+ * File pourpose: Test of Data Access Object - DAD evaluation with true and falses parameters.
  * Created by izabela on 24/11/15.
+ * Edited by: daniel on 13/09/16
  */
-public class UserEvaluationDAOTest extends TestCase {
 
-    public void testIfRatingIsBeingSavedCorrectly() {
+public class UserEvaluationDAOTest extends TestCase 
+{
+
+    public void testIfRatingIsBeingSavedCorrectly() 
+    {
         final Float RATING = 3.5F;
         final Integer USER_ID = 3;
         final Integer EVALUATED_USER_ID = 1;
 
         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
-        try {
+        try 
+        {
             userEvaluationDAO.evaluateUser(new UserEvaluation(RATING, USER_ID, EVALUATED_USER_ID));
-        } catch (UserEvaluationException e) {
+        } catch (UserEvaluationException e) 
+        {
             e.printStackTrace();
         }
         JSONObject jsonObject = userEvaluationDAO.searchUserEvaluation(EVALUATED_USER_ID, USER_ID);
 
-        try {
+        try 
+        {
             Float rating = new Float(jsonObject.getJSONObject("0").getString("grade"));
             assertEquals(rating, RATING);
 
-        } catch (JSONException e) {
+        } catch (JSONException e) 
+        {
             e.printStackTrace();
         }
     }
 
-    public void  testIfUserIdIsBeingSavedCorrectly() {
+    public void  testIfUserIdIsBeingSavedCorrectly() 
+    {
         final Float RATING = 3.5F;
         final Integer USER_ID = 3;
         final Integer EVALUATED_USER_ID = 1;
 
         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
-        try {
+        try 
+        {
             userEvaluationDAO.evaluateUser(new UserEvaluation(RATING, USER_ID, EVALUATED_USER_ID));
-        } catch (UserEvaluationException e) {
+        } catch (UserEvaluationException e) 
+        {
             e.printStackTrace();
         }
         JSONObject jsonObject = userEvaluationDAO.searchUserEvaluation(EVALUATED_USER_ID, USER_ID);
 
-        try {
+        try 
+        {
             Integer userId = jsonObject.getJSONObject("0").getInt("idUser");
             assertEquals(userId, USER_ID);
-        } catch (JSONException e) {
+        } catch (JSONException e) 
+        {
             e.printStackTrace();
         }
     }
 
-    public void  testIfEvaluatedUserIdIsBeingSavedCorrectly() {
+    public void  testIfEvaluatedUserIdIsBeingSavedCorrectly() 
+    {
         final Float RATING = 3.5F;
         final Integer USER_ID = 3;
         final Integer EVALUATED_USER_ID = 1;
 
         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
-        try {
+        try 
+        {
             userEvaluationDAO.evaluateUser(new UserEvaluation(RATING, USER_ID, EVALUATED_USER_ID));
-        } catch (UserEvaluationException e) {
+        } catch (UserEvaluationException e) 
+        {
             e.printStackTrace();
         }
         JSONObject jsonObject = userEvaluationDAO.searchUserEvaluation(EVALUATED_USER_ID, USER_ID);
 
-        try {
+        try 
+        {
             Integer evaluatedUserId = jsonObject.getJSONObject("0").getInt("idUserEvaluated");
 
             assertEquals(evaluatedUserId, EVALUATED_USER_ID);
-        } catch (JSONException e) {
+        } catch (JSONException e) 
+        {
             e.printStackTrace();
         }
     }

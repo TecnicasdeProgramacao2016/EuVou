@@ -9,9 +9,11 @@ import exception.UserException;
 import model.User;
 import model.UserEvaluation;
 
-/**
+ /*
+ * File name: UserEvaluationTest.
+ * File pourpose: Test user's evaluation with true and falses parameters.
  * Created by izabela on 24/11/15.
- * Modifying by daniel on 13/07/16.
+ * Edited by: daniel on 13/09/16
  */
 public class UserEvaluationTest extends TestCase
 {
