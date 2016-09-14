@@ -4,9 +4,7 @@ import android.app.Activity;
 import org.json.JSONObject;
 import model.User;
 
-/**
- * Created by emilie on 10/09/15.
- */
+
 public class UserDAO extends DAO
 {
 

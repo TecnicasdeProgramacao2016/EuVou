@@ -4,9 +4,6 @@ import android.app.Activity;
 
 import org.json.JSONObject;
 
-/**
- * Created by julliana on 28/10/15.
- */
 public class CategoryDAO extends DAO
 {
 
@@ -15,7 +12,7 @@ public class CategoryDAO extends DAO
         super(currentActivity);
     }
 
-    public JSONObject searchCategoryById(int idCategory)
+    public JSONObject searchCategoryById(final int idCategory)
     {
         return this.executeConsult("SELECT nameCategory FROM tb_category WHERE idCategory = " + idCategory);
     }

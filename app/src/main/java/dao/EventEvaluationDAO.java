@@ -7,9 +7,7 @@ import org.json.JSONObject;
 import model.Evaluation;
 import model.EventEvaluation;
 
-/**
- * Created by marlonmendes on 15/11/15.
- */
+
 public class EventEvaluationDAO extends DAO
 {
     public EventEvaluationDAO()

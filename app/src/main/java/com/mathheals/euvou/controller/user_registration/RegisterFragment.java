@@ -58,7 +58,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         return view;
     }
 
-    private void registerUser(User user)
+    private void registerUser(final User user)
     {
         UserDAO userDAO = new UserDAO(getActivity());
         userDAO.save(user);
@@ -96,14 +96,14 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
-    public void onClick(View v)
+    public void onClick(View view)
     {
 
         setingTextTyped();
 
         try
         {
-            User user = new User(name, 
+            User user = new User(name,
                                  username,
                                  mail,
                                  mailConfirm,
@@ -111,16 +111,16 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
                                  passwordConfirm,
                                  birthDate);
 
-            registerUser(new User(name, username, mail, password, birthDate));
+            registerUser(user);
 
             Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE,
                            Toast.LENGTH_LONG).show();
             startLoginActivity();
 
-        } catch (Exception e) //Verificar esse tipo de exceção
+        } catch (Exception exception) //Verificar esse tipo de exceção
         {
 
-            String message = e.getMessage();
+            String message = exception.getMessage();
             UserRegisterErrorMessage(message);
 
         }

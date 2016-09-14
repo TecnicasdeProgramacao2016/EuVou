@@ -6,9 +6,7 @@ import org.json.JSONObject;
 
 import model.UserEvaluation;
 
-/**
- * Created by igor on 20/11/15.
- */
+
 public class UserEvaluationDAO extends DAO
 {
     public UserEvaluationDAO()
@@ -29,9 +27,9 @@ public class UserEvaluationDAO extends DAO
 
         if(findEvaluation==null)
         {
-            QUERY = "INSERT INTO evaluate_user(grade, idUser, idUserEvaluated) VALUES (\"" + evaluation.getRating() + "\"," +
-                    "\"" + evaluation.getUserId() + "\"," +
-                    "\"" + evaluation.getUserEvaluatedId() + "\")";
+            QUERY = "INSERT INTO evaluate_user(grade, idUser, idUserEvaluated) VALUES (\"" + evaluation.getRating() +
+                                                                                      "\"," + "\"" + evaluation.getUserId() + "\"," +
+                                                                                      "\"" + evaluation.getUserEvaluatedId() + "\")";
         }else
         {
             QUERY = "UPDATE evaluate_user SET grade = \"" +evaluation.getRating() + "\" " +

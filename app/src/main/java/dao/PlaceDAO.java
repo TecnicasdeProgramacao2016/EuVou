@@ -6,9 +6,7 @@ import org.json.JSONObject;
 
 import model.Place;
 
-/**
- * Created by viny on 30/09/15.
- */
+
 public class PlaceDAO extends DAO
 {
 

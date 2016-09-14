@@ -60,7 +60,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     private final int LOGGED_OUT = -1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    protected void onCreate(final Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_navigation_drawer);
@@ -82,7 +82,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         fragmentTransaction.commit();
     }
 
-    public void searchPlace(View view)
+    public void searchPlace(final View view)
     {
         final String INVALID_SEARCH = "Pesquisa Invalida";
 
@@ -143,7 +143,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     }
 
-    public boolean onCreateOptionsMenu(Menu menu)
+    public boolean onCreateOptionsMenu(final Menu menu)
     {
         MenuInflater inflater = getMenuInflater();
         LoginUtility loginUtility = new LoginUtility(HomePage.this);
@@ -168,7 +168,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void onConfigurationChanged(Configuration newConfig)
+    public void onConfigurationChanged(final Configuration newConfig)
     {
         super.onConfigurationChanged(newConfig);
 
@@ -176,7 +176,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState)
+    protected void onPostCreate(final Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
 
@@ -210,7 +210,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     }
 
 
-    public boolean userLoggedInOptions(MenuItem item)
+    public boolean userLoggedInOptions(final MenuItem item)
     {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switch(item.getItemId())
@@ -256,7 +256,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         }
     }
 
-    public boolean userLoggedOutOptions(MenuItem item)
+    public boolean userLoggedOutOptions(final MenuItem item)
     {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switch (item.getItemId())
@@ -285,13 +285,13 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         return;
     }
 
-    public void searchOnclick(MenuItem item)
+    public void searchOnclick(final MenuItem item)
     {
         Intent eventConsultation = new Intent(HomePage.this, EventConsultation.class);
         HomePage.this.startActivity(eventConsultation);
     }
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+        public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id)
         {
             String aux = "";
             switch (position)

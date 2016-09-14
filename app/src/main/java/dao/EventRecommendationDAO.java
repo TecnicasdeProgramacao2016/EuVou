@@ -4,9 +4,7 @@ import android.app.Activity;
 
 import org.json.JSONObject;
 
-/**
- * Created by igor on 27/11/15.
- */
+
 public class EventRecommendationDAO extends DAO
 {
     public EventRecommendationDAO()

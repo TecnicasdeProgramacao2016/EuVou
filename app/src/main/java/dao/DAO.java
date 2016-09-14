@@ -15,11 +15,15 @@ public abstract class DAO {
     private final int LIMITCONECTIONTIME = 15000;
     protected Activity currentActivity;
 
-    public DAO(Activity currentActivity){
+    public DAO(Activity currentActivity)
+    {
         this.currentActivity = currentActivity;
     }
 
-    public DAO(){}
+    public DAO()
+    {
+
+    }
 
     private String query(final String query,final String urlQuery)
     {
@@ -28,12 +32,15 @@ public abstract class DAO {
 
         long currentTime = Calendar.getInstance().getTime().getTime();
         long timeLimit = currentTime + LIMITCONECTIONTIME;
-        while(!consult.getIsDoing() && currentTime < timeLimit) {
+        while(!consult.getIsDoing() && currentTime < timeLimit)
+        {
             currentTime = Calendar.getInstance().getTime().getTime();
         }
 
-        if(limitExceded(timeLimit,currentTime)) {
-            Toast.makeText(currentActivity,"Problema de conexão com o servidor (verifique se esta conectado a internet)", Toast.LENGTH_LONG).show();
+        if(limitExceded(timeLimit,currentTime))
+        {
+            Toast.makeText(currentActivity,"Problema de conexão com o servidor (verifique se esta "+
+                                            "conectado a internet)", Toast.LENGTH_LONG).show();
             return null;
         }
 
@@ -44,7 +51,8 @@ public abstract class DAO {
     {
         return (currentTime >= timeLimit);
     }
-    protected String executeQuery(String query){
+    protected String executeQuery(String query)
+    {
         return query(query, URLQUERY);
     }
 
@@ -52,11 +60,13 @@ public abstract class DAO {
     {
         String json;
         JSONObject jObject = null;
-        try {
+        try
+        {
             json = query(query,URLCONSULT);
             jObject  = new JSONObject(json);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exception)
+        {
+            exception.printStackTrace();
         }
 
         return jObject;
