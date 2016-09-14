@@ -37,7 +37,8 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
     private User user;
 
 
-    public EditUserControlTest() {
+    public EditUserControlTest()
+    {
         super(HomePage.class);
     }
 
