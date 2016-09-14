@@ -25,92 +25,124 @@ import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-/**
- * Created by izabela on 04/11/15.
- */
-public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<HomePage> {
 
-    LoginUtility isLoged;
+public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<HomePage>
+{
+
+    LoginUtility userIsLoged;
     private TestUtility setLogin;
     private UserDAO userDAO = new UserDAO();
-    public RemoveUserControlTest() {
+    public RemoveUserControlTest()
+    {
         super(HomePage.class);
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         super.setUp();
         getActivity();
-        isLoged = new LoginUtility(getActivity());
+        userIsLoged = new LoginUtility(getActivity());
     }
 
-    public void testIfConfigureOptionIsDisplayedForUserLoggedOut() {
-        if(isLoged.hasUserLoggedIn()){
+    public void testIfConfigureOptionIsDisplayedForUserLoggedOut()
+    {
+        if(userIsLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
+        }else
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Configurações")).check(doesNotExist());
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Configurações")).check(doesNotExist());
+
     }
 
-    public void testIfConfigureOptionIsDisplayedForUserLoggedIn() {
-        if(!isLoged.hasUserLoggedIn()){
+    public void testIfConfigureOptionIsDisplayedForUserLoggedIn()
+    {
+        if(!userIsLoged.hasUserLoggedIn())
+        {
            setLogin.makeUserLogIn();
+        }else
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Configurações")).check(matches(isDisplayed()));
+
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Configurações")).check(matches(isDisplayed()));
     }
 
-    public void testRemoveButton() {
-        if(!isLoged.hasUserLoggedIn()){
+    public void testRemoveButton()
+    {
+        if(!userIsLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogIn();
+        }else
+        {
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Configurações")).perform(click());
+            onView(withText("Desativar conta")).check(matches(isDisplayed()));
+            onView(withText("DESATIVAR")).check(matches(isDisplayed()));
+            onView(withText("DESATIVAR")).perform(click());
+            onView(withText("Sim")).check(matches(isDisplayed()));
+            onView(withText("Não")).check(matches(isDisplayed()));
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Configurações")).perform(click());
-        onView(withText("Desativar conta")).check(matches(isDisplayed()));
-        onView(withText("DESATIVAR")).check(matches(isDisplayed()));
-        onView(withText("DESATIVAR")).perform(click());
-        onView(withText("Sim")).check(matches(isDisplayed()));
-        onView(withText("Não")).check(matches(isDisplayed()));
+
     }
 
-    public void testRemoveConfirmationButton(){
-        if(!isLoged.hasUserLoggedIn()){
+    public void testRemoveConfirmationButton()
+    {
+        if(!userIsLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogIn();
+        }else
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Configurações")).perform(click());
+            onView(withText("DESATIVAR")).perform(click());
+            onView(withText("Não")).perform(click());
+            onView(withId(R.id.button_disable_account_confirmation_id)).check(matches(isDisplayed()));
+            onView(withId(R.id.button_disable_account_confirmation_id)).check(matches(withText("DESATIVAR")));
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Configurações")).perform(click());
-        onView(withText("DESATIVAR")).perform(click());
-        onView(withText("Não")).perform(click());
-        onView(withId(R.id.button_disable_account_confirmation_id)).check(matches(isDisplayed()));
-        onView(withId(R.id.button_disable_account_confirmation_id)).check(matches(withText("DESATIVAR")));
+
     }
 
-    public void testRemoveWithInvalidPasswordConfirmation(){
-        if(!isLoged.hasUserLoggedIn()){
+    public void testRemoveWithInvalidPasswordConfirmation()
+    {
+        if(!userIsLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogIn();
+        }else
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Configurações")).perform(click());
+            onView(withText("DESATIVAR")).perform(click());
+            onView(withText("Não")).perform(click());
+            onView(withId(R.id.edit_text_login_id)).perform(typeText("igodudu"));
+            onView(withId(R.id.edit_text_password_id)).perform(typeText("1234567"));
+            onView(withId(R.id.button_disable_account_confirmation_id)).perform(click());
+            onView(withId(R.id.edit_text_password_id)).check(matches(hasErrorText("Ops, acho que você digitou a senha errada")));
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Configurações")).perform(click());
-        onView(withText("DESATIVAR")).perform(click());
-        onView(withText("Não")).perform(click());
-        onView(withId(R.id.edit_text_login_id)).perform(typeText("igodudu"));
-        onView(withId(R.id.edit_text_password_id)).perform(typeText("1234567"));
-        onView(withId(R.id.button_disable_account_confirmation_id)).perform(click());
-        onView(withId(R.id.edit_text_password_id)).check(matches(hasErrorText("Ops, acho que você digitou a senha errada")));
+
     }
 
-    public void testRemoveWithInvalidLoginConfirmation(){
-        if(!isLoged.hasUserLoggedIn()){
+    public void testRemoveWithInvalidLoginConfirmation()
+    {
+        if(!userIsLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogIn();
+        }else
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Configurações")).perform(click());
+            onView(withText("DESATIVAR")).perform(click());
+            onView(withText("Não")).perform(click());
+            onView(withId(R.id.edit_text_login_id)).perform(typeText("izacris"));
+            onView(withId(R.id.edit_text_password_id)).perform(typeText("123456"));
+            onView(withId(R.id.button_disable_account_confirmation_id)).perform(click());
+            onView(withId(R.id.edit_text_login_id)).check(matches(hasErrorText("Ops, acho que você digitou o login errado")));
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Configurações")).perform(click());
-        onView(withText("DESATIVAR")).perform(click());
-        onView(withText("Não")).perform(click());
-        onView(withId(R.id.edit_text_login_id)).perform(typeText("izacris"));
-        onView(withId(R.id.edit_text_password_id)).perform(typeText("123456"));
-        onView(withId(R.id.button_disable_account_confirmation_id)).perform(click());
-        onView(withId(R.id.edit_text_login_id)).check(matches(hasErrorText("Ops, acho que você digitou o login errado")));
+
     }
 
 }
