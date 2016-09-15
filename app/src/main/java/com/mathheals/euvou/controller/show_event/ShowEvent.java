@@ -39,29 +39,31 @@ import model.EventEvaluation;
 public class ShowEvent extends android.support.v4.app.Fragment implements View.OnClickListener
 {
 
-    private TextView eventCategoriesText;
+    private View showEventView;
+    private RatingBar ratingBar;
+    private int userId;
+    private boolean isUserLoggedIn;
+    private EventEvaluation eventEvaluation;
     private EventDAO eventDAO;
-    private final String PRICE_COLUMN = "price";
-    private String eventPrice;
-    private TextView eventPriceText;
     private Button showEventOnMapButton, participateButton;
+
+    private final String GO = "#EUVOU";
+    private final String NOTGO = "#NÃOVOU";
+    private final String SUCCESSFULL_EVALUATION_MESSAGE = "Avaliação cadastrada com sucesso";
+    private final String PRICE_COLUMN = "price";
+    private final Integer LOGGED_OUT = -1;
+
+    private TextView eventCategoriesText;
+    private TextView eventPriceText;
+    private TextView ratingMessage;
+
+    private String eventPrice;
     private String eventLongitude;
     private String eventLatitude;
     private String eventId;
 
-    private final String GO = "#EUVOU";
-    private final String NOTGO = "#NÃOVOU";
 
-    private final String SUCCESSFULL_EVALUATION_MESSAGE = "Avaliação cadastrada com sucesso";
 
-    // fields for Event Evaluation
-    private final Integer LOGGED_OUT = -1;
-    private int userId;
-    private boolean isUserLoggedIn;
-    private TextView ratingMessage;
-    private View showEventView;
-    private RatingBar ratingBar;
-    private EventEvaluation eventEvaluation;
 
     public ShowEvent()
     {
@@ -73,21 +75,6 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-
-        // private TextView eventCategoriesText;
-        // private EventDAO eventDAO;
-        // private final String PRICE_COLUMN = "price";
-        // private String eventPrice;
-        // private Button showEventOnMapButton, participateButton;
-        // private String eventLongitude;
-        // private String eventLatitude;
-        // private String eventId;
-        // private final String GO = "#EUVOU";
-        // private final String NOTGO = "#NÃOVOU";
-
-        // private final Integer LOGGED_OUT = -1;
-        //private int userId;
-
         setShowEventView(inflater.inflate(R.layout.fragment_show_event, container, false));
         showEventOnMapButton = (Button) showEventView.findViewById(R.id.showEventOnMapButton);
         participateButton = (Button) showEventView.findViewById(R.id.EuVou);
@@ -193,8 +180,10 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     {
         String[] eventCategories = getEventCategoriesById(eventId);
         String text = eventCategories[0];
+
         for(int i = 1; i < eventCategories.length; ++i)
             text += (", " + eventCategories[i]);
+
         eventCategoriesText.setText(text);
     }
 
@@ -212,8 +201,6 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
     private void showEventOnMap()
     {
-        // private String eventLongitude;
-        //  private String eventLatitude;
         Bundle latitudeAndLongitude = new Bundle();
         latitudeAndLongitude.putStringArray("LatitudeAndLongitude", new String[]{eventLatitude, eventLongitude});
         Intent intent = new Intent(getContext(), ShowOnMap.class);
@@ -222,9 +209,6 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     }
     private void markParticipate()
     {
-        // private EventDAO eventDAO;
-        // private int userId;
-
         if(eventDAO.verifyParticipate(userId,Integer.parseInt(eventId)) != null)
             Toast.makeText(getActivity(), "Heyy, você já marcou sua participação", Toast.LENGTH_SHORT).show();
         else
@@ -235,10 +219,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     }
     private void markOffParticipate()
     {
-        // private EventDAO eventDAO;
-        // private int userId;
-
-        if(eventDAO.verifyParticipate(userId,Integer.parseInt(eventId)) == null)
+       if(eventDAO.verifyParticipate(userId,Integer.parseInt(eventId)) == null)
             Toast.makeText(getActivity(), "Heyy, você já desmarcou sua participação", Toast.LENGTH_SHORT).show();
         else
         {
@@ -303,8 +284,6 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
     private void setRatingBar()
     {
-        // private String eventId;
-        // private int userId;
         ratingBar = (RatingBar) showEventView.findViewById(R.id.ratingBar);
         ratingBar.setVisibility(View.VISIBLE);
 
@@ -349,8 +328,6 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
     public void setEventEvaluation(Float rating, Integer userId, Integer eventId)
     {
-        //private final String SUCCESSFULL_EVALUATION_MESSAGE = "Avaliação cadastrada com sucesso";
-
         try
         {
             this.eventEvaluation = new EventEvaluation(rating, userId, eventId);
