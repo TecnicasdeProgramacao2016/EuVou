@@ -33,13 +33,11 @@ public class EventDAOTest extends TestCase
         eventDAO.updateEvent(event);
     }
 
-
     public void testSearchEventByOwner2() throws ParseException, EventException, JSONException
     {
         EventDAO eventDAO = new EventDAO();
         assertFalse(eventDAO.searchEventByOwner(3).isEmpty());
     }
-
 
    public void testEventDelet() throws ParseException, EventException, JSONException
    {

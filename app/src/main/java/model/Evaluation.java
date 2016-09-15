@@ -2,9 +2,9 @@ package model;
 
 public class Evaluation
 {
-    private float grade;
-    private int idPlace;
-    private int idUser;
+    private float grade = 0;
+    private int idPlace = 0;
+    private int idUser = 0;
 
     public Evaluation(int idPlace, int idUser, float grade)
     {
