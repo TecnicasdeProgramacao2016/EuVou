@@ -37,8 +37,7 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
     private User user;
 
 
-    public EditUserControlTest()
-    {
+    public EditUserControlTest() {
         super(HomePage.class);
     }
 
@@ -57,7 +56,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogOut();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).check((doesNotExist()));
     }
 
@@ -67,7 +69,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).check(matches(isDisplayed()));
     }
     public void testUpdateUserButtonWithEmptyName()
@@ -76,7 +81,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.nameField)).perform(clearText());
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
@@ -105,7 +113,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.dateField)).perform(clearText());
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
@@ -134,7 +145,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.dateField)).perform(clearText());
         onView(withId(R.id.dateField)).perform(typeText("80/80/2012"));
@@ -165,7 +179,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.mailField)).perform(clearText());
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
@@ -193,7 +210,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.mailField)).perform(clearText());
         onView(withId(R.id.mailField)).perform(typeText("oi"));
@@ -223,7 +243,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
         try
@@ -251,7 +274,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("oi"));
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
@@ -280,7 +306,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("igor-ribeiro@hotmail.com"));
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
@@ -309,7 +338,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("igor-ribeiro@hotmail.com"));
         onView(withId(R.id.passwordField)).perform(typeText("1"));
@@ -339,7 +371,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("igor-ribeiro@hotmail.com"));
         onView(withId(R.id.passwordField)).perform(typeText("123456"));
@@ -369,7 +404,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("igor-ribeiro@hotmail.com"));
         onView(withId(R.id.passwordField)).perform(typeText("123456"));
@@ -400,7 +438,10 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             setLogin.makeUserLogIn();
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        else
+            //NOTHING TO DO
+
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("igor-ribeiro@hotmail.com"));
         onView(withId(R.id.passwordField)).perform(typeText("123456"));
