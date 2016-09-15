@@ -58,9 +58,9 @@ public class ShowUser extends android.support.v4.app.Fragment {
         try
         {
             userData = new JSONObject(userDAO.searchUserById(Integer.parseInt(userEvaluatedId)));
-        } catch (JSONException e)
+        } catch (JSONException jsonException)
         {
-            e.printStackTrace();
+            jsonException.printStackTrace();
         }
 
         try
@@ -76,9 +76,9 @@ public class ShowUser extends android.support.v4.app.Fragment {
             date.setText(birthDateDB);
             mail.setText(mailDB);
 
-        } catch (JSONException e)
+        } catch (JSONException jsonException)
         {
-            e.printStackTrace();
+            jsonException.printStackTrace();
         }
 
         setIsUserLoggedIn(currentUserId != LOGGED_OUT);
@@ -112,7 +112,13 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private void setRatingBarIfNeeded()
     {
         if(isUserLoggedIn)
+        {
             setRatingBar();
+        }
+        else
+        {
+            //NOTING TO DO
+        }
     }
 
     public void setCurrentUserId(int currentUserId)
@@ -142,6 +148,10 @@ public class ShowUser extends android.support.v4.app.Fragment {
             }
 
             ratingBar.setRating(evaluation);
+        }
+        else
+        {
+            //NOTHING TO DO
         }
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.

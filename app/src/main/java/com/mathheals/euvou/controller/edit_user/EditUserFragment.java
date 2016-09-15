@@ -25,16 +25,16 @@ import model.User;
 
 public class EditUserFragment extends Fragment implements View.OnClickListener
 {
+    private int USER_STATUS;
+    private final int LOGGED_OUT = -1;
+    private EditAndRegisterUtility utilityForEdit = new EditAndRegisterUtility();
+    private String name, birthDate, mail, mailConfirm, password, passwordConfirm;
+    private EditText nameField, birthDateField, mailField, mailConfirmationField, passwordField, passwordConfirmField;
+    private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
 
     public EditUserFragment()
     {
-        //REQUIRES EMPTY CONSTRUCTOR
     }
-
-
-    private EditText nameField = null, birthDateField = null, mailField = null,
-            mailConfirmationField = null, passwordField = null, passwordConfirmField = null;
-    private int USER_STATUS = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -56,9 +56,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         {
             json = new JSONObject(str);
         }
-        catch (JSONException jsonException)
+        catch (JSONException e)
         {
-            jsonException.printStackTrace();
+            e.printStackTrace();
         }
 
         try
@@ -75,9 +75,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             mailField.setText(mail);
 
         }
-        catch (JSONException jsonException)
+        catch (JSONException e)
         {
-            jsonException.printStackTrace();
+            e.printStackTrace();
         }
 
         Button update = (Button)view.findViewById(R.id.updateButton);
@@ -103,9 +103,6 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         this.birthDateField = (EditText) view.findViewById(R.id.dateField);
     }
 
-    private String name = null, birthDate = null, mail = null, mailConfirm = null,
-            password = null, passwordConfirm = null;
-
     private void setingTextTyped()
     {
         this.name = nameField.getText().toString();
@@ -116,24 +113,23 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         this.birthDate = birthDateField.getText().toString();
     }
 
-    private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
-
     @Override
-    public void onClick(View view)
-    {
-        //BAD CODE
+    public void onClick(View v)
+    {//BAD CODE
+
         setingTextTyped();
 
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
         USER_STATUS = loginUtility.getUserId();
 
+        /*
+        Validates and set user alteration
+        */
         try
         {
-            User user = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password,
-                                 passwordConfirm);
+            User user = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password, passwordConfirm);
             updateUser(user);
-            Toast.makeText(this.getActivity().getBaseContext(), "Usuário alterado com sucesso",
-                            Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getActivity().getBaseContext(), "Usuário alterado com sucesso", Toast.LENGTH_LONG).show();
 
             Activity activity = getActivity();
             Intent intent = activity.getIntent();
@@ -141,127 +137,62 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             startActivity(intent);
 
         }
-        catch (Exception exception)
+        catch (Exception e)
         {
-            String message = exception.getMessage();
+            String message = e.getMessage();
 
             if (message.equals(User.EMAIL_CANT_BE_EMPTY_EMAIL))
             {
                 editAndRegisterUtility.setMessageError(mailField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if(message.equals(User.NAME_CANT_BE_EMPTY_NAME))
             {
                 editAndRegisterUtility.setMessageError(nameField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if(message.equals(User.NAME_CANT_BE_HIGHER_THAN_50))
             {
                 editAndRegisterUtility.setMessageError(nameField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if (message.equals(User.EMAIL_CANT_BE_HIGHER_THAN_150))
             {
                 editAndRegisterUtility.setMessageError(mailField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if (message.equals(User.INVALID_EMAIL))
             {
                 editAndRegisterUtility.setMessageError(mailField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if(message.equals(User.EMAIL_ARE_NOT_EQUALS))
             {
                 editAndRegisterUtility.setMessageError(mailField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if (message.equals(User.PASSWORD_CANT_BE_EMPTY_PASSWORD))
             {
                 editAndRegisterUtility.setMessageError(passwordField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if (message.equals(User.PASSWORD_CANT_BE_LESS_THAN_6))
             {
                 editAndRegisterUtility.setMessageError(passwordField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if(message.equals(User.PASSWORD_ARE_NOT_EQUALS))
             {
                 editAndRegisterUtility.setMessageError(passwordField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if (message.equals(User.BIRTH_DATE_CANT_BE_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(birthDateField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if (message.equals(User.INVALID_BIRTH_DATE))
             {
                 editAndRegisterUtility.setMessageError(birthDateField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if(message.equals(User.EMAIL_CONFIRMATION_CANT_BE_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(mailConfirmationField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
             if(message.equals(User.CONFIRM_PASSWORD_CANT_BE_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(passwordConfirmField, message);
             }
-            else
-            {
-                //NOTHING TO DO
-            }
-
         }
     }
 }
