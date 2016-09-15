@@ -8,7 +8,6 @@ package com.mathheals.euvou.controller.edit_event;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,23 +20,20 @@ import com.mathheals.euvou.controller.utility.Mask;
 
 import model.Event;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-
 public class EditOrRemoveFragment extends android.support.v4.app.Fragment  implements View.OnClickListener
 {
-
+    //Public Constructor
     public EditOrRemoveFragment()
     {
         // Required empty public constructor
     }
 
-    public Event evento;
-    private TextView eventCategoriesText, eventPriceText;
+    public Event evento = null;
+    private TextView eventCategoriesText = null, eventPriceText = null;
     private ShowEvent showEvent = new ShowEvent();
 
     @Override
+    //Override view
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
@@ -69,6 +65,7 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
     }
 
     @Override
+    //Override onClick Method
     public void onClick(View view)
     {
         if(view.getId()==R.id.editRemoveButton)
@@ -84,6 +81,10 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
             fragmentTransaction.replace(R.id.content_frame, editEventFragment);
 
             fragmentTransaction.commit();
+        }
+        else
+        {
+            //NOTHING TO DO
         }
 
     }

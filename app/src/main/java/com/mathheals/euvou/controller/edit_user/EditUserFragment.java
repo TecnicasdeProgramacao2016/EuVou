@@ -25,16 +25,16 @@ import model.User;
 
 public class EditUserFragment extends Fragment implements View.OnClickListener
 {
-    private int USER_STATUS;
-    private final int LOGGED_OUT = -1;
-    private EditAndRegisterUtility utilityForEdit = new EditAndRegisterUtility();
-    private String name, birthDate, mail, mailConfirm, password, passwordConfirm;
-    private EditText nameField, birthDateField, mailField, mailConfirmationField, passwordField, passwordConfirmField;
-    private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
 
     public EditUserFragment()
     {
+        //REQUIRES EMPTY CONSTRUCTOR
     }
+
+
+    private EditText nameField = null, birthDateField = null, mailField = null,
+            mailConfirmationField = null, passwordField = null, passwordConfirmField = null;
+    private int USER_STATUS = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -56,9 +56,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         {
             json = new JSONObject(str);
         }
-        catch (JSONException e)
+        catch (JSONException jsonException)
         {
-            e.printStackTrace();
+            jsonException.printStackTrace();
         }
 
         try
@@ -75,9 +75,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             mailField.setText(mail);
 
         }
-        catch (JSONException e)
+        catch (JSONException jsonException)
         {
-            e.printStackTrace();
+            jsonException.printStackTrace();
         }
 
         Button update = (Button)view.findViewById(R.id.updateButton);
@@ -103,6 +103,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         this.birthDateField = (EditText) view.findViewById(R.id.dateField);
     }
 
+    private String name = null, birthDate = null, mail = null, mailConfirm = null,
+            password = null, passwordConfirm = null;
+
     private void setingTextTyped()
     {
         this.name = nameField.getText().toString();
@@ -113,8 +116,10 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         this.birthDate = birthDateField.getText().toString();
     }
 
+    private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
+
     @Override
-    public void onClick(View v)
+    public void onClick(View view)
     {//BAD CODE
 
         setingTextTyped();
