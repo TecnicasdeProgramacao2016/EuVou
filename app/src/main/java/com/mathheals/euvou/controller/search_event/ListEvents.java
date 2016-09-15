@@ -37,7 +37,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
 
     private ListView listView;
     private Vector<Event> events;
-    private  Event clicado;
+    private  Event clicked;
 
     public ListEvents()
     {
@@ -54,12 +54,12 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View vw = inflater.inflate(R.layout.fragment_list_events, container, false);
+        View view = inflater.inflate(R.layout.fragment_list_events, container, false);
         // Inflate the layout for this fragment
-        listView = (ListView) vw.findViewById(R.id.eventList);
+        listView = (ListView) view.findViewById(R.id.eventList);
         listView.setOnItemClickListener(this);
         populaList();
-        return vw;
+        return view;
     }
 
     private void populaList()
@@ -91,31 +91,6 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
                 fragmentTransaction.commit();
             }
 
-            /*
-            if(events==null)
-            {
-                Toast.makeText(getContext(), "Você ainda não criou nenhum evento, que tal criar um agora?", Toast.LENGTH_LONG).show();
-                android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-            else
-            {
-                List<Map<String, String>> eventList = new ArrayList<Map<String, String>>();
-
-                for (Event e : events)
-                    eventList.add(createEvent("Nome", e.getNameEvent()));
-
-                SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), eventList,
-                        android.R.layout.simple_list_item_1,
-                        new String[]{"Nome"}, new int[]{android.R.id.text1});
-
-                listView.setAdapter(simpleAdapter);
-            }
-
-            */
-
         }catch (JSONException e)
         {
             e.printStackTrace();
@@ -144,9 +119,9 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
         final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        clicado = events.get(position);
+        clicked = events.get(position);
         EditOrRemoveFragment editOrRemoveFragment = new EditOrRemoveFragment();
-        editOrRemoveFragment.evento = clicado;
+        editOrRemoveFragment.evento = clicked;
         fragmentTransaction.replace(R.id.content_frame, editOrRemoveFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
