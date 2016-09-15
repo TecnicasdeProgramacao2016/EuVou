@@ -1,3 +1,8 @@
+/*
+* File name: EvaluatePlaceTest.
+* File pourpose: Test class EvaluatePlace
+*/
+
 package com.mathheals.euvou;
 
 import android.os.Bundle;
@@ -35,8 +40,8 @@ public class EvaluatePlaceTest extends TestCase
             assertEquals(grade, GRADE);
             assertEquals(ID_USER, userId);
             assertEquals(ID_PLACE, placeId);
-        }
-        catch (JSONException e)
+
+        }catch (JSONException e)
         {
             e.printStackTrace();
         }
