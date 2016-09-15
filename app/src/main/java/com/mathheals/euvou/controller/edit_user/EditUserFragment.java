@@ -25,10 +25,13 @@ import model.User;
 public class EditUserFragment extends Fragment implements View.OnClickListener
 {
 
-    private final int LOGGED_OUT = -1;
-    private String name, birthDate, mail, mailConfirm, password, passwordConfirm;
-    private EditText nameField, birthDateField, mailField, mailConfirmationField, passwordField, passwordConfirmField;
-    private int USER_STATUS;
+    private EditText nameField = null;
+    private EditText birthDateField = null;
+    private EditText mailField = null;
+    private EditText mailConfirmationField = null;
+    private EditText passwordField = null;
+    private EditText passwordConfirmField = null;
+    private int USER_STATUS = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -48,10 +51,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         try
         {
             json = new JSONObject(str);
-        }
-        catch (JSONException e)
+        } catch (JSONException exceptionJSON)
         {
-            e.printStackTrace();
+            exceptionJSON.printStackTrace();
         }
 
         try
@@ -68,9 +70,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             mailField.setText(mail);
 
         }
-        catch (JSONException e)
+        catch (JSONException exceptionJSON)
         {
-            e.printStackTrace();
+            exceptionJSON.printStackTrace();
         }
 
         Button update = (Button)viewOfEditUser.findViewById(R.id.updateButton);
@@ -79,9 +81,13 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         return viewOfEditUser;
     }
 
-    private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
-    private EditAndRegisterUtility utilityForEdit = new EditAndRegisterUtility();
-
+    private EditAndRegisterUtility editAndRegisterUtility = new EditAndRegisterUtility();
+    private String name = "name";
+    private String birthDate = "brithDate";
+    private String mail = "mail";
+    private String mailConfirm = "mailConfirm";
+    private String password = "password";
+    private String passwordConfirm = "passwordConfirm";
     @Override
     public void onClick(View viewOnClick)
     {
@@ -105,9 +111,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             activity.finish();
             startActivity(intent);
 
-        } catch (Exception e)
+        } catch (Exception messageOfError)
         {
-            String message = e.getMessage();
+            String message = messageOfError.getMessage();
 
             if (message.equals(User.EMAIL_CANT_BE_EMPTY_EMAIL))
             {

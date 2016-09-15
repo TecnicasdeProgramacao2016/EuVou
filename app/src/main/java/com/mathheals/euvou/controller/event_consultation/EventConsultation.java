@@ -35,18 +35,18 @@ import dao.UserDAO;
 
 public class EventConsultation extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
 {
-    private JSONObject eventDATA;
-    private SearchView searchView;
-    private JSONObject peopleDATA;
-    private String option;
+    private JSONObject eventDATA = null;
+    private SearchView searchView = null;
+    private JSONObject peopleDATA = null;
+    private String option = "no option";
     private static final String PEOPLE_NOT_FOUND_MESSAGE = "Nenhum usuário foi encontrado.";
 
-    private void setSearchBar(Menu menu)
+    private void setSearchBar(Menu menuSearchBar)
     {
         final String SEARCH_VIEW_HINT = "Pesquisar";
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView = (SearchView) menuSearchBar.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false);
         searchView.setQueryHint(SEARCH_VIEW_HINT);
@@ -111,10 +111,9 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
                                 String[] peopleFoundArray = peopleFound.toArray(new String[peopleFound.size()]);
                                 showPeopleAsList(peopleFoundArray);
-                            }
-                            catch (JSONException e)
+                            } catch (JSONException exceptionOfJSON)
                             {
-                                e.printStackTrace();
+                                exceptionOfJSON.printStackTrace();
                             }
                         }
                         else
@@ -124,6 +123,9 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                             event_not_found_text.setVisibility(View.VISIBLE);
                         }
 
+                        break;
+                    default:
+                        //NOTHING TO DO
                         break;
                 }
                 return true;
@@ -138,8 +140,8 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         });
     }
 
-    private ListView listView;
-    private TextView event_not_found_text;
+    private ListView listView = null;
+    private TextView event_not_found_text = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -151,8 +153,8 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         setListViewListener();
     }
 
-    private ActionBar actionBar;
-    private RadioGroup radioGroup;
+    private ActionBar actionBar = null;
+    private RadioGroup radioGroup = null;
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -167,7 +169,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         return true;
     }
 
-    private Integer idItem;
+    private Integer idItem = 0;
     private void setListViewListener()
     {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -191,9 +193,9 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                 }
-                catch (JSONException e)
+                catch (JSONException exceptionOfJSON)
                 {
-                    e.printStackTrace();
+                    exceptionOfJSON.printStackTrace();
                 }
             }
         });
@@ -229,18 +231,23 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
+            default:
+                //NOTHING TO DO
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     public void onCheckedChanged(RadioGroup group, int checkedId)
     {
-        String query = searchView.getQuery().toString();
         switch(checkedId)
         {
             case R.id.radio_events:
                 break;
             case R.id.radio_people:
+                break;
+            default:
+                //NOTHING TO DO
                 break;
         }
     }

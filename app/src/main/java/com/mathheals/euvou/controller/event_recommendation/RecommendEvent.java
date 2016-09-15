@@ -48,19 +48,19 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
                 events.add(event);
             }
         }
-        catch (JSONException e)
+        catch (JSONException exceptionOfJSON)
         {
-            e.printStackTrace();
+            exceptionOfJSON.printStackTrace();
         }
-        catch (ParseException e)
+        catch (ParseException exceptionOfParse)
         {
-            e.printStackTrace();
+            exceptionOfParse.printStackTrace();
         }
-        catch (EventException e)
+        catch (EventException exceptionOfEvent)
         {
-            e.printStackTrace();
+            exceptionOfEvent.printStackTrace();
         }
-        catch (NullPointerException e)
+        catch (NullPointerException exceptionOfNull)
         {
             Toast.makeText(getActivity().getBaseContext(), "Sem eventos recomendados!", Toast.LENGTH_LONG).show();
         }
@@ -70,15 +70,15 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         listView.setAdapter(eventAdapter);
     }
 
-    private int idUser;
-    private ListView listView;
+    private int idUser = 0;
+    private ListView listView = null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        View vw = inflater.inflate(R.layout.fragment_recommend_event, container, false);//BAD CODE
+        View viewOfList = inflater.inflate(R.layout.fragment_recommend_event, container, false);//BAD CODE
         // Inflate the layout for this fragment
-        listView = (ListView) vw.findViewById(R.id.list_view_event_recomendations);
+        listView = (ListView) viewOfList.findViewById(R.id.list_view_event_recomendations);
         listView.setOnItemClickListener(this);
 
         LoginUtility loginUtility = new LoginUtility(getActivity());
@@ -91,7 +91,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         {
             fillList();
         }
-        return  vw;//BAD CODE
+        return  viewOfList;
     }
 
     @Override
@@ -99,7 +99,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
     {
         final String ID_COLUMN = "idEvent";
 
-        int eventId;
+        int eventId = 0;
         final Bundle bundle = new Bundle();
         final ShowEvent event = new ShowEvent();
 
@@ -113,10 +113,9 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
             fragmentTransaction.add(R.id.content_frame, event);//BAD CODE
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
-        }
-        catch (JSONException e)
+        } catch (JSONException exceptionOnItemClick)
         {
-            e.printStackTrace();
+            exceptionOnItemClick.printStackTrace();
         }
 
     }

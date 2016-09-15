@@ -29,11 +29,11 @@ import model.Place;
 
 public class ShowPlaceInfo extends FragmentActivity
 {
-    private String description;
-    private double longitude;
-    private double latitude;
-    private String address;
-    private float grade;
+    private String description = "no description";
+    private double longitude = 0;
+    private double latitude = 0;
+    private String address = "nothing";
+    private float grade = 0;
     private void setPlaceInfo() {
         Intent intent = getIntent();
         setName(intent.getStringExtra("name"));
@@ -47,8 +47,8 @@ public class ShowPlaceInfo extends FragmentActivity
         setIdPlace(intent.getIntExtra("idPlace", 0));
     }
 
-    private SupportMapFragment mMapFragment;
-    private Integer userId;
+    private SupportMapFragment mMapFragment = null;
+    private Integer userId = 0;
     private boolean isUserLoggedIn;
     private final Integer LOGGED_OUT = -1;
     @Override
@@ -78,9 +78,9 @@ public class ShowPlaceInfo extends FragmentActivity
             setRatingBar();
     }
 
-    private int idPlace;
-    private RatingBar ratingBar;
-    private Evaluation ratingEvaluation;
+    private int idPlace = 0;
+    private RatingBar ratingBar = null;
+    private Evaluation ratingEvaluation = null;
     private void setRatingBar()
     {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -103,7 +103,7 @@ public class ShowPlaceInfo extends FragmentActivity
         stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getBaseContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);
     }
 
-    protected GoogleMap mMap;
+    protected GoogleMap mMap = null;
     private void setUpMapIfNeeded()
     {
         if (mMap == null)
@@ -135,8 +135,8 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
 
-    private Button showMapButton;
-    private Button hideMapButton;
+    private Button showMapButton = null;
+    private Button hideMapButton = null;
     public void showPlaceInfoOnClick(View view) {
         switch(view.getId()) {
             case R.id.button_show_map:
@@ -150,10 +150,11 @@ public class ShowPlaceInfo extends FragmentActivity
                 showMapButton.setVisibility(View.VISIBLE);
                 mMapFragment.getView().setVisibility(View.GONE);
                 break;
+            default:
+                //NOTHING TO DO
+                break;
         }
     }
-
-
 
     private void setGrade(float grade) {
         this.grade = grade;
@@ -179,17 +180,17 @@ public class ShowPlaceInfo extends FragmentActivity
         this.description = description;
     }
 
-    private String operation;
+    private String operation = "no operation";
     private void setOperation(String operation) {
         this.operation = operation;
     }
 
-    private String phone;
+    private String phone = "no phone";
     private void setPhone(String phone) {
         this.phone = phone;
     }
 
-    private String name;
+    private String name = "no name";
     private String getName() {
         return name;
     }
@@ -206,33 +207,33 @@ public class ShowPlaceInfo extends FragmentActivity
         this.latitude = latitude;
     }
 
-    private TextView addressText;
+    private TextView addressText = null;
     private void setAddressText(String adressText) {
         this.addressText = (TextView) findViewById(R.id.address_text);
         this.addressText.setText(adressText);
         this.addressText.setMovementMethod(new ScrollingMovementMethod());
     }
 
-    private TextView operationText;
+    private TextView operationText = null;
     private void setOperationText(String operationText) {
         this.operationText = (TextView) findViewById(R.id.operation_text);
         this.operationText.setText(operationText);
         this.operationText.setMovementMethod(new ScrollingMovementMethod());
     }
 
-    private TextView phoneText;
+    private TextView phoneText = null;
     private void setPhoneText(String phoneText) {
         this.phoneText = (TextView) findViewById(R.id.phone_text);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   this.phoneText.setText(phoneText);
+        this.phoneText.setText(phoneText);
     }
 
-    private TextView gradeText;
+    private TextView gradeText = null;
     private void setGradeText(String gradeText) {
         this.gradeText = (TextView) findViewById(R.id.grade_text);
         this.gradeText.setText(gradeText);
     }
 
-    private TextView descriptionText;
+    private TextView descriptionText = null;
     private void setDescriptionText(String descriptionText) {
         this.descriptionText = (TextView) findViewById(R.id.description_text);
         this.descriptionText.setText(descriptionText);
@@ -255,7 +256,7 @@ public class ShowPlaceInfo extends FragmentActivity
         this.hideMapButton = hideMapButton;
     }
 
-    private TextView ratingMessage;
+    private TextView ratingMessage = null;
     private void setRatingMessage(boolean isUserLoggedIn) {
         String message = isUserLoggedIn ? "Sua avaliação:" : "Faça login para avaliar!";
         ratingMessage = (TextView) findViewById(R.id.rate_it_text);
