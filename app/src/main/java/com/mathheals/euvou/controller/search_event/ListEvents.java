@@ -1,3 +1,9 @@
+/*
+* File name: ListEvents.java
+* File pourpose: List events in a search
+*/
+
+
 package com.mathheals.euvou.controller.search_event;
 
 import android.app.Activity;
@@ -30,7 +36,6 @@ import java.util.Vector;
 import dao.EventDAO;
 import exception.EventException;
 import model.Event;
-
 
 public class ListEvents extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener
 {
