@@ -9,20 +9,24 @@ import android.view.ViewGroup;
 
 import com.mathheals.euvou.R;
 
-/**
- * A simple {@link Fragment} subclass.
+/*
+ * File name: OhGoshFragment.
+ * File pourpose: This file have the pourpose to (don't understand yet, edit this later)).
  */
-public class OhGoshFragment extends android.support.v4.app.Fragment {
+public class OhGoshFragment extends android.support.v4.app.Fragment 
+{
 
 
-    public OhGoshFragment() {
+    public OhGoshFragment() 
+    {
         // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState) 
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_oh_gosh, container, false);
     }

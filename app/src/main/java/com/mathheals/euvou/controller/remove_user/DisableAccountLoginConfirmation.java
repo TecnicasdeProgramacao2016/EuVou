@@ -21,21 +21,26 @@ import com.mathheals.euvou.controller.utility.LoginUtility;
 
 import dao.UserDAO;
 
-/**
- * A simple {@link Fragment} subclass.
+/*
+ * File name: DisableAccountLoginConfirmation.
+ * File pourpose: This file have the pourpose to disable the account login confirmation
  */
-public class DisableAccountLoginConfirmation extends android.support.v4.app.Fragment implements View.OnClickListener {
+
+public class DisableAccountLoginConfirmation extends android.support.v4.app.Fragment implements View.OnClickListener 
+{
 
     private Activity homePage;
 
-    public DisableAccountLoginConfirmation() {
+    public DisableAccountLoginConfirmation() 
+    {
         // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState) 
+    {
         // Inflate the layout for this fragment
 
         homePage = getActivity();
@@ -52,14 +57,16 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
 
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View view) 
+    {
 
         FragmentActivity activity = this.getActivity();
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
-        switch (view.getId()) {
+        switch (view.getId()) 
+        {
             case R.id.button_back_id:
                 returnToConfigurationOptions(fragmentManager);
-                RemoveUserVIewMessages.showWelcomeBackMessage(activity.getBaseContext());
+                RemoveUserViewMessages.showWelcomeBackMessage(activity.getBaseContext());
                 return;
             case R.id.button_disable_account_confirmation_id:
                 if(isLoginConfirmationValid()) {
@@ -70,18 +77,20 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
                     loginUtility.setUserLogOff();
 
                     ActivityUtility.restartActivity(homePage);
-                    RemoveUserVIewMessages.showAccountDeactivateMessage(homePage.getBaseContext());
+                    RemoveUserViewMessages.showAccountDeactivateMessage(homePage.getBaseContext());
                 }
                 return;
         }
     }
 
-    private void returnToConfigurationOptions(FragmentManager fragmentManager) {
+    private void returnToConfigurationOptions(FragmentManager fragmentManager) 
+    {
         fragmentManager.popBackStack();
         fragmentManager.popBackStack();
     }
 
-    public boolean isLoginConfirmationValid() {
+    public boolean isLoginConfirmationValid() 
+    {
         View view = getView();
 
         EditText usernameField = (EditText) view.findViewById(R.id.edit_text_login_id);
@@ -94,13 +103,16 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
 
         boolean isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
-        if(isUsernameValid==false){
+        if(isUsernameValid==false)
+        {
             usernameField.requestFocus();
             usernameField.setError(loginValidation.getInvalidUsernameMessage());
-        }else{
+        } else
+        {
             boolean isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
 
-            if(isPasswordValid==false){
+            if(isPasswordValid==false)
+            {
                 passwordField.requestFocus();
                 passwordField.setError(loginValidation.getInvalidPasswordMessage());
             }
