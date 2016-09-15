@@ -281,30 +281,65 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
             {
                 editAndRegisterUtility.setMessageError(addressField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(descriptionField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
             {
                 editAndRegisterUtility.setMessageError(descriptionField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.EVENT_DATE_IS_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(dateField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
             {
                 editAndRegisterUtility.setMessageError(nameField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.INVALID_EVENT_DATE))
             {
                 editAndRegisterUtility.setMessageError(dateField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
             {
                 editAndRegisterUtility.setMessageError(nameField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
         } catch (ParseException parseException)
         {
             parseException.printStackTrace();
@@ -462,23 +497,24 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode)
-        {
-            case (2) :
-            {
-                if (resultCode == Activity.RESULT_OK) {
-                    Bundle bundle = data.getExtras();
-                    latitude = bundle.getString("latitude");
-                    longitude = bundle.getString("longitude");
 
-                    Toast.makeText(getContext(), "Local selecionado com sucesso", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    //NOTHING TO DO
-                }
-                break;
+        if (requestCode == 2)
+        {
+            if (resultCode == Activity.RESULT_OK) {
+                Bundle bundle = data.getExtras();
+                latitude = bundle.getString("latitude");
+                longitude = bundle.getString("longitude");
+
+                Toast.makeText(getContext(), "Local selecionado com sucesso", Toast.LENGTH_LONG).show();
             }
+            else
+            {
+                //NOTHING TO DO
+            }
+        }
+        else
+        {
+            //NOTHING TO DO
         }
     }
 
@@ -522,7 +558,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         if(eventDAO.deleteEvent(eventId).contains("Salvo"))
         {
             Toast.makeText(getActivity(), "Deletado com sucesso", Toast.LENGTH_LONG).show();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().
+                    getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
