@@ -1,3 +1,4 @@
+
 package com.mathheals.euvou.controller.show_event;
 
 import android.net.Uri;
@@ -14,23 +15,32 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.mathheals.euvou.R;
 
 
-public class ShowOnMap extends FragmentActivity {
+public class ShowOnMap extends FragmentActivity
+{
     protected GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private Double latitude;
     private Double longitude;
     private String filter;
 
-    public String getFilter() {
+    public String getFilter()
+    {
+        //private String filter;
         return filter;
     }
 
-    public void setFilter(String filter) {
+    public void setFilter(String filter)
+    {
+        //  private String filter;
         this.filter = filter;
     }
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        // private Double latitude;
+        // private Double longitude;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         Bundle b=this.getIntent().getExtras();
@@ -43,25 +53,42 @@ public class ShowOnMap extends FragmentActivity {
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         setUpMapIfNeeded();
     }
 
-    private void setUpMapIfNeeded() {
+    private void setUpMapIfNeeded()
+    {
+        //  protected GoogleMap mMap
         // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
+        if (mMap == null)
+        {
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
             // Check if we were successful in obtaining the map.
-            if (mMap != null) {
+            if (mMap != null)
+            {
                 setUpMap();
             }
+            else
+            {
+                //NOTHING TO DO
+            }
+        }
+        else
+        {
+            //NOTHING TO DO
         }
     }
 
-    private void setUpMap() {
+    private void setUpMap()
+    {
+        // private Double latitude;
+        // private Double longitude;
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(latitude, longitude), 9));
         setFilter(getIntent().getStringExtra("query"));
@@ -69,7 +96,8 @@ public class ShowOnMap extends FragmentActivity {
 
     }
 
-    private void addMarkerPlace(Double latitude, Double longitude) {
+    private void addMarkerPlace(Double latitude, Double longitude)
+    {
         mMap.addMarker(
                 new MarkerOptions()
                         .title("Nome do Evento")
