@@ -1,3 +1,8 @@
+/*
+* File name: EvalueteEventControlTest.
+* File pourpose: Test class EvalueteEventControl.
+*/
+
 package com.mathheals.euvou;
 
 import android.support.test.InstrumentationRegistry;
@@ -55,7 +60,7 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
         else
             //NOTHING TO DO
 
-            searchForEventUsedForTest();
+        searchForEventUsedForTest();
         closeSoftKeyboard();
         assertFalse(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE).matches(onView(withId(R.id.ratingBar))));
     }
@@ -69,7 +74,7 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
         else
             //NOTHING TO DO
 
-            searchForEventUsedForTest();
+        searchForEventUsedForTest();
         closeSoftKeyboard();
         onView(withId(R.id.ratingBar)).check(matches(isDisplayed()));
     }
@@ -85,8 +90,9 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
         else
             //NOTHING TO DO
 
-            searchForEventUsedForTest();
+        searchForEventUsedForTest();
         closeSoftKeyboard();
+
         try
         {
             int[] ratingNumbersForTest = new int[]{1, 3, 5};
@@ -101,12 +107,14 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
             {
                 e.printStackTrace();
             }
+
             result = true;
         }
         catch (PerformException performException)
         {
             result = false;
         }
+
         assertTrue(result);
     }
 
