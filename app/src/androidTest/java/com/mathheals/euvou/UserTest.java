@@ -284,7 +284,7 @@ public class UserTest extends TestCase
 
     }
 
-     // Valid entries for user Date
+    // Valid entries for user Date
     public void testIfMonthIsValid()
     {
 
@@ -359,7 +359,6 @@ public class UserTest extends TestCase
     }*/
 
     /* Valid entries for user email*/
-
     public void testIfEmailIsValid()
     {
         try
@@ -620,12 +619,17 @@ public class UserTest extends TestCase
 
     public void testIfEmailIsEmpty(){
         boolean ok = true;
-        try {
+        try
+        {
             user = new User("Julliana","Ju","","123456","11/02/1234");
-        } catch (ParseException e) {
+        }
+        catch (ParseException e)
+        {
             e.printStackTrace();
 
-        } catch (UserException e) {
+        }
+        catch (UserException e)
+        {
             e.printStackTrace();
             ok = false;
         }
@@ -674,7 +678,6 @@ public class UserTest extends TestCase
 
 
     // Test valid in order to Username
-
     public void testIfUsernameIsValid()
     {
         try
