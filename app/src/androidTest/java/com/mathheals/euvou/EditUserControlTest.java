@@ -1,3 +1,8 @@
+/*
+* File name: EditUserControlTest.
+* File pourpose: Test class UserControlTest
+*/
+
 package com.mathheals.euvou;
 
 import android.support.test.InstrumentationRegistry;
@@ -37,7 +42,8 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
     private User user;
 
 
-    public EditUserControlTest() {
+    public EditUserControlTest()
+    {
         super(HomePage.class);
     }
 
@@ -59,7 +65,7 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).check((doesNotExist()));
     }
 
@@ -72,7 +78,7 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).check(matches(isDisplayed()));
     }
     public void testUpdateUserButtonWithEmptyName()
@@ -84,26 +90,27 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.nameField)).perform(clearText());
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.nameField)).check(matches(hasErrorText(user.NAME_CANT_BE_EMPTY_NAME)));
     }
 
@@ -116,26 +123,27 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.dateField)).perform(clearText());
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.dateField)).check(matches(hasErrorText(user.BIRTH_DATE_CANT_BE_EMPTY)));
     }
 
@@ -148,27 +156,28 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.dateField)).perform(clearText());
         onView(withId(R.id.dateField)).perform(typeText("80/80/2012"));
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.dateField)).check(matches(hasErrorText(user.INVALID_BIRTH_DATE)));
     }
 
@@ -182,25 +191,27 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.mailField)).perform(clearText());
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
-        try {
+
+        try
+        {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.mailField)).check(matches(hasErrorText(user.EMAIL_CANT_BE_EMPTY_EMAIL)));
     }
 
@@ -213,27 +224,28 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.mailField)).perform(clearText());
         onView(withId(R.id.mailField)).perform(typeText("oi"));
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.mailField)).check(matches(hasErrorText(user.INVALID_EMAIL)));
     }
 
@@ -246,25 +258,26 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.confirmMailField)).check(matches(hasErrorText(user.EMAIL_CONFIRMATION_CANT_BE_EMPTY)));
     }
 
@@ -277,26 +290,27 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("oi"));
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.mailField)).check(matches(hasErrorText(user.EMAIL_ARE_NOT_EQUALS)));
     }
 
@@ -309,26 +323,27 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("igor-ribeiro@hotmail.com"));
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.passwordField)).check(matches(hasErrorText(user.PASSWORD_CANT_BE_EMPTY_PASSWORD)));
     }
 
@@ -341,11 +356,12 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("igor-ribeiro@hotmail.com"));
         onView(withId(R.id.passwordField)).perform(typeText("1"));
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
@@ -354,6 +370,7 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
@@ -362,6 +379,7 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.passwordField)).check(matches(hasErrorText(user.PASSWORD_CANT_BE_LESS_THAN_6)));
     }
 
@@ -374,27 +392,28 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("igor-ribeiro@hotmail.com"));
         onView(withId(R.id.passwordField)).perform(typeText("123456"));
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.confirmPasswordField)).check(matches(hasErrorText(user.CONFIRM_PASSWORD_CANT_BE_EMPTY)));
     }
 
@@ -407,28 +426,29 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("igor-ribeiro@hotmail.com"));
         onView(withId(R.id.passwordField)).perform(typeText("123456"));
         onView(withId(R.id.confirmPasswordField)).perform(typeText("1234567"));
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.passwordField)).check(matches(hasErrorText(user.PASSWORD_ARE_NOT_EQUALS)));
     }
 
@@ -441,28 +461,29 @@ public class EditUserControlTest extends ActivityInstrumentationTestCase2<HomePa
         else
             //NOTHING TO DO
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar cadastro")).perform(click());
         onView(withId(R.id.confirmMailField)).perform(typeText("igor-ribeiro@hotmail.com"));
         onView(withId(R.id.passwordField)).perform(typeText("123456"));
         onView(withId(R.id.confirmPasswordField)).perform(typeText("123456"));
         UiObject marker = device.findObject(new UiSelector().textContains("Alterar"));
+
         try
         {
             marker.click();
-        }
-        catch (UiObjectNotFoundException e)
+        }catch (UiObjectNotFoundException e)
         {
             e.printStackTrace();
         }
+
         try
         {
             Thread.sleep(3000);
-        }
-        catch (InterruptedException e)
+        }catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+
         onView(withId(R.id.labelRankingPlace)).check(matches(isDisplayed()));
     }
 
