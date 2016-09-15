@@ -35,15 +35,15 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
 
     public EvalueteEventControlTest()
     {
-            super(HomePage.class);
+        super(HomePage.class);
     }
 
     @Before
     public void setUp() throws Exception
     {
-            super.setUp();
-            getActivity();
-            isLoged = new LoginUtility(getActivity());
+        super.setUp();
+        getActivity();
+        isLoged = new LoginUtility(getActivity());
     }
 
     public void testIfEditUserOptionIsDisplayedForUserLoggedOut()
@@ -52,7 +52,10 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
         {
             isLoged.setUserLogOff();
         }
-        searchForEventUsedForTest();
+        else
+            //NOTHING TO DO
+
+            searchForEventUsedForTest();
         closeSoftKeyboard();
         assertFalse(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE).matches(onView(withId(R.id.ratingBar))));
     }
@@ -63,7 +66,10 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
         {
             isLoged.setUserLogIn(3);
         }
-        searchForEventUsedForTest();
+        else
+            //NOTHING TO DO
+
+            searchForEventUsedForTest();
         closeSoftKeyboard();
         onView(withId(R.id.ratingBar)).check(matches(isDisplayed()));
     }
@@ -76,8 +82,10 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
         {
             isLoged.setUserLogIn(3);
         }
+        else
+            //NOTHING TO DO
 
-        searchForEventUsedForTest();
+            searchForEventUsedForTest();
         closeSoftKeyboard();
         try
         {
