@@ -32,6 +32,21 @@ public class PlaceAdapter extends ArrayAdapter<Place>
     {
         Place place = getItem(position);
         ViewHolder viewHolder;
+
+        if(convertView != null)
+        {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        else
+        {
+            viewHolder = new ViewHolder();
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_show_place_rank, parent, false);
+            viewHolder.placeName = (TextView) convertView.findViewById(R.id.placeName);
+            viewHolder.placeEvaluation = (TextView) convertView.findViewById(R.id.placeEvaluation);
+            convertView.setTag(viewHolder);
+        }
+
+        /*
         if (convertView == null)
         {
             viewHolder = new ViewHolder();
@@ -44,9 +59,14 @@ public class PlaceAdapter extends ArrayAdapter<Place>
         {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        */
+        
         viewHolder.placeName.setText(
                 ((place.getName().length() > 40) ? place.getName().substring(0, 39).concat("...") : place.getName()));
         viewHolder.placeEvaluation.setText(place.getEvaluate().toString());
         return convertView;
+
+
     }
 }

@@ -63,6 +63,29 @@ public class ShowOnMap extends FragmentActivity
     {
         //  protected GoogleMap mMap
         // Do a null check to confirm that we have not already instantiated the map.
+
+        if(mMap != null)
+        {
+            //NOTHING TO DO
+        }
+        else
+        {
+            // Try to obtain the map from the SupportMapFragment.
+            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                    .getMap();
+            // Check if we were successful in obtaining the map.
+            if (mMap != null)
+            {
+                setUpMap();
+            }
+            else
+            {
+                //NOTHING TO DO
+            }
+
+        }
+
+        /*
         if (mMap == null)
         {
             // Try to obtain the map from the SupportMapFragment.
@@ -82,6 +105,8 @@ public class ShowOnMap extends FragmentActivity
         {
             //NOTHING TO DO
         }
+
+        */
     }
 
     private void setUpMap()
