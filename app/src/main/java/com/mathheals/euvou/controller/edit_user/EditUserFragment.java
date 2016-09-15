@@ -98,8 +98,8 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         USER_STATUS = loginUtility.getUserId();
 
         /*
-        Validates and set user alteration
-        */
+         * Validates and set user alteration
+         */
         try
         {
             User userUpdate = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password, passwordConfirm);

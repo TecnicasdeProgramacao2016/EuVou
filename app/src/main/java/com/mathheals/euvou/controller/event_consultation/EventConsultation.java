@@ -38,7 +38,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     private JSONObject eventDATA = null;
     private SearchView searchView = null;
     private JSONObject peopleDATA = null;
-    private String option = "no option";
+    private String option = "option";
     private static final String PEOPLE_NOT_FOUND_MESSAGE = "Nenhum usuário foi encontrado.";
 
     private void setSearchBar(Menu menuSearchBar)
@@ -79,9 +79,9 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
                                 String[] eventsFoundArray = eventsFound.toArray(new String[eventsFound.size()]);
                                 showEventsAsList(eventsFoundArray);
-                            } catch (JSONException e)
+                            }catch (JSONException exceptionJSON)
                             {
-                                e.printStackTrace();
+                                exceptionJSON.printStackTrace();
                             }
                         }
                         else
@@ -111,7 +111,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
                                 String[] peopleFoundArray = peopleFound.toArray(new String[peopleFound.size()]);
                                 showPeopleAsList(peopleFoundArray);
-                            } catch (JSONException exceptionOfJSON)
+                            }catch (JSONException exceptionOfJSON)
                             {
                                 exceptionOfJSON.printStackTrace();
                             }
@@ -225,17 +225,17 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch(item.getItemId()) {
-            case android.R.id.home:
-                Intent intent = new Intent(this, HomePage.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-            default:
-                //NOTHING TO DO
-                break;
+        if(item.getItemId() == android.R.id.home){
+            Intent intent = new Intent(this, HomePage.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
         }
-        return super.onOptionsItemSelected(item);
+        else
+        {
+            return super.onOptionsItemSelected(item);
+        }
+
     }
 
     public void onCheckedChanged(RadioGroup group, int checkedId)
