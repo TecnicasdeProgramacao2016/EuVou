@@ -1,3 +1,7 @@
+/*
+* File name: ShowOnMap.
+* File pourpose: Present Events in GOOGLE MAPS API.
+*/
 
 package com.mathheals.euvou.controller.show_event;
 
@@ -17,14 +21,15 @@ import com.mathheals.euvou.R;
 
 public class ShowOnMap extends FragmentActivity
 {
-    protected GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    // Might be null if Google Play services APK is not available.
+    protected GoogleMap mMap;
     private Double latitude;
     private Double longitude;
     private String filter;
 
     public String getFilter()
     {
-        //private String filter;
+        // private String filter;
         return filter;
     }
 
@@ -47,9 +52,6 @@ public class ShowOnMap extends FragmentActivity
         String[] array = b.getStringArray("LatitudeAndLongitude");
         latitude = Double.parseDouble(array[0]);
         longitude = Double.parseDouble(array[1]);
-        //Toast.makeText(getBaseContext(),array[0]+"\n"+array[1],Toast.LENGTH_LONG).show();
-        // setUpMapIfNeeded();
-
     }
 
     @Override
@@ -85,28 +87,6 @@ public class ShowOnMap extends FragmentActivity
 
         }
 
-        /*
-        if (mMap == null)
-        {
-            // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null)
-            {
-                setUpMap();
-            }
-            else
-            {
-                //NOTHING TO DO
-            }
-        }
-        else
-        {
-            //NOTHING TO DO
-        }
-
-        */
     }
 
     private void setUpMap()

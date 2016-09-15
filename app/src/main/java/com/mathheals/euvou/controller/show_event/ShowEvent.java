@@ -1,3 +1,9 @@
+/*
+* File name: ShowEvent.
+* File pourpose: Present events in the GUI
+*/
+
+
 package com.mathheals.euvou.controller.show_event;
 
 import android.content.Intent;
@@ -134,12 +140,10 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
             setCategoriesText(new Integer(eventId), eventCategoriesText);
             addressShow.setText(eventAdress);
 
-        }
-        catch (JSONException ex)
+        }catch (JSONException ex)
         {
             ex.printStackTrace();
-        }
-        catch (NullPointerException exception)
+        }catch (NullPointerException exception)
         {
             Toast.makeText(getActivity(), "O nome não foi encontrado", Toast.LENGTH_LONG);
         }
@@ -173,8 +177,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
                 JSONObject categoryJSON = categoryDAO.searchCategoryById(categoryId);
                 String categoryName = categoryJSON.getJSONObject(FIRST_COLUMN).getString(NAME_CATEGORY);
                 categories.add(categoryName);
-            }
-            catch (JSONException e)
+            }catch (JSONException e)
             {
                 e.printStackTrace();
             }
@@ -265,11 +268,13 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     // private int userId;
     public void setUserId(int userId)
     {
+
         this.userId = userId;
     }
 
     public void setIsUserLoggedIn(boolean isUserLoggedIn)
     {
+
         this.isUserLoggedIn = isUserLoggedIn;
     }
 
@@ -285,6 +290,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
     public void setShowEventView(View showEventView)
     {
+
         this.showEventView = showEventView;
     }
 
@@ -306,14 +312,13 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
         JSONObject evaluationJSON = eventEvaluationDAO.searchEventEvaluation(Integer.parseInt(eventId), userId);
 
-        if(evaluationJSON!=null)
+        if(evaluationJSON != null)
         {
             Float evaluation = null;
             try
             {
                 evaluation = new Float(evaluationJSON.getJSONObject("0").getDouble("grade"));
-            }
-            catch (JSONException e)
+            }catch (JSONException e)
             {
                 e.printStackTrace();
             }
@@ -350,23 +355,8 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         {
             this.eventEvaluation = new EventEvaluation(rating, userId, eventId);
             Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_EVALUATION_MESSAGE, Toast.LENGTH_LONG).show();
-        }
-        catch (EventEvaluationException exception)
+        }catch (EventEvaluationException exception)
         {
-            if(exception.getMessage() == EventEvaluation.EVALUATION_IS_INVALID)
-            {
-                Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
-            }
-            if(exception.getMessage() == EventEvaluation.EVENT_ID_IS_INVALID)
-            {
-                Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
-            }
-            if(exception.getMessage() == EventEvaluation.USER_ID_IS_INVALID)
-            {
-                Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
-            /*
 
             if(   exception.getMessage() == EventEvaluation.EVALUATION_IS_INVALID ||
                   exception.getMessage() == EventEvaluation.EVENT_ID_IS_INVALID ||
@@ -375,13 +365,12 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
             }
 
-            */
+
         }
     }
 
     private void setRatingBarStyle()
     {
-/*        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);
- */ }
+        //NOTHING TO DO
+    }
 }
