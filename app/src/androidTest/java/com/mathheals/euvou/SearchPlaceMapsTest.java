@@ -40,7 +40,8 @@ public class SearchPlaceMapsTest extends ActivityInstrumentationTestCase2<HomePa
 
     @Before
     //Set Up in apllication
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         super.setUp();
         getActivity();
     }

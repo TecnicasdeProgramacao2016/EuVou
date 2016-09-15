@@ -38,11 +38,12 @@ import model.Event;
 
 public class EditEventFragment extends Fragment implements View.OnClickListener
 {
+    private String latitude = null;
+    private String longitude = null;
 
-    private int idEvent;
     private static final String SUCCESSFULL_UPDATE_MESSAGE = "Evento alterado com sucesso :)";
-    private String latitude;
-    private String longitude;
+
+
     private EditText nameField, dateField, hourField, descriptionField, addressField,
                      priceDecimalField, priceRealField;
     private CheckBox showCheckBox, expositionCheckBox, cinemaCheckBox, museumCheckBox,
@@ -84,6 +85,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         this.priceDecimalField.setText(Integer.toString(priceEvent - priceEvent / 100 * 100));
     }
 
+    private int idEvent = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -104,6 +107,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         //Change the value of idEvent when the consultEvent was finished
         JSONObject jsonEvent = eventDAO.searchEventById(idEvent);
         JSONObject jsonEventCategory = eventCategoryDAO.searchCategoriesByEventId(idEvent);
+
 
         try
         {
@@ -246,6 +250,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Integer eventPriceReal = Integer.parseInt(priceRealField.getText().toString());
         Integer eventPriceDecimal = Integer.parseInt(priceDecimalField.getText().toString());
         Integer priceEvent = eventPriceReal * 100 + eventPriceDecimal;
+
+
 
         try
         {
