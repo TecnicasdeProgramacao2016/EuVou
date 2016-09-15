@@ -1,3 +1,8 @@
+/*
+* File name: UserTest.
+* File pourpose: Test user.
+*/
+
 package com.mathheals.euvou;
 import junit.framework.TestCase;
 import java.text.ParseException;
@@ -20,12 +25,10 @@ public class UserTest extends TestCase
             user = new User(1, "maria", "11/09/2015", "maria@euvou.com");
 
             assertEquals(1, user.getIdUser());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -40,12 +43,10 @@ public class UserTest extends TestCase
             user = new User(randomId, "maria", "11/09/2015", "maria@euvou.com");
 
             assertEquals(randomId, user.getIdUser());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -60,12 +61,10 @@ public class UserTest extends TestCase
             user = new User(2, "maria", "11/09/2015", "maria@euvou.com");
 
             assertEquals(2, user.getIdUser());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -80,12 +79,10 @@ public class UserTest extends TestCase
             user = new User(Integer.MAX_VALUE - 1, "maria", "11/09/2015", "maria@euvou.com");
 
             assertEquals(Integer.MAX_VALUE - 1, user.getIdUser());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -100,12 +97,10 @@ public class UserTest extends TestCase
             user = new User(Integer.MAX_VALUE, "maria", "11/09/2015", "maria@euvou.com");
 
             assertEquals(Integer.MAX_VALUE, user.getIdUser());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -121,12 +116,10 @@ public class UserTest extends TestCase
         {
             user = new User(0, "maria", "11/09/2015", "maria@euvou.com");
             ok = false;
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             ok = true;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -142,12 +135,10 @@ public class UserTest extends TestCase
         {
             user = new User(-1, "maria", "11/09/2015", "maria@euvou.com");
             ok = false;
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             ok = true;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -163,12 +154,10 @@ public class UserTest extends TestCase
         {
             user = new User(Integer.MIN_VALUE, "maria", "11/09/2015", "maria@euvou.com");
             ok = false;
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             ok = true;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -184,12 +173,10 @@ public class UserTest extends TestCase
         {
             user = new User(Integer.MIN_VALUE + 1, "maria", "11/09/2015", "maria@euvou.com");
             ok = false;
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             ok = true;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -207,12 +194,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "11/09/2015", "maria@euvou.com");
             assertEquals("maria", user.getName());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -226,12 +211,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "oioioi", "11/09/2015", "maria@euvou.com");
             ok = false;
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             ok = true;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -249,12 +232,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "dsedfghjklljhgfdswasdfghjkjhgfdsdfghjkjhgfdsasdfghjkjhgfdsasdfghjmkjhgfdsasdfgbhnmhgfdsdfgdsd", "11/11/2015", "maria@euvou.com");
             ok = false;
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             ok = true;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -269,13 +250,11 @@ public class UserTest extends TestCase
         try
         {
             user = new User(2,"","11/02/2015","maria@euvou.com");
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
 
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             e.printStackTrace();
             ok = false;
@@ -293,12 +272,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "11/13/2015", "maria@euvou.com");
             ok = false;
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             ok = true;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -314,12 +291,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "29/02/2000", "maria@euvou.com");
             ok=true;
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             ok = false;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -333,32 +308,17 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "29/02/2001", "maria@euvou.com");
             ok=true;
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             ok = false;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
         assertFalse(ok);
     }
 
-    /*public void testIfDateIsValid() {
-        boolean ok= true;
-        try {
-            user = new User(3, "maria", "11/11/2015", "maria@euvou.com");
-            ok=true;
-        } catch (UserException e) {
-            ok = false;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        assertFalse(ok);
-    }*/
-
-    /* Valid entries for user email*/
+    // Valid entries for user email
     public void testIfEmailIsValid()
     {
         try
@@ -366,12 +326,10 @@ public class UserTest extends TestCase
             user = new User(3, "maria", "22/02/2015", "maria@euvou.com" +
                     "");
             assertEquals("maria@euvou.com", user.getEmail());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -383,12 +341,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "22/02/2015", "MARIA@euvou.com");
             assertEquals("MARIA@euvou.com", user.getEmail());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -400,12 +356,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "22/02/2015", "1102@euvou.com");
             assertEquals("1102@euvou.com", user.getEmail());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -417,12 +371,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "22/02/2015", "a_maria@euvou.com");
             assertEquals("a_maria@euvou.com", user.getEmail());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -434,12 +386,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "22/02/2015", "a-maria@euvou.com");
             assertEquals("a-maria@euvou.com", user.getEmail());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -451,12 +401,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "22/02/2015", "a.maria@euvou.com");
             assertEquals("a.maria@euvou.com", user.getEmail());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -468,12 +416,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "22/02/2015", "a+maria@euvou.com");
             assertEquals("a+maria@euvou.com", user.getEmail());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -486,12 +432,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "22/02/2015", "amaria @euvou.com");
             assertTrue(false);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertTrue(true);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertTrue(false);
         }
@@ -503,12 +447,10 @@ public class UserTest extends TestCase
         {
             user = new User(3, "maria", "22/02/2015", "amariaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@euvou.com");
             assertTrue(false);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertTrue(true);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertTrue(false);
         }
@@ -522,12 +464,10 @@ public class UserTest extends TestCase
         {
             user = new User("maria", "Mariazinha", "maria@euvou.com", "1234567", "11/09/2015");
             assertEquals("1234567", user.getPassword());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -540,12 +480,10 @@ public class UserTest extends TestCase
         {
             user = new User("maria", "Mariazinha", "maria@euvou.com", "123456", "11/09/2015");
             assertEquals("123456", user.getPassword());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -557,12 +495,10 @@ public class UserTest extends TestCase
         {
             user = new User("maria", "Mariazinha", "maria@euvou.com", "1234567", "11/09/2015");
             assertEquals ("1234567",user.getPassword());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
         }
@@ -575,17 +511,16 @@ public class UserTest extends TestCase
         {
             user = new User("Maria","","maria@euvou.com","123456","11/02/1234");
             ok = true;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
 
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             e.printStackTrace();
             ok = false;
         }
+
         finally
         {
             assertFalse(ok);
@@ -600,17 +535,16 @@ public class UserTest extends TestCase
         {
             user = new User("Maria","igodudu","maria@euvou.com","123456","11/02/1234");
             ok = true;
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
 
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             e.printStackTrace();
             ok = false;
         }
+
         finally
         {
             assertFalse(ok);
@@ -622,13 +556,11 @@ public class UserTest extends TestCase
         try
         {
             user = new User("Julliana","Ju","","123456","11/02/1234");
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
 
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             e.printStackTrace();
             ok = false;
@@ -642,17 +574,16 @@ public class UserTest extends TestCase
         try
         {
             user = new User("Julliana","Ju","ju@eu.com","","11/02/1234");
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
 
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             e.printStackTrace();
             ok = false;
         }
+
         assertFalse(ok);
     }
 
@@ -662,17 +593,16 @@ public class UserTest extends TestCase
         try
         {
             user = new User("Julliana","Ju","ju@eu.com","123456","");
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             e.printStackTrace();
 
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             e.printStackTrace();
             ok = false;
         }
+
         assertFalse(ok);
     }
 
@@ -684,12 +614,10 @@ public class UserTest extends TestCase
         {
             user = new User("Julliana","Ju","ju@eu.com","123456","11/02/2000");
             assertEquals("Ju", user.getUsername());
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             fail();
         }
@@ -701,12 +629,10 @@ public class UserTest extends TestCase
         {
             user = new User("Julliana","Ju","ju@eu.com","123456","11/02/2000");
             assertEquals(user.getBirthDate(),"11/02/2000");
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             fail();
         }
@@ -719,12 +645,10 @@ public class UserTest extends TestCase
             User user1 = new User("Julliana","Ju","ju@eu.com","123456","11/02/2000");
             User user2 = new User("Julliana","Ju","ju@eu.com","123456","11/02/2000");
             assertTrue(user1.equals(user2));
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             fail();
         }
@@ -737,12 +661,10 @@ public class UserTest extends TestCase
             User user1 = new User("Julliana","Ju","ju@eu.com","123456","11/02/2000");
             User user2 = new User("Jullianaa","Ju","ju@eu.com","123456","11/02/2000");
             assertFalse(user1.equals(user2));
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             fail();
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             fail();
         }
@@ -754,28 +676,25 @@ public class UserTest extends TestCase
         {
             user = new User(1, "maria","mama", "11/09/2015", "maria@euvou.com","maria@euvou.com","123456","123456");
             assertTrue(true);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertTrue(false);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertTrue(false);
         }
     }
+
     public void testIfInstantiatedConstructWith8ArgumentsWithInvalidArgument()
     {
         try
         {
             user = new User(1, "maria","mama", "11/09/2015", "maria@euvoua.com","maria@euvou.com","123456","123456");
             assertFalse(true);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertFalse(false);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertFalse(false);
         }
@@ -787,12 +706,10 @@ public class UserTest extends TestCase
         {
             user = new User(1, "maria","11/09/2015", "maria@euvou.com","maria@euvou.com","123456","123456");
             assertTrue(true);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertTrue(false);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertTrue(false);
         }
@@ -804,12 +721,10 @@ public class UserTest extends TestCase
         {
             user = new User(1, "maria", "11/09/2015", "maria@euvoua.com","maria@euvou.com","123456","123456");
             assertFalse(true);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertFalse(false);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertFalse(false);
         }
@@ -822,12 +737,10 @@ public class UserTest extends TestCase
         {
             user = new User( "maria","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","maria@euvou.com","12346", "11/09/2015");
             assertFalse(true);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertFalse(false);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertFalse(false);
         }
@@ -839,12 +752,10 @@ public class UserTest extends TestCase
         {
             user = new User("Julliana","Ju","ju@eu.com","1234","11/02/2000");
             assertFalse(true);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertFalse(false);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertFalse(false);
         }
@@ -856,12 +767,10 @@ public class UserTest extends TestCase
         {
             user = new User(1, "maria","11/09/2015", "maria@euvou.com","maria@euvou.com","123456","12s3456");
             assertFalse(true);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertFalse(false);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertFalse(false);
         }
@@ -874,12 +783,10 @@ public class UserTest extends TestCase
         {
             user = new User("maria","teste","maria@euvou.com","maria@euvou.com","123456","123456","11/09/2015");
             assertTrue(true);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertTrue(false);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertTrue(false);
         }
@@ -891,12 +798,10 @@ public class UserTest extends TestCase
         {
             user = new User("maria","teste","maria@euvoa.com","maria@euvou.com","123456","123456","11/09/2015");
             assertFalse(true);
-        }
-        catch (UserException e)
+        }catch (UserException e)
         {
             assertFalse(false);
-        }
-        catch (ParseException e)
+        }catch (ParseException e)
         {
             assertFalse(false);
         }
