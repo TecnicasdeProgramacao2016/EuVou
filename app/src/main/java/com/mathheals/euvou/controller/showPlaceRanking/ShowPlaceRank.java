@@ -1,3 +1,8 @@
+/*
+* File name: ShowPlaceRank.
+* File pourpose: Present position in ranking.
+*/
+
 package com.mathheals.euvou.controller.showPlaceRanking;
 
 import android.content.Intent;
@@ -39,6 +44,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
     }
 
@@ -46,16 +52,16 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View vw = inflater.inflate(R.layout.fragment_show_place_rank, container, false);
+        View view = inflater.inflate(R.layout.fragment_show_place_rank, container, false);
         // Inflate the layout for this fragment
-        listView = (ListView) vw.findViewById(R.id.listViewPlacesTotall);
+        listView = (ListView) view.findViewById(R.id.listViewPlacesTotall);
         listView.setOnItemClickListener(this);
         fillList();
-        return  vw;
+        return  view;
     }
+
     private void fillList()
     {
-        //try {
         int id = (new LoginUtility(getActivity())).getUserId();
         result = new PlaceDAO(getActivity()).searchAllPlaces();
         places = new ArrayList<>();
@@ -84,8 +90,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
                 );
                 places.add(aux);
             }
-        }
-        catch(JSONException e)
+        }catch(JSONException e)
         {
             e.printStackTrace();
         }
@@ -98,6 +103,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
             e.printStackTrace();
         }
     }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {

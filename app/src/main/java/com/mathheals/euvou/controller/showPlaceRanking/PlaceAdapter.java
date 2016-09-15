@@ -1,3 +1,8 @@
+/*
+* File name: PlaceAdapter.
+* File pourpose: Present info about Events
+*/
+
 package com.mathheals.euvou.controller.showPlaceRanking;
 
 import android.content.Context;
@@ -18,6 +23,7 @@ public class PlaceAdapter extends ArrayAdapter<Place>
 {
     public PlaceAdapter(Context context, List<Place> places)
     {
+
         super(context, 0,places);
     }
 
@@ -46,22 +52,7 @@ public class PlaceAdapter extends ArrayAdapter<Place>
             convertView.setTag(viewHolder);
         }
 
-        /*
-        if (convertView == null)
-        {
-            viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_show_place_rank, parent, false);
-            viewHolder.placeName = (TextView) convertView.findViewById(R.id.placeName);
-            viewHolder.placeEvaluation = (TextView) convertView.findViewById(R.id.placeEvaluation);
-            convertView.setTag(viewHolder);
-        }
-        else
-        {
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
 
-        */
-        
         viewHolder.placeName.setText(
                 ((place.getName().length() > 40) ? place.getName().substring(0, 39).concat("...") : place.getName()));
         viewHolder.placeEvaluation.setText(place.getEvaluate().toString());

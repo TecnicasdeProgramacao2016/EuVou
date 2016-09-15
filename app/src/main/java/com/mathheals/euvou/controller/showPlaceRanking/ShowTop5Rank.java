@@ -1,3 +1,8 @@
+/*
+* File name: ShowTop5Rank.
+* File pourpose: Present position in top 5 .
+*/
+
 package com.mathheals.euvou.controller.showPlaceRanking;
 
 import android.app.Activity;
@@ -24,7 +29,7 @@ import dao.EventRecommendationDAO;
 public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnClickListener
 {
 
-    private View vw;
+    private View view;
     public ShowTop5Rank()
     {
         // Required empty public constructor
@@ -33,6 +38,7 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
     }
 
@@ -44,16 +50,15 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
         try
         {
             // Inflate the layout for this fragment
-            vw = inflater.inflate(R.layout.fragment_show_top5_rank, container, false);
-            Button bt = (Button) vw.findViewById(R.id.more);
+            view = inflater.inflate(R.layout.fragment_show_top5_rank, container, false);
+            Button bt = (Button) view.findViewById(R.id.more);
             bt.setOnClickListener(this);
 
-        }
-        catch(InflateException ex)
+        }catch(InflateException ex)
         {
 
         }
-        return vw;
+        return view;
     }
 
     @Override

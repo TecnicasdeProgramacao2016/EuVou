@@ -1,3 +1,8 @@
+/*
+* File name: ShowPlaceRanking.
+* File pourpose: Present Ranking.
+*/
+
 package com.mathheals.euvou.controller.showPlaceRanking;
 
 import android.app.Activity;
@@ -21,6 +26,7 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
     }
 
