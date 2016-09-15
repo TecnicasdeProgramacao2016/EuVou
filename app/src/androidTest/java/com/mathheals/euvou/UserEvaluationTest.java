@@ -12,8 +12,6 @@ import model.UserEvaluation;
  /*
  * File name: UserEvaluationTest.
  * File pourpose: Test user's evaluation with true and falses parameters.
- * Created by izabela on 24/11/15.
- * Edited by: daniel on 13/09/16
  */
 public class UserEvaluationTest extends TestCase
 {
