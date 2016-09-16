@@ -1,4 +1,3 @@
-
 package com.mathheals.euvou.controller.edit_user;
 
 import android.app.Activity;
@@ -25,26 +24,23 @@ import model.User;
 
 public class EditUserFragment extends Fragment implements View.OnClickListener
 {
-    private int USER_STATUS;
-    private final int LOGGED_OUT = -1;
-    private EditAndRegisterUtility utilityForEdit = new EditAndRegisterUtility();
-    private String name, birthDate, mail, mailConfirm, password, passwordConfirm;
-    private EditText nameField, birthDateField, mailField, mailConfirmationField, passwordField, passwordConfirmField;
-    private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
 
-    public EditUserFragment()
-    {
-    }
+    private EditText nameField = null;
+    private EditText birthDateField = null;
+    private EditText mailField = null;
+    private EditText mailConfirmationField = null;
+    private EditText passwordField = null;
+    private EditText passwordConfirmField = null;
+    private int USER_STATUS = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_edit_user, container, false);
+        View viewOfEditUser = inflater.inflate(R.layout.fragment_edit_user, container, false);
 
         UserDAO userDAO = new UserDAO(this.getActivity());
 
-        setingEditText(view);
+        setingEditText(viewOfEditUser);
         birthDateField.addTextChangedListener(Mask.insert("##/##/####", birthDateField));
 
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
@@ -55,10 +51,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         try
         {
             json = new JSONObject(str);
-        }
-        catch (JSONException e)
+        } catch (JSONException exceptionJSON)
         {
-            e.printStackTrace();
+            exceptionJSON.printStackTrace();
         }
 
         try
@@ -75,46 +70,27 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             mailField.setText(mail);
 
         }
-        catch (JSONException e)
+        catch (JSONException exceptionJSON)
         {
-            e.printStackTrace();
+            exceptionJSON.printStackTrace();
         }
 
-        Button update = (Button)view.findViewById(R.id.updateButton);
+        Button update = (Button)viewOfEditUser.findViewById(R.id.updateButton);
         update.setOnClickListener(this);
 
-        return view;
+        return viewOfEditUser;
     }
 
-    private void updateUser(User user)
-    {
-        UserDAO userDAO = new UserDAO(getActivity());
-        userDAO.update(user);
-    }
-
-    private void setingEditText(View view)
-    {
-        this.nameField = (EditText) view.findViewById(R.id.nameField);
-        this.birthDateField = (EditText) view.findViewById(R.id.dateField);
-        this.mailField = (EditText) view.findViewById(R.id.mailField);
-        this.passwordField = (EditText) view.findViewById(R.id.passwordField);
-        this.mailConfirmationField = (EditText) view.findViewById(R.id.confirmMailField);
-        this.passwordConfirmField = (EditText) view.findViewById(R.id.confirmPasswordField);
-        this.birthDateField = (EditText) view.findViewById(R.id.dateField);
-    }
-
-    private void setingTextTyped()
-    {
-        this.name = nameField.getText().toString();
-        this.mail = mailField.getText().toString();
-        this.mailConfirm = mailConfirmationField.getText().toString();
-        this.password = passwordField.getText().toString();
-        this.passwordConfirm = passwordConfirmField.getText().toString();
-        this.birthDate = birthDateField.getText().toString();
-    }
+    private EditAndRegisterUtility editAndRegisterUtility = new EditAndRegisterUtility();
+    private String name = "name";
+    private String birthDate = "brithDate";
+    private String mail = "mail";
+    private String mailConfirm = "mailConfirm";
+    private String password = "password";
+    private String passwordConfirm = "passwordConfirm";
 
     @Override
-    public void onClick(View v)
+    public void onClick(View viewOnClick)
     {
 
         setingTextTyped();
@@ -123,12 +99,12 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         USER_STATUS = loginUtility.getUserId();
 
         /*
-        Validates and set user alteration
-        */
+         * Validates and set user alteration
+         */
         try
         {
-            User user = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password, passwordConfirm);
-            updateUser(user);
+            User userUpdate = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password, passwordConfirm);
+            updateUser(userUpdate);
             Toast.makeText(this.getActivity().getBaseContext(), "Usuário alterado com sucesso", Toast.LENGTH_LONG).show();
 
             Activity activity = getActivity();
@@ -136,10 +112,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             activity.finish();
             startActivity(intent);
 
-        }
-        catch (Exception e)
+        } catch (Exception messageOfError)
         {
-            String message = e.getMessage();
+            String message = messageOfError.getMessage();
 
             if (message.equals(User.EMAIL_CANT_BE_EMPTY_EMAIL))
             {
@@ -195,4 +170,36 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             }
         }
     }
+
+    private void updateUser(User userUpdate)
+    {
+        UserDAO userDAO = new UserDAO(getActivity());
+        userDAO.update(userUpdate);
+    }
+
+    private void setingEditText(View viewOfSettingEditText)
+    {
+        this.nameField = (EditText) viewOfSettingEditText.findViewById(R.id.nameField);
+        this.birthDateField = (EditText) viewOfSettingEditText.findViewById(R.id.dateField);
+        this.mailField = (EditText) viewOfSettingEditText.findViewById(R.id.mailField);
+        this.passwordField = (EditText) viewOfSettingEditText.findViewById(R.id.passwordField);
+        this.mailConfirmationField = (EditText) viewOfSettingEditText.findViewById(R.id.confirmMailField);
+        this.passwordConfirmField = (EditText) viewOfSettingEditText.findViewById(R.id.confirmPasswordField);
+        this.birthDateField = (EditText) viewOfSettingEditText.findViewById(R.id.dateField);
+    }
+
+    private void setingTextTyped()
+    {
+        this.name = nameField.getText().toString();
+        this.mail = mailField.getText().toString();
+        this.mailConfirm = mailConfirmationField.getText().toString();
+        this.password = passwordField.getText().toString();
+        this.passwordConfirm = passwordConfirmField.getText().toString();
+        this.birthDate = birthDateField.getText().toString();
+    }
+
+    public EditUserFragment()
+    {
+    }
+
 }

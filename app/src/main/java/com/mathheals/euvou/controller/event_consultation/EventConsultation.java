@@ -35,52 +35,18 @@ import dao.UserDAO;
 
 public class EventConsultation extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
 {
-
-    private RadioGroup radioGroup;
-    private ActionBar actionBar;
-    private SearchView searchView;
-    private ListView listView;
-    private Integer idItem;
-    private JSONObject eventDATA;
-    private TextView event_not_found_text;
-    private JSONObject peopleDATA;
-    private String option;
+    private JSONObject eventDATA = null;
+    private SearchView searchView = null;
+    private JSONObject peopleDATA = null;
+    private String option = "option";
     private static final String PEOPLE_NOT_FOUND_MESSAGE = "Nenhum usuário foi encontrado.";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_consultation);
-        listView = (ListView) findViewById(R.id.events_list);
-        event_not_found_text = (TextView) findViewById(R.id.event_not_found_text);
-        setListViewListener();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        /*
-        Inflate the menu.
-        This adds items to the action bar if it is present.
-        */
-        getMenuInflater().inflate(R.menu.menu_event_consultation, menu);
-        actionBar = getSupportActionBar();
-
-        setSearchBar(menu);
-        configActionBar();
-
-        radioGroup = (RadioGroup) findViewById(R.id.search_radio_group);
-        radioGroup.setOnCheckedChangeListener(this);
-        return true;
-    }
-
-    private void setSearchBar(Menu menu)
+    private void setSearchBar(Menu menuSearchBar)
     {
         final String SEARCH_VIEW_HINT = "Pesquisar";
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView = (SearchView) menuSearchBar.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false);
         searchView.setQueryHint(SEARCH_VIEW_HINT);
@@ -94,7 +60,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                 switch (checkedButton)
                 {
                     case R.id.radio_events:
-                        //Toast.makeText(getBaseContext(), "EVENTOS: " + query, Toast.LENGTH_LONG).show();
                         option="event";
                         EventDAO eventDAO = new EventDAO(getParent());
 
@@ -114,9 +79,9 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
                                 String[] eventsFoundArray = eventsFound.toArray(new String[eventsFound.size()]);
                                 showEventsAsList(eventsFoundArray);
-                            } catch (JSONException e)
+                            }catch (JSONException exceptionJSON)
                             {
-                                e.printStackTrace();
+                                exceptionJSON.printStackTrace();
                             }
                         }
                         else
@@ -146,10 +111,9 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
                                 String[] peopleFoundArray = peopleFound.toArray(new String[peopleFound.size()]);
                                 showPeopleAsList(peopleFoundArray);
-                            }
-                            catch (JSONException e)
+                            }catch (JSONException exceptionOfJSON)
                             {
-                                e.printStackTrace();
+                                exceptionOfJSON.printStackTrace();
                             }
                         }
                         else
@@ -159,6 +123,9 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                             event_not_found_text.setVisibility(View.VISIBLE);
                         }
 
+                        break;
+                    default:
+                        //NOTHING TO DO
                         break;
                 }
                 return true;
@@ -173,21 +140,36 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         });
     }
 
-    private void showEventsAsList(String[] eventNames)
-    {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
-                R.layout.event_consultation_list_view, eventNames);
-        listView.setAdapter(adapter);
+    private ListView listView = null;
+    private TextView event_not_found_text = null;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_event_consultation);
+        listView = (ListView) findViewById(R.id.events_list);
+        event_not_found_text = (TextView) findViewById(R.id.event_not_found_text);
+        setListViewListener();
     }
 
-    private void showPeopleAsList(String[] peopleNames)
+    private ActionBar actionBar = null;
+    private RadioGroup radioGroup = null;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
     {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
-                R.layout.event_consultation_list_view, peopleNames);
-        listView.setAdapter(adapter);
+        getMenuInflater().inflate(R.menu.menu_event_consultation, menu);
+        actionBar = getSupportActionBar();
+
+        setSearchBar(menu);
+        configActionBar();
+
+        radioGroup = (RadioGroup) findViewById(R.id.search_radio_group);
+        radioGroup.setOnCheckedChangeListener(this);
+        return true;
     }
 
+    private Integer idItem = 0;
     private void setListViewListener()
     {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -211,12 +193,27 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                 }
-                catch (JSONException e)
+                catch (JSONException exceptionOfJSON)
                 {
-                    e.printStackTrace();
+                    exceptionOfJSON.printStackTrace();
                 }
             }
         });
+    }
+
+    private void showEventsAsList(String[] eventNames)
+    {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
+                R.layout.event_consultation_list_view, eventNames);
+        listView.setAdapter(adapter);
+
+    }
+
+    private void showPeopleAsList(String[] peopleNames)
+    {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
+                R.layout.event_consultation_list_view, peopleNames);
+        listView.setAdapter(adapter);
     }
 
     private void configActionBar()
@@ -228,24 +225,29 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch(item.getItemId()) {
-            case android.R.id.home:
-                Intent intent = new Intent(this, HomePage.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
+        if(item.getItemId() == android.R.id.home){
+            Intent intent = new Intent(this, HomePage.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
         }
-        return super.onOptionsItemSelected(item);
+        else
+        {
+            return super.onOptionsItemSelected(item);
+        }
+
     }
 
     public void onCheckedChanged(RadioGroup group, int checkedId)
     {
-        String query = searchView.getQuery().toString();
         switch(checkedId)
         {
             case R.id.radio_events:
                 break;
             case R.id.radio_people:
+                break;
+            default:
+                //NOTHING TO DO
                 break;
         }
     }
