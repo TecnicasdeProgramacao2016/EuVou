@@ -1,10 +1,14 @@
+/*
+* File name: EditEventFragment.
+* File pourpose: Format fragment text.
+*/
+
+
 package com.mathheals.euvou.controller.edit_event;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.RequiresPermission;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +24,6 @@ import com.mathheals.euvou.controller.showPlaceRanking.ShowTop5Rank;
 import com.mathheals.euvou.controller.utility.EditAndRegisterUtility;
 import com.mathheals.euvou.controller.utility.Mask;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,24 +39,21 @@ import model.Event;
 public class EditEventFragment extends Fragment implements View.OnClickListener
 {
 
-    private int idEvent;
-    private static final String SUCCESSFULL_UPDATE_MESSAGE = "Evento alterado com sucesso :)";
-    private String latitude;
-    private String longitude;
-    private EditText nameField, dateField, hourField, descriptionField, addressField,
-                     priceDecimalField, priceRealField;
-    private CheckBox showCheckBox, expositionCheckBox, cinemaCheckBox, museumCheckBox,
-                     theaterCheckBox, educationCheckBox, othersCheckBox,sportsCheckBox,
-                     partyCheckBox;
     Vector<String> categories = new Vector<>();
     private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
 
 
+    //Constructor
     public EditEventFragment()
     {
         // Required empty public constructor
     }
 
+    private EditText nameField = null, dateField = null, hourField = null,
+                    descriptionField = null, addressField = null,
+                    priceDecimalField = null, priceRealField = null;
+
+    //Format Date
     public void formatDate(JSONObject jsonEvent) throws JSONException
     {
 
@@ -71,6 +71,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     }
 
+    //Format Price
     public void formatPrice(JSONObject jsonEvent) throws JSONException
     {
         Integer priceEvent = jsonEvent.getJSONObject("0").getInt("price");
@@ -78,7 +79,17 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         this.priceDecimalField.setText(Integer.toString(priceEvent - priceEvent / 100 * 100));
     }
 
+    private String latitude = null;
+    private String longitude = null;
+
+    private int idEvent = 0;
+    private CheckBox showCheckBox = null, expositionCheckBox = null, cinemaCheckBox = null,
+                     museumCheckBox = null, theaterCheckBox = null, educationCheckBox = null,
+                     othersCheckBox = null,sportsCheckBox = null, partyCheckBox = null;
+
+
     @Override
+    //Override View
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
@@ -99,6 +110,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         JSONObject jsonEvent = eventDAO.searchEventById(idEvent);
         JSONObject jsonEventCategory = eventCategoryDAO.searchCategoriesByEventId(idEvent);
 
+
         try
         {
             String nameEvent = jsonEvent.getJSONObject("0").getString("nameEvent");
@@ -118,13 +130,13 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
             Vector <Integer> idCategories = new Vector<>();
             String idCategory;
-            for(int i = 0; i < jsonEventCategory.length(); i++)
+            for(int counter = 0; counter < jsonEventCategory.length(); counter++)
             {
-                idCategory = jsonEventCategory.getJSONObject(Integer.toString(i)).getString("idCategory");
+                idCategory = jsonEventCategory.getJSONObject(Integer.toString(counter)).getString("idCategory");
                 idCategories.add(Integer.parseInt(idCategory));
             }
 
-            for(int i = 0; i<idCategories.size(); i++)
+            for(int i = 0; i < idCategories.size(); i++)
             {
                 JSONObject jsonCategory = categoryDAO.searchCategoryById(idCategories.get(i));
                 String nameCategory = jsonCategory.getJSONObject("0").getString("nameCategory");
@@ -166,12 +178,14 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
                     case "Outros":
                         othersCheckBox.setChecked(true);
                         break;
+                    default:
+                        //NOTHING TO DO
                 }
             }
 
-        } catch (JSONException e)
+        } catch (JSONException jsonExceptio)
         {
-            e.printStackTrace();
+            jsonExceptio.printStackTrace();
         }
 
         //Adding listener to eventLocal EditText
@@ -190,6 +204,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         return view;
     }
 
+    //Sets Text
     private void setingEditText(View view)
     {
         this.nameField = (EditText) view.findViewById(R.id.eventName);
@@ -201,6 +216,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         this.addressField = (EditText) view.findViewById(R.id.eventAddress);
     }
 
+    //Sets checkbox
     private void setingCheckBoxs(View view)
     {
         this.showCheckBox = (CheckBox) view.findViewById(R.id.optionShow);
@@ -214,12 +230,17 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         this.othersCheckBox = (CheckBox) view.findViewById(R.id.optionOthers);
     }
 
+    //Uptades database
     private void updateEventOnDataBase(Event event)
     {
         EventDAO eventDAO = new EventDAO(getActivity());
         eventDAO.updateEvent(event);
     }
 
+
+    private static final String SUCCESSFULL_UPDATE_MESSAGE = "Evento alterado com sucesso :)";
+
+    //Update event
     public void updateEvent()
     {
 
@@ -241,6 +262,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Integer eventPriceDecimal = Integer.parseInt(priceDecimalField.getText().toString());
         Integer priceEvent = eventPriceReal * 100 + eventPriceDecimal;
 
+
+
         try
         {
             Event event = new Event(idEvent, nameEvent, priceEvent, addresEvent, dateHourEvent, descriptionEvent,
@@ -249,46 +272,82 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
             updateEventOnDataBase(event);
 
             Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_UPDATE_MESSAGE, Toast.LENGTH_LONG).show();
-        } catch (EventException e)
+        } catch (EventException eventException)
         {
-            String message = e.getMessage();
+            String message = eventException.getMessage();
 
             //Verify address field
             if(message.equals(Event.ADDRESS_IS_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(addressField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(descriptionField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
             {
                 editAndRegisterUtility.setMessageError(descriptionField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.EVENT_DATE_IS_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(dateField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
             {
                 editAndRegisterUtility.setMessageError(nameField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.INVALID_EVENT_DATE))
             {
                 editAndRegisterUtility.setMessageError(dateField, message);
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
             {
                 editAndRegisterUtility.setMessageError(nameField, message);
             }
-        } catch (ParseException e)
+            else
+            {
+                //NOTING TO DO
+            }
+
+        } catch (ParseException parseException)
         {
-            e.printStackTrace();
+            parseException.printStackTrace();
 
         }
     }
 
+    //Add EventCategories
     private void addEventCategories(View view)
     {
         if(view.getId() == R.id.optionCinema)
@@ -334,7 +393,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         {
             CheckBox museumCheckBox = (CheckBox) view;
 
-            if(museumCheckBox.isChecked()) {
+            if(museumCheckBox.isChecked())
+            {
                 categories.add(museumCheckBox.getText().toString());
             }
             else
@@ -410,6 +470,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
+    //Override ClickAction
     public void onClick(View view)
     {
         if(view.getId() == R.id.updateEvent)
@@ -432,29 +493,32 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
+    //Override Action
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode)
-        {
-            case (2) :
-            {
-                if (resultCode == Activity.RESULT_OK) {
-                    Bundle bundle = data.getExtras();
-                    latitude = bundle.getString("latitude");
-                    longitude = bundle.getString("longitude");
 
-                    Toast.makeText(getContext(), "Local selecionado com sucesso", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    //Vazio
-                }
-                break;
+        if (requestCode == 2)
+        {
+            if (resultCode == Activity.RESULT_OK) {
+                Bundle bundle = data.getExtras();
+                latitude = bundle.getString("latitude");
+                longitude = bundle.getString("longitude");
+
+                Toast.makeText(getContext(), "Local selecionado com sucesso", Toast.LENGTH_LONG).show();
             }
+            else
+            {
+                //NOTHING TO DO
+            }
+        }
+        else
+        {
+            //NOTHING TO DO
         }
     }
 
+    //Add listener to checkbox
     private void addCheckBoxListeners(View view)
     {
 
@@ -487,13 +551,15 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     }
 
+    //Remove Event
     private void removeEvent(int eventId)
     {
         EventDAO eventDAO = new EventDAO(getActivity());
         if(eventDAO.deleteEvent(eventId).contains("Salvo"))
         {
             Toast.makeText(getActivity(), "Deletado com sucesso", Toast.LENGTH_LONG).show();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().
+                    getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
