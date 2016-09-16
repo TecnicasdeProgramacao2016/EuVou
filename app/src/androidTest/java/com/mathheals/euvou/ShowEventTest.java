@@ -5,10 +5,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import dao.EventDAO;
 import static junit.framework.Assert.assertEquals;
-/**
- * Created by geovanni on 04/11/15.
+/*
+ * File name: ShowEventTest.
+ * File pourpose: This file have the pourpose to test the events with true and falses parameters.
  */
-public class ShowEventTest extends TestCase {
+public class ShowEventTest extends TestCase 
+{
 
     public void testEventName()
     {
@@ -20,8 +22,10 @@ public class ShowEventTest extends TestCase {
             assertEquals("Tes",nameEventDB);
         }catch(JSONException ex)
         {
+            //NOTHING TO DO
         }catch(NullPointerException exception)
         {
+            //NOTHING TO DO
         }
     }
     public void testEventDescription()
@@ -34,8 +38,10 @@ public class ShowEventTest extends TestCase {
             assertEquals("evento Teste",eventDescription);
         }catch(JSONException ex)
         {
+            //NOTHING TO DO
         }catch(NullPointerException exception)
         {
+            //NOTHING TO DO
         }
     }
     public void testEventDate()
@@ -48,8 +54,10 @@ public class ShowEventTest extends TestCase {
             assertEquals("2016-02-29 00:00:00",eventDateTime.toString());
         }catch(JSONException ex)
         {
+            //NOTHING TO DO
         }catch(NullPointerException exception)
         {
+            //NOTHING TO DO
         }
     }
     public void testEventLatitude()
@@ -62,8 +70,10 @@ public class ShowEventTest extends TestCase {
             assertEquals(23.342300,Double.parseDouble(eventlatitude));
         }catch(JSONException ex)
         {
+            //NOTHING TO DO
         }catch(NullPointerException exception)
         {
+            //NOTHING TO DO
         }
     }
     public void testEventLongitude()
@@ -76,8 +86,10 @@ public class ShowEventTest extends TestCase {
             assertEquals(12.121300,Double.parseDouble(eventlongitude));
         }catch(JSONException ex)
         {
+            //NOTHING TO DO
         }catch(NullPointerException exception)
         {
+            //NOTHING TO DO
         }
     }
     public void testEventPrice()
@@ -89,6 +101,7 @@ public class ShowEventTest extends TestCase {
             assertEquals(10010,Integer.parseInt(eventPrice));
         }catch(JSONException ex)
         {
+            //NOTHING TO DO
         }
     }
 }

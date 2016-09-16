@@ -13,18 +13,16 @@ import dao.EventDAO;
 import exception.EventException;
 import model.Event;
 
-/**
- * Created by viny on 30/10/15.
- */
-public class EventDAOTest extends TestCase {
-
-
-    public void testSearchEventByOwner() throws ParseException, EventException, JSONException {
+public class EventDAOTest extends TestCase
+{
+    public void testSearchEventByOwner() throws ParseException, EventException, JSONException
+    {
         EventDAO eventDAO = new EventDAO();
         assertEquals(eventDAO.searchEventByOwner(-1), null);
     }
 
-    public void testUpdateEvent() throws ParseException, EventException, JSONException{
+    public void testUpdateEvent() throws ParseException, EventException, JSONException
+    {
         EventDAO eventDAO = new EventDAO();
         Vector<String> category = new Vector<>();
         category.add("Show");
@@ -35,15 +33,14 @@ public class EventDAOTest extends TestCase {
         eventDAO.updateEvent(event);
     }
 
-
-    public void testSearchEventByOwner2() throws ParseException, EventException, JSONException {
+    public void testSearchEventByOwner2() throws ParseException, EventException, JSONException
+    {
         EventDAO eventDAO = new EventDAO();
         assertFalse(eventDAO.searchEventByOwner(3).isEmpty());
     }
 
-
-   public void testEventDelet() throws ParseException, EventException, JSONException {
-
+   public void testEventDelet() throws ParseException, EventException, JSONException
+   {
         EventDAO eventDAO = new EventDAO();
         Vector<String> category = new Vector<>();
         category.add("Outros");
@@ -54,6 +51,5 @@ public class EventDAOTest extends TestCase {
         eventDAO.deleteEvent(3);
 
         assertNull(eventDAO.searchEventByName("Evento Delete"));
-
     }
 }

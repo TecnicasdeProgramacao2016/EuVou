@@ -1,3 +1,9 @@
+/*
+* File name: ListEvents.java
+* File pourpose: List events in a search
+*/
+
+
 package com.mathheals.euvou.controller.search_event;
 
 import android.app.Activity;
@@ -31,47 +37,45 @@ import dao.EventDAO;
 import exception.EventException;
 import model.Event;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ListEvents extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener {
+public class ListEvents extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener
+{
 
     private ListView listView;
     private Vector<Event> events;
-    private  Event clicado;
+    private  Event clicked;
 
-    public ListEvents() {
+    public ListEvents()
+    {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View vw = inflater.inflate(R.layout.fragment_list_events, container, false);
+                             Bundle savedInstanceState)
+    {
+        View view = inflater.inflate(R.layout.fragment_list_events, container, false);
         // Inflate the layout for this fragment
-        listView = (ListView) vw.findViewById(R.id.eventList);
+        listView = (ListView) view.findViewById(R.id.eventList);
         listView.setOnItemClickListener(this);
         populaList();
-        return vw;
+        return view;
     }
 
-    private void populaList() {
-        try {
+    private void populaList()
+    {
+        try
+        {
             int id = (new LoginUtility(getActivity())).getUserId();
             events = new EventDAO(getActivity()).searchEventByOwner(id);
-            if(events==null){
-                Toast.makeText(getContext(), "Você ainda não criou nenhum evento, que tal criar um agora?", Toast.LENGTH_LONG).show();
-                android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-            else {
+
+            if(events != null)
+            {
                 List<Map<String, String>> eventList = new ArrayList<Map<String, String>>();
 
                 for (Event e : events)
@@ -83,31 +87,46 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
 
                 listView.setAdapter(simpleAdapter);
             }
+            else
+            {
+                Toast.makeText(getContext(), "Você ainda não criou nenhum evento, que tal criar um agora?", Toast.LENGTH_LONG).show();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
 
-        } catch (JSONException e) {
+        }catch (JSONException e)
+        {
             e.printStackTrace();
-        } catch (ParseException e) {
+        }catch (ParseException e)
+        {
             e.printStackTrace();
-        } catch (EventException e) {
+        }catch (EventException e)
+        {
             e.printStackTrace();
-        }catch( NullPointerException e) {
+        }catch( NullPointerException e)
+        {
             e.printStackTrace();
             Toast.makeText(getContext(),"Sem eventos criados",Toast.LENGTH_SHORT).show();
-
         }
     }
-    private HashMap<String, String> createEvent(String name, String number) {
+
+
+    private HashMap<String, String> createEvent(String name, String number)
+    {
         HashMap<String, String> eventName = new HashMap<String, String>();
         eventName.put(name, number);
         return eventName;
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
         final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        clicado = events.get(position);
+        clicked = events.get(position);
         EditOrRemoveFragment editOrRemoveFragment = new EditOrRemoveFragment();
-        editOrRemoveFragment.evento = clicado;
+        editOrRemoveFragment.evento = clicked;
         fragmentTransaction.replace(R.id.content_frame, editOrRemoveFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
