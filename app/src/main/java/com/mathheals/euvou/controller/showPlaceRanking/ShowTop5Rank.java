@@ -1,3 +1,8 @@
+/*
+* File name: ShowTop5Rank.
+* File pourpose: Present position in top 5 .
+*/
+
 package com.mathheals.euvou.controller.showPlaceRanking;
 
 import android.app.Activity;
@@ -21,36 +26,44 @@ import org.json.JSONObject;
 
 import dao.EventRecommendationDAO;
 
-public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnClickListener {
+public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnClickListener
+{
 
-    private View vw;
-    public ShowTop5Rank() {
+    private View view;
+    public ShowTop5Rank()
+    {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
+
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
 
-        try{
+        try
+        {
             // Inflate the layout for this fragment
-            vw = inflater.inflate(R.layout.fragment_show_top5_rank, container, false);
-            Button bt = (Button) vw.findViewById(R.id.more);
+            view = inflater.inflate(R.layout.fragment_show_top5_rank, container, false);
+            Button bt = (Button) view.findViewById(R.id.more);
             bt.setOnClickListener(this);
 
-        }catch(InflateException ex){
+        }catch(InflateException ex)
+        {
 
         }
-        return vw;
+        return view;
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();;
         fragmentTransaction.replace(R.id.content_frame, new ShowPlaceRanking());
         fragmentTransaction.addToBackStack(null);

@@ -27,25 +27,26 @@ public class Event
     public static final String EVENT_HOUR_IS_EMPTY = "Hey, você esqueceu de informar a hora";
     public static final String CATEGORY_IS_INVALID = "Hey, você esqueceu de informar a categoria do evento, preenche ela aí vai!";
 
-    private int idEvent;
-    private String nameEvent;
-    private String dateTimeEvent;
-    private String description;
-    private Double latitude;
-    private Double longitude;
-    private String adress;
-    private Integer evaluation;
-    private Integer price;
-    private Vector<String> category;
+    private int idEvent = 0;
+    private String nameEvent = "nameEvent";
+    private String dateTimeEvent = "dateTimeEvent";
+    private String description = "description";
+    private Double latitude = 0.0;
+    private Double longitude = 0.0;
+    private String adress = "adress";
+    private Integer evaluation = null;
+    private Integer price = null;
+    private Vector<String> category = null;
 
     private static final int MAX_LENGTH_NAME = 50;
     private static final int MAX_LENGTH_DESCRIPTION = 500;
-    private int idOwner;
+    private int idOwner = 0;
 
     public Event(int idOwner, String nameEvent, String date,
                  String hour, String priceReal, String priceDecimal,
                  String address, String description, String latitude,
-                 String longitude, Vector<String> category) throws EventException, ParseException{
+                 String longitude, Vector<String> category) throws EventException, ParseException
+    {
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
         setDateTimeEvent(date, hour);
@@ -74,7 +75,8 @@ public class Event
     }
 
     public Event(int idOwner, String nameEvent,
-                 int eventEvaluation) throws EventException, ParseException{
+                 int eventEvaluation) throws EventException, ParseException
+    {
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
         setEvaluation(eventEvaluation);
@@ -139,8 +141,7 @@ public class Event
                 {
                     throw new EventException(INVALID_EVENT_DATE);
                 }
-            }
-            catch (ParseException exception)
+            } catch (ParseException exception)
             {
                 throw new EventException(INVALID_EVENT_DATE);
             }
@@ -152,8 +153,7 @@ public class Event
                 formatHour.parse(hour);
 
                 this.dateTimeEvent = date + " " + hour;
-            }
-            catch (ParseException exception)
+            } catch (ParseException exception)
             {
                 throw new EventException(INVALID_EVENT_HOUR);
             }

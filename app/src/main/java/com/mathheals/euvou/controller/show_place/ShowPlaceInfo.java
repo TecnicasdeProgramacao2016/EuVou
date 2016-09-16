@@ -29,7 +29,7 @@ import model.Place;
 
 public class ShowPlaceInfo extends FragmentActivity
 {
-    private String description = "no description";
+    private String description = "description";
     private double longitude = 0;
     private double latitude = 0;
     private String address = "nothing";
@@ -180,17 +180,17 @@ public class ShowPlaceInfo extends FragmentActivity
         this.description = description;
     }
 
-    private String operation = "no operation";
+    private String operation = "operation";
     private void setOperation(String operation) {
         this.operation = operation;
     }
 
-    private String phone = "no phone";
+    private String phone = "phone";
     private void setPhone(String phone) {
         this.phone = phone;
     }
 
-    private String name = "no name";
+    private String name = "name";
     private String getName() {
         return name;
     }

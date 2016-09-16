@@ -5,9 +5,9 @@ import exception.EventException;
 
 public class EventEvaluation
 {
-    private Float rating;
-    private Integer userId;
-    private Integer eventId;
+    private Float rating = null;
+    private Integer userId = null;
+    private Integer eventId = null;
     public static final String EVALUATION_IS_INVALID = "A avaliação deve estar entre 0 e 5";
     public static final String USER_ID_IS_INVALID = "O identificador do usuário é inválido";
     public static final String EVENT_ID_IS_INVALID = "O identificador do evento é inválido";

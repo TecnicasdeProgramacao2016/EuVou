@@ -5,9 +5,9 @@ import exception.UserEvaluationException;
 
 public class UserEvaluation
 {
-    private Float rating;
-    private Integer userId;
-    private Integer userEvaluatedId;
+    private Float rating = null;
+    private Integer userId = null;
+    private Integer userEvaluatedId = null;
     public static final String EVALUATION_IS_INVALID = "Avaliação deve estar entre 0 e 5";
     public static final String USER_ID_IS_INVALID = "O identificador do usuário é inválido";
     public static final String USER_EVALUATED_ID_IS_INVALID = "O identificador do usuário avaliado é inválido";
@@ -18,11 +18,6 @@ public class UserEvaluation
         setRating(rating);
         setUserId(userId);
         setUserEvaluatedId(userEvaluatedId);
-    }
-
-    public Float getRating()
-    {
-        return rating;
     }
 
     public void setRating(Float rating) throws UserEvaluationException
@@ -37,11 +32,6 @@ public class UserEvaluation
         }
     }
 
-    public Integer getUserId()
-    {
-        return userId;
-    }
-
     public void setUserId(Integer userId) throws UserEvaluationException
     {
         if(userId <= Integer.MAX_VALUE && userId >= 1)
@@ -54,11 +44,6 @@ public class UserEvaluation
         }
     }
 
-    public Integer getUserEvaluatedId()
-    {
-        return userEvaluatedId;
-    }
-
     public void setUserEvaluatedId(Integer userEvaluatedId) throws UserEvaluationException
     {
         if(userEvaluatedId <= Integer.MAX_VALUE && userEvaluatedId >= 1)
@@ -69,5 +54,20 @@ public class UserEvaluation
         {
             throw new UserEvaluationException(USER_EVALUATED_ID_IS_INVALID);
         }
+    }
+
+    public Float getRating()
+    {
+        return rating;
+    }
+
+    public Integer getUserEvaluatedId()
+    {
+        return userEvaluatedId;
+    }
+
+    public Integer getUserId()
+    {
+        return userId;
     }
 }

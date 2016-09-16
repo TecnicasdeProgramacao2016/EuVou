@@ -10,7 +10,6 @@ import model.EventEvaluation;
 
 public class EventEvaluationDAOTest extends TestCase
 {
-
     public void testEvaluatePlace()
     {
         final Float RATING = 3.5F;

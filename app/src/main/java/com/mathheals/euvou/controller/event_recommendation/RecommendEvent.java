@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.mathheals.euvou.R;//BAD CODE
+import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.show_event.ShowEvent;
 import com.mathheals.euvou.controller.utility.LoginUtility;
 
@@ -110,7 +110,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
             bundle.putString("idEventSearch", Integer.toString(eventId));
 
             event.setArguments(bundle);
-            fragmentTransaction.add(R.id.content_frame, event);//BAD CODE
+            fragmentTransaction.add(R.id.content_frame, event);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         } catch (JSONException exceptionOnItemClick)

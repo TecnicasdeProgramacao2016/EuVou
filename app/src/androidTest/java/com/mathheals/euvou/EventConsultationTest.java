@@ -44,9 +44,9 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
 {
     private static final int USER_LOGGED_OUT = -1;
 
-    private boolean isUserLoggedIn;
-    private Activity activity;
-    private Integer userId;
+    private boolean isUserLoggedIn = false;
+    private Activity activity = null;
+    private Integer userId = null;
 
     public EventConsultationTest()
     {
@@ -135,8 +135,12 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
             TestUtility.makeUserLogIn();
             isUserLoggedIn = true;
         }
+        else
+        {
+            //NOTHING TO DO
+        }
 
-        boolean result;
+        boolean result = false;
         openShowEventFragment();
 
         try
@@ -183,6 +187,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     {
         this.isUserLoggedIn = isUserLoggedIn;
     }
+
     public void testMarkParticipateNotLoged()
     {
         if(isUserLoggedIn)
@@ -223,6 +228,11 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
             onView(withId(R.id.passwordField)).perform(typeText("123456"));
             onView(withText("Login")).perform(click());
         }
+        else
+        {
+            //NOTHING TO DO
+        }
+
         markClique();
         onView(withId(R.id.EuVou)).perform(click());
         onView(withId(R.id.EuVou)).perform(click());

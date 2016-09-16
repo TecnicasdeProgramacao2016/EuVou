@@ -121,12 +121,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         {
 
             String message = e.getMessage();
-            errorMessage(message);
+            UserRegisterErrorMessage(message);
 
         }
     }
 
-    public void errorMessage(final String message)
+    public void UserRegisterErrorMessage(final String message)
     {
         if (message.equals(User.NAME_CANT_BE_EMPTY_NAME))
         {
@@ -194,7 +194,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
 
         }else
         {
-            //nothing to do
+            //NOTHING TO DO
         }
     }
 }

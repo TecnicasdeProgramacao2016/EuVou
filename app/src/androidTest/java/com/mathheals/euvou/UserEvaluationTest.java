@@ -9,20 +9,25 @@ import exception.UserException;
 import model.User;
 import model.UserEvaluation;
 
-/**
- * Created by izabela on 24/11/15.
+ /*
+ * File name: UserEvaluationTest.
+ * File pourpose: Test user's evaluation with true and falses parameters.
  */
-public class UserEvaluationTest extends TestCase{
+public class UserEvaluationTest extends TestCase
+{
 
     private UserEvaluation userEvaluation;
 
-    public void testUserEvaluationWithValidParameters() {
+    public void testUserEvaluationWithValidParameters() 
+    {
         boolean isUserEvaluationValid;
 
-        try {
-           userEvaluation = new UserEvaluation(3f, 3, 1);
+        try 
+        {
+            userEvaluation = new UserEvaluation(3f, 3, 1);
             isUserEvaluationValid = true;
-        } catch (UserEvaluationException e) {
+        } catch (UserEvaluationException e) 
+        {
            isUserEvaluationValid = false;
         }
 
@@ -30,13 +35,16 @@ public class UserEvaluationTest extends TestCase{
 
     }
 
-    public void testUserEvaluationWithInvalidUserId() {
+    public void testUserEvaluationWithInvalidUserId() 
+    {
         boolean isUserEvaluationValid;
 
-        try {
+        try 
+        {
             userEvaluation = new UserEvaluation(3f, -3, 1);
             isUserEvaluationValid = true;
-        } catch (UserEvaluationException e) {
+        } catch (UserEvaluationException e) 
+        {
             isUserEvaluationValid = false;
         }
 
@@ -44,13 +52,16 @@ public class UserEvaluationTest extends TestCase{
 
     }
 
-    public void testUserEvaluationWithInvalidUserEvaluatedId() {
+    public void testUserEvaluationWithInvalidUserEvaluatedId() 
+    {
         boolean isUserEvaluationValid;
 
-        try {
+        try 
+        {
             userEvaluation = new UserEvaluation(3f, 3, -1);
             isUserEvaluationValid = true;
-        } catch (UserEvaluationException e) {
+        } catch (UserEvaluationException e) 
+        {
             isUserEvaluationValid = false;
         }
 
@@ -58,13 +69,16 @@ public class UserEvaluationTest extends TestCase{
 
     }
 
-    public void testUserEvaluationWithNegativeRating() {
+    public void testUserEvaluationWithNegativeRating() 
+    {
         boolean isUserEvaluationValid;
 
-        try {
+        try 
+        {
             userEvaluation = new UserEvaluation(3f, -3, 1);
             isUserEvaluationValid = true;
-        } catch (UserEvaluationException e) {
+        } catch (UserEvaluationException e) 
+        {
             isUserEvaluationValid = false;
         }
 
@@ -72,20 +86,20 @@ public class UserEvaluationTest extends TestCase{
 
     }
 
-    public void testUserEvaluationWithEvaluationBiggerThanFive() {
+    public void testUserEvaluationWithEvaluationBiggerThanFive() 
+    {
         boolean isUserEvaluationValid;
 
-        try {
+        try 
+        {
             userEvaluation = new UserEvaluation(6f, 3, 1);
             isUserEvaluationValid = true;
-        } catch (UserEvaluationException e) {
+        } catch (UserEvaluationException e) 
+        {
             isUserEvaluationValid = false;
         }
 
         assertFalse(isUserEvaluationValid);
-
     }
-
-
 
 }

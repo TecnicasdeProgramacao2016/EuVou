@@ -39,6 +39,8 @@ import com.mathheals.euvou.controller.user_registration.RegisterFragment;
 import com.mathheals.euvou.controller.utility.ActivityUtility;
 import com.mathheals.euvou.controller.utility.LoginUtility;
 
+import java.io.Console;
+
 import dao.UserDAO;
 
 public class HomePage extends ActionBarActivity implements AdapterView.OnItemClickListener
@@ -73,7 +75,8 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     private void startPrincipalFragment()
     {
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        android.support.v4.app.FragmentTransaction fragmentTransaction =
+                                                        getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -241,6 +244,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
                     fragmentTransaction.replace(R.id.content_frame, new ListEvents());
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
+
                 }
                 catch (NullPointerException exception)
                 {

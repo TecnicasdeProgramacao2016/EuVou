@@ -1,3 +1,8 @@
+/*
+* File name: EvalueteEventControlTest.
+* File pourpose: Test class EvalueteEventControl.
+*/
+
 package com.mathheals.euvou;
 
 import android.support.test.InstrumentationRegistry;
@@ -27,69 +32,94 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
-/**
- * Created by izabela on 15/11/15.
- */
-public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<HomePage> {
+
+public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<HomePage>
+{
 
     LoginUtility isLoged;
 
-    public EvalueteEventControlTest() {
-            super(HomePage.class);
-            }
-
-    @Before
-    public void setUp() throws Exception {
-            super.setUp();
-            getActivity();
-            isLoged = new LoginUtility(getActivity());
+    public EvalueteEventControlTest()
+    {
+        super(HomePage.class);
     }
 
-    public void testIfEditUserOptionIsDisplayedForUserLoggedOut() {
-        if(isLoged.hasUserLoggedIn()){
+    @Before
+    public void setUp() throws Exception
+    {
+        super.setUp();
+        getActivity();
+        isLoged = new LoginUtility(getActivity());
+    }
+
+    public void testIfEditUserOptionIsDisplayedForUserLoggedOut()
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             isLoged.setUserLogOff();
         }
+        else
+            //NOTHING TO DO
+
         searchForEventUsedForTest();
         closeSoftKeyboard();
         assertFalse(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE).matches(onView(withId(R.id.ratingBar))));
     }
 
-    public void testIfEvaluetationIsDisplayedForUserLoggedIn() {
-        if (!isLoged.hasUserLoggedIn()) {
+    public void testIfEvaluetationIsDisplayedForUserLoggedIn()
+    {
+        if (!isLoged.hasUserLoggedIn())
+        {
             isLoged.setUserLogIn(3);
         }
+        else
+            //NOTHING TO DO
+
         searchForEventUsedForTest();
         closeSoftKeyboard();
         onView(withId(R.id.ratingBar)).check(matches(isDisplayed()));
     }
 
-    public void testEvaluateSetInRatingBar(){
+    public void testEvaluateSetInRatingBar()
+    {
         boolean result;
 
-        if (!isLoged.hasUserLoggedIn()) {
+        if (!isLoged.hasUserLoggedIn())
+        {
             isLoged.setUserLogIn(3);
         }
+        else
+            //NOTHING TO DO
 
         searchForEventUsedForTest();
         closeSoftKeyboard();
-        try {
+
+        try
+        {
             int[] ratingNumbersForTest = new int[]{1, 3, 5};
 
             for(Integer ratingNumber : ratingNumbersForTest)
                 onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
-            try {
+            try
+            {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e)
+            {
                 e.printStackTrace();
             }
+
             result = true;
-        } catch (PerformException performException) {
+        }
+        catch (PerformException performException)
+        {
             result = false;
         }
+
         assertTrue(result);
     }
 
-    private void searchForEventUsedForTest(){
+    private void searchForEventUsedForTest()
+    {
         onView(withId(R.id.search)).perform(click());
         onView(withId(R.id.radio_events)).perform(click());
         onView(withId(R.id.search_src_text)).perform(typeText("t"), pressKey(66));

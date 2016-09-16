@@ -7,24 +7,24 @@ import org.json.JSONObject;
 
 import dao.UserDAO;
 
-/**
- * Created by igor on 29/09/15.
+/*
+ * File name: LoginValidation.
+ * File pourpose: This file have the pourpose to do the validation of the login.
  */
-public class LoginValidation {
-    private final String INVALID_USERNAME_MESSAGE = "Ops, acho que você digitou o login errado";
-    private final String INVALID_PASSWORD_MESSAGE = "Ops, acho que você digitou a senha errada";
-    private final String JSON_FORMAT = "0";
-    private final String PASSWORD_USER = "passwordUser";
-    private static final String COLUMN_USER_STATE = "isActivity";
+
+public class LoginValidation 
+{
+    
+    
     Activity activity;
 
-    public LoginValidation(Activity activity){
+    public LoginValidation(Activity activity)
+    {
         this.activity=activity;
     }
 
-    public LoginValidation(){}
-
-    private boolean checkUsernameCharacters(String username){
+    private boolean checkUsernameCharacters(String username)
+    {
         if(username.isEmpty())
             return false;
         if(username.contains(" "))
@@ -32,68 +32,95 @@ public class LoginValidation {
         return true;
     }
 
-    public boolean isActivity(String username){
+    private static final String COLUMN_USER_STATE = "isActivity";
+
+    public boolean isActivity(String username)
+    {
         UserDAO userDAO = new UserDAO(this.activity);
 
         JSONObject json = null;
         String isActivity = null;
-        try {
+        try 
+        {
             json = userDAO.searchUserByUsername(username);
             isActivity = json.getJSONObject(JSON_FORMAT).getString(COLUMN_USER_STATE);
-        } catch (JSONException e) {
+        } catch (JSONException e) 
+        {
             e.printStackTrace();
         }
 
-        if(json!=null && isActivity.equals("Y")){
+        if(json!=null && isActivity.equals("Y"))
+        {
             return true;
-        }else{
+        } else
+        {
             return false;
         }
+
     }
 
-    public boolean isUsernameRegistred(String username){
+    public boolean isUsernameRegistred(String username)
+    {
         UserDAO userDAO = new UserDAO(this.activity);
 
         JSONObject json = userDAO.searchUserByUsername(username);
 
-        if(json!=null){
+        if(json!=null)
+        {
             return true;
-        }else{
+        }else
+        {
             return false;
         }
 
     }
 
-    public boolean isUsernameValid(String username){
-
+    public boolean isUsernameValid(String username)
+    {
         return checkUsernameCharacters(username) && isUsernameRegistred(username);
     }
 
-    public boolean checkPassword(String validUsername, String passwordTyped){
+    private final String JSON_FORMAT = "0";
+
+    private final String PASSWORD_USER = "passwordUser";
+
+    public boolean checkPassword(String validUsername, String passwordTyped)
+    {
         UserDAO userDAO = new UserDAO(this.activity);
 
         JSONObject json = userDAO.searchUserByUsername(validUsername);
 
-        try {
+        try 
+        {
             String password = json.getJSONObject(JSON_FORMAT).getString(PASSWORD_USER);
 
-            if(password.equals(passwordTyped)){
+            if(password.equals(passwordTyped))
+            {
                 return true;
-            }else{
+            }else
+            {
                 return false;
             }
-        } catch (JSONException e) {
+
+        } catch (JSONException e) 
+        {
             e.printStackTrace();
             return false;
         }
 
     }
 
-    public String getInvalidUsernameMessage() {
+    private final String INVALID_USERNAME_MESSAGE = "Ops, acho que você digitou o login errado";
+
+    public String getInvalidUsernameMessage() 
+    {
         return INVALID_USERNAME_MESSAGE;
     }
 
-    public String getInvalidPasswordMessage() {
+    private final String INVALID_PASSWORD_MESSAGE = "Ops, acho que você digitou a senha errada";
+
+    public String getInvalidPasswordMessage() 
+    {
         return INVALID_PASSWORD_MESSAGE;
     }
 

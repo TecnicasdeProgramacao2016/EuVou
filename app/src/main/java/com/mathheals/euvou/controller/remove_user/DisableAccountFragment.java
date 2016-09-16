@@ -14,19 +14,24 @@ import android.widget.Button;
 
 import com.mathheals.euvou.R;
 
-/**
- * A simple {@link Fragment} subclass.
+/*
+ * File name: DisableAccountFragment.
+ * File pourpose: This file have the pourpose disable a account fragment.
  */
-public class DisableAccountFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
 
-    public DisableAccountFragment() {
+public class DisableAccountFragment extends android.support.v4.app.Fragment implements View.OnClickListener 
+{
+
+    public DisableAccountFragment() 
+    {
         // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState) 
+    {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_disable_account, container, false);
@@ -42,17 +47,20 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
 
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View view) 
+    {
         FragmentActivity activity = this.getActivity();
         FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         Context homePageContext = activity.getBaseContext();
 
-        switch(view.getId()) {
+        switch(view.getId()) 
+        {
             case R.id.button_yes_id:
                 fragmentManager.popBackStack();
-                RemoveUserVIewMessages.showWelcomeBackMessage(homePageContext);
+                RemoveUserViewMessages.showWelcomeBackMessage(homePageContext);
                 return;
+
             case R.id.button_no_id:
                 android.support.v4.app.Fragment disableAccountFragment = activity.getSupportFragmentManager().findFragmentByTag(String.valueOf(R.string.DISABLE_ACCOUNT_FRAGMENT_TAG));
                 fragmentTransaction.remove(disableAccountFragment);
@@ -61,5 +69,7 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
                 fragmentTransaction.commit();
                 return;
         }
+
     }
+
 }

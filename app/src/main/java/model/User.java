@@ -38,12 +38,12 @@ public class User
     private static final int MAX_LENGTH_USERNAME = 100;
     private static final int MIN_LENGTH_PASSWORD = 6;
 
-    private int idUser;
-    private String name;
-    private String username;
-    private String email;
-    private String password;
-    private String birthDate;
+    private int idUser = 0;
+    private String name = "name";
+    private String username = "username";
+    private String email = "email";
+    private String password = "password";
+    private String birthDate = "birthDate";
 
     public boolean equals(User user)
     {

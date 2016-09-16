@@ -24,26 +24,31 @@ import dao.PlaceDAO;
 import exception.PlaceException;
 import model.Place;
 
-public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMarkerClickListener{
+/*
+ * File name: SearchPlaceMaps.
+ * File pourpose: This file have the pourpose to search places on a google map
+ */
 
-    protected GoogleMap mMap; // Might be null if Google Play services APK is not available.
-    private ArrayList<Place> places;
+public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMarkerClickListener
+{
+
     private String filter;
-    private Place clickedPlace;
-    private int selectedPlaceId;
-    private JSONObject foundPlaces;
 
-    public String getFilter() {
+    public String getFilter() 
+    {
         return filter;
     }
 
-    public void setFilter(String filter) {
+    public void setFilter(String filter) 
+    {
         this.filter = filter;
     }
 
+    protected GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
@@ -51,19 +56,23 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() 
+    {
         super.onResume();
         setUpMapIfNeeded();
     }
 
-    private void setUpMapIfNeeded() {
+    private void setUpMapIfNeeded() 
+    {
         // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
+        if (mMap == null) 
+        {
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
             // Check if we were successful in obtaining the map.
-            if (mMap != null) {
+            if (mMap != null) 
+            {
                 setUpMap();
             }
         }
@@ -74,32 +83,44 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
         return new PlaceDAO(this).searchPlaceByPartName(getFilter());
     }
 
-    private void setUpMap() {
+    private JSONObject foundPlaces;
+
+    private void setUpMap() 
+    {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(-15.7941454, -47.8825479), 9));
         setFilter(getIntent().getStringExtra("query"));
         foundPlaces = searchPlaces();
 
-        try {
+        try 
+        {
             convertJsonToPlace(foundPlaces);
             addMarkerPlace();
-        } catch (JSONException e) {
+        } catch (JSONException e) 
+        {
             e.printStackTrace();
-        } catch (PlaceException e) {
+        } catch (PlaceException e) 
+        {
             e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (ParseException e) 
+        {
             e.printStackTrace();
         }
 
     }
 
-    private void convertJsonToPlace(JSONObject result) throws JSONException, PlaceException, ParseException {
+    private ArrayList<Place> places;
+
+    private void convertJsonToPlace(JSONObject result) throws JSONException, PlaceException, ParseException 
+    {
         places = new ArrayList<>();
-        if(result == null) {
+        if(result == null) 
+        {
             Toast.makeText(this, "Sem Resultados", Toast.LENGTH_LONG).show();
             return;
         }
-        for (int i = 0; i < result.length(); i++) {
+        for (int i = 0; i < result.length(); i++) 
+        {
             Place aux;
             aux = new Place(
                     result.getJSONObject("" + i).getString("namePlace"),
@@ -115,9 +136,11 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
         }
     }
 
-    private void addMarkerPlace() {
+    private void addMarkerPlace() 
+    {
         if(places != null) {
-            for (int i = 0; i < places.size(); ++i) {
+            for (int i = 0; i < places.size(); ++i) 
+            {
                 mMap.addMarker(
                         new MarkerOptions()
                                 .title(places.get(i).getName())
@@ -129,7 +152,8 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     }
 
     @Override
-    public boolean onMarkerClick(Marker marker) {
+    public boolean onMarkerClick(Marker marker) 
+    {
         String marke = marker.getId().substring(1);
         int id = Integer.parseInt(marke);
         select(id);
@@ -137,21 +161,29 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
         return false;
     }
 
-    private void select(int id) {
+    private Place clickedPlace;
+    private int selectedPlaceId;
+
+    private void select(int id) 
+    {
         clickedPlace = places.get(id);
-        try {
+        try 
+        {
             selectedPlaceId = foundPlaces.getJSONObject(Integer.toString(id)).getInt("idPlace");
-        } catch (JSONException e) {
+        } catch (JSONException e) 
+        {
             e.printStackTrace();
         }
     }
-    private void startShowInfoActivity() {
+    private void startShowInfoActivity() 
+    {
         Intent intent = new Intent(this, ShowPlaceInfo.class);
         intent.putExtras(getPlaceInfoAsBundle());
         startActivity(intent);
     }
 
-    private Bundle getPlaceInfoAsBundle() {
+    private Bundle getPlaceInfoAsBundle() 
+    {
         Bundle placeInfo = new Bundle();
         placeInfo.putString("name", clickedPlace.getName());
         placeInfo.putString("phone", clickedPlace.getPhone());
@@ -164,3 +196,4 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
         return placeInfo;
     }
 }
+
