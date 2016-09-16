@@ -24,26 +24,37 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
-/**
+
+ /*
+ * File name: UserEvolationControlTest.
+ * File pourpose: Test user's evaluation with true and falses parameters.
  * Created by izabela on 23/11/15.
+ * Edited by: daniel on 13/09/16
  */
-public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<HomePage> {
+
+
+public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<HomePage> 
+{
 
     LoginUtility isLoged;
 
-    public UserEvaluationControlTest(){
+    public UserEvaluationControlTest()
+    {
         super(HomePage.class);
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception 
+    {
         super.setUp();
         getActivity();
         isLoged = new LoginUtility(getActivity());
     }
 
-    public void testIfRatingBarIsAvailableForLoggedOutUser() {
-        if(isLoged.hasUserLoggedIn()) {
+    public void testIfRatingBarIsAvailableForLoggedOutUser() 
+    {
+        if(isLoged.hasUserLoggedIn()) 
+        {
             TestUtility.makeUserLogOut();
         }
         searchForUserUsedForTest();
@@ -51,8 +62,10 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
 
     }
 
-    public void testIfRatingBarIsAvailableForLoggedInUser() {
-        if(!isLoged.hasUserLoggedIn()) {
+    public void testIfRatingBarIsAvailableForLoggedInUser() 
+    {
+        if(!isLoged.hasUserLoggedIn()) 
+        {
             TestUtility.makeUserLogIn();
         }
         searchForUserUsedForTest();
@@ -60,31 +73,38 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
 
     }
 
-    public void testIfRatingBarIsSetingEvaluation() {
+    public void testIfRatingBarIsSetingEvaluation() 
+    {
         boolean result;
-        if(!isLoged.hasUserLoggedIn()) {
+        if(!isLoged.hasUserLoggedIn()) 
+        {
             TestUtility.makeUserLogIn();
         }
         searchForUserUsedForTest();
-        try {
+        try 
+        {
             int[] ratingNumbersForTest = new int[]{1, 3, 5};
 
             for(Integer ratingNumber : ratingNumbersForTest)
                 onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
-            try {
+            try 
+            {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e) 
+            {
                 e.printStackTrace();
             }
             result = true;
-        } catch (PerformException performException) {
+        } catch (PerformException performException) 
+        {
             result = false;
         }
         assertTrue(result);
 
     }
 
-    public void searchForUserUsedForTest(){
+    public void searchForUserUsedForTest()
+    {
         onView(withId(R.id.search)).perform(click());
         onView(withId(R.id.radio_people)).perform(click());
         onView(withId(R.id.search_src_text)).perform(typeText("t"), pressKey(66));
