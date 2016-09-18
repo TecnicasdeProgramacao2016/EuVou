@@ -14,7 +14,7 @@ import com.mathheals.euvou.R;
 public class LocalEventActivity extends FragmentActivity implements GoogleMap.OnMapClickListener
 {
 
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private GoogleMap mMap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,8 +38,9 @@ public class LocalEventActivity extends FragmentActivity implements GoogleMap.On
         if (mMap == null)
         {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
+            mMap = ((SupportMapFragment) getSupportFragmentManager()
+                                        .findFragmentById(R.id.map))
+                                        .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null)
             {

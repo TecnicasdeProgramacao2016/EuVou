@@ -13,7 +13,7 @@ public abstract class DAO {
     private final String URLCONSULT = "http://euvou.esy.es/consult.php";;
 
     private final int LIMITCONECTIONTIME = 15000;
-    protected Activity currentActivity;
+    protected Activity currentActivity = null;
 
     public DAO(Activity currentActivity)
     {

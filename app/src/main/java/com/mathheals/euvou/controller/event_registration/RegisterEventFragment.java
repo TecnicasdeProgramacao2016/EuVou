@@ -27,10 +27,10 @@ import model.Event;
 
 public class RegisterEventFragment extends android.support.v4.app.Fragment implements View.OnClickListener
 {
-
+    private final String DEFAULT_MESSAGE = " ";
     private static final String SUCCESSFULL_CADASTRATION_MESSAGE = "Evento cadastrado com sucesso :)";
-    private String latitude;
-    private String longitude;
+    private String latitude = DEFAULT_MESSAGE;
+    private String longitude = DEFAULT_MESSAGE;
     private Vector<String> categories= new Vector<>();
 
     public RegisterEventFragment()
@@ -388,17 +388,20 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                 }
                 break;
             }
+            default:
+                //NOTHING TO DO
+
         }
     }
 
-    private void registerEvent(Event event)
+    private void registerEvent(final Event event)
     {
         //verificar evento que está em parâmetro
         EventDAO eventDAO = new EventDAO(getActivity());
         eventDAO.saveEvent(event);
     }
 
-    private void addCheckBoxListeners(View view)
+    private void addCheckBoxListeners(final View view)
     {
 
         CheckBox showCategory = (CheckBox) view.findViewById(R.id.optionShow);

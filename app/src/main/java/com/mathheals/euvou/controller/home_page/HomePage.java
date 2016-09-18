@@ -47,16 +47,16 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 {
     private static final String QUERY = "query";
     private static final String SETTINGS_FRAGMENT = "settings_fragment_tag";
-    private CharSequence mTitle;
-    private DrawerLayout drawerLayout;
-    private LinearLayout linearLayout;
-    private ListView drawerList;
-    private ActionBarDrawerToggle drawerToggle;
-    private String[] textOptions;
-    private ActionBar actionBar;
-    private Fragment currentFragment;
+    private CharSequence mTitle = null;
+    private DrawerLayout drawerLayout = null;
+    private LinearLayout linearLayout = null;
+    private ListView drawerList = null;
+    private ActionBarDrawerToggle drawerToggle = null;
+    private String[] textOptions = null;
+    private ActionBar actionBar = null;
+    private Fragment currentFragment = null;
     public static final String OPTION = "option";
-    private int USER_STATUS;
+    private int USER_STATUS = 0;
     private final int LOGGED_OUT = -1;
 
     @Override
@@ -192,6 +192,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         {
             return true;
         }
+        else
+        {
+            //NOTHING TO DO
+        }
         // Handle your other action bar items...
 
         if(USER_STATUS != LOGGED_OUT)
@@ -311,6 +315,9 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
                 case 5:
                     aux = "Unidade";
                     break;
+                default:
+                    //NOTHING TO DO
+
 
             }
             Intent map = new Intent(HomePage.this, SearchPlaceMaps.class);

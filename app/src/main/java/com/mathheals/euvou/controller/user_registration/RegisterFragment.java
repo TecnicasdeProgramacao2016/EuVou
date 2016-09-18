@@ -20,23 +20,22 @@ import model.User;
 
 public class RegisterFragment extends Fragment implements View.OnClickListener
 {
-
-
+    private final String DEFAULT_STRING_MESSAGE = " ";
     private static final String SUCCESSFULL_CADASTRATION_MESSAGE = "Bem vindo ao #EuVou :)";
-    private EditText nameField;
-    private EditText birthDateField;
-    private EditText mailField;
-    private EditText mailConfirmationField;
-    private EditText usernameField;
-    private EditText passwordField;
-    private EditText passwordConfirmField;
-    private String name;
-    private String birthDate;
-    private String username;
-    private String mail;
-    private String password;
-    private String passwordConfirm;
-    private String mailConfirm;
+    private EditText nameField = null;
+    private EditText birthDateField = null;
+    private EditText mailField = null;
+    private EditText mailConfirmationField = null;
+    private EditText usernameField = null;
+    private EditText passwordField = null;
+    private EditText passwordConfirmField = null;
+    private String name = DEFAULT_STRING_MESSAGE;
+    private String birthDate = DEFAULT_STRING_MESSAGE;
+    private String username = DEFAULT_STRING_MESSAGE;
+    private String mail = DEFAULT_STRING_MESSAGE;
+    private String password = DEFAULT_STRING_MESSAGE;
+    private String passwordConfirm = DEFAULT_STRING_MESSAGE;
+    private String mailConfirm = DEFAULT_STRING_MESSAGE;
     private EditAndRegisterUtility editAndRegisterUtility = new EditAndRegisterUtility();
 
 

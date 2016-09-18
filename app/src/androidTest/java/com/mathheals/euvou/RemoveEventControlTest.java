@@ -39,10 +39,10 @@ import static org.hamcrest.Matchers.hasToString;
 public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<HomePage>
 {
 
-    private LoginUtility isLoged;
-    private TestUtility setLogin;
-    private UiDevice device;
-    private User user;
+    private LoginUtility isLoged = null;
+    private TestUtility setLogin = null;
+    private UiDevice device = null;
+    private User user = null;
     private EventDAO eventDao = new EventDAO();
 
     public RemoveEventControlTest()
