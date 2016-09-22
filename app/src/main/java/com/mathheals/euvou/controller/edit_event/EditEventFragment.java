@@ -130,6 +130,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
             Vector <Integer> idCategories = new Vector<>();
             String idCategory;
+
             for(int counter = 0; counter < jsonEventCategory.length(); counter++)
             {
                 idCategory = jsonEventCategory.getJSONObject(Integer.toString(counter)).getString("idCategory");

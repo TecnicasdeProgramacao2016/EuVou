@@ -30,6 +30,7 @@ public class SetRating implements ViewAction
     public Matcher<View> getConstraints()
     {
         Matcher<View> isRatingBarConstraint = isAssignableFrom(RatingBar.class);
+
         return isRatingBarConstraint;
     }
 
