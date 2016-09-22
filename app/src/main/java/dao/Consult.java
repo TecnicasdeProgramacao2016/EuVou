@@ -1,3 +1,7 @@
+/**
+ * file:Consult.java
+ * purpose:class to do the consultation to the database
+ */
 package dao;
 
 import android.os.AsyncTask;
@@ -19,9 +23,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by viny on 23/09/15.
- */
 public class Consult
 {
 

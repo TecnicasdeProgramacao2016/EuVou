@@ -1,3 +1,7 @@
+/**
+ * file:EventDAO.java
+ * purpose:class to execute the database conection to the Event class
+ */
 package dao;
 
 import android.app.Activity;
@@ -12,9 +16,6 @@ import java.util.Vector;
 import exception.EventException;
 import model.Event;
 
-/**
- * Created by geovanni on 10/10/15.
- */
 public class EventDAO extends DAO
 {
 

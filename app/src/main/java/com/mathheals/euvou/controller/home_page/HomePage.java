@@ -1,3 +1,8 @@
+/**
+ * file: HomePage.java
+ * pursose:inflate the initial screen of the application
+ */
+
 package com.mathheals.euvou.controller.home_page;
 
 import android.content.Intent;

@@ -1,3 +1,7 @@
+/**
+ * file: EventEvaluationDAO.java
+ * purpose: conecting the Event Evaluation class to the database, and make operations with it.
+ */
 package dao;
 
 import android.app.Activity;

@@ -1,3 +1,7 @@
+/**
+ * file:EvaluatePlaceDAO.java
+ * purpose:class to execute the database conection to the class EvaluatePlace
+ */
 package dao;
 
 import android.app.Activity;

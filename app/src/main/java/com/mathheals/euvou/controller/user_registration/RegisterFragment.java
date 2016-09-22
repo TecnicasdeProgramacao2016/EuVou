@@ -1,3 +1,7 @@
+/**
+ *  file: RegisterFragment.java
+ *  purpose: fragment to register a new user to the database
+ */
 package com.mathheals.euvou.controller.user_registration;
 import android.app.Activity;
 import android.content.Intent;

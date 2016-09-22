@@ -1,3 +1,9 @@
+/**
+    file: LocalEventActivity.java
+    Purpose: class to get the local of the event on Google Maps
+ */
+
+
 package com.mathheals.euvou.controller.event_registration;
 
 import android.app.Activity;

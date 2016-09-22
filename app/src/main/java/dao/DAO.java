@@ -1,3 +1,7 @@
+/**
+ * file:DAO.java
+ * purpose:main class related o the database conection
+ */
 package dao;
 
 import android.app.Activity;

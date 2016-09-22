@@ -1,4 +1,8 @@
-package dao;
+
+/**
+ * file: UserDAO.java
+ * purpose: make operations with the User class and the database
+ */package dao;
 import android.app.Activity;
 
 import org.json.JSONObject;

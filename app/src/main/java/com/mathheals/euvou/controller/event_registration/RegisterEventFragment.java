@@ -1,3 +1,8 @@
+/**
+ *  file: RegisterEventFragment.java
+ *  Purpose: Register fragment of a new event in the database
+ */
+
 package com.mathheals.euvou.controller.event_registration;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,11 +19,7 @@ import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.utility.LoginUtility;
 import com.mathheals.euvou.controller.utility.Mask;
 
-import org.json.JSONException;
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Vector;
 
 import dao.EventDAO;

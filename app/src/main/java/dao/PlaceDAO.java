@@ -1,3 +1,7 @@
+/**
+ * file: PlaceDAO.java
+ * purpose: conecting the Place class to the database, and make operations with it.
+ */
 package dao;
 
 import android.app.Activity;

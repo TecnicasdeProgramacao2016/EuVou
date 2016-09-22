@@ -1,3 +1,7 @@
+/**
+ * file: EventRecommendationDAO.java
+ * purpose: make the conection of the class EventRecommendation to the database
+ */
 package dao;
 
 import android.app.Activity;
