@@ -1,3 +1,8 @@
+/*
+* File name: Evaluation.
+* File pourpose: Set grade, place id and user id.
+*/
+
 package model;
 
 public class Evaluation

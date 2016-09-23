@@ -1,3 +1,8 @@
+/*
+* File name: Event Adapter.
+* File pourpose: Adapts the event.
+*/
+
 package com.mathheals.euvou.controller.event_recommendation;
 
 import android.content.Context;

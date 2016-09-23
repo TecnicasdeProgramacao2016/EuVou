@@ -1,3 +1,8 @@
+/*
+* File name: EventConsultationTest.
+* File pourpose: Test class Event Consultation.
+*/
+
 package com.mathheals.euvou;
 
 import android.app.Activity;

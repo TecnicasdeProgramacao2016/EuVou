@@ -1,3 +1,8 @@
+/*
+* File name: ShowPlaceInfo.
+* File pourpose: Show informations about place.
+*/
+
 package com.mathheals.euvou.controller.show_place;
 
 import android.graphics.PorterDuff;

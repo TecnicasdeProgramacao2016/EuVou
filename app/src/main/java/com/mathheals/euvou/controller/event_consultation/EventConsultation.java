@@ -1,3 +1,8 @@
+/*
+* File name: EventConsultation.
+* File pourpose: Consults Event.
+*/
+
 package com.mathheals.euvou.controller.event_consultation;
 
 import android.app.Activity;

@@ -1,3 +1,8 @@
+/*
+* File name: RecommendEvent.
+* File pourpose: Recommends events.
+*/
+
 package com.mathheals.euvou.controller.event_recommendation;
 
 import android.os.Bundle;

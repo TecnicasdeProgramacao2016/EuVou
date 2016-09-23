@@ -1,3 +1,8 @@
+/*
+* File name: EditUserFragment.
+* File pourpose: Edit User and validate.
+*/
+
 package com.mathheals.euvou.controller.edit_user;
 
 import android.app.Activity;
@@ -98,9 +103,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
         USER_STATUS = loginUtility.getUserId();
 
-        /*
-         * Validates and set user alteration
-         */
+        //Validates and set user alteration
         try
         {
             User userUpdate = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password, passwordConfirm);

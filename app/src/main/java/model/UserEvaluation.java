@@ -1,3 +1,8 @@
+/*
+* File name: UserEvaluation.
+* File pourpose: Sets User Evaluation data.
+*/
+
 package model;
 
 import exception.EventEvaluationException;

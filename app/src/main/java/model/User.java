@@ -1,3 +1,8 @@
+/*
+* File name: User.
+* File pourpose: Set and verify User data.
+*/
+
 package model;
 import android.app.Activity;
 import android.util.Patterns;
@@ -11,9 +16,8 @@ import java.util.Date;
 
 import dao.UserDAO;
 import exception.UserException;
-/*
-Description: This class validates the user
-*/
+
+// This class validates the user
 public class User
 {
     public static final String ID_IS_INVALID = "Id inválido";

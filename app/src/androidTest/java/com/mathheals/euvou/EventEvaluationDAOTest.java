@@ -1,3 +1,8 @@
+/*
+* File name: EventEvaluationDAOTest.
+* File pourpose: Test Evaluation of Event.
+*/
+
 package com.mathheals.euvou;
 
 import junit.framework.TestCase;

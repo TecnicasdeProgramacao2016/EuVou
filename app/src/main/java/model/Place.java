@@ -1,3 +1,8 @@
+/*
+* File name: Place.
+* File pourpose: Set Place data.
+*/
+
 package model;
 
 import java.text.ParseException;

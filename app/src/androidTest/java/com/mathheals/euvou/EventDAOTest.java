@@ -1,3 +1,8 @@
+/*
+* File name: EventDAOTest.
+* File pourpose: Test Event search delete and update.
+*/
+
 package com.mathheals.euvou;
 
 import android.app.Activity;

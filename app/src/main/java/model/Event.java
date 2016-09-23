@@ -1,3 +1,8 @@
+/*
+* File name: Event.
+* File pourpose: Model of Event.
+*/
+
 package model;
 
 import java.text.DecimalFormat;
