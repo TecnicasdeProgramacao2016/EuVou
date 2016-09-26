@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,6 @@ import model.Event;
 
 public class EditEventFragment extends Fragment implements View.OnClickListener
 {
-
     Vector<String> categories = new Vector<>();
     private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
 
@@ -69,6 +69,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         this.dateField.setText(dateEvent);
         this.hourField.setText(hourEvent);
 
+        Log.d("EditEventFragment", "Date sucessfuly formated");
     }
 
     //Format Price
@@ -77,6 +78,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Integer priceEvent = jsonEvent.getJSONObject("0").getInt("price");
         this.priceRealField.setText(Integer.toString(priceEvent / 100));
         this.priceDecimalField.setText(Integer.toString(priceEvent - priceEvent / 100 * 100));
+        Log.d("EditEventFragment", "Price sucessfuly formated");
     }
 
     private String latitude = null;
@@ -93,7 +95,6 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-
         idEvent = this.getArguments().getInt("idEvent");
 
         View view = inflater.inflate(R.layout.fragment_edit_event, container, false);
@@ -184,6 +185,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
                 }
             }
 
+            Log.d("EditEventFragment", "Check box clicked");
+
         } catch (JSONException jsonExceptio)
         {
             jsonExceptio.printStackTrace();
@@ -215,6 +218,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         this.priceRealField = (EditText) view.findViewById(R.id.eventPriceReal);
         this.priceDecimalField = (EditText) view.findViewById(R.id.eventPriceDecimal);
         this.addressField = (EditText) view.findViewById(R.id.eventAddress);
+
+        Log.d("EditEventFragment", "Edit text sucessfuly setted");
     }
 
     //Sets checkbox
@@ -229,6 +234,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         this.museumCheckBox = (CheckBox) view.findViewById(R.id.optionMuseum);
         this.sportsCheckBox = (CheckBox) view.findViewById(R.id.optionSports);
         this.othersCheckBox = (CheckBox) view.findViewById(R.id.optionOthers);
+
+        Log.d("EditEventFragment", "Check box sucessfuly setted");
     }
 
     //Uptades database
@@ -236,6 +243,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     {
         EventDAO eventDAO = new EventDAO(getActivity());
         eventDAO.updateEvent(event);
+
+        Log.d("EditEventFragment", "Database updated");
     }
 
 
@@ -273,6 +282,9 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
             updateEventOnDataBase(event);
 
             Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_UPDATE_MESSAGE, Toast.LENGTH_LONG).show();
+
+            Log.d("EditEventFragment", "Event Updated");
+
         } catch (EventException eventException)
         {
             String message = eventException.getMessage();
@@ -468,6 +480,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
                 categories.remove(theaterCheckBox.getText().toString());
             }
         }
+
+        Log.d("EditEventFragment", "Event type setted");
     }
 
     @Override
@@ -569,5 +583,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         {
             Toast.makeText(getActivity(),"Houve um erro",Toast.LENGTH_LONG).show();
         }
+
+        Log.d("EditEventFragment", "Event Removed");
     }
 }
