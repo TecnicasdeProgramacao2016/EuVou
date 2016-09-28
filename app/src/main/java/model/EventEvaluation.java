@@ -5,14 +5,15 @@
 
 package model;
 
+import java.util.logging.Logger;
 import exception.EventEvaluationException;
-import exception.EventException;
 
 public class EventEvaluation
 {
     private Float rating = null;
     private Integer userId = null;
     private Integer eventId = null;
+    private Logger logger = null;
     public static final String EVALUATION_IS_INVALID = "A avaliação deve estar entre 0 e 5";
     public static final String USER_ID_IS_INVALID = "O identificador do usuário é inválido";
     public static final String EVENT_ID_IS_INVALID = "O identificador do evento é inválido";
@@ -35,6 +36,7 @@ public class EventEvaluation
         if(rating >= 0f && rating <= 5f)
         {
             this.rating = rating;
+            logger.info("Rating has been set.");
         }
         else
         {
@@ -52,6 +54,7 @@ public class EventEvaluation
         if(userId <= Integer.MAX_VALUE && userId >= 1)
         {
             this.userId = userId;
+            logger.info("userId has been set.");
         }
         else
         {
@@ -69,6 +72,7 @@ public class EventEvaluation
         if(eventId <= Integer.MAX_VALUE && eventId >= 1)
         {
             this.eventId = eventId;
+            logger.info("Event Id has been set.");
         }
         else
         {
