@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,8 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
                     RemoveUserViewMessages.showAccountDeactivateMessage(homePage.getBaseContext());
                 }
                 return;
+            default:
+                //NOTHING TO DO
         }
     }
 
@@ -103,21 +106,26 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
 
         boolean isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
-        if(isUsernameValid==false)
-        {
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-        } else
+        if(isUsernameValid==true)
         {
             boolean isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
 
-            if(isPasswordValid==false)
+            if(isPasswordValid==true)
+            {
+                Log.d("DisableAccountLoginConfirmation", "Login valid");
+                return true;
+            }
+            else
             {
                 passwordField.requestFocus();
                 passwordField.setError(loginValidation.getInvalidPasswordMessage());
             }
-            else
-                return true;
+
+        } else
+        {
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+
         }
         return false;
     }

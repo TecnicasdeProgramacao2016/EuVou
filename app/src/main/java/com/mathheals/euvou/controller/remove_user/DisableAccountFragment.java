@@ -68,6 +68,8 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 return;
+            default:
+                //NOTHING TO DO
         }
 
     }

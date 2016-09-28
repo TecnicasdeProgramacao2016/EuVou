@@ -28,5 +28,9 @@ public class ActivityUtility
             FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(0);
             manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
+        else
+        {
+            //NOTHING TO DO
+        }
     }
 }

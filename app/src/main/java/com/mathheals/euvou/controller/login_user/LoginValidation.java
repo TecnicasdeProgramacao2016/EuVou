@@ -68,6 +68,7 @@ public class LoginValidation
 
         if(json!=null)
         {
+            Log.d("LoginValidation", "Username is already registraded");
             return true;
         }else
         {
