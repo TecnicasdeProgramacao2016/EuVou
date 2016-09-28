@@ -36,42 +36,36 @@ import com.mathheals.euvou.controller.login_user.LoginActivity;
 import com.mathheals.euvou.controller.remove_user.RemoveUserFragment;
 import com.mathheals.euvou.controller.search_event.ListEvents;
 import com.mathheals.euvou.controller.search_place.SearchPlaceMaps;
-import com.mathheals.euvou.controller.showPlaceRanking.ShowPlaceRank;
-import com.mathheals.euvou.controller.showPlaceRanking.ShowPlaceRanking;
 import com.mathheals.euvou.controller.showPlaceRanking.ShowTop5Rank;
-import com.mathheals.euvou.controller.showPlaceRanking.ShowTop5Ranking;
 import com.mathheals.euvou.controller.user_registration.RegisterFragment;
 import com.mathheals.euvou.controller.utility.ActivityUtility;
 import com.mathheals.euvou.controller.utility.LoginUtility;
-
-import java.io.Console;
-
-import dao.UserDAO;
 
 public class HomePage extends ActionBarActivity implements AdapterView.OnItemClickListener
 {
     private static final String QUERY = "query";
     private static final String SETTINGS_FRAGMENT = "settings_fragment_tag";
-    private CharSequence mTitle = null;
     private DrawerLayout drawerLayout = null;
     private LinearLayout linearLayout = null;
     private ListView drawerList = null;
     private ActionBarDrawerToggle drawerToggle = null;
     private String[] textOptions = null;
     private ActionBar actionBar = null;
-    private Fragment currentFragment = null;
-    public static final String OPTION = "option";
     private int USER_STATUS = 0;
     private final int LOGGED_OUT = -1;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState)
     {
+        assert(savedInstanceState != null);
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.fragment_navigation_drawer);
         initViews();
+
         drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, textOptions));
-        EditText placeSearch = (EditText) findViewById(R.id.place_search);
+        assert(drawerList != null);
 
         callGoogleMaps();
         onConfigActionBar();
@@ -89,10 +83,13 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     public void searchPlace(final View view)
     {
+        assert(view != null);
         final String INVALID_SEARCH = "Pesquisa Invalida";
 
         String filter = ((EditText)findViewById(R.id.place_search)).getText().toString();
         Intent map = new Intent(HomePage.this, SearchPlaceMaps.class);
+        assert(map != null);
+
         if(!(filter.isEmpty()))
         {
             map.putExtra(QUERY, filter);
@@ -114,8 +111,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         linearLayout = (LinearLayout) findViewById(R.id.left_drawer);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.left_drawer_list);
-        drawerToggle =
-                new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer,
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer,
                         R.string.drawer_open, R.string.drawer_close)
                 {
                     public void onDrawerClosed(View view)
@@ -130,6 +126,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
                         supportInvalidateOptionsMenu();
                     }
                 };
+        assert(drawerToggle != null);
 
         textOptions = getResources().getStringArray(R.array.itens_menu_string);
 
@@ -140,7 +137,6 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     private void onConfigActionBar()
     {
-
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
@@ -150,8 +146,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     public boolean onCreateOptionsMenu(final Menu menu)
     {
+        assert(menu != null);
         MenuInflater inflater = getMenuInflater();
         LoginUtility loginUtility = new LoginUtility(HomePage.this);
+        assert(loginUtility != null);
         // Inflating menu for logged users
 
         USER_STATUS = loginUtility.getUserId();
@@ -175,6 +173,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     public void onConfigurationChanged(final Configuration newConfig)
     {
+        assert(newConfig != null);
         super.onConfigurationChanged(newConfig);
 
         drawerToggle.onConfigurationChanged(newConfig);
@@ -183,6 +182,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     @Override
     protected void onPostCreate(final Bundle savedInstanceState)
     {
+        assert(savedInstanceState != null);
         super.onPostCreate(savedInstanceState);
 
         drawerToggle.syncState();
@@ -191,6 +191,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        assert(item != null);
         // Pass the event to ActionBarDrawerToggle, if it returns
         // true, then it has handled the app icon touch event
         if (drawerToggle.onOptionsItemSelected(item))
@@ -221,6 +222,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     public boolean userLoggedInOptions(final MenuItem item)
     {
+        assert(item != null);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switch(item.getItemId())
         {
@@ -244,6 +246,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
             case R.id.logout:
                 new LoginUtility(HomePage.this).setUserLogOff();
                 Intent intent = getIntent();
+                assert(intent != null);
                 finish();
                 startActivity(intent);
                 return true;
@@ -267,6 +270,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     public boolean userLoggedOutOptions(final MenuItem item)
     {
+        assert(item != null);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switch (item.getItemId())
         {
@@ -277,6 +281,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
                 return true;
             case R.id.log_in:
                 Intent myIntent = new Intent(HomePage.this, LoginActivity.class);
+                assert(myIntent != null);
                 HomePage.this.startActivity(myIntent);
                 return true;
             default:
@@ -287,6 +292,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     // Alterar Usuário methods
     public void editUserUpdateButtonOnClick(View view)
     {
+        assert(view != null);
         final String SUCESS_EDIT_MESSAGE = "Dados alterados com sucesso :)";
         Toast.makeText(getBaseContext(), SUCESS_EDIT_MESSAGE, Toast.LENGTH_LONG).show();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -296,12 +302,17 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     public void searchOnclick(final MenuItem item)
     {
+        assert(item != null);
         Intent eventConsultation = new Intent(HomePage.this, EventConsultation.class);
+        assert(eventConsultation != null);
         HomePage.this.startActivity(eventConsultation);
     }
         @Override
         public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id)
         {
+            assert(parent != null);
+            assert(view != null);
+
             String aux = "";
             switch (position)
             {
@@ -326,6 +337,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
             }
             Intent map = new Intent(HomePage.this, SearchPlaceMaps.class);
+            assert(map != null);
             map.putExtra(QUERY, aux);
             HomePage.this.startActivity(map);
             drawerLayout.closeDrawer(linearLayout);

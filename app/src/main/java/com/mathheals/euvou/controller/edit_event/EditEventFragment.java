@@ -1,10 +1,13 @@
+/**
+ * file: EditEventFragment.java
+ * pursose: editing user's atribute and save the alterations on the database
+ */
+
 package com.mathheals.euvou.controller.edit_event;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.RequiresPermission;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +23,6 @@ import com.mathheals.euvou.controller.showPlaceRanking.ShowTop5Rank;
 import com.mathheals.euvou.controller.utility.EditAndRegisterUtility;
 import com.mathheals.euvou.controller.utility.Mask;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,16 +37,27 @@ import model.Event;
 
 public class EditEventFragment extends Fragment implements View.OnClickListener
 {
-
-    private int idEvent;
+    private final String DEFAULT_STRING_MESSAGE = " ";
+    private int idEvent = -1;
     private static final String SUCCESSFULL_UPDATE_MESSAGE = "Evento alterado com sucesso :)";
-    private String latitude;
-    private String longitude;
-    private EditText nameField, dateField, hourField, descriptionField, addressField,
-                     priceDecimalField, priceRealField;
-    private CheckBox showCheckBox, expositionCheckBox, cinemaCheckBox, museumCheckBox,
-                     theaterCheckBox, educationCheckBox, othersCheckBox,sportsCheckBox,
-                     partyCheckBox;
+    private String latitude = DEFAULT_STRING_MESSAGE;
+    private String longitude = DEFAULT_STRING_MESSAGE;
+    private EditText nameField = null;
+    private EditText dateField = null;
+    private EditText hourField = null;
+    private EditText descriptionField = null;
+    private EditText addressField = null;
+    private EditText priceDecimalField = null;
+    private EditText priceRealField = null;
+    private CheckBox showCheckBox = null;
+    private CheckBox expositionCheckBox = null;
+    private CheckBox cinemaCheckBox = null;
+    private CheckBox museumCheckBox = null;
+    private CheckBox theaterCheckBox = null;
+    private CheckBox educationCheckBox = null;
+    private CheckBox othersCheckBox = null;
+    private CheckBox sportsCheckBox = null;
+    private CheckBox partyCheckBox = null;
     Vector<String> categories = new Vector<>();
     private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
 
@@ -56,6 +69,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     public void formatDate(JSONObject jsonEvent) throws JSONException
     {
+        assert(jsonEvent != null);
 
         String dateHourEvent = jsonEvent.getJSONObject("0").getString("dateTimeEvent");
         String[] dateHourEventSplit = dateHourEvent.split(" ");
@@ -73,6 +87,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     public void formatPrice(JSONObject jsonEvent) throws JSONException
     {
+        assert(jsonEvent != null);
         Integer priceEvent = jsonEvent.getJSONObject("0").getInt("price");
         this.priceRealField.setText(Integer.toString(priceEvent / 100));
         this.priceDecimalField.setText(Integer.toString(priceEvent - priceEvent / 100 * 100));
@@ -82,6 +97,9 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
 
         idEvent = this.getArguments().getInt("idEvent");
 
@@ -192,6 +210,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     private void setingEditText(View view)
     {
+        assert(view != null);
         this.nameField = (EditText) view.findViewById(R.id.eventName);
         this.dateField = (EditText) view.findViewById(R.id.eventDate);
         this.hourField = (EditText) view.findViewById(R.id.eventHour);
@@ -203,6 +222,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     private void setingCheckBoxs(View view)
     {
+        assert(view != null);
         this.showCheckBox = (CheckBox) view.findViewById(R.id.optionShow);
         this.expositionCheckBox = (CheckBox) view.findViewById(R.id.optionExposition);
         this.cinemaCheckBox = (CheckBox) view.findViewById(R.id.optionCinema);
@@ -216,6 +236,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     private void updateEventOnDataBase(Event event)
     {
+        assert(event != null);
         EventDAO eventDAO = new EventDAO(getActivity());
         eventDAO.updateEvent(event);
     }
@@ -258,39 +279,48 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
             {
                 editAndRegisterUtility.setMessageError(addressField, message);
             }
-            if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
+            else if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(descriptionField, message);
             }
-            if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
+            else if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
             {
                 editAndRegisterUtility.setMessageError(descriptionField, message);
             }
-            if(message.equals(Event.EVENT_DATE_IS_EMPTY))
+            else if(message.equals(Event.EVENT_DATE_IS_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(dateField, message);
             }
-            if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
+            else if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
             {
                 editAndRegisterUtility.setMessageError(nameField, message);
             }
-            if(message.equals(Event.INVALID_EVENT_DATE))
+            else if(message.equals(Event.INVALID_EVENT_DATE))
             {
                 editAndRegisterUtility.setMessageError(dateField, message);
             }
-            if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
+            else if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
             {
                 editAndRegisterUtility.setMessageError(nameField, message);
+            }
+            else
+            {
+                //NOTHING TO DO
             }
         } catch (ParseException e)
         {
             e.printStackTrace();
 
         }
+        finally
+        {
+            //NOTHING TO DO
+        }
     }
 
     private void addEventCategories(View view)
     {
+        assert(view != null);
         if(view.getId() == R.id.optionCinema)
         {
             CheckBox cinemaCheckBox = (CheckBox) view;
@@ -412,6 +442,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View view)
     {
+        assert(view != null);
         if(view.getId() == R.id.updateEvent)
         {
             updateEvent();
@@ -434,6 +465,9 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+        assert(requestCode > 0);
+        assert(data != null);
+
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode)
         {
@@ -452,12 +486,14 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
                 }
                 break;
             }
+            default:
+                //NOTHING TO DO
         }
     }
 
     private void addCheckBoxListeners(View view)
     {
-
+        assert(view != null);
         CheckBox showCategory = (CheckBox) view.findViewById(R.id.optionShow);
         showCategory.setOnClickListener(this);
 
@@ -489,6 +525,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     private void removeEvent(int eventId)
     {
+        assert(eventId > 0);
         EventDAO eventDAO = new EventDAO(getActivity());
         if(eventDAO.deleteEvent(eventId).contains("Salvo"))
         {
