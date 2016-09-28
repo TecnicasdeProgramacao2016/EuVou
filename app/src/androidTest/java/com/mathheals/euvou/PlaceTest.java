@@ -165,6 +165,7 @@ public class PlaceTest extends TestCase
     //Test if name value was gotten
     public void testGetName()
     {
+        boolean ok = true;
         try
         {
             Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
@@ -173,16 +174,19 @@ public class PlaceTest extends TestCase
 
         } catch (PlaceException placeException)
         {
-            assertTrue(false);
+            ok = false;
         } catch (ParseException parseException)
         {
-            assertTrue(false);
+            ok = false;
         }
+
+        assertTrue(ok);
     }
 
     //Test if latitude value was gotten
     public void testGetLatitude()
     {
+        boolean ok = true;
         try
         {
             Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
@@ -191,11 +195,12 @@ public class PlaceTest extends TestCase
 
         } catch (PlaceException placeException)
         {
-            assertTrue(false);
+            ok = false;
         } catch (ParseException parseException)
         {
-            assertTrue(false);
+            ok = false;
         }
+        assertTrue(ok);
     }
 
     //Test if longitude value was gotten
@@ -372,6 +377,7 @@ public class PlaceTest extends TestCase
     //Test if evaluation string can be null
     public void testSetNullStringEvaluated()
     {
+        boolean ok = true;
         try
         {
             Place place= new Place("Nome","null","14.0025","14.0025","8h às 12h","Descrição",
@@ -379,13 +385,15 @@ public class PlaceTest extends TestCase
             assertTrue(true);
         } catch (PlaceException placeException)
         {
-            assertTrue(false);
+            ok = false;
         } catch (ParseException parseException)
         {
-            assertTrue(false);
+            ok = false;
         } catch (NumberFormatException numberFormatException)
         {
-            assertTrue(false);
+            ok = false;
         }
+
+        assertTrue(ok);
     }
 }

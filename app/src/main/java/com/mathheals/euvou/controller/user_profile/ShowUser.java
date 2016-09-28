@@ -10,6 +10,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,8 @@ public class ShowUser extends android.support.v4.app.Fragment {
         setRatingMessage(isUserLoggedIn);
         setRatingBarIfNeeded();
 
+        Log.d("ShowUser", "User logged in");
+
         return showUserView;
     }
 
@@ -102,6 +105,8 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
         ratingMessage = (TextView) showUserView.findViewById(R.id.rate_user_text);
         ratingMessage.setText(message);
+
+        Log.d("ShowUser", "Setted user status as logged in");
     }
 
     public void setShowUserView(View showUserView)
@@ -169,6 +174,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
                 }
         );
         setRatingBarStyle();
+        Log.d("ShowUser", "Rating bar setted");
     }
 
     public UserEvaluation getUserEvaluation()
@@ -183,6 +189,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
         {
             this.userEvaluation = new UserEvaluation(rating, userId, userEvaluatedId);
             Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_EVALUATION_MESSAGE, Toast.LENGTH_LONG).show();
+            Log.d("ShowUser", "Users evaluation setted");
         }
         catch (UserEvaluationException exception)
         {
