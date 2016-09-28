@@ -5,15 +5,10 @@
 
 package com.mathheals.euvou;
 
-import android.app.Activity;
-
 import junit.framework.TestCase;
-
 import org.json.JSONException;
-
 import java.text.ParseException;
 import java.util.Vector;
-
 import dao.EventDAO;
 import exception.EventException;
 import model.Event;

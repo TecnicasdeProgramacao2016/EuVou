@@ -6,27 +6,16 @@
 package com.mathheals.euvou;
 
 import android.app.Activity;
-import android.support.test.espresso.Espresso;
 import android.support.test.espresso.PerformException;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.uiautomator.UiDevice;
 import android.test.ActivityInstrumentationTestCase2;
-
-import com.mathheals.euvou.controller.event_consultation.EventConsultation;
 import com.mathheals.euvou.controller.home_page.HomePage;
-
 import org.junit.Before;
-
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-
 import android.support.test.InstrumentationRegistry;
-import android.test.ActivityInstrumentationTestCase2;
-import com.mathheals.euvou.controller.home_page.HomePage;
 import com.mathheals.euvou.controller.utility.LoginUtility;
-
-import org.junit.Before;
-
 import android.widget.EditText;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -43,7 +32,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.core.IsNot.not;
-import static org.hamcrest.core.StringStartsWith.startsWith;
 
 public class EventConsultationTest extends ActivityInstrumentationTestCase2<HomePage>
 {
@@ -52,7 +40,6 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     private boolean isUserLoggedIn = false;
     private Activity activity = null;
     private Integer userId = null;
-
     public EventConsultationTest()
     {
         super(HomePage.class);
@@ -185,6 +172,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
 
     public void setUserId(Integer userId)
     {
+        assertNotNull("userId is null.",userId);
         this.userId = userId;
     }
 
@@ -221,7 +209,6 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
                 .inAdapterView(withId(R.id.events_list)).atPosition(0)
                 .perform(click());
     }
-
 
     public void testMarkParticipateTwoTimeLoged()
     {

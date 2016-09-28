@@ -5,11 +5,11 @@
 
 package model;
 
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
+import java.util.logging.Logger;
 import exception.EventException;
 
 public class Event
@@ -42,6 +42,7 @@ public class Event
     private Integer evaluation = null;
     private Integer price = null;
     private Vector<String> category = null;
+    private Logger logger = null;
 
     private static final int MAX_LENGTH_NAME = 50;
     private static final int MAX_LENGTH_DESCRIPTION = 500;
@@ -82,6 +83,7 @@ public class Event
     public Event(int idOwner, String nameEvent,
                  int eventEvaluation) throws EventException, ParseException
     {
+
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
         setEvaluation(eventEvaluation);
@@ -125,6 +127,7 @@ public class Event
 
     public void setDateTimeEvent(String dateTimeEvent){
         this.dateTimeEvent=dateTimeEvent;
+        logger.info("Data of Time Event has been set.");
     }
 
     public void setDateTimeEvent(String date, String hour) throws ParseException, EventException
@@ -158,6 +161,7 @@ public class Event
                 formatHour.parse(hour);
 
                 this.dateTimeEvent = date + " " + hour;
+                logger.info("dataTimeEvent has been set.");
             } catch (ParseException exception)
             {
                 throw new EventException(INVALID_EVENT_HOUR);
@@ -189,6 +193,7 @@ public class Event
         if(evaluation >= 1 && evaluation <= 5)
         {
             this.evaluation = evaluation;
+            logger.info("Evaluation on setEvaluation has been set.");
         }
         else
         {
@@ -207,6 +212,7 @@ public class Event
             Integer price = priceEventReal * 100 + priceEventDecimal;
 
             this.price=price;
+            logger.info("Price on setPrice has been set.");
         }
         else
         {
@@ -227,6 +233,7 @@ public class Event
 
     public void setPrice(Integer price){
         this.price=price;
+        logger.info("Price has been set.");
     }
 
     public Integer getPrice(){
@@ -242,6 +249,7 @@ public class Event
         if(!(adress.isEmpty()) && adress != null)
         {
             this.adress = adress;
+            logger.info("Adress has been set.");
         }
         else
         {
@@ -256,6 +264,7 @@ public class Event
 
     public void setIdEvent(int idEvent) {
         this.idEvent = idEvent;
+        logger.info("Id of Event has been set.");
     }
 
     public Double getLongitude() {
@@ -270,6 +279,7 @@ public class Event
             if(longitudeDouble >= -180 && longitudeDouble <= 180)
             {
                 this.longitude = longitudeDouble;
+                logger.info("Longitude has been set.");
 
             }
             else
@@ -296,6 +306,7 @@ public class Event
             if(nameEvent.length() <= MAX_LENGTH_NAME)
             {
                 this.nameEvent = nameEvent;
+                logger.info("Name of Event has been set.");
             }
             else
             {
@@ -320,6 +331,7 @@ public class Event
             if(description.length() < MAX_LENGTH_DESCRIPTION)
             {
                 this.description = description;
+                logger.info("Description has been set.");
             }
             else
             {
@@ -347,6 +359,7 @@ public class Event
             if(latitudeDouble >= -90 && latitudeDouble <= 90)
             {
                 this.latitude = latitudeDouble;
+                logger.info("Latitude has been set.");
             }
             else
             {
@@ -364,6 +377,7 @@ public class Event
         if(category != null && !category.isEmpty())
         {
             this.category = category;
+            logger.info("Category has been set.");
         }
         else
         {
@@ -383,5 +397,6 @@ public class Event
 
     public void setIdOwner(int idOwner) {
         this.idOwner = idOwner;
+        logger.info("idOwner has been set.");
     }
 }

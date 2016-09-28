@@ -4,16 +4,12 @@
 */
 
 package model;
-import android.app.Activity;
+
 import android.util.Patterns;
-import android.widget.Toast;
-
-import com.mathheals.euvou.controller.login_user.LoginValidation;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.logging.Logger;
 import dao.UserDAO;
 import exception.UserException;
 
@@ -41,7 +37,7 @@ public class User
     private static final int MAX_LENGTH_EMAIL = 150;
     private static final int MAX_LENGTH_USERNAME = 100;
     private static final int MIN_LENGTH_PASSWORD = 6;
-
+    private Logger logger = null;
     private int idUser = 0;
     private String name = "name";
     private String username = "username";
@@ -123,7 +119,8 @@ public class User
     private void setIdUser(int idUser) throws UserException
     {
         if(idUser <= Integer.MAX_VALUE && idUser >= 1){
-            this.idUser =idUser;
+            this.idUser = idUser;
+            logger.info("Id User has been set.");
         }
         else
         {
@@ -139,6 +136,7 @@ public class User
             if(name.length() <= MAX_LENGTH_NAME)
             {
                 this.name = name;
+                logger.info("Name has been set.");
             }
             else
             {
@@ -161,6 +159,7 @@ public class User
                 if(Patterns.EMAIL_ADDRESS.matcher(emailCharSequence).matches())
                 {
                     this.email = email;
+                    logger.info("Email has been set.");
                 }
                 else
                 {
@@ -201,13 +200,14 @@ public class User
     {
         if (username != null && !username.isEmpty())
         {
-            if (new UserDAO().searchUserByUsername(username) != null)
-            {
-                throw new UserException(USERNAME_EXISTENT);
-            }
-            else if(username.length() <= MAX_LENGTH_USERNAME)
+            if(username.length() <= MAX_LENGTH_USERNAME)
             {
                 this.username = username;
+                logger.info("Username has been set.");
+            }
+            else if (new UserDAO().searchUserByUsername(username) != null)
+            {
+                throw new UserException(USERNAME_EXISTENT);
             }
             else
             {
@@ -229,6 +229,7 @@ public class User
             if(password.length() >= MIN_LENGTH_PASSWORD)
             {
                 this.password = password;
+                logger.info("Password has been set.");
             }
             else
             {
@@ -273,6 +274,7 @@ public class User
                 if (userDate.before(new Date()))
                 {
                     this.birthDate = birthDate;
+                    logger.info("birthDate has been set.");
                 }
                 else
                 {

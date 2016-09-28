@@ -2,21 +2,21 @@
 * File name: EventEvaluationDAOTest.
 * File pourpose: Test Evaluation of Event.
 */
-
+    
 package com.mathheals.euvou;
-
-import junit.framework.TestCase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import dao.EventEvaluationDAO;
 import exception.EventEvaluationException;
 import model.EventEvaluation;
+import junit.framework.TestCase;
 
 public class EventEvaluationDAOTest extends TestCase
 {
     public void testEvaluatePlace()
     {
+
         final Float RATING = 3.5F;
         final Integer USER_ID = 1;
         final Integer EVENT_ID = 1;
@@ -24,6 +24,7 @@ public class EventEvaluationDAOTest extends TestCase
         EventEvaluationDAO eventEvaluationDAO = new EventEvaluationDAO();
         try
         {
+
             eventEvaluationDAO.evaluateEvent(new EventEvaluation(RATING, USER_ID, EVENT_ID));
         }catch(EventEvaluationException exception)
         {
@@ -40,9 +41,9 @@ public class EventEvaluationDAOTest extends TestCase
             assertEquals(rating, RATING);
             assertEquals(userId, USER_ID);
             assertEquals(eventId, EVENT_ID);
-        }catch (JSONException e)
+        }catch (JSONException exceptionJSON)
         {
-            e.printStackTrace();
+            exceptionJSON.printStackTrace();
         }
     }
 }

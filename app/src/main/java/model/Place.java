@@ -7,7 +7,7 @@ package model;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-
+import java.util.logging.Logger;
 import exception.PlaceException;
 
 public class Place
@@ -17,7 +17,7 @@ public class Place
     private final String INVALID_LATITUDE = "Sem a latitude não é possível encontrar o lugar";
     private final String INVALID_LONGITUDE= "Sem a longitude não é possível encontrar o lugar";
     private final String INVALID_COMMENT= "O comentario não pode ser vazio";
-
+    private Logger logger = null;
     private int id = 0;
     private String name = null;
     private ArrayList<String> comment = null;
@@ -63,6 +63,7 @@ public class Place
     private void setAddress(String address)
     {
         this.address = address;
+        logger.info("Adress has been set.");
     }
 
     public String getName()
@@ -78,6 +79,7 @@ public class Place
             //NOTHING TO DO
 
         this.name = name;
+        logger.info("Name has been set.");
     }
 
     public ArrayList<String> getComment()
@@ -95,6 +97,7 @@ public class Place
             //NOTHING TO DO
 
         this.comment.add(comment);
+        logger.info("Comment has been adicionated.");
     }
 
     public Double getLongitude()
@@ -119,6 +122,7 @@ public class Place
         else
             //NOTHING TO DO
         this.latitude = Double.parseDouble(latitude);
+        logger.info("Latitude has been set.");
     }
 
     private void setLongitude(String longitude) throws ParseException, PlaceException
@@ -128,6 +132,7 @@ public class Place
         else
             //NOTHING TO DO
         this.longitude = Double.parseDouble(longitude);
+        logger.info("Longitude has been set.");
     }
 
     private void setEvaluate(String evaluate) throws NumberFormatException
@@ -138,17 +143,20 @@ public class Place
         else
         {
             this.evaluate = Float.parseFloat(evaluate);
+            logger.info("Evaluate has been set.");
         }
     }
 
     private void setOperation(String operation)
     {
         this.operation = operation;
+        logger.info("Operation has been set.");
     }
 
     private void setDescription(String description)
     {
         this.description = description;
+        logger.info("Description has been set.");
     }
 
     public String getOperation()
@@ -174,6 +182,7 @@ public class Place
     private void setPhone(String phone)
     {
         this.phone = phone;
+        logger.info("Phone has been set.");
     }
 
     public int getId()
@@ -184,5 +193,6 @@ public class Place
     private void setId(int id)
     {
         this.id = id;
+        logger.info("Id has been set.");
     }
 }

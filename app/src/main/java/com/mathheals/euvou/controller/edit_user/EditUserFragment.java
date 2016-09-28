@@ -15,15 +15,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.utility.EditAndRegisterUtility;
 import com.mathheals.euvou.controller.utility.LoginUtility;
 import com.mathheals.euvou.controller.utility.Mask;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import java.util.logging.Logger;
 import dao.UserDAO;
 import model.User;
 
@@ -37,6 +35,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     private EditText passwordField = null;
     private EditText passwordConfirmField = null;
     private int USER_STATUS = 0;
+    private Logger logger = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -51,11 +50,12 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
         USER_STATUS = loginUtility.getUserId();
 
-        String str = userDAO.searchUserById(USER_STATUS);
+        String stringUserStatus = userDAO.searchUserById(USER_STATUS);
         JSONObject json = null;
         try
         {
-            json = new JSONObject(str);
+            json = new JSONObject(stringUserStatus);
+            logger.info("JSONOBject created.");
         } catch (JSONException exceptionJSON)
         {
             exceptionJSON.printStackTrace();
@@ -73,6 +73,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             nameField.setText(nameUser);
             birthDateField.setText(birthDate);
             mailField.setText(mail);
+            logger.info("User informations setted.");
 
         }
         catch (JSONException exceptionJSON)
@@ -114,6 +115,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             Intent intent = activity.getIntent();
             activity.finish();
             startActivity(intent);
+            logger.info("User has been set.");
 
         } catch (Exception messageOfError)
         {
@@ -178,6 +180,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     {
         UserDAO userDAO = new UserDAO(getActivity());
         userDAO.update(userUpdate);
+        logger.info("User updated.");
     }
 
     private void setingEditText(View viewOfSettingEditText)
