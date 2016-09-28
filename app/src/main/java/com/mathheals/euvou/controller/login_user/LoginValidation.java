@@ -1,10 +1,11 @@
 package com.mathheals.euvou.controller.login_user;
+import android.util.Log;
 
 import android.app.Activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import android.util.Log;
 import dao.UserDAO;
 
 /*

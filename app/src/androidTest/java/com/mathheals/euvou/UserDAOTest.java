@@ -3,8 +3,6 @@ package com.mathheals.euvou;
  /*
  * File name: UserDAOTest.
  * File pourpose: Test of Data Access Object - DAD  with true and falses parameters.
- * Created by igor on 01/10/15.
- * Edited by: daniel on 13/09/16
  */
 
 import com.mathheals.euvou.controller.utility.LoginUtility;
@@ -36,16 +34,16 @@ public class UserDAOTest extends TestCase
     private static final String COLUMN_USER_BIRTHDATE = "birthDate";
     private static final String COLUMN_USER_STATE = "isActivity";
 
-    public void testSave() throws ParseException, UserException 
+    public void testSave() throws ParseException, UserException
     {
             UserDAO userDAO = new UserDAO();
             User user;
-        user = new User("marceloChavosaao","marceloChavosaao","marceloChavosao@euvou.com","marceloChavosao@euvou.com","123456","123456","11/09/2015");
-        assertTrue(userDAO.save(user).contains("Salvo"));
+            user = new User("marceloChavosaao","marceloChavosaao","marceloChavosao@euvou.com","marceloChavosao@euvou.com","123456","123456","11/09/2015");
+            assertTrue(userDAO.save(user).contains("Salvo"));
             userDAO.delete("marceloChavosaao");
     }
 
-    public void testDeleteByName() throws ParseException, UserException  
+    public void testDeleteByName() throws ParseException, UserException
     {
 
         UserDAO userDAO = new UserDAO();
@@ -53,12 +51,15 @@ public class UserDAOTest extends TestCase
         if(!userDAO.save(user).contains("Salvo"))
         {
             assertTrue(false);
+        } else
+        {
+            //NOTHING TO DO
         }
         assertTrue(userDAO.delete("marceloChavosaoa").contains("Salvo"));
     }
 
 
-    public void testDeleteById() throws ParseException, UserException, JSONException 
+    public void testDeleteById() throws ParseException, UserException, JSONException
     {
 
         UserDAO userDAO = new UserDAO();
@@ -77,12 +78,12 @@ public class UserDAOTest extends TestCase
         assertFalse(new UserDAO().searchUserById(3) == null);
     }
 
-    public void testUpdateUser() throws ParseException, UserException, JSONException 
+    public void testUpdateUser() throws ParseException, UserException, JSONException
     {
         UserDAO userDAO = new UserDAO();
         User user = new User(1,"Vinicius ppp", "umteste", "14/02/1995", "viny-pinheiro@hotmail.com",
                 "viny-pinheiro@hotmail.com", "123456", "123456");
-        if(!userDAO.save(user).contains("Salvo")) 
+        if(!userDAO.save(user).contains("Salvo"))
         {
             assertTrue(false);
             userDAO.delete("umteste");
@@ -92,12 +93,12 @@ public class UserDAOTest extends TestCase
 
     }
 
-    public void testDisableLogin() throws ParseException, UserException, JSONException 
+    public void testDisableLogin() throws ParseException, UserException, JSONException
     {
         UserDAO userDAO = new UserDAO();
         User user = new User(1,"Vinicius Pinheiro", "umteste", "14/02/1995", "viny-pinheiro@hotmail.com",
                 "viny-pinheiro@hotmail.com", "123456", "123456");
-        if(!userDAO.save(user).contains("Salvo")) 
+        if(!userDAO.save(user).contains("Salvo"))
         {
             assertTrue(false);
             userDAO.delete("umteste");
@@ -107,6 +108,6 @@ public class UserDAOTest extends TestCase
         userDAO.delete("umteste");
 
     }
-    
+
 
 }

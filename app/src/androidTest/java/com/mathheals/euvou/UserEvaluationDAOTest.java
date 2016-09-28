@@ -26,6 +26,7 @@ public class UserEvaluationDAOTest extends TestCase
         final Integer USER_ID = 3;
         final Integer EVALUATED_USER_ID = 1;
 
+
         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
         try 
         {

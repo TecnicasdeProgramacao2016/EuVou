@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.util.Log;
 
 import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.home_page.HomePage;
@@ -64,12 +65,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        int userId = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) 
+        if (userId == R.id.action_settings)
         {
             return true;
+        } else 
+        {
+            //NOTHING TO DO
         }
 
         return super.onOptionsItemSelected(item);
@@ -101,39 +105,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
-        if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
-        {
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-        } else
-        {
-            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
-
-            if(isPasswordValid==false)
-            {
-                passwordField.requestFocus();
-                passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            }
-        }
-
-        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
-        {
-            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
-
-            if(isPasswordValid==false)
-            {
-                passwordField.requestFocus();
-                passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            }
-
-        } else
-        {
-
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-            
-        }
-
         if(isUsernameValid && isPasswordValid)
         {
             
@@ -151,6 +122,49 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 e.printStackTrace();
             }
 
+        } else 
+        {
+            //NOTHING TO DO
         }
+
+        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
+        {
+            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+
+            if(isPasswordValid==false)
+            {
+                passwordField.requestFocus();
+                passwordField.setError(loginValidation.getInvalidPasswordMessage());
+            } else 
+            {
+                //NOTHING TO DO
+            }
+
+        } else
+        {
+
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+            
+        }
+
+        if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
+        {
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+        } else
+        {
+            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+
+            if(isPasswordValid==false)
+            {
+                passwordField.requestFocus();
+                passwordField.setError(loginValidation.getInvalidPasswordMessage());
+            } else 
+            {
+                //NOTHING TO DO
+            }
+        }
+
     }
 }

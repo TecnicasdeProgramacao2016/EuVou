@@ -28,8 +28,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
  /*
  * File name: UserRegistrationControlTest.
  * File pourpose: Test user's registration with true and falses parameters.
- * Created by izabela on 03/11/15.
- * Edited by: daniel on 13/09/16
  */
 public class UserRegistrationControlTest extends ActivityInstrumentationTestCase2<HomePage> 
 {
@@ -59,6 +57,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -71,6 +72,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -82,6 +86,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -96,6 +103,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -108,6 +118,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -122,7 +135,11 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
+
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
         onView(withId(R.id.userMailLabel)).check(matches(isDisplayed()));
@@ -134,6 +151,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -148,6 +168,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -160,6 +183,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -174,6 +200,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -186,6 +215,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -200,6 +232,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -212,6 +247,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -226,6 +264,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -238,6 +279,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -252,6 +296,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -278,6 +325,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -305,6 +355,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -334,6 +387,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -362,6 +418,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -391,6 +450,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -420,6 +482,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -450,6 +515,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -480,6 +548,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -511,6 +582,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -542,6 +616,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -574,6 +651,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -606,6 +686,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
@@ -639,6 +722,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
+        }  else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar")).perform(click());
