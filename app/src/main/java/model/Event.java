@@ -402,6 +402,7 @@ public class Event
     */
     public void setIdEvent(int idEvent)
     {
+        assert( idEvent > 0);
         this.idEvent = idEvent;
         Log.d("Event", "idEvent has been set");
     }
@@ -588,6 +589,8 @@ public class Event
     */
     public void setIdOwner(int idOwner)
     {
+        assert(idOwner > 0);
         this.idOwner = idOwner;
+        Log.d("Event", "idOwner has been set");
     }
 }

@@ -48,6 +48,7 @@ public class Evaluation
     */
     private void setIdUser(int idUser)
     {
+        assert( idUser > 0);
         this.idUser = idUser;
         Log.d("Evaluation", "idUser has been setted");
     }
@@ -59,6 +60,7 @@ public class Evaluation
     */
     private void setIdPlace(int idPlace)
     {
+        assert( idPlace > 0);
         this.idPlace = idPlace;
         Log.d("Evaluation", "idPlace has been setted");
     }

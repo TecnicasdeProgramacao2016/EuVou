@@ -333,6 +333,7 @@ public class Place
     */
     private void setId(int id)
     {
+        assert(id > 0);
         this.id = id;
         Log.d("Place", "id has been set");
     }

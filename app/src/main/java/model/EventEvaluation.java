@@ -78,6 +78,8 @@ public class EventEvaluation
     */
     public void setUserId(Integer userId) throws EventEvaluationException
     {
+        assert(userId > 0);
+
         if(userId <= Integer.MAX_VALUE && userId >= 1)
         {
             this.userId = userId;

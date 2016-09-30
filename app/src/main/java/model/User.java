@@ -189,6 +189,7 @@ public class User
     */
     private void setIdUser(int idUser) throws UserException
     {
+        assert(idUser > 0);
         if(idUser <= Integer.MAX_VALUE && idUser >= 1){
             this.idUser = idUser;
         }
@@ -206,7 +207,6 @@ public class User
     */
     private void setName(String name) throws UserException
     {
-
         if(!name.isEmpty() && name != null)
         {
             if(name.length() <= MAX_LENGTH_NAME)
