@@ -28,12 +28,20 @@ public class ShowOnMap extends FragmentActivity
     private Double longitude;
     private String filter;
 
+    /**
+     *
+     * @return
+     */
     public String getFilter()
     {
         // private String filter;
         return filter;
     }
 
+    /**
+     *
+     * @param filter
+     */
     public void setFilter(String filter)
     {
         //  private String filter;
