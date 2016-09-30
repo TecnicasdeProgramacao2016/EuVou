@@ -1,7 +1,7 @@
-/*
-* File name: ShowEvent.
-* File pourpose: Present events in the GUI
-*/
+/**
+ * File name: ShowEvent.
+ * File pourpose: Present events in the GUI
+ */
 
 
 package com.mathheals.euvou.controller.show_event;

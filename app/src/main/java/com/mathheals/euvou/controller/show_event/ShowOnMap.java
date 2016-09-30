@@ -1,7 +1,7 @@
-/*
-* File name: ShowOnMap.
-* File pourpose: Present Events in GOOGLE MAPS API.
-*/
+/**
+ * File name: ShowOnMap.
+ * File pourpose: Present Events in GOOGLE MAPS API.
+ */
 
 package com.mathheals.euvou.controller.show_event;
 
@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -69,16 +70,22 @@ public class ShowOnMap extends FragmentActivity
         if(mMap != null)
         {
             //NOTHING TO DO
+            Log.d("ShowOnMap", "Map is not null");
         }
         else
         {
+            Log.d("ShowOnMap", "Map is null");
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
+
+            assert(mMap != null);
+
             // Check if we were successful in obtaining the map.
             if (mMap != null)
             {
                 setUpMap();
+                Log.d("ShowOnMap", "Map should be not null");
             }
             else
             {
@@ -99,6 +106,8 @@ public class ShowOnMap extends FragmentActivity
         setFilter(getIntent().getStringExtra("query"));
         addMarkerPlace(latitude,longitude);
 
+        Log.d("ShowOnMap", "Map has been setted up");
+
     }
 
     private void addMarkerPlace(Double latitude, Double longitude)
@@ -109,6 +118,6 @@ public class ShowOnMap extends FragmentActivity
                         .snippet("Endereço")
                         .position(new LatLng(latitude, longitude))
         );
-
+        Log.d("ShowOnMap", "Add a marker in a specific location");
     }
 }

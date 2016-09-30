@@ -1,7 +1,7 @@
-/*
-* File name: ListEvents.java
-* File pourpose: List events in a search
-*/
+/**
+ * File name: ListEvents.java
+ * File pourpose: List events in a search
+ */
 
 
 package com.mathheals.euvou.controller.search_event;
