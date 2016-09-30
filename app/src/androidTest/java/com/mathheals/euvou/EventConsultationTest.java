@@ -106,6 +106,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     {
         if(isUserLoggedIn)
         {
+            assertTrue(isUserLoggedIn);
             TestUtility.makeUserLogOut();
             isUserLoggedIn = false;
         }
@@ -129,7 +130,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         }
         else
         {
-            //NOTHING TO DO
+            assertTrue(isUserLoggedIn);
         }
 
         boolean result = false;
@@ -190,7 +191,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         }
         else
         {
-            //NOTHING TO DO
+            assertFalse(isUserLoggedIn);
         }
 
         onView(withId(R.id.search)).perform(click());
@@ -222,7 +223,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         }
         else
         {
-            //NOTHING TO DO
+            assertTrue(isUserLoggedIn);
         }
 
         markClique();
@@ -249,7 +250,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         }
         else
         {
-            //NOTHING TO DO
+            assertTrue(isUserLoggedIn);
         }
         markClique();
         onView(withId(R.id.EuVou)).perform(click());
