@@ -5,11 +5,11 @@
 
 package model;
 
+import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
-import java.util.logging.Logger;
 import exception.EventException;
 
 /**
@@ -213,6 +213,7 @@ public class Event
     public void setDateTimeEvent(String dateTimeEvent)
     {
         this.dateTimeEvent=dateTimeEvent;
+        Log.d("Event", "dateTimeEvent has been setted");
     }
 
     /**
@@ -272,6 +273,7 @@ public class Event
                 //NOTHING TO DO
             }
         }
+        Log.d("Event", "dateTimeEvent has been setted");
     }
 
     /**
@@ -298,7 +300,7 @@ public class Event
         {
             throw new EventException(INVALID_EVALUATION);
         }
-
+        Log.d("Event", "evaluation has been set");
     }
 
     /**
@@ -333,6 +335,7 @@ public class Event
                 //NOTHING TO DO
             }
         }
+        Log.d("Event", "price has been set");
     }
 
     /**
@@ -343,6 +346,7 @@ public class Event
     public void setPrice(Integer price)
     {
         this.price=price;
+        Log.d("Event", "price has been set");
     }
 
     /**
@@ -378,6 +382,7 @@ public class Event
         {
             throw new EventException(ADDRESS_IS_EMPTY);
         }
+        Log.d("Event", "address has been set");
 
     }
 
@@ -398,6 +403,7 @@ public class Event
     public void setIdEvent(int idEvent)
     {
         this.idEvent = idEvent;
+        Log.d("Event", "idEvent has been set");
     }
 
     /**
@@ -433,7 +439,7 @@ public class Event
         {
             throw new EventException(LONGITUDE_IS_EMPTY);
         }
-
+        Log.d("Event", "longitude has been set");
     }
 
     /**

@@ -5,7 +5,7 @@
 
 package model;
 
-import java.util.logging.Logger;
+import android.util.Log;
 import exception.UserEvaluationException;
 
 /**
@@ -52,6 +52,7 @@ public class UserEvaluation
         {
             throw new UserEvaluationException(EVALUATION_IS_INVALID);
         }
+        Log.d("UserEvaluation", "rating has been set");
     }
 
     /**
@@ -69,6 +70,7 @@ public class UserEvaluation
         {
             throw new UserEvaluationException(USER_ID_IS_INVALID);
         }
+        Log.d("UserEvaluation", "idUser has been set");
     }
 
     /**
@@ -86,6 +88,7 @@ public class UserEvaluation
         {
             throw new UserEvaluationException(USER_EVALUATED_ID_IS_INVALID);
         }
+        Log.d("UserEvaluation", "userEvaluatedId has been set");
     }
 
     /**

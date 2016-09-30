@@ -5,14 +5,13 @@
 
 package model;
 
+import android.util.Log;
 import android.util.Patterns;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Logger;
 import dao.UserDAO;
 import exception.UserException;
-
 
 /**
 *Class: public class User
@@ -197,6 +196,7 @@ public class User
         {
             throw new UserException(ID_IS_INVALID);
         }
+        Log.d("User", "idUser has been set");
     }
 
     /**
@@ -222,6 +222,7 @@ public class User
         {
             throw new UserException(NAME_CANT_BE_EMPTY_NAME);
         }
+        Log.d("User", "name has been set");
     }
 
     /**
@@ -254,6 +255,7 @@ public class User
         {
             throw  new UserException(EMAIL_CANT_BE_EMPTY_EMAIL);
         }
+        Log.d("User", "email has been set");
     }
 
     /**
@@ -278,6 +280,7 @@ public class User
         {
             throw new UserException(EMAIL_CONFIRMATION_CANT_BE_EMPTY);
         }
+        Log.d("User", "Email has been verified");
     }
 
     /**
@@ -306,6 +309,7 @@ public class User
         {
             throw  new UserException(USERNAME_CANT_BE_EMPTY_USERNAME);
         }
+        Log.d("User", "username has been set");
 
     }
 
@@ -332,6 +336,7 @@ public class User
         {
             throw  new UserException(PASSWORD_CANT_BE_EMPTY_PASSWORD);
         }
+        Log.d("User", "password has been set");
     }
 
     /**
@@ -356,6 +361,7 @@ public class User
         {
             throw new UserException(CONFIRM_PASSWORD_CANT_BE_EMPTY);
         }
+        Log.d("User", "password has been confirmed");
     }
 
     /**
@@ -391,6 +397,7 @@ public class User
         {
             throw new UserException(BIRTH_DATE_CANT_BE_EMPTY);
         }
+        Log.d("User", "birthDate has been set");
     }
 
 

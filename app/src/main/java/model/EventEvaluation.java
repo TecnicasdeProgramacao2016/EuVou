@@ -5,6 +5,7 @@
 
 package model;
 
+import android.util.Log;
 import exception.EventEvaluationException;
 
 /**
@@ -58,6 +59,7 @@ public class EventEvaluation
         {
             throw new EventEvaluationException(EVALUATION_IS_INVALID);
         }
+        Log.d("EventEvaluation", "rating has been set");
     }
 
     /**
@@ -84,6 +86,7 @@ public class EventEvaluation
         {
             throw new EventEvaluationException(USER_ID_IS_INVALID);
         }
+        Log.d("EventEvaluation", "userId has been set");
     }
 
     /**
@@ -110,5 +113,6 @@ public class EventEvaluation
         {
             throw new EventEvaluationException(EVENT_ID_IS_INVALID);
         }
+        Log.d("EventEvaluation", "eventId has been set");
     }
 }

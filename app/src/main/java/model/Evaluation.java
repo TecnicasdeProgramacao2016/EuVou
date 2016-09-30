@@ -5,7 +5,7 @@
 
 package model;
 
-import junit.framework.TestCase;
+import android.util.Log;
 
 /**
 *Class: public class Evaluation
@@ -38,6 +38,7 @@ public class Evaluation
     private void setGrade(float grade)
     {
         this.grade = grade;
+        Log.d("Evaluation", "Grade has been setted");
     }
 
     /**
@@ -48,6 +49,7 @@ public class Evaluation
     private void setIdUser(int idUser)
     {
         this.idUser = idUser;
+        Log.d("Evaluation", "idUser has been setted");
     }
 
     /**
@@ -58,6 +60,7 @@ public class Evaluation
     private void setIdPlace(int idPlace)
     {
         this.idPlace = idPlace;
+        Log.d("Evaluation", "idPlace has been setted");
     }
 
     /**

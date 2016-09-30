@@ -5,6 +5,7 @@
 
 package model;
 
+import android.util.Log;
 import java.text.ParseException;
 import java.util.ArrayList;
 import exception.PlaceException;
@@ -99,6 +100,7 @@ public class Place
     private void setAddress(String address)
     {
         this.address = address;
+        Log.d("Place", "address has been set");
     }
 
     /**
@@ -127,6 +129,7 @@ public class Place
         }
 
         this.name = name;
+        Log.d("Place", "name has been set");
     }
 
     /**
@@ -159,6 +162,7 @@ public class Place
         }
 
         this.comment.add(comment);
+        Log.d("Place", "comment has been set");
     }
 
     /**
@@ -204,6 +208,7 @@ public class Place
             //NOTHING TO DO
         }
         this.latitude = Double.parseDouble(latitude);
+        Log.d("Place", "latitude has been set");
     }
 
     /**
@@ -222,6 +227,7 @@ public class Place
             //NOTHING TO DO
         }
         this.longitude = Double.parseDouble(longitude);
+        Log.d("Place", "longitude has been set");
     }
 
     /**
@@ -239,6 +245,7 @@ public class Place
         {
             this.evaluate = Float.parseFloat(evaluate);
         }
+        Log.d("Place", "evaluate has been set");
     }
 
     /**
@@ -249,6 +256,7 @@ public class Place
     private void setOperation(String operation)
     {
         this.operation = operation;
+        Log.d("Place", "operation has been set");
     }
 
     /**
@@ -259,6 +267,7 @@ public class Place
     private void setDescription(String description)
     {
         this.description = description;
+        Log.d("Place", "description has been set");
     }
 
     /**
@@ -305,6 +314,7 @@ public class Place
     private void setPhone(String phone)
     {
         this.phone = phone;
+        Log.d("Place", "phone has been set");
     }
 
     /**
@@ -324,5 +334,6 @@ public class Place
     private void setId(int id)
     {
         this.id = id;
+        Log.d("Place", "id has been set");
     }
 }
