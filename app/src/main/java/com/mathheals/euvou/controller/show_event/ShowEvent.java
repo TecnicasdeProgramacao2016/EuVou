@@ -12,6 +12,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,17 +90,24 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         if(userId == LOGGED_OUT)
         {
             participateButton.setVisibility(showEventView.GONE);
+            Log.d("ShowEvent", "User logged out should not present all options");
         }
         else
         {
             participateButton.setVisibility(View.VISIBLE);
+
+            assert(userId < 0);
+
             if(eventDAO.verifyParticipate(userId,Integer.parseInt(eventId)) == null)
             {
                 participateButton.setText(GO);
+                Log.d("ShowEvent", "Option to go present to user");
             }
             else
             {
                 participateButton.setText(NOTGO);
+                Log.d("ShowEvent", "Option to not go present to user");
+
             }
         }
 
@@ -127,12 +135,15 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
             setCategoriesText(new Integer(eventId), eventCategoriesText);
             addressShow.setText(eventAdress);
 
-        }catch (JSONException ex)
+        }catch (JSONException exception)
         {
-            ex.printStackTrace();
+            exception.printStackTrace();
+            Log.d("ShowEvent", "Present JSONException");
+
         }catch (NullPointerException exception)
         {
             Toast.makeText(getActivity(), "O nome não foi encontrado", Toast.LENGTH_LONG);
+            Log.d("ShowEvent", "Present NullPointerException");
         }
 
         setIsUserLoggedIn(userId != LOGGED_OUT);
@@ -164,10 +175,12 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
                 JSONObject categoryJSON = categoryDAO.searchCategoryById(categoryId);
                 String categoryName = categoryJSON.getJSONObject(FIRST_COLUMN).getString(NAME_CATEGORY);
                 categories.add(categoryName);
-            }catch (JSONException e)
+            }catch (JSONException exception)
             {
-                e.printStackTrace();
+                exception.printStackTrace();
+                Log.d("ShowEvent", "JSONExeception");
             }
+
         }
 
         String[] categoriesArray = new String[categories.size()];
@@ -176,8 +189,11 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         return categoriesArray;
     }
 
+
     public void setCategoriesText(int eventId, TextView eventCategoriesText)
     {
+        assert(eventId < 0);
+
         String[] eventCategories = getEventCategoriesById(eventId);
         String text = eventCategories[0];
 
@@ -221,13 +237,13 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     {
        if(eventDAO.verifyParticipate(userId,Integer.parseInt(eventId)) == null)
             Toast.makeText(getActivity(), "Heyy, você já desmarcou sua participação", Toast.LENGTH_SHORT).show();
-        else
-        {
+       else
+    {
 
-            eventDAO.markOffParticipate(userId, Integer.parseInt(eventId));
-            Toast.makeText(getActivity(),"Salvo com sucesso" , Toast.LENGTH_SHORT).show();
-        };
-    }
+        eventDAO.markOffParticipate(userId, Integer.parseInt(eventId));
+        Toast.makeText(getActivity(),"Salvo com sucesso" , Toast.LENGTH_SHORT).show();
+    };
+}
 
     public void onClick(View view)
     {
@@ -297,9 +313,9 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
             try
             {
                 evaluation = new Float(evaluationJSON.getJSONObject("0").getDouble("grade"));
-            }catch (JSONException e)
+            }catch (JSONException exception)
             {
-                e.printStackTrace();
+                exception.printStackTrace();
             }
 
             ratingBar.setRating(evaluation);
