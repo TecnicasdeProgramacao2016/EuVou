@@ -32,6 +32,11 @@ import dao.EvaluatePlaceDAO;
 import model.Evaluation;
 import model.Place;
 
+
+/**
+*Class: public class ShowPlaceInfo extends FragmentActivity
+*Description: Class to show information of place
+*/
 public class ShowPlaceInfo extends FragmentActivity
 {
     private String description = "description";
@@ -39,7 +44,12 @@ public class ShowPlaceInfo extends FragmentActivity
     private double latitude = 0;
     private String address = "nothing";
     private float grade = 0;
-    private void setPlaceInfo() {
+    /**
+    *Method: private void setPlaceInfo()
+    *Description: sets place informations
+    */
+    private void setPlaceInfo()
+    {
         Intent intent = getIntent();
         setName(intent.getStringExtra("name"));
         setPhone(intent.getStringExtra("phone"));
@@ -57,6 +67,11 @@ public class ShowPlaceInfo extends FragmentActivity
     private boolean isUserLoggedIn;
     private final Integer LOGGED_OUT = -1;
     @Override
+    /**
+    *Method: protected void onCreate(Bundle savedInstanceState)
+    *Description: sets values to view place
+    *@param Bundle savedInstanceState
+    */
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -77,15 +92,30 @@ public class ShowPlaceInfo extends FragmentActivity
         setRatingBarIfNeeded();
     }
 
+
+    /**
+    *Method: private void setRatingBarIfNeeded()
+    *Description: If user are logged sets rating bar
+    */
     private void setRatingBarIfNeeded()
     {
         if(isUserLoggedIn)
+        {
             setRatingBar();
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
     }
 
     private int idPlace = 0;
     private RatingBar ratingBar = null;
     private Evaluation ratingEvaluation = null;
+    /**
+    *Method: private void setRatingBar()
+    *Description: sets rating bar
+    */
     private void setRatingBar()
     {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -102,6 +132,10 @@ public class ShowPlaceInfo extends FragmentActivity
         setRatingBarStyle();
     }
 
+    /**
+    *Method: private void setRatingBarStyle()
+    *Description: sets style to rate bar
+    */
     private void setRatingBarStyle()
     {
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
@@ -109,6 +143,10 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     protected GoogleMap mMap = null;
+    /**
+    *Method: private void setUpMapIfNeeded()
+    *Description: set map if does not exist
+    */
     private void setUpMapIfNeeded()
     {
         if (mMap == null)
@@ -119,9 +157,21 @@ public class ShowPlaceInfo extends FragmentActivity
             {
                 setUpMap();
             }
+            else
+            {
+                //NOTHING TO DO
+            }
+        }
+        else
+        {
+            //NOTHING TO DO
         }
     }
 
+    /**
+    *Method: private void setUpMap()
+    *Description: sets map
+    */
     private void setUpMap()
     {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
@@ -129,7 +179,12 @@ public class ShowPlaceInfo extends FragmentActivity
         markPlaceOnMap();
     }
 
-    private void markPlaceOnMap() {
+    /**
+    *Method: private void markPlaceOnMap()
+    *Description: marks a place on map
+    */
+    private void markPlaceOnMap()
+    {
 
         mMap.addMarker(
                 new MarkerOptions()
@@ -142,7 +197,13 @@ public class ShowPlaceInfo extends FragmentActivity
 
     private Button showMapButton = null;
     private Button hideMapButton = null;
-    public void showPlaceInfoOnClick(View view) {
+    /**
+    *Method: public void showPlaceInfoOnClick(View view)
+    *Description: shows informations about place
+    *@param View view
+    */
+    public void showPlaceInfoOnClick(View view)
+    {
         switch(view.getId()) {
             case R.id.button_show_map:
                 setUpMapIfNeeded();
@@ -161,91 +222,193 @@ public class ShowPlaceInfo extends FragmentActivity
         }
     }
 
-    private void setGrade(float grade) {
+    /**
+    *Method: private void setGrade(float grade)
+    *Description: sets grade
+    *@param float grade
+    */
+    private void setGrade(float grade)
+    {
         this.grade = grade;
     }
 
-    private void setAddress(String address) {
+    /**
+    *Method: private void setAddress(String address)
+    *Description: sets adress
+    *@param String address
+    */
+    private void setAddress(String address)
+    {
         this.address = address;
     }
 
-    private String getAddress() {
+    /**
+    *Method: private String getAddress()
+    *Description: get adress
+    */
+    private String getAddress()
+    {
         return address;
     }
 
-    private double getLongitude() {
+    /**
+    *Method: private double getLongitude()
+    *Description: get longitude
+    */
+    private double getLongitude()
+    {
         return longitude;
     }
 
-    private void setLongitude(double longitude) {
+    /**
+    *Method: private void setLongitude(double longitude)
+    *Description: set longitude
+    *@param double longitude
+    */
+    private void setLongitude(double longitude)
+    {
         this.longitude = longitude;
     }
 
-    private void setDescription(String description) {
+    /**
+    *Method: private void setDescription(String description)
+    *Description: set description
+    *@param String description
+    */
+    private void setDescription(String description)
+    {
         this.description = description;
     }
 
     private String operation = "operation";
-    private void setOperation(String operation) {
+    /**
+    *Method: private void setOperation(String operation)
+    *Description: set operation
+    *@param String operation
+    */
+    private void setOperation(String operation)
+    {
         this.operation = operation;
     }
 
     private String phone = "phone";
-    private void setPhone(String phone) {
+    /**
+    *Method: private void setPhone(String phone)
+    *Description: set phone
+    *@param String phone
+    */
+    private void setPhone(String phone)
+    {
         this.phone = phone;
     }
 
     private String name = "name";
-    private String getName() {
+    /**
+    *Method: private String getName()
+    *Description: get name
+    */
+    private String getName()
+    {
         return name;
     }
 
-    private void setName(String name) {
+    /**
+    *Method: private void setName(String name)
+    *Description: set name
+    *@param String name
+    */
+    private void setName(String name)
+    {
         this.name = name;
     }
 
-    private double getLatitude() {
+    /**
+    *Method: private double getLatitude()
+    *Description: get latitude
+    */
+    private double getLatitude()
+    {
         return latitude;
     }
 
-    private void setLatitude(double latitude) {
+    /**
+    *Method: private void setLatitude(double latitude)
+    *Description: set Latitude
+    */
+    private void setLatitude(double latitude)
+    {
         this.latitude = latitude;
     }
 
     private TextView addressText = null;
-    private void setAddressText(String adressText) {
+    /**
+    *Method: private void setAddressText(String adressText)
+    *Description: set text on adress
+    *@param String adressText
+    */
+    private void setAddressText(String adressText)
+    {
         this.addressText = (TextView) findViewById(R.id.address_text);
         this.addressText.setText(adressText);
         this.addressText.setMovementMethod(new ScrollingMovementMethod());
     }
 
     private TextView operationText = null;
-    private void setOperationText(String operationText) {
+    /**
+    *Method: private void setOperationText(String operationText)
+    *Description: set operations text
+    *@param String operationText
+    */
+    private void setOperationText(String operationText)
+    {
         this.operationText = (TextView) findViewById(R.id.operation_text);
         this.operationText.setText(operationText);
         this.operationText.setMovementMethod(new ScrollingMovementMethod());
     }
 
     private TextView phoneText = null;
-    private void setPhoneText(String phoneText) {
+    /**
+    *Method: private void setPhoneText(String phoneText)
+    *Description: set text of phone
+    *@param String phoneText
+    */
+    private void setPhoneText(String phoneText)
+    {
         this.phoneText = (TextView) findViewById(R.id.phone_text);
         this.phoneText.setText(phoneText);
     }
 
     private TextView gradeText = null;
-    private void setGradeText(String gradeText) {
+    /**
+    *Method: private void setGradeText(String gradeText)
+    *Description: set text on grade
+    *@param String gradeText
+    */
+    private void setGradeText(String gradeText)
+    {
         this.gradeText = (TextView) findViewById(R.id.grade_text);
         this.gradeText.setText(gradeText);
     }
 
     private TextView descriptionText = null;
-    private void setDescriptionText(String descriptionText) {
+    /**
+    *Method: private void setDescriptionText(String descriptionText)
+    *Description: set text on description
+    *@param String descriptionText
+    */
+    private void setDescriptionText(String descriptionText)
+    {
         this.descriptionText = (TextView) findViewById(R.id.description_text);
         this.descriptionText.setText(descriptionText);
         this.descriptionText.setMovementMethod(new ScrollingMovementMethod());
     }
 
-    private void setAllTextViews() {
+    /**
+    *Method: private void setAllTextViews()
+    *Description: set all texts
+    */
+    private void setAllTextViews()
+    {
         setAddressText(address);
         setOperationText(operation);
         setPhoneText(phone);
@@ -253,38 +416,87 @@ public class ShowPlaceInfo extends FragmentActivity
         setDescriptionText(description);
     }
 
-    private void setShowMapButton(Button showMapButton) {
+    /**
+    *Method: private void setShowMapButton(Button showMapButton)
+    *Description: sets show map button
+    *@param Button showMapButton
+    */
+    private void setShowMapButton(Button showMapButton)
+    {
         this.showMapButton = showMapButton;
     }
 
-    private void setHideMapButton(Button hideMapButton) {
+    /**
+    *Method: private void setHideMapButton(Button hideMapButton)
+    *Description: sets hide map button
+    *@param Button hideMapButton
+    */
+    private void setHideMapButton(Button hideMapButton)
+    {
         this.hideMapButton = hideMapButton;
     }
 
     private TextView ratingMessage = null;
-    private void setRatingMessage(boolean isUserLoggedIn) {
+    /**
+    *Method: private void setRatingMessage(boolean isUserLoggedIn)
+    *Description: sets rating message
+    *@param boolean isUserLoggedIn
+    */
+    private void setRatingMessage(boolean isUserLoggedIn)
+    {
         String message = isUserLoggedIn ? "Sua avaliação:" : "Faça login para avaliar!";
         ratingMessage = (TextView) findViewById(R.id.rate_it_text);
         ratingMessage.setText(message);
     }
 
-    private void setUserId(int userId) {
+    /**
+    *Method: private void setUserId(int userId)
+    *Description: sets user id
+    *@param int userId
+    */
+    private void setUserId(int userId)
+    {
         this.userId = userId;
     }
 
-    public void setIsUserLoggedIn(boolean isUserLoggedIn) {
+    /**
+    *Method: public void setIsUserLoggedIn(boolean isUserLoggedIn)
+    *Description: sets user logged in
+    *@param boolean isUserLoggedIn
+    */
+    public void setIsUserLoggedIn(boolean isUserLoggedIn)
+    {
         this.isUserLoggedIn = isUserLoggedIn;
     }
 
-    public int getIdPlace() {
+    /**
+    *Method: public int getIdPlace()
+    *Description: get id place
+    */
+    public int getIdPlace()
+    {
         return idPlace;
     }
 
-    public void setIdPlace(int idPlace) {
+    /**
+    *Method: public void setIdPlace(int idPlace)
+    *Description: sets id of place
+    *@param int idPlace
+    */
+    public void setIdPlace(int idPlace)
+    {
         this.idPlace = idPlace;
     }
 
-    public void setRatingEvaluation(int idPlace, int idUser, float grade) {
+    /**
+    *Method: public void setRatingEvaluation(int idPlace, int idUser, float grade)
+    *Description: set rating evaluation
+    *@param int idPlace
+    *@param int idUser
+    *@param float grade
+    */
+    public void setRatingEvaluation(int idPlace, int idUser, float grade)
+    {
         this.ratingEvaluation = new Evaluation(idPlace, idUser, grade);
     }
 }

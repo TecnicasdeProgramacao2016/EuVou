@@ -12,6 +12,10 @@ import java.util.Vector;
 import java.util.logging.Logger;
 import exception.EventException;
 
+/**
+*Class: public class Event
+*Description: Class of event
+*/
 public class Event
 {
     public static final String EVENT_NAME_CANT_BE_EMPTY_NAME = "Hey, acho que você está esquecendo de nos informar o nome do evento.";
@@ -42,16 +46,32 @@ public class Event
     private Integer evaluation = null;
     private Integer price = null;
     private Vector<String> category = null;
-    private Logger logger = null;
-
     private static final int MAX_LENGTH_NAME = 50;
     private static final int MAX_LENGTH_DESCRIPTION = 500;
     private int idOwner = 0;
 
+    /**
+    *Method: public Event(int idOwner, String nameEvent, String date,
+    *                              String hour, String priceReal, String priceDecimal,
+    *                              String address, String description, String latitude,
+    *                              String longitude, Vector<String> category) throws EventException, ParseException
+    *Description: sets fields of event
+    *@param int idUser
+    *@param String nameEvent
+    *@param String date
+    *@param String hour
+    *@param String priceReal
+    *@param String priceDecimal
+    *@param String address
+    *@param String description
+    *@param String latitude
+    *@param String longitude
+    *@param Vector<String> category
+    */
     public Event(int idOwner, String nameEvent, String date,
-                 String hour, String priceReal, String priceDecimal,
-                 String address, String description, String latitude,
-                 String longitude, Vector<String> category) throws EventException, ParseException
+                      String hour, String priceReal, String priceDecimal,
+                      String address, String description, String latitude,
+                      String longitude, Vector<String> category) throws EventException, ParseException
     {
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
@@ -64,10 +84,26 @@ public class Event
         setCategory(category);
     }
 
+    /**
+    *Method: public Event(int idOwner, String nameEvent, String dateTimeEvent,
+    *                              Integer price, String address, String description,
+    *                              String latitude, String longitude,
+    *                              Vector<String> category) throws EventException, ParseException
+    *Description: sets fields of event
+    *@param int idUser
+    *@param String nameEvent
+    *@param String dateTimeEvent
+    *@param Integer price
+    *@param String address
+    *@param String description
+    *@param String latitude
+    *@param String longitude
+    *@param Vector<String> category
+    */
     public Event(int idOwner, String nameEvent, String dateTimeEvent,
-                 Integer price, String address, String description,
-                 String latitude, String longitude,
-                 Vector<String> category) throws EventException, ParseException
+                      Integer price, String address, String description,
+                      String latitude, String longitude,
+                      Vector<String> category) throws EventException, ParseException
     {
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
@@ -80,15 +116,38 @@ public class Event
         setCategory(category);
     }
 
+    /**
+    *Method: public Event(int idOwner, String nameEvent,
+    *                              int eventEvaluation) throws EventException, ParseException
+    *Description: sets fields of event
+    *@param int idOwner
+    *@param String nameEvent
+    *@param int eventEvaluation
+    */
     public Event(int idOwner, String nameEvent,
-                 int eventEvaluation) throws EventException, ParseException
+                      int eventEvaluation) throws EventException, ParseException
     {
-
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
         setEvaluation(eventEvaluation);
     }
 
+    /**
+    *Method: public Event(int idEvent, int idOwner, String nameEvent,
+    *                              String dateTimeEvent, Integer price,
+    *                              String address, String description,
+    *                              String latitude, String longitude) throws EventException, ParseException
+    *Description: sets fields of event
+    *@param int idEvent
+    *@param int idOwner
+    *@param String nameEvent
+    *@param String dateTimeEvent
+    *@param Integer price
+    *@param String address
+    *@param String description
+    *@param String latitude
+    *@param String longitude
+    */
     public Event(int idEvent, int idOwner, String nameEvent,
                  String dateTimeEvent, Integer price,
                  String address, String description,
@@ -105,10 +164,26 @@ public class Event
         setLongitude(longitude);
     }
 
+    /**
+    *Method: public Event(int idEvent, int idOwner, String nameEvent,
+    *                              String dateTimeEvent, Integer price,
+    *                              String address, String description,
+    *                              String latitude, String longitude) throws EventException, ParseException
+    *Description: sets fields of event
+    *@param int idEvent
+    *@param String nameEvent
+    *@param Integer price
+    *@param String address
+    *@param String dateTimeEvent
+    *@param String description
+    *@param String latitude
+    *@param String longitude
+    *@param int Vector<String> category
+    */
     public Event(int idEvent, String nameEvent, Integer price,
-                 String address, String dateTimeEvent,
-                 String description,String latitude,
-                 String longitude, Vector<String> category) throws EventException, ParseException
+                      String address, String dateTimeEvent,
+                      String description,String latitude,
+                      String longitude, Vector<String> category) throws EventException, ParseException
     {
         setIdEvent(idEvent);
         setNameEvent(nameEvent);
@@ -121,15 +196,31 @@ public class Event
         setCategory(category);
     }
 
-    public String getDateTimeEvent() {
+    /**
+    *Method: public String getDateTimeEvent()
+    *Description: get date time event
+    */
+    public String getDateTimeEvent()
+    {
         return dateTimeEvent;
     }
 
-    public void setDateTimeEvent(String dateTimeEvent){
+    /**
+    *Method: public void setDateTimeEvent(String dateTimeEvent)
+    *Description: sets date time of event
+    *@param String dateTimeEvent
+    */
+    public void setDateTimeEvent(String dateTimeEvent)
+    {
         this.dateTimeEvent=dateTimeEvent;
-        logger.info("Data of Time Event has been set.");
     }
 
+    /**
+    *Method: public void setDateTimeEvent(String date, String hour) throws ParseException, EventException
+    *Description: sets date time of event
+    *@param String date
+    *@param String hour
+    */
     public void setDateTimeEvent(String date, String hour) throws ParseException, EventException
     {
         if(!date.isEmpty() && date != null && !hour.isEmpty() && hour!=null)
@@ -161,7 +252,6 @@ public class Event
                 formatHour.parse(hour);
 
                 this.dateTimeEvent = date + " " + hour;
-                logger.info("dataTimeEvent has been set.");
             } catch (ParseException exception)
             {
                 throw new EventException(INVALID_EVENT_HOUR);
@@ -184,16 +274,25 @@ public class Event
         }
     }
 
-    public Integer getEvaluation() {
+    /**
+    *Method: public Integer getEvaluation()
+    *Description: get evaluation
+    */
+    public Integer getEvaluation()
+    {
         return evaluation;
     }
 
+    /**
+    *Method: public void setEvaluation(Integer evaluation) throws  EventException
+    *Description: sets evaluation
+    *@param Integer evaluation
+    */
     public void setEvaluation(Integer evaluation) throws  EventException
     {
         if(evaluation >= 1 && evaluation <= 5)
         {
             this.evaluation = evaluation;
-            logger.info("Evaluation on setEvaluation has been set.");
         }
         else
         {
@@ -202,6 +301,12 @@ public class Event
 
     }
 
+    /**
+    *Method: public void setPrice(String priceReal, String priceDecimal) throws EventException
+    *Description: sets price
+    *@param String priceReal
+    *@param String priceDecimal
+    */
     public void setPrice(String priceReal, String priceDecimal) throws EventException
     {
         if(priceReal != null && priceDecimal != null && !priceReal.isEmpty() && !priceDecimal.isEmpty())
@@ -212,7 +317,6 @@ public class Event
             Integer price = priceEventReal * 100 + priceEventDecimal;
 
             this.price=price;
-            logger.info("Price on setPrice has been set.");
         }
         else
         {
@@ -231,25 +335,44 @@ public class Event
         }
     }
 
-    public void setPrice(Integer price){
+    /**
+    *Method: public void setPrice(Integer price)
+    *Description: sets price
+    *@param String Integer price
+    */
+    public void setPrice(Integer price)
+    {
         this.price=price;
-        logger.info("Price has been set.");
     }
 
-    public Integer getPrice(){
+    /**
+    *Method: public Integer getPrice()
+    *Description: gets price
+    */
+    public Integer getPrice()
+    {
         return price;
     }
 
-    public String getAddress() {
+    /**
+    *Method: public String getAddress()
+    *Description: get adress
+    */
+    public String getAddress()
+    {
         return adress;
     }
 
+    /**
+    *Method: public void setAddress(String adress) throws EventException
+    *Description: sets adress
+    *@param String adress
+    */
     public void setAddress(String adress) throws EventException
     {
         if(!(adress.isEmpty()) && adress != null)
         {
             this.adress = adress;
-            logger.info("Adress has been set.");
         }
         else
         {
@@ -258,19 +381,39 @@ public class Event
 
     }
 
-    public int getIdEvent() {
+    /**
+    *Method: public int getIdEvent()
+    *Description: gets id of event
+    */
+    public int getIdEvent()
+    {
         return idEvent;
     }
 
-    public void setIdEvent(int idEvent) {
+    /**
+    *Method: public void setIdEvent(int idEvent)
+    *Description: set id of event
+    *@param int idEvent
+    */
+    public void setIdEvent(int idEvent)
+    {
         this.idEvent = idEvent;
-        logger.info("Id of Event has been set.");
     }
 
-    public Double getLongitude() {
+    /**
+    *Method: Double getLongitude()
+    *Description: get longitude
+    */
+    public Double getLongitude()
+    {
         return longitude;
     }
 
+    /**
+    *Method: public void setLongitude(String longitude) throws EventException
+    *Description: sets longitude
+    *@param String longitude
+    */
     public void setLongitude(String longitude) throws EventException
     {
         if(!(longitude.toString().isEmpty()) && longitude != null)
@@ -279,7 +422,6 @@ public class Event
             if(longitudeDouble >= -180 && longitudeDouble <= 180)
             {
                 this.longitude = longitudeDouble;
-                logger.info("Longitude has been set.");
 
             }
             else
@@ -294,10 +436,20 @@ public class Event
 
     }
 
-    public String getNameEvent(){
+    /**
+    *Method: public String getNameEvent()
+    *Description: get name of event
+    */
+    public String getNameEvent()
+    {
         return nameEvent;
     }
 
+    /**
+    *Method: public void setNameEvent(String nameEvent) throws EventException
+    *Description: sets name of event
+    *@param String nameEvent
+    */
     public void setNameEvent(String nameEvent) throws EventException
     {
         if(!nameEvent.isEmpty() && nameEvent != null)
@@ -306,7 +458,6 @@ public class Event
             if(nameEvent.length() <= MAX_LENGTH_NAME)
             {
                 this.nameEvent = nameEvent;
-                logger.info("Name of Event has been set.");
             }
             else
             {
@@ -319,11 +470,20 @@ public class Event
         }
     }
 
+    /**
+    *Method: public String getDescription()
+    *Description: gets description
+    */
     public String getDescription()
     {
         return description;
     }
 
+    /**
+    *Method: public void setDescription(String description) throws EventException
+    *Description: sets description
+    *@param String description
+    */
     public void setDescription(String description) throws EventException
     {
         if(!description.isEmpty() && description != null)
@@ -331,7 +491,6 @@ public class Event
             if(description.length() < MAX_LENGTH_DESCRIPTION)
             {
                 this.description = description;
-                logger.info("Description has been set.");
             }
             else
             {
@@ -346,11 +505,20 @@ public class Event
 
     }
 
+    /**
+    *Method: public Double getLatitude()
+    *Description: gets latitude
+    */
     public Double getLatitude()
     {
         return latitude;
     }
 
+    /**
+    *Method: public void setLatitude(String latitude) throws EventException
+    *Description: sets latitude
+    *@param String latitude
+    */
     public void setLatitude(String latitude) throws EventException
     {
         if(!(latitude.toString().isEmpty()) && latitude!=null)
@@ -359,7 +527,6 @@ public class Event
             if(latitudeDouble >= -90 && latitudeDouble <= 90)
             {
                 this.latitude = latitudeDouble;
-                logger.info("Latitude has been set.");
             }
             else
             {
@@ -372,12 +539,16 @@ public class Event
         }
     }
 
+    /**
+    *Method: public void setCategory(Vector<String> category) throws EventException
+    *Description: sets category
+    *@param Vector<String> category
+    */
     public void setCategory(Vector<String> category) throws EventException
     {
         if(category != null && !category.isEmpty())
         {
             this.category = category;
-            logger.info("Category has been set.");
         }
         else
         {
@@ -385,18 +556,32 @@ public class Event
         }
     }
 
+    /**
+    *Method: public Vector<String> getCategory()
+    *Description: gets category
+    */
     public Vector<String> getCategory()
     {
         return category;
     }
 
 
-    public int getIdOwner() {
+    /**
+    *Method: public int getIdOwner()
+    *Description: gets id of owner
+    */
+    public int getIdOwner()
+    {
         return idOwner;
     }
 
-    public void setIdOwner(int idOwner) {
+    /**
+    *Method: public void setIdOwner(int idOwner)
+    *Description: sets id of owner
+    *@param int idOwner
+    */
+    public void setIdOwner(int idOwner)
+    {
         this.idOwner = idOwner;
-        logger.info("idOwner has been set.");
     }
 }

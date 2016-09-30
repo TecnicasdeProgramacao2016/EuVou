@@ -11,16 +11,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import com.mathheals.euvou.R;
-
 import java.util.List;
-
 import model.Event;
 
+/**
+*Class: public class EventAdapter extends ArrayAdapter<Event>
+*Description: adapts event
+*/
 public class EventAdapter extends ArrayAdapter<Event>
 {
     @Override
+    /**
+    *Method: public View getView(int position, View convertView, ViewGroup parent)
+    *Description: method to get of event
+    *@param int position
+    *@param View convertView
+    *@param ViewGroup parent)
+    */
     public View getView(int position, View convertView, ViewGroup parent)
     {
         Event event = getItem(position);
@@ -44,6 +52,12 @@ public class EventAdapter extends ArrayAdapter<Event>
         return convertView;
     }
 
+    /**
+    *Method: public EventAdapter(Context context, List<Event> events)
+    *Description:
+    *@param Context context
+    *@param List<Event> events
+    */
     public EventAdapter(Context context, List<Event> events)
     {
         super(context, 0, events);

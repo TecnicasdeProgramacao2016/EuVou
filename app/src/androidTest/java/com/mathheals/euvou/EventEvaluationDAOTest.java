@@ -2,7 +2,7 @@
 * File name: EventEvaluationDAOTest.
 * File pourpose: Test Evaluation of Event.
 */
-    
+
 package com.mathheals.euvou;
 
 import org.json.JSONException;

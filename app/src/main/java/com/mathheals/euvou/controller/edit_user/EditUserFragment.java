@@ -21,10 +21,14 @@ import com.mathheals.euvou.controller.utility.LoginUtility;
 import com.mathheals.euvou.controller.utility.Mask;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.util.logging.Logger;
 import dao.UserDAO;
 import model.User;
 
+
+/**
+*Class: EditUserFragment extends Fragment implements View.OnClickListener
+*Description: Class to Edit an User
+*/
 public class EditUserFragment extends Fragment implements View.OnClickListener
 {
 
@@ -35,9 +39,15 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     private EditText passwordField = null;
     private EditText passwordConfirmField = null;
     private int USER_STATUS = 0;
-    private Logger logger = null;
 
     @Override
+    /**
+    *Method: public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    *Description: Creates view of user
+    *@param LayoutInflater inflater
+    *@param ViewGroup container
+    *@param Bundle savedInstanceState
+    */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View viewOfEditUser = inflater.inflate(R.layout.fragment_edit_user, container, false);
@@ -55,7 +65,6 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         try
         {
             json = new JSONObject(stringUserStatus);
-            logger.info("JSONOBject created.");
         } catch (JSONException exceptionJSON)
         {
             exceptionJSON.printStackTrace();
@@ -73,7 +82,6 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             nameField.setText(nameUser);
             birthDateField.setText(birthDate);
             mailField.setText(mail);
-            logger.info("User informations setted.");
 
         }
         catch (JSONException exceptionJSON)
@@ -96,9 +104,13 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     private String passwordConfirm = "passwordConfirm";
 
     @Override
+    /**
+    *Method: public void onClick(View viewOnClick)
+    *Description: Validates and Updates
+    *@param View viewOnClick
+    */
     public void onClick(View viewOnClick)
     {
-
         setingTextTyped();
 
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
@@ -115,7 +127,6 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             Intent intent = activity.getIntent();
             activity.finish();
             startActivity(intent);
-            logger.info("User has been set.");
 
         } catch (Exception messageOfError)
         {
@@ -176,13 +187,22 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         }
     }
 
+    /**
+    *Method: private void updateUser(User userUpdate)
+    *Description: Updates user on DAO
+    *@paramUser userUpdate
+    */
     private void updateUser(User userUpdate)
     {
         UserDAO userDAO = new UserDAO(getActivity());
         userDAO.update(userUpdate);
-        logger.info("User updated.");
     }
 
+    /**
+    *Method: private void setingEditText(View viewOfSettingEditText)
+    *Description: Sets user data
+    *@paramView viewOfSettingEditText
+    */
     private void setingEditText(View viewOfSettingEditText)
     {
         this.nameField = (EditText) viewOfSettingEditText.findViewById(R.id.nameField);
@@ -194,6 +214,10 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         this.birthDateField = (EditText) viewOfSettingEditText.findViewById(R.id.dateField);
     }
 
+    /**
+    *Method: private void setingTextTyped()
+    *Description: sets the text typed
+    */
     private void setingTextTyped()
     {
         this.name = nameField.getText().toString();
@@ -204,8 +228,13 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         this.birthDate = birthDateField.getText().toString();
     }
 
+    /**
+    *Method: public EditUserFragment()
+    *Description: Empty method to create edit user fragment
+    */
     public EditUserFragment()
     {
+        //Requires a empty public constructor
     }
 
 }

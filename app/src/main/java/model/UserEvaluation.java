@@ -13,7 +13,6 @@ public class UserEvaluation
     private Float rating = null;
     private Integer userId = null;
     private Integer userEvaluatedId = null;
-    private Logger logger = null;
     public static final String EVALUATION_IS_INVALID = "Avaliação deve estar entre 0 e 5";
     public static final String USER_ID_IS_INVALID = "O identificador do usuário é inválido";
     public static final String USER_EVALUATED_ID_IS_INVALID = "O identificador do usuário avaliado é inválido";
@@ -31,7 +30,6 @@ public class UserEvaluation
         if(rating >= 0f && rating <= 5f)
         {
             this.rating = rating;
-            logger.info("Rating has been set.");
         }
         else
         {
@@ -44,7 +42,6 @@ public class UserEvaluation
         if(userId <= Integer.MAX_VALUE && userId >= 1)
         {
             this.userId = userId;
-            logger.info("User Id has been set.");
         }
         else
         {
@@ -57,7 +54,6 @@ public class UserEvaluation
         if(userEvaluatedId <= Integer.MAX_VALUE && userEvaluatedId >= 1)
         {
             this.userEvaluatedId = userEvaluatedId;
-            logger.info("userEvaluatedId has been set.");
         }
         else
         {

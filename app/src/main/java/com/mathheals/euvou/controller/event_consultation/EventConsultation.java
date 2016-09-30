@@ -38,6 +38,10 @@ import java.util.ArrayList;
 import dao.EventDAO;
 import dao.UserDAO;
 
+/**
+*Class: public class EventConsultation extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
+*Description: Class to consult an event
+*/
 public class EventConsultation extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
 {
     private JSONObject eventDATA = null;
@@ -46,6 +50,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     private String option = "option";
     private static final String PEOPLE_NOT_FOUND_MESSAGE = "Nenhum usuário foi encontrado.";
 
+    /**
+    *Method: private void setSearchBar(Menu menuSearchBar)
+    *Description: sets text on search bar
+    *@param Menu menuSearchBar
+    */
     private void setSearchBar(Menu menuSearchBar)
     {
         final String SEARCH_VIEW_HINT = "Pesquisar";
@@ -59,6 +68,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         {
 
             @Override
+            /**
+            *Method: public boolean onQueryTextSubmit(String query)
+            *Description: serachs by name an event
+            *@param String query
+            */
             public boolean onQueryTextSubmit(String query)
             {
                 int checkedButton = radioGroup.getCheckedRadioButtonId();
@@ -149,6 +163,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     private TextView event_not_found_text = null;
 
     @Override
+    /**
+    *Method: protected void onCreate(Bundle savedInstanceState)
+    *Description: sets content of event
+    *@param Bundle savedInstanceState
+    */
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -161,6 +180,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     private ActionBar actionBar = null;
     private RadioGroup radioGroup = null;
     @Override
+    /**
+    *Method: public boolean onCreateOptionsMenu(Menu menu)
+    *Description: set search bar on menu
+    *@param Menu menu
+    */
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_event_consultation, menu);
@@ -175,6 +199,10 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     }
 
     private Integer idItem = 0;
+    /**
+    *Method: private void setListViewListener()
+    *Description: sets view listener
+    */
     private void setListViewListener()
     {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -185,7 +213,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
             public void onItemClick(AdapterView<?> parent, View clickView, int position, long id) {
                 final String ID_COLUMN = option=="event" ? "idEvent" : (option=="people" ? "idUser" : "idPlace");
-
                 try
                 {
                     final android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -206,6 +233,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         });
     }
 
+    /**
+    *Method: private void showEventsAsList(String[] eventNames)
+    *Description: shows an event in a list
+    *@param String[] eventNames
+    */
     private void showEventsAsList(String[] eventNames)
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
@@ -214,6 +246,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
     }
 
+    /**
+    *Method: void showPeopleAsList(String[] peopleNames)
+    *Description: shows people in a list
+    *@param String[] eventNames
+    */
     private void showPeopleAsList(String[] peopleNames)
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
@@ -221,6 +258,10 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         listView.setAdapter(adapter);
     }
 
+    /**
+    *Method: private void configActionBar()
+    *Description: Configures color of action bar
+    */
     private void configActionBar()
     {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00C0C3")));
@@ -228,6 +269,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     }
 
     @Override
+    /**
+    *Method: public boolean onOptionsItemSelected(MenuItem item)
+    *Description: gets an iten by id
+    *@param MenuItem item
+    */
     public boolean onOptionsItemSelected(MenuItem item)
     {
         if(item.getItemId() == android.R.id.home){
@@ -243,6 +289,12 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
     }
 
+    /**
+    *Method: public void onCheckedChanged(RadioGroup group, int checkedId)
+    *Description: check changes of event
+    *@param RadioGroup group
+    *@param int checkedId
+    */
     public void onCheckedChanged(RadioGroup group, int checkedId)
     {
         switch(checkedId)

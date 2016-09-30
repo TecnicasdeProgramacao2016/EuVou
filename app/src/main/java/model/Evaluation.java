@@ -5,15 +5,24 @@
 
 package model;
 
-import java.util.logging.Logger;
+import junit.framework.TestCase;
 
+/**
+*Class: public class Evaluation
+*Description: class to set evaluation
+*/
 public class Evaluation
 {
     private float grade = 0;
     private int idPlace = 0;
     private int idUser = 0;
-    private Logger logger = null;
-
+    /**
+    *Method: public Evaluation(int idPlace, int idUser, float grade)
+    *Description: sets values to evaluation
+    *@param int idPlace
+    *@param int idUser
+    *@param float grade
+    */
     public Evaluation(int idPlace, int idUser, float grade)
     {
         setIdPlace(idPlace);
@@ -21,34 +30,58 @@ public class Evaluation
         setGrade(grade);
     }
 
+    /**
+    *Method: private void setGrade(float grade)
+    *Description: sets grade
+    *@param float grade
+    */
     private void setGrade(float grade)
     {
         this.grade = grade;
-        logger.info("Grade has been set.");
     }
 
-    private  void setIdUser(int idUser)
+    /**
+    *Method: private void setIdUser(int idUser)
+    *Description: sets if user
+    *@param int idUser
+    */
+    private void setIdUser(int idUser)
     {
         this.idUser = idUser;
-        logger.info("IdUser has been set.");
     }
 
+    /**
+    *Method: private void setIdPlace(int idPlace)
+    *Description: sets values to view place
+    *@param int idPlace
+    */
     private void setIdPlace(int idPlace)
     {
         this.idPlace = idPlace;
-        logger.info("idPlace has been set.");
     }
 
+    /**
+    *Method: public float getgrade()
+    *Description: get grade
+    */
     public float getgrade()
     {
         return grade;
     }
 
+    /**
+    *Method: public int getIdPlace()
+    *Description: get id of place
+    */
     public int getIdPlace()
     {
         return idPlace;
     }
 
+    /**
+    *Method: public int getIdUser()
+    *Description: get id of user
+    */
     public int getIdUser()
     {
         return idUser;

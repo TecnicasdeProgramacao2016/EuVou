@@ -28,10 +28,18 @@ import dao.EventRecommendationDAO;
 import exception.EventException;
 import model.Event;
 
+/**
+*Class: public class RecommendEvent extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener
+*Description: Class to recommend event
+*/
 public class RecommendEvent extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener
 {
     ArrayList<Event> events;
     private JSONObject eventDATA;
+    /**
+    *Method: private void fillList()
+    *Description: shows every events on list of events
+    */
     private void fillList()
     {
         EventRecommendationDAO eventRecommendationDAO = new EventRecommendationDAO();
@@ -78,28 +86,41 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
     private int idUser = 0;
     private ListView listView = null;
     @Override
+    /**
+    *Method: public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    *Description: fills list of events if user are logged
+    *@param LayoutInflater inflater
+    *@param ViewGroup container
+    *@param Bundle savedInstanceState
+    */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
-        View viewOfList = inflater.inflate(R.layout.fragment_recommend_event, container, false);//BAD CODE
-        // Inflate the layout for this fragment
+        View viewOfList = inflater.inflate(R.layout.fragment_recommend_event, container, false);
         listView = (ListView) viewOfList.findViewById(R.id.list_view_event_recomendations);
         listView.setOnItemClickListener(this);
 
         LoginUtility loginUtility = new LoginUtility(getActivity());
         idUser = loginUtility.getUserId();
 
-        if(idUser == -1)
-        {
-            Toast.makeText(getActivity().getBaseContext(), "Sem eventos recomendados!", Toast.LENGTH_LONG).show();
-        }else
+        if(idUser != -1)
         {
             fillList();
+        }else
+        {
+            Toast.makeText(getActivity().getBaseContext(), "Sem eventos recomendados!", Toast.LENGTH_LONG).show();
         }
         return  viewOfList;
     }
 
     @Override
+    /**
+    *Method: public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    *Description:
+    *@param AdapterView<?> parent
+    *@param View view
+    *@param int position
+    *@param long id
+    */
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
         final String ID_COLUMN = "idEvent";
@@ -107,7 +128,6 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         int eventId = 0;
         final Bundle bundle = new Bundle();
         final ShowEvent event = new ShowEvent();
-
         try
         {
             final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -125,6 +145,10 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
 
     }
 
+    /**
+    *Method: public RecommendEvent()
+    *Description: Empty method to construct recommend event
+    */
     public RecommendEvent()
     {
         //Required empty public constructor
