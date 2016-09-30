@@ -12,8 +12,16 @@ import exception.EventEvaluationException;
 import model.EventEvaluation;
 import junit.framework.TestCase;
 
+/**
+*Class: public class EventEvaluationDAOTest extends TestCase
+*Description: Class to test Event Evaluation DAO
+*/
 public class EventEvaluationDAOTest extends TestCase
 {
+    /**
+    *Method: public void testEvaluatePlace()
+    *Description: tests evaluated place
+    */
     public void testEvaluatePlace()
     {
 
