@@ -32,6 +32,11 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
     private TextView eventCategoriesText = null, eventPriceText = null;
     private ShowEvent showEvent = new ShowEvent();
 
+    /**
+     * Overrides are used to rewrite methods.
+     * This override shows to user an event.
+     */
+
     @Override
     //Override view
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

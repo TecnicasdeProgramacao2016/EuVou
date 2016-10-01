@@ -40,10 +40,12 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private TextView ratingMessage;
     private final Integer LOGGED_OUT = -1;
 
+
     public ShowUser()
     {
         //Required Empty Constructor
     }
+
 
     //Create user's view
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,12 +93,15 @@ public class ShowUser extends android.support.v4.app.Fragment {
         return showUserView;
     }
 
+
     //Set user's loggin status
     public void setIsUserLoggedIn(boolean isUserLoggedIn)
     {
         this.isUserLoggedIn = isUserLoggedIn;
     }
 
+
+    //Set rate messages
     private void setRatingMessage(boolean isUserLoggedIn)
     {
         final String LOGGED_IN_MESSAGE = "Sua avaliação:";
@@ -109,11 +114,14 @@ public class ShowUser extends android.support.v4.app.Fragment {
         Log.d("ShowUser", "Setted user status as logged in");
     }
 
+
     public void setShowUserView(View showUserView)
     {
         this.showUserView = showUserView;
     }
 
+
+    //Set rate bar
     private void setRatingBarIfNeeded()
     {
         if(isUserLoggedIn)
@@ -130,6 +138,11 @@ public class ShowUser extends android.support.v4.app.Fragment {
     {
         this.currentUserId = currentUserId;
     }
+
+
+    /**
+     * Rating bar is setted as user's wish using user's evaluation
+     */
 
     //Set Atribute Rate
     private void setRatingBar()

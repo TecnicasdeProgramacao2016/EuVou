@@ -36,9 +36,9 @@ import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
+
 public class EventRegistrationControlTest extends ActivityInstrumentationTestCase2<HomePage>
 {
-
     public EventRegistrationControlTest()
     {
         super(HomePage.class);

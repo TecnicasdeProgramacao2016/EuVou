@@ -13,6 +13,8 @@ import java.util.Vector;
 import exception.EventException;
 import model.Event;
 
+
+
 public class EventTest extends TestCase
 {
     private  Event event;
@@ -156,21 +158,6 @@ public class EventTest extends TestCase
     }
 
 
-    /*public void testIfDateIsEmpty()  {
-        boolean ok = true;
-        Vector<String> categories = new Vector<String>();
-        categories.add("Exposicao");
-        try {
-            event = new Event(3,"festa2", "", "festa top","34.0","34.0", categories);
-        } catch (EventException e) {
-            ok=false;
-        }catch(ParseException ex)
-        {
-            ok=false;
-        }
-        assertFalse(ok);
-    }*/
-
     //Test if event's description is empty
     public void testIfDescriptionIsEmpty()
     {
@@ -226,17 +213,17 @@ public class EventTest extends TestCase
         try
         {
             event = new Event(3,"FG a Party",10010, "FGA","10/10/2016",
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" +
-                    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+                    "Test\n" +
+                    "Test\n" +
+                    "Test\n" +
+                    "Test\n" +
+                    "Test\n" +
+                    "Test\n" +
+                    "Test\n" +
+                    "Test\n" +
+                    "Test\n" +
+                    "Test\n" +
+                    "Test",
                     "55.2","79.9", categories);
 
         } catch(EventException eventException)
@@ -379,24 +366,6 @@ public class EventTest extends TestCase
 
         assertTrue(ok);
     }
-
-    /*public void testIfDateHasPassed()
-    {
-        boolean ok = true;
-        Vector<String> categories = new Vector<String>();
-        categories.add("Exposicao");
-        try
-        {
-            event = new Event(1, "festa2", "20/01/2000", "festa top","34.0","34.0", categories);
-        } catch (EventException e)
-        {
-            ok=false;
-        }catch(ParseException ex)
-        {
-            ok=false;
-        }
-        assertFalse(ok);
-    }*/
 
 
     //Test if event constructor add's event's id
