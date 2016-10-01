@@ -23,6 +23,7 @@ public class EventRecommendationDAO extends DAO
 
     public JSONObject recommendEvents(int idUser)
     {
+        assert(idUser > 0);
         String QUERY =
                 "SELECT DISTINCT V.idEvent, V.nameEvent,\n" +
                 "(SELECT AVG(v.evaluate) FROM participate p \n" +

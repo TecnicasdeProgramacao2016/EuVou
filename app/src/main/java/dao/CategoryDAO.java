@@ -18,6 +18,7 @@ public class CategoryDAO extends DAO
 
     public JSONObject searchCategoryById(final int idCategory)
     {
+        assert(idCategory > 0);
         return this.executeConsult("SELECT nameCategory FROM tb_category WHERE idCategory = " + idCategory);
     }
 }

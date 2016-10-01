@@ -21,10 +21,11 @@ public class UserEvaluationDAO extends DAO
 
     public void evaluateUser(UserEvaluation evaluation)
     {
-        final String QUERY;
+        assert(evaluation != null);
 
         JSONObject findEvaluation = searchUserEvaluation(evaluation.getUserEvaluatedId(), evaluation.getUserId());
 
+        String QUERY = " ";
         if(findEvaluation==null)
         {
             QUERY = "INSERT INTO evaluate_user(grade, idUser, idUserEvaluated) VALUES (\"" + evaluation.getRating() +
@@ -42,6 +43,9 @@ public class UserEvaluationDAO extends DAO
 
     public JSONObject searchUserEvaluation(int userEvaluatedtId, int userId)
     {
+        assert(userId > 0);
+        assert(userEvaluatedtId > 0);
+
         final String QUERY = "SELECT * FROM evaluate_user WHERE idUser = \"" + userId
                 + "\" AND idUserEvaluated = " + userEvaluatedtId;
         return executeConsult(QUERY);

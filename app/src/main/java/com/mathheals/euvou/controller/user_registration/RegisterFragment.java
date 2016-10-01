@@ -52,6 +52,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
                              Bundle savedInstanceState)
     {
+        assert(inflater != null);
         View view = inflater.inflate(R.layout.register_user, container, false);
         Button register = (Button) view.findViewById(R.id.saveButton);
         register.setOnClickListener(this);
@@ -63,6 +64,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
 
     private void registerUser(final User user)//aplicar assertiva "não confie em ningúem"
     {
+        assert(user != null);
         UserDAO userDAO = new UserDAO(getActivity());
         userDAO.save(user);
     }
@@ -77,6 +79,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
 
     private void setingEditText(View view)
     {
+        assert(view != null);
         this.nameField = (EditText) view.findViewById(R.id.nameField);
         this.birthDateField = (EditText) view.findViewById(R.id.dateField);
         this.mailField = (EditText) view.findViewById(R.id.mailField);
@@ -101,7 +104,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View view)
     {
-
+        assert(view != null);
         setingTextTyped();
 
         try
@@ -113,14 +116,14 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
                                  password,
                                  passwordConfirm,
                                  birthDate);
-            //colocar acertiva para usuário validar se usuário está ok
+            assert(user != null);
             registerUser(user);
 
             Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE,
                            Toast.LENGTH_LONG).show();
             startLoginActivity();
 
-        } catch (Exception exception) //Verificar esse tipo de exceção
+        } catch (Exception exception)
         {
 
             String message = exception.getMessage();
@@ -131,6 +134,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
 
     public void UserRegisterErrorMessage(final String message)
     {
+        assert(message != null);
         if (message.equals(User.NAME_CANT_BE_EMPTY_NAME))
         {
             editAndRegisterUtility.setMessageError(nameField, message);

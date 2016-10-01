@@ -28,14 +28,18 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
         // Required empty public constructor
     }
 
-    public Event evento;
-    private TextView eventCategoriesText, eventPriceText;
+    public Event evento = null;
+    private TextView eventCategoriesText = null;
     private ShowEvent showEvent = new ShowEvent();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
+
         View view = inflater.inflate(R.layout.edit_or_remove_event_fragment, container, false);
 
         Button editOrRemoveButton = (Button) view.findViewById(R.id.editRemoveButton);
@@ -68,11 +72,12 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
     @Override
     public void onClick(View view)
     {
+        assert(view != null);
         if(view.getId()==R.id.editRemoveButton)
         {
             EditEventFragment editEventFragment = new EditEventFragment();
             Bundle bundle = new Bundle();
-
+            assert(bundle != null);
             android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
             bundle.putInt("idEvent", evento.getIdEvent());
             editEventFragment.setArguments(bundle);

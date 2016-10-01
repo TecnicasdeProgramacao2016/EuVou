@@ -42,6 +42,10 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.register_event, container, false);
 
@@ -65,6 +69,8 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
 
     private void addCinemaToCategory(final View view)
     {
+        assert(view != null);
+
         CheckBox cinemaCheckBox = (CheckBox) view;
 
         if(cinemaCheckBox.isChecked())
@@ -78,6 +84,8 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     }
     private void addToEducationCategory(final View view)
     {
+        assert(view != null);
+
         CheckBox educationCheckBox = (CheckBox) view;
 
         if(educationCheckBox.isChecked())
@@ -91,6 +99,8 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     }
     private void addToExpositionCategory(final View view)
     {
+        assert(view != null);
+
         CheckBox expositionCheckBox = (CheckBox) view;
 
         if(expositionCheckBox.isChecked())
@@ -104,6 +114,8 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     }
     private void addToMuseumCategory(final View view)
     {
+        assert( view != null);
+
         CheckBox museumCheckBox = (CheckBox) view;
 
         if(museumCheckBox.isChecked())
@@ -116,6 +128,8 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     }
     private void addToOthersCategory(final View view)
     {
+        assert(view != null);
+
         CheckBox othersCheckBox = (CheckBox) view;
 
         if(othersCheckBox.isChecked())
@@ -129,6 +143,8 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     }
     private void addToPartyCategory(final View view)
     {
+        assert(view != null);
+
         CheckBox partyCheckBox = (CheckBox) view;
 
         if(partyCheckBox.isChecked())
@@ -141,6 +157,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     }
     private void addToSportsCategory(final View view)
     {
+        assert(view != null);
         CheckBox sportsCheckBox = (CheckBox) view;
 
         if(sportsCheckBox.isChecked())
@@ -154,6 +171,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     }
     private void addToTheatreCategories(final View view)
     {
+        assert(view != null);
         CheckBox theaterCheckBox = (CheckBox) view;
 
         if(theaterCheckBox.isChecked())
@@ -167,6 +185,8 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     }
     private void addToShowCategory(final View view)
     {
+        assert(view != null);
+
         CheckBox showCheckBOx = (CheckBox) view;
         if(showCheckBOx.isChecked())
         {
@@ -178,6 +198,8 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     }
     private void addEventCategories(final View view)
     {
+        assert(view != null);
+
         if(view.getId() == R.id.optionCinema)
         {
             addCinemaToCategory(view);
@@ -214,6 +236,8 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     @Override
     public void onClick(View view)
     {
+        assert(view != null);
+
         if(view.getId() == R.id.saveEvent)
         {
             EditText nameEventField = (EditText) this.getActivity().findViewById(R.id.eventName);
@@ -238,15 +262,18 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             String priceEventDecimal = priceEventDecimalField.getText().toString();
 
             LoginUtility loginUtility = new LoginUtility(getActivity());
+            assert(loginUtility != null);
 
             int idOwner = loginUtility.getUserId();
+
+            assert(idOwner > 0);
 
             try
             {
                 Event event = new Event(idOwner, nameEvent, dateEvent, eventHour,
                                         priceEventReal, priceEventDecimal, addressEvent,
                                         descriptionEvent, latitude, longitude, categories);
-                //testar criação do evento
+                assert(event != null);
                 registerEvent(event);
 
                 Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE, Toast.LENGTH_LONG).show();
@@ -363,6 +390,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         else if(view.getId() == R.id.eventLocal)
         {
             Intent map = new Intent(getActivity(), LocalEventActivity.class);
+            assert(map != null);
             startActivityForResult(map, 2);
         }else
         {
@@ -374,6 +402,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data)
     {
+
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode)
         {
@@ -397,13 +426,18 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
 
     private void registerEvent(final Event event)
     {
-        //verificar evento que está em parâmetro
+        assert(event != null);
+
         EventDAO eventDAO = new EventDAO(getActivity());
+
+        assert(eventDAO != null);
+
         eventDAO.saveEvent(event);
     }
 
     private void addCheckBoxListeners(final View view)
     {
+        assert(view != null);
 
         CheckBox showCategory = (CheckBox) view.findViewById(R.id.optionShow);
         showCategory.setOnClickListener(this);

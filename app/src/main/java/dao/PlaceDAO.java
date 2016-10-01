@@ -26,6 +26,8 @@ public class PlaceDAO extends DAO
 
     public JSONObject searchPlaceByPartName(String name)
     {
+        assert(name != null);
+
         return this.executeConsult("SELECT * FROM vw_place WHERE namePlace LIKE '%" + name + "%'");
     }
     public JSONObject searchAllPlaces()

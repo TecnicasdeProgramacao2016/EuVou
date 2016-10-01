@@ -31,6 +31,9 @@ public abstract class DAO {
 
     private String query(final String query,final String urlQuery)
     {
+        assert(query != null);
+        assert(urlQuery != null);
+
         Consult consult = new Consult(query,urlQuery);
         consult.exec();
 
@@ -53,21 +56,27 @@ public abstract class DAO {
     }
     public static boolean limitExceded(final long timeLimit, long currentTime)
     {
+        assert(timeLimit > 0);
+        assert(currentTime > 0);
+
         return (currentTime >= timeLimit);
     }
     protected String executeQuery(String query)
     {
+        assert(query != null);
         return query(query, URLQUERY);
     }
 
     protected JSONObject executeConsult(String query)
     {
+        assert(query != null);
         String json;
         JSONObject jObject = null;
         try
         {
             json = query(query,URLCONSULT);
             jObject  = new JSONObject(json);
+            assert(jObject != null);
         } catch (Exception exception)
         {
             exception.printStackTrace();

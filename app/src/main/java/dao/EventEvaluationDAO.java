@@ -26,9 +26,12 @@ public class EventEvaluationDAO extends DAO
 
     public void evaluateEvent(EventEvaluation evaluation)
     {
-        final String QUERY;
+        assert(evaluation != null);
+
 
         JSONObject findEvaluation = searchEventEvaluation(evaluation.getEventId(), evaluation.getUserId());
+
+        String QUERY = " defaultValue";
 
         if(findEvaluation==null)
         {
@@ -46,6 +49,9 @@ public class EventEvaluationDAO extends DAO
 
     public JSONObject searchEventEvaluation(int eventId, int userId)
     {
+        assert( eventId > 0);
+        assert( userId > 0);
+
         final String QUERY = "SELECT * FROM participate WHERE idUser = \"" + userId
                             + "\" AND idEvent = " + eventId;
         return executeConsult(QUERY);
