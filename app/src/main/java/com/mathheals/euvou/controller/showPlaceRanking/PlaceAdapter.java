@@ -1,11 +1,12 @@
-/*
-* File name: PlaceAdapter.
-* File pourpose: Present info about Events
-*/
+/**
+ * File name: PlaceAdapter.
+ * File pourpose: Present info about Events
+ */
 
 package com.mathheals.euvou.controller.showPlaceRanking;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,12 +37,14 @@ public class PlaceAdapter extends ArrayAdapter<Place>
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
+
         Place place = getItem(position);
         ViewHolder viewHolder;
 
         if(convertView != null)
         {
             viewHolder = (ViewHolder) convertView.getTag();
+            Log.d("PlaceAdapter", "Getiing TAG for Converting view");
         }
         else
         {
@@ -50,6 +53,7 @@ public class PlaceAdapter extends ArrayAdapter<Place>
             viewHolder.placeName = (TextView) convertView.findViewById(R.id.placeName);
             viewHolder.placeEvaluation = (TextView) convertView.findViewById(R.id.placeEvaluation);
             convertView.setTag(viewHolder);
+            Log.d("PlaceAdapter", "Setting ViewHolder");
         }
 
 
