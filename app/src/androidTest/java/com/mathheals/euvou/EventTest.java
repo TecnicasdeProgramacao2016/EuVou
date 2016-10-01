@@ -79,7 +79,7 @@ public class EventTest extends TestCase
         {
             ok = false;
         }
-        catch (ParseException e)
+        catch (ParseException parseException)
         {
             ok = false;
         }

@@ -152,7 +152,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
 
-        JSONObject evaluationJSON = userEvaluationDAO.searchUserEvaluation(Integer.parseInt(userEvaluatedId), currentUserId);
+        JSONObject evaluationJSON = (JSONObject) userEvaluationDAO.searchUserEvaluation(Integer.parseInt(userEvaluatedId), currentUserId);
 
         if(evaluationJSON!=null)
         {

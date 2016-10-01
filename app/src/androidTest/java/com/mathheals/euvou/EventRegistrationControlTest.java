@@ -119,16 +119,16 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         try
         {
             marker.click();
-        } catch (UiObjectNotFoundException e)
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e)
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
 
         onView(withId(R.id.eventAddress)).check(matches(hasErrorText(event.ADDRESS_IS_EMPTY)));
@@ -154,9 +154,9 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         try
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e)
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
 
         final String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";

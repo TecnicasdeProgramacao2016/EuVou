@@ -20,7 +20,7 @@ public class EventRecommendationDAOTest extends TestCase
     {
         EventRecommendationDAO eventRecommendationDAO = new EventRecommendationDAO();
 
-        JSONObject jsonObject = eventRecommendationDAO.recommendEvents(3);
+        JSONObject jsonObject = (JSONObject) eventRecommendationDAO.recommendEvents(3);
 
         boolean check;
         try

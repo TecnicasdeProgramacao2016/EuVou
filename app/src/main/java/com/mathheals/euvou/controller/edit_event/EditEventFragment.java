@@ -287,7 +287,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
         } catch (EventException eventException)
         {
-            String message = eventException.getMessage();
+            String message = eventException.getMessage().toString();
 
             //Verify address field
             if(message.equals(Event.ADDRESS_IS_EMPTY))
