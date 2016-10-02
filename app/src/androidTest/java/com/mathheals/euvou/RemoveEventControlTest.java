@@ -1,3 +1,7 @@
+/**
+ * file:RemoveEventControlTest.java
+ * purpose: test the class RemoveEvent control
+ */
 package com.mathheals.euvou;
 
 import android.support.test.InstrumentationRegistry;
@@ -10,10 +14,8 @@ import com.mathheals.euvou.controller.utility.LoginUtility;
 import org.junit.Before;
 
 import java.text.ParseException;
-import java.util.Vector;
 
 import dao.EventDAO;
-import dao.UserDAO;
 import exception.EventException;
 import model.Event;
 import model.User;
@@ -43,13 +45,17 @@ public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<Hom
     private TestUtility setLogin = null;
     private UiDevice device = null;
     private User user = null;
-    private EventDAO eventDao = new EventDAO();
+
 
     public RemoveEventControlTest()
     {
         super(HomePage.class);
     }
 
+    /**
+     * set the logint to the test class
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception
     {
@@ -59,6 +65,10 @@ public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<Hom
         device = UiDevice.getInstance(getInstrumentation());
     }
 
+    /**
+     * Test if the options to remove an event is shown for the user that is not
+     * logged in the application
+     */
     public void testIfRemoveEventOptionIsDisplayedForUserLoggedOut()
     {
         if(isLoged.hasUserLoggedIn())
@@ -70,8 +80,13 @@ public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<Hom
             onView(withText("Meus Eventos")).check(doesNotExist());
 
         }
-            }
+    }
 
+    /**
+     *  testing if the button to remove an event is shown.
+     * @throws ParseException
+     * @throws EventException
+     */
     public void testRemoveEventButton() throws ParseException, EventException
     {
 

@@ -1,13 +1,15 @@
+/**
+ * file:DAOTest.java
+ * purpose: testing the limit time of the class DAO
+ */
 package com.mathheals.euvou;
 
 import junit.framework.TestCase;
 
 import dao.DAO;
 
-/**
- * Created by viny on 21/10/15.
- */
-public class DAOTest extends TestCase {
+public class DAOTest extends TestCase
+{
     public void testTimeLimitExceded()
     {
         assertFalse(DAO.limitExceded(10000, 999));
