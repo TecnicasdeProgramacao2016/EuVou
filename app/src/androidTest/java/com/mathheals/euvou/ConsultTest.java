@@ -11,7 +11,10 @@ import dao.Consult;
 
 public class ConsultTest extends TestCase
 {
-
+    /**
+     * Test the result of the consult on the dataBase
+     * @throws Exception
+     */
     public void testSetResult() throws Exception
     {
         Consult consult = new Consult("","");

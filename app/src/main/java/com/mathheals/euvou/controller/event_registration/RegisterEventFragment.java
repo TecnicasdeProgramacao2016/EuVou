@@ -39,6 +39,13 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         //EMPTY CONSTRUCTOR
     }
 
+    /**
+     * first thing tha happend when the activity is called
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
@@ -67,6 +74,10 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         return view;
     }
 
+    /**
+     *add the event to the cinema category
+     * @param view
+     */
     private void addCinemaToCategory(final View view)
     {
         assert(view != null);
@@ -82,6 +93,11 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(cinemaCheckBox.getText().toString());
         }
     }
+
+    /**
+     * add the event to the category of education
+     * @param view
+     */
     private void addToEducationCategory(final View view)
     {
         assert(view != null);
@@ -97,6 +113,11 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove("Educacao");
         }
     }
+
+    /**
+     * add the event to the exposition category
+     * @param view
+     */
     private void addToExpositionCategory(final View view)
     {
         assert(view != null);
@@ -112,6 +133,11 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove("Exposicao");
         }
     }
+
+    /**
+     * add event to the museum category
+     * @param view
+     */
     private void addToMuseumCategory(final View view)
     {
         assert( view != null);
@@ -126,6 +152,11 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(museumCheckBox.getText().toString());
         }
     }
+
+    /**
+     * add eventto OTHERS category
+     * @param view
+     */
     private void addToOthersCategory(final View view)
     {
         assert(view != null);
@@ -141,6 +172,11 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(othersCheckBox.getText().toString());
         }
     }
+
+    /**
+     * add event to the party cathegory
+     * @param view
+     */
     private void addToPartyCategory(final View view)
     {
         assert(view != null);
@@ -155,6 +191,11 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(partyCheckBox.getText().toString());
         }
     }
+
+    /**
+     * add to the sports category
+     * @param view
+     */
     private void addToSportsCategory(final View view)
     {
         assert(view != null);
@@ -169,6 +210,11 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(sportsCheckBox.getText().toString());
         }
     }
+
+    /**
+     * add to the theatre category
+     * @param view
+     */
     private void addToTheatreCategories(final View view)
     {
         assert(view != null);
@@ -183,6 +229,11 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(theaterCheckBox.getText().toString());
         }
     }
+
+    /**
+     * add the event to the show category
+     * @param view
+     */
     private void addToShowCategory(final View view)
     {
         assert(view != null);
@@ -196,6 +247,11 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
             categories.remove(showCheckBOx.getText().toString());
         }
     }
+
+    /**
+     * method to register the category of the event
+     * @param view - current view
+     */
     private void addEventCategories(final View view)
     {
         assert(view != null);
@@ -234,7 +290,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
 
     /**
      * method that gets the informations and create the event
-     * @param view
+     * @param view - current view of the app
      */
     @Override
     public void onClick(View view)
@@ -299,6 +355,25 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         }
 
     }
+
+    /**
+     * method created just to create the event
+     * @param idOwner - id of the owner of the event
+     * @param nameEvent - name of the event
+     * @param dateEvent - date of the event
+     * @param eventHour - hour of the event
+     * @param priceEventReal - real price of the event
+     * @param priceEventDecimal  price of the event in decimal
+     * @param addressEvent - place of the event
+     * @param descriptionEvent - description of the event
+     * @param addressEventField - field where the addres of the event is
+     * @param hourEventField - filed of the hours
+     * @param descriptionEventField - field of the description
+     * @param dateEventField - field of the date
+     * @param nameEventField - field of the name
+     * @param priceEventRealField - field of the price
+     * @param priceEventDecimalField - field of the price decimal
+     */
     public void eventCreator(int idOwner,
                              String nameEvent,
                              String dateEvent,
@@ -343,6 +418,17 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         }
     }
 
+    /**
+     * method to identify the error and send a message warning
+     * @param message - get the message from the exception
+     * @param addressEventField - get the addres filed
+     * @param hourEventField get the hours field
+     * @param descriptionEventField - get the description field
+     * @param dateEventField - get the date field
+     * @param nameEventField - get the name field
+     * @param priceEventRealField - get the real price
+     * @param priceEventDecimalField - get the decimal value of the price
+     */
     private void eventCreatorExceptionMessage(String message, EditText addressEventField,EditText hourEventField,
                                               EditText descriptionEventField, EditText dateEventField,EditText nameEventField,
                                               EditText priceEventRealField, EditText priceEventDecimalField)

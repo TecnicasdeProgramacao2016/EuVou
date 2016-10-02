@@ -14,7 +14,9 @@ import dao.UserDAO;
 
 public class ShowUserTest extends TestCase
 {
-
+    /**
+     * testing if the user name is correct
+     */
     public void testShowUserName()
     {
 
@@ -27,15 +29,19 @@ public class ShowUserTest extends TestCase
             String nameUserDB = userData.getJSONObject("0").getString("nameUser");
 
             assertEquals("Igor Duarte",nameUserDB);
-        } catch (JSONException e)
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         } catch(NullPointerException except)
         {
 
         }
 
     }
+
+    /**
+     * testing if the user's birthday is correct
+     */
     public void testShowUserBirthDate()
     {
         UserDAO userDAO = new UserDAO();
@@ -56,6 +62,10 @@ public class ShowUserTest extends TestCase
         }
 
     }
+
+    /**
+     * testing if the user's e-mail is correct
+     */
     public void testShowUserEmail()
     {
         UserDAO userDAO = new UserDAO();

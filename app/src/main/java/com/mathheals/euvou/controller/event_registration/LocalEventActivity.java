@@ -22,6 +22,10 @@ public class LocalEventActivity extends FragmentActivity implements GoogleMap.On
 
     private GoogleMap mMap = null;
 
+    /**
+     * main method of an Activity on Android, it creates the Activity.
+     * @param savedInstanceState -
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -39,6 +43,9 @@ public class LocalEventActivity extends FragmentActivity implements GoogleMap.On
         setUpMapIfNeeded();
     }
 
+    /**
+     * it inflates the map if it is not inflated yet
+     */
     private void setUpMapIfNeeded()
     {
         // Do a null check to confirm that we have not already instantiated the map.
@@ -62,6 +69,10 @@ public class LocalEventActivity extends FragmentActivity implements GoogleMap.On
 
     }
 
+    /**
+     * it sets the latitude and the longitude to mark a point on the map
+     * @param latLng - coodenates of the point
+     */
     @Override
     public void onMapClick(LatLng latLng)
     {
