@@ -232,7 +232,10 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         }
     }
 
-
+    /**
+     * method that gets the informations and create the event
+     * @param view
+     */
     @Override
     public void onClick(View view)
     {
@@ -268,124 +271,22 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
 
             assert(idOwner > 0);
 
-            try
-            {
-                Event event = new Event(idOwner, nameEvent, dateEvent, eventHour,
-                                        priceEventReal, priceEventDecimal, addressEvent,
-                                        descriptionEvent, latitude, longitude, categories);
-                assert(event != null);
-                registerEvent(event);
+            eventCreator(idOwner,
+                         nameEvent,
+                         dateEvent,
+                         eventHour,
+                         priceEventReal,
+                         priceEventDecimal,
+                         addressEvent,
+                         descriptionEvent,
+                         addressEventField,
+                         hourEventField,
+                         descriptionEventField,
+                         dateEventField,
+                         nameEventField,
+                         priceEventRealField,
+                         priceEventDecimalField);
 
-                Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE, Toast.LENGTH_LONG).show();
-            } catch (EventException exception)
-            {
-                String message = exception.getMessage();
-
-                //Verify address field
-                if(message.equals(Event.ADDRESS_IS_EMPTY))
-                {
-                    addressEventField.requestFocus();
-                    addressEventField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-                if(message.equals(Event.INVALID_EVENT_HOUR))
-                {
-                    hourEventField.requestFocus();
-                    hourEventField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-                if(message.equals(Event.EVENT_HOUR_IS_EMPTY))
-                {
-                    hourEventField.requestFocus();
-                    hourEventField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-                if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
-                {
-                    descriptionEventField.requestFocus();
-                    descriptionEventField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-                if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
-                {
-                    descriptionEventField.requestFocus();
-                    descriptionEventField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-                if(message.equals(Event.EVENT_DATE_IS_EMPTY))
-                {
-                    dateEventField.requestFocus();
-                    dateEventField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-                if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
-                {
-                    nameEventField.requestFocus();
-                    nameEventField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-                if(message.equals(Event.INVALID_EVENT_DATE))
-                {
-                    dateEventField.requestFocus();
-                    dateEventField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-                if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
-                {
-                    nameEventField.requestFocus();
-                    nameEventField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-                if(message.equals(Event.PRICE_REAL_IS_EMPTY))
-                {
-                    priceEventRealField.requestFocus();
-                    priceEventRealField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-                if(message.equals(Event.PRICE_DECIMAL_IS_EMPTY))
-                {
-                    priceEventDecimalField.requestFocus();
-                    priceEventDecimalField.setError(message);
-                }else
-                {
-                    //NOTHING TO DO
-                }
-
-            } catch (ParseException exception)
-            {
-                exception.printStackTrace();
-
-            }
         }
         else if(view.getId() == R.id.eventLocal)
         {
@@ -398,7 +299,114 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         }
 
     }
+    public void eventCreator(int idOwner,
+                             String nameEvent,
+                             String dateEvent,
+                             String eventHour,
+                             String priceEventReal,
+                             String priceEventDecimal,
+                             String addressEvent,
+                             String descriptionEvent ,
+                             EditText addressEventField,
+                             EditText hourEventField,
+                             EditText descriptionEventField,
+                             EditText dateEventField,
+                             EditText nameEventField,
+                             EditText priceEventRealField,
+                             EditText priceEventDecimalField)
+    {
+        try
+        {
+            Event event = new Event(idOwner, nameEvent, dateEvent, eventHour,
+                    priceEventReal, priceEventDecimal, addressEvent,
+                    descriptionEvent, latitude, longitude, categories);
 
+            assert(event != null);
+
+            registerEvent(event);
+
+            Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE, Toast.LENGTH_LONG).show();
+
+        } catch (EventException exception)
+        {
+            String message = exception.getMessage();
+
+            eventCreatorExceptionMessage(message,addressEventField,hourEventField,
+                                         descriptionEventField,dateEventField,
+                                         nameEventField,priceEventRealField,
+                                         priceEventDecimalField);
+
+        } catch (ParseException exception)
+        {
+            exception.printStackTrace();
+
+        }
+    }
+
+    private void eventCreatorExceptionMessage(String message, EditText addressEventField,EditText hourEventField,
+                                              EditText descriptionEventField, EditText dateEventField,EditText nameEventField,
+                                              EditText priceEventRealField, EditText priceEventDecimalField)
+    {
+        //Verify address field
+        if(message.equals(Event.ADDRESS_IS_EMPTY))
+        {
+            addressEventField.requestFocus();
+            addressEventField.setError(message);
+
+        }else if(message.equals(Event.INVALID_EVENT_HOUR))
+        {
+            hourEventField.requestFocus();
+            hourEventField.setError(message);
+
+        }else if(message.equals(Event.EVENT_HOUR_IS_EMPTY))
+        {
+            hourEventField.requestFocus();
+            hourEventField.setError(message);
+
+        }else if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
+        {
+            descriptionEventField.requestFocus();
+            descriptionEventField.setError(message);
+
+        }else if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
+        {
+            descriptionEventField.requestFocus();
+            descriptionEventField.setError(message);
+
+        }else if(message.equals(Event.EVENT_DATE_IS_EMPTY))
+        {
+            dateEventField.requestFocus();
+            dateEventField.setError(message);
+
+        }else if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
+        {
+            nameEventField.requestFocus();
+            nameEventField.setError(message);
+
+        }else if(message.equals(Event.INVALID_EVENT_DATE))
+        {
+            dateEventField.requestFocus();
+            dateEventField.setError(message);
+
+        }else if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
+        {
+            nameEventField.requestFocus();
+            nameEventField.setError(message);
+
+        }else if(message.equals(Event.PRICE_REAL_IS_EMPTY))
+        {
+            priceEventRealField.requestFocus();
+            priceEventRealField.setError(message);
+
+        }else if(message.equals(Event.PRICE_DECIMAL_IS_EMPTY))
+        {
+            priceEventDecimalField.requestFocus();
+            priceEventDecimalField.setError(message);
+        }else
+        {
+            //NOTHING TO DO
+        }
+    }
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data)
     {
@@ -424,6 +432,10 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         }
     }
 
+    /**
+     * it registers an event in the database
+     * @param event - event that was created and that will be saved
+     */
     private void registerEvent(final Event event)
     {
         assert(event != null);
@@ -435,6 +447,10 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         eventDAO.saveEvent(event);
     }
 
+    /**
+     * adding the listeniers to the checkboxess of the categories
+     * @param view - the current view
+     */
     private void addCheckBoxListeners(final View view)
     {
         assert(view != null);
