@@ -41,8 +41,12 @@ import com.mathheals.euvou.controller.user_registration.RegisterFragment;
 import com.mathheals.euvou.controller.utility.ActivityUtility;
 import com.mathheals.euvou.controller.utility.LoginUtility;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class HomePage extends ActionBarActivity implements AdapterView.OnItemClickListener
 {
+    private final static Logger logger = Logger.getLogger(HomePage.class.getName());
     private static final String QUERY = "query";
     private static final String SETTINGS_FRAGMENT = "settings_fragment_tag";
     private DrawerLayout drawerLayout = null;
@@ -66,10 +70,11 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
         drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, textOptions));
         assert(drawerList != null);
-
         callGoogleMaps();
         onConfigActionBar();
         startPrincipalFragment();
+        logger.log(Level.INFO, " The method onCreate has been executed, the maps have been called"+
+                               " the actionbar has been configured and the main fragment has been called");
     }
 
     private void startPrincipalFragment()
@@ -90,6 +95,8 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         Intent map = new Intent(HomePage.this, SearchPlaceMaps.class);
         assert(map != null);
 
+        logger.log(Level.INFO,"search place method inicializated");
+
         if(!(filter.isEmpty()))
         {
             map.putExtra(QUERY, filter);
@@ -108,6 +115,8 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     private void initViews()
     {
+        logger.log(Level.INFO,"views have been initializated");
+
         linearLayout = (LinearLayout) findViewById(R.id.left_drawer);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.left_drawer_list);
@@ -137,6 +146,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     private void onConfigActionBar()
     {
+        logger.log(Level.INFO,"entered on the method to config the actionBar");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
@@ -146,6 +156,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     public boolean onCreateOptionsMenu(final Menu menu)
     {
+        logger.log(Level.INFO,"entered in the method to create the menus option");
         assert(menu != null);
         MenuInflater inflater = getMenuInflater();
         LoginUtility loginUtility = new LoginUtility(HomePage.this);
@@ -173,6 +184,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     public void onConfigurationChanged(final Configuration newConfig)
     {
+        logger.log(Level.INFO,"entered in the method that changes the configuration");
         assert(newConfig != null);
         super.onConfigurationChanged(newConfig);
 
@@ -182,6 +194,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     @Override
     protected void onPostCreate(final Bundle savedInstanceState)
     {
+        logger.log(Level.INFO,"entered in the method that creates the post");
         assert(savedInstanceState != null);
         super.onPostCreate(savedInstanceState);
 
@@ -191,6 +204,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        logger.log(Level.INFO,"entered in the method that checks the options that were selected");
         assert(item != null);
         // Pass the event to ActionBarDrawerToggle, if it returns
         // true, then it has handled the app icon touch event
@@ -222,6 +236,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     public boolean userLoggedInOptions(final MenuItem item)
     {
+        logger.log(Level.INFO,"entered in the method that shows the options for the user that is logged");
         assert(item != null);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switch(item.getItemId())
@@ -270,6 +285,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     public boolean userLoggedOutOptions(final MenuItem item)
     {
+        logger.log(Level.INFO,"entered in the method that shows the options for the users logged out");
         assert(item != null);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switch (item.getItemId())
@@ -289,9 +305,9 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         }
     }
 
-    // Alterar Usuário methods
     public void editUserUpdateButtonOnClick(View view)
     {
+        logger.log(Level.INFO,"entered in the method that informates the user ");
         assert(view != null);
         final String SUCESS_EDIT_MESSAGE = "Dados alterados com sucesso :)";
         Toast.makeText(getBaseContext(), SUCESS_EDIT_MESSAGE, Toast.LENGTH_LONG).show();
@@ -306,10 +322,12 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         Intent eventConsultation = new Intent(HomePage.this, EventConsultation.class);
         assert(eventConsultation != null);
         HomePage.this.startActivity(eventConsultation);
+        logger.log(Level.INFO,"executed the method searchOnClick with ou error");
     }
         @Override
         public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id)
         {
+            logger.log(Level.INFO,"entered in the method that recognize the click on the categories");
             assert(parent != null);
             assert(view != null);
 

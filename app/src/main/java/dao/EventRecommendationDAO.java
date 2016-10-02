@@ -8,9 +8,13 @@ import android.app.Activity;
 
 import org.json.JSONObject;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class EventRecommendationDAO extends DAO
 {
+    private final static Logger logger = Logger.getLogger(EventRecommendationDAO.class.getName());
     public EventRecommendationDAO()
     {
 
@@ -23,6 +27,7 @@ public class EventRecommendationDAO extends DAO
 
     public JSONObject recommendEvents(int idUser)
     {
+        logger.log(Level.INFO,"entered in the method that gets the events that is recomended for an user");
         assert(idUser > 0);
         String QUERY =
                 "SELECT DISTINCT V.idEvent, V.nameEvent,\n" +

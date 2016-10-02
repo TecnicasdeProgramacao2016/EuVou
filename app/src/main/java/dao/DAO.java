@@ -10,12 +10,14 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class DAO {
 
     private final String URLQUERY = "http://euvou.esy.es/query.php";
     private final String URLCONSULT = "http://euvou.esy.es/consult.php";;
-
+    private final static Logger logger = Logger.getLogger(DAO.class.getName());
     private final int LIMITCONECTIONTIME = 15000;
     protected Activity currentActivity = null;
 
@@ -33,7 +35,7 @@ public abstract class DAO {
     {
         assert(query != null);
         assert(urlQuery != null);
-
+        logger.log(Level.INFO,"entered in the method that makes the query");
         Consult consult = new Consult(query,urlQuery);
         consult.exec();
 
@@ -58,18 +60,20 @@ public abstract class DAO {
     {
         assert(timeLimit > 0);
         assert(currentTime > 0);
-
+        logger.log(Level.INFO,"entered in the method that checks the limit of the time conection");
         return (currentTime >= timeLimit);
     }
     protected String executeQuery(String query)
     {
         assert(query != null);
+        logger.log(Level.INFO,"entered in the method that executes the query");
         return query(query, URLQUERY);
     }
 
     protected JSONObject executeConsult(String query)
     {
         assert(query != null);
+        logger.log(Level.INFO,"entered in the method that execute the consult on the database");
         String json;
         JSONObject jObject = null;
         try

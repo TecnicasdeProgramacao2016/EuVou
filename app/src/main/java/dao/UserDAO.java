@@ -6,11 +6,16 @@
 import android.app.Activity;
 
 import org.json.JSONObject;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import model.User;
 
 
 public class UserDAO extends DAO
 {
+    private final static Logger logger = Logger.getLogger(UserDAO.class.getName());
 
     public UserDAO(Activity currentActivity)
     {
@@ -25,6 +30,7 @@ public class UserDAO extends DAO
     public String save(User user)
     {
         assert(user != null);
+        logger.log(Level.INFO,"entered in the method that saves the user in the database");
         return this.executeQuery("INSERT INTO tb_user(nameUser, login,passwordUser,birthDate, email)VALUES" +
                 "(\"" + user.getName() + "\", \"" + user.getUsername() + "\", \"" + user.getPassword() + "\"," +
                 " STR_TO_DATE(\"" + user.getBirthDate() + "\",'%d/%m/%Y'),\"" + user.getEmail() + "\")");
@@ -33,6 +39,7 @@ public class UserDAO extends DAO
     public String searchUserById(int idUser)
     {
         assert(idUser > 0);
+        logger.log(Level.INFO,"entered in the method that searches the user in the database by it's id");
         return this.executeConsult("SELECT * from vw_user WHERE idUser="+idUser+"").toString();
     }
 
@@ -40,18 +47,21 @@ public class UserDAO extends DAO
     public String delete(String username)
     {
         assert(username != null);
+        logger.log(Level.INFO,"entered in the method that deletes the user from the database");
         return this.executeQuery("DELETE FROM tb_user WHERE login=\"" + username + "\"");
     }
 
     public String delete(int idUser)
     {
         assert(idUser > 0);
+        logger.log(Level.INFO,"entered in the method that deletes an user from the database by it's id");
         return this.executeQuery("DELETE FROM tb_user WHERE idUser=\"" +idUser+ "\"");
     }
 
     public String update(User user)
     {
         assert(user != null);
+        logger.log(Level.INFO,"entered in the method that updates user on the database ");
         return this.executeQuery("UPDATE tb_user SET nameUser=\""+user.getName()+"\", " +
                 "birthDate=STR_TO_DATE(\"" + user.getBirthDate() + "\",'%d/%m/%Y'), " +
                 "email=\""+user.getEmail()+"\", passwordUser=\"" + user.getPassword() + "\"" +
@@ -61,18 +71,21 @@ public class UserDAO extends DAO
     public String disableUser(int idUser)
     {
         assert(idUser > 0);
+        logger.log(Level.INFO,"entered in the method that disables the user from the database");
         return this.executeQuery("UPDATE tb_user SET isActivity=\"N\" WHERE idUser=" +idUser+ "");
     }
 
     public JSONObject searchUserByUsername(String username)
     {
         assert(username != null);
+        logger.log(Level.INFO,"entered in the method that searches an user by it's username");
         return this.executeConsult("SELECT * FROM vw_user WHERE login=\"" + username + "\"");
     }
 
     public JSONObject searchUserByName(String name)
     {
         assert(name != null);
+        logger.log(Level.INFO,"entered in the method that searches the user by it's name");
         return this.executeConsult("SELECT * FROM vw_user WHERE nameUser LIKE \"%" + name + "%\"");
     }
 }

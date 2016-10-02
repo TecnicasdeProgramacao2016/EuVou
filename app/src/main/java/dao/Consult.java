@@ -24,6 +24,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Consult
 {
@@ -33,7 +35,7 @@ public class Consult
     private boolean isDoing;
     private String query = DEFALT_STRING_MESSAGE;
     private final String PARAM = "query";
-
+    private final static Logger logger = Logger.getLogger(Consult.class.getName());
     public Consult(String query, String url)
     {
         assert(query != null);
@@ -56,6 +58,7 @@ public class Consult
     public String exec()
     {
         new Access().execute();
+        logger.log(Level.INFO,"entered in the method that makes the connection to access the database");
         return getResult();
     }
 

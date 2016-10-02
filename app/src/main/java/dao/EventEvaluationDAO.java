@@ -8,12 +8,16 @@ import android.app.Activity;
 
 import org.json.JSONObject;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import model.Evaluation;
 import model.EventEvaluation;
 
 
 public class EventEvaluationDAO extends DAO
 {
+    private  final  static Logger logger = Logger.getLogger(EventEvaluationDAO.class.getName());
     public EventEvaluationDAO()
     {
 
@@ -28,7 +32,7 @@ public class EventEvaluationDAO extends DAO
     {
         assert(evaluation != null);
 
-
+        logger.log(Level.INFO,"entered in the method that sets the event's evaluation");
         JSONObject findEvaluation = searchEventEvaluation(evaluation.getEventId(), evaluation.getUserId());
 
         String QUERY = " defaultValue";
@@ -52,6 +56,7 @@ public class EventEvaluationDAO extends DAO
         assert( eventId > 0);
         assert( userId > 0);
 
+        logger.log(Level.INFO,"entered in the method that searches an evaluation of an event on the database");
         final String QUERY = "SELECT * FROM participate WHERE idUser = \"" + userId
                             + "\" AND idEvent = " + eventId;
         return executeConsult(QUERY);
