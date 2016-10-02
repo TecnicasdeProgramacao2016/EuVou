@@ -25,10 +25,11 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
- /*
- * File name: UserRegistrationControlTest.
- * File pourpose: Test user's registration with true and falses parameters.
+ /**
+  * File name: UserRegistrationControlTest.
+  * File pourpose: Test user's registration with true and falses parameters.
  */
+
 public class UserRegistrationControlTest extends ActivityInstrumentationTestCase2<HomePage> 
 {
 
@@ -306,16 +307,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.nameField)).check(matches(hasErrorText(user.NAME_CANT_BE_EMPTY_NAME)));
     }
@@ -336,16 +337,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.dateField)).check(matches(hasErrorText(user.BIRTH_DATE_CANT_BE_EMPTY)));
     }
@@ -367,16 +368,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.dateField)).check(matches(hasErrorText(user.INVALID_BIRTH_DATE)));
     }
@@ -399,16 +400,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.mailField)).check(matches(hasErrorText(user.EMAIL_CANT_BE_EMPTY_EMAIL)));
     }
@@ -431,16 +432,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.mailField)).check(matches(hasErrorText(user.INVALID_EMAIL)));
     }
@@ -463,16 +464,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.confirmMailField)).check(matches(hasErrorText(user.EMAIL_CONFIRMATION_CANT_BE_EMPTY)));
     }
@@ -496,16 +497,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.mailField)).check(matches(hasErrorText(user.EMAIL_ARE_NOT_EQUALS)));
     }
@@ -529,16 +530,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.loginField)).check(matches(hasErrorText(user.USERNAME_CANT_BE_EMPTY_USERNAME)));
     }
@@ -563,16 +564,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.loginField)).check(matches(hasErrorText(user.USERNAME_EXISTENT)));
     }
@@ -597,16 +598,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.passwordField)).check(matches(hasErrorText(user.PASSWORD_CANT_BE_EMPTY_PASSWORD)));
     }
@@ -632,16 +633,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.passwordField)).check(matches(hasErrorText(user.PASSWORD_CANT_BE_LESS_THAN_6)));
     }
@@ -667,16 +668,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.confirmPasswordField)).check(matches(hasErrorText(user.CONFIRM_PASSWORD_CANT_BE_EMPTY)));
     }
@@ -703,16 +704,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.passwordField)).check(matches(hasErrorText(user.PASSWORD_ARE_NOT_EQUALS)));
     }
@@ -739,16 +740,16 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
         {
-            e.printStackTrace();
+            uiObjectNotFoundException.printStackTrace();
         }
         try 
         {
             Thread.sleep(3000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.usernameField)).check(matches(isDisplayed()));
         userDao.delete("izacris");

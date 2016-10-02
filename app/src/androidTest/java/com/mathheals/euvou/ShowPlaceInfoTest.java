@@ -36,9 +36,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
-/*
- * File name: ShowPlaceInfoTest.
- * File pourpose: This file have the pourpose to test if the information about the show's place will be show with true and falses parameters.
+/**
+  * File name: ShowPlaceInfoTest.
+  * File pourpose: This file have the pourpose to test if the information about the show's place will be show with true and falses parameters.
  */
 
 public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage>
@@ -91,14 +91,17 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
         {
             TestUtility.makeUserLogOut();
             isUserLoggedIn = false;
+        } else
+        {
+            //NOTHING TO DO
         }
         startShowPlaceInfoForSettedUpPlace();
         try 
         {
             Thread.sleep(1000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
     }
@@ -110,6 +113,9 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
         {
             TestUtility.makeUserLogIn();
             isUserLoggedIn = true;
+        } else
+        {
+            //NOTHING TO DO
         }
         startShowPlaceInfoForSettedUpPlace();
         try 
@@ -121,9 +127,9 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
             try 
             {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) 
+            } catch (InterruptedException interruptedException)
             {
-                e.printStackTrace();
+                interruptedException.printStackTrace();
             }
             result = true;
         } catch (PerformException performException) 
@@ -146,17 +152,17 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
         try 
         {
             Thread.sleep(4000);
-        } catch (InterruptedException e) 
+        } catch (InterruptedException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
         UiObject marker = device.findObject(new UiSelector().descriptionContains(SELECTED_PLACE_NAME));
         try 
         {
             marker.click();
-        } catch (UiObjectNotFoundException e) 
+        } catch (UiObjectNotFoundException interruptedException)
         {
-            e.printStackTrace();
+            interruptedException.printStackTrace();
         }
     }
 

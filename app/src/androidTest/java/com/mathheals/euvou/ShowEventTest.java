@@ -5,17 +5,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import dao.EventDAO;
 import static junit.framework.Assert.assertEquals;
-/*
- * File name: ShowEventTest.
- * File pourpose: This file have the pourpose to test the events with true and falses parameters.
+
+/**
+  * File name: ShowEventTest.
+  * File pourpose: This file have the pourpose to test the events with true and falses parameters.
  */
+
 public class ShowEventTest extends TestCase 
 {
 
     public void testEventName()
     {
         EventDAO eventDAO = new EventDAO();
-        JSONObject eventData = eventDAO.searchEventById(2);
+        JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
         boolean ok = true;
         try
         {
@@ -33,7 +35,7 @@ public class ShowEventTest extends TestCase
     public void testEventDescription()
     {
         EventDAO eventDAO = new EventDAO();
-        JSONObject eventData = eventDAO.searchEventById(2);
+        JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
         boolean ok = true;
         try
         {
@@ -51,7 +53,7 @@ public class ShowEventTest extends TestCase
     public void testEventDate()
     {
         EventDAO eventDAO = new EventDAO();
-        JSONObject eventData = eventDAO.searchEventById(2);
+        JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
         boolean ok = true;
         try
         {
@@ -69,7 +71,7 @@ public class ShowEventTest extends TestCase
     public void testEventLatitude()
     {
         EventDAO eventDAO = new EventDAO();
-        JSONObject eventData = eventDAO.searchEventById(2);
+        JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
         boolean ok = true;
         try
         {
@@ -87,7 +89,7 @@ public class ShowEventTest extends TestCase
     public void testEventLongitude()
     {
         EventDAO eventDAO = new EventDAO();
-        JSONObject eventData = eventDAO.searchEventById(2);
+        JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
         boolean ok = true;
         try
         {
@@ -105,7 +107,7 @@ public class ShowEventTest extends TestCase
     public void testEventPrice()
     {
         EventDAO eventDAO = new EventDAO();
-        JSONObject eventData = eventDAO.searchEventById(1);
+        JSONObject eventData = (JSONObject) eventDAO.searchEventById(1);
         boolean ok = true;
         try{
             String eventPrice = eventData.getJSONObject("0").getString("price");

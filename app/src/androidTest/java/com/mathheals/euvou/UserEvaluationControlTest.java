@@ -25,11 +25,9 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
 
- /*
- * File name: UserEvolationControlTest.
- * File pourpose: Test user's evaluation with true and falses parameters.
- * Created by izabela on 23/11/15.
- * Edited by: daniel on 13/09/16
+ /**
+  * File name: UserEvolationControlTest.
+  * File pourpose: Test user's evaluation with true and falses parameters.
  */
 
 
@@ -56,6 +54,9 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
         if(isLoged.hasUserLoggedIn()) 
         {
             TestUtility.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         searchForUserUsedForTest();
         onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
@@ -67,6 +68,9 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
         if(!isLoged.hasUserLoggedIn()) 
         {
             TestUtility.makeUserLogIn();
+        } else
+        {
+            //NOTHING TO DO
         }
         searchForUserUsedForTest();
         onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
@@ -79,6 +83,9 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
         if(!isLoged.hasUserLoggedIn()) 
         {
             TestUtility.makeUserLogIn();
+        } else
+        {
+            //NOTHING TO DO
         }
         searchForUserUsedForTest();
         try 
@@ -90,9 +97,9 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
             try 
             {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) 
+            } catch (InterruptedException interruptedException)
             {
-                e.printStackTrace();
+                interruptedException.printStackTrace();
             }
             result = true;
         } catch (PerformException performException) 

@@ -1,8 +1,8 @@
 package com.mathheals.euvou;
 
- /*
- * File name: UserDAOTest.
- * File pourpose: Test of Data Access Object - DAD  with true and falses parameters.
+ /**
+  * File name: UserDAOTest.
+  * File pourpose: Test of Data Access Object - DAD  with true and falses parameters.
  */
 
 import com.mathheals.euvou.controller.utility.LoginUtility;
@@ -25,15 +25,6 @@ import model.User;
 
 public class UserDAOTest extends TestCase 
 {
-    private static final String ID_FIELD =  "idField";
-    private static final String COLUMN_USER_ID = "idUser";
-    private static final String COLUMN_USER_NAME = "nameUser";
-    private static final String COLUMN_USER_LOGIN = "login";
-    private static final String COLUMN_USER_EMAIL = "email";
-    private static final String COLUMN_USER_PASSWORD = "passwordUser";
-    private static final String COLUMN_USER_BIRTHDATE = "birthDate";
-    private static final String COLUMN_USER_STATE = "isActivity";
-
     public void testSave() throws ParseException, UserException
     {
             UserDAO userDAO = new UserDAO();
@@ -67,6 +58,9 @@ public class UserDAOTest extends TestCase
         if(!userDAO.save(user).contains("Salvo"))
         {
             assertTrue(false);
+        } else
+        {
+            //NOTHING TO DO
         }
         int id = userDAO.searchUserByUsername("viny").getJSONObject("0").getInt("idUser");
         assertTrue(userDAO.delete(id).contains("Salvo"));
@@ -87,6 +81,9 @@ public class UserDAOTest extends TestCase
         {
             assertTrue(false);
             userDAO.delete("umteste");
+        } else
+        {
+            //NOTHING TO DO
         }
         assertTrue(userDAO.update(user).contains("Salvo"));
         userDAO.delete("umteste");
@@ -102,6 +99,9 @@ public class UserDAOTest extends TestCase
         {
             assertTrue(false);
             userDAO.delete("umteste");
+        } else
+        {
+            //NOTHING TO DO
         }
         int id = userDAO.searchUserByUsername("umteste").getJSONObject("0").getInt("idUser");
         assertTrue(userDAO.disableUser(id).contains("Salvo"));
