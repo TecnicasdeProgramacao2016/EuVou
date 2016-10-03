@@ -8,7 +8,6 @@ package com.mathheals.euvou;
 import android.app.Activity;
 import android.support.test.espresso.PerformException;
 import android.support.test.espresso.matcher.ViewMatchers;
-import android.support.test.uiautomator.UiDevice;
 import android.test.ActivityInstrumentationTestCase2;
 import com.mathheals.euvou.controller.home_page.HomePage;
 import org.junit.Before;

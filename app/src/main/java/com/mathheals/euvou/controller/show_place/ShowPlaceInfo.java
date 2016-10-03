@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.method.ScrollingMovementMethod;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.RatingBar.*;
@@ -105,7 +106,7 @@ public class ShowPlaceInfo extends FragmentActivity
         }
         else
         {
-            //NOTHING TO DO
+            assert(isUserLoggedIn == false);
         }
     }
 
@@ -230,6 +231,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setGrade(float grade)
     {
         this.grade = grade;
+        Log.d("ShowPlaceInfo", "grade has been set");
     }
 
     /**
@@ -240,6 +242,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setAddress(String address)
     {
         this.address = address;
+        Log.d("ShowPlaceInfo", "adress has been set");
     }
 
     /**
@@ -268,6 +271,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setLongitude(double longitude)
     {
         this.longitude = longitude;
+        Log.d("ShowPlaceInfo", "longitude has been set");
     }
 
     /**
@@ -278,6 +282,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setDescription(String description)
     {
         this.description = description;
+        Log.d("ShowPlaceInfo", "description been set");
     }
 
     private String operation = "operation";
@@ -289,6 +294,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setOperation(String operation)
     {
         this.operation = operation;
+        Log.d("ShowPlaceInfo", "operation has been set");
     }
 
     private String phone = "phone";
@@ -300,6 +306,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setPhone(String phone)
     {
         this.phone = phone;
+        Log.d("ShowPlaceInfo", "phone has been set");
     }
 
     private String name = "name";
@@ -320,6 +327,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setName(String name)
     {
         this.name = name;
+        Log.d("ShowPlaceInfo", "name has been set");
     }
 
     /**
@@ -338,6 +346,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setLatitude(double latitude)
     {
         this.latitude = latitude;
+        Log.d("ShowPlaceInfo", "latitude has been set");
     }
 
     private TextView addressText = null;
@@ -376,6 +385,7 @@ public class ShowPlaceInfo extends FragmentActivity
     {
         this.phoneText = (TextView) findViewById(R.id.phone_text);
         this.phoneText.setText(phoneText);
+        Log.d("ShowPlaceInfo", "phone text has been set");
     }
 
     private TextView gradeText = null;
@@ -388,6 +398,7 @@ public class ShowPlaceInfo extends FragmentActivity
     {
         this.gradeText = (TextView) findViewById(R.id.grade_text);
         this.gradeText.setText(gradeText);
+        Log.d("ShowPlaceInfo", "grade text has been set");
     }
 
     private TextView descriptionText = null;
@@ -401,6 +412,7 @@ public class ShowPlaceInfo extends FragmentActivity
         this.descriptionText = (TextView) findViewById(R.id.description_text);
         this.descriptionText.setText(descriptionText);
         this.descriptionText.setMovementMethod(new ScrollingMovementMethod());
+        Log.d("ShowPlaceInfo", "description text been set");
     }
 
     /**
@@ -424,6 +436,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setShowMapButton(Button showMapButton)
     {
         this.showMapButton = showMapButton;
+        Log.d("ShowPlaceInfo", "button of show map has been set");
     }
 
     /**
@@ -434,6 +447,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setHideMapButton(Button hideMapButton)
     {
         this.hideMapButton = hideMapButton;
+        Log.d("ShowPlaceInfo", "hide map button has been set");
     }
 
     private TextView ratingMessage = null;
@@ -456,7 +470,9 @@ public class ShowPlaceInfo extends FragmentActivity
     */
     private void setUserId(int userId)
     {
+        assert(userId > 0);
         this.userId = userId;
+        Log.d("ShowPlaceInfo", "userId has been set");
     }
 
     /**
@@ -467,6 +483,7 @@ public class ShowPlaceInfo extends FragmentActivity
     public void setIsUserLoggedIn(boolean isUserLoggedIn)
     {
         this.isUserLoggedIn = isUserLoggedIn;
+        Log.d("ShowPlaceInfo", "user is logged in has been set");
     }
 
     /**
@@ -485,7 +502,9 @@ public class ShowPlaceInfo extends FragmentActivity
     */
     public void setIdPlace(int idPlace)
     {
+        assert(idPlace > 0);
         this.idPlace = idPlace;
+        Log.d("ShowPlaceInfo", "idPlace has been set");
     }
 
     /**
@@ -497,6 +516,9 @@ public class ShowPlaceInfo extends FragmentActivity
     */
     public void setRatingEvaluation(int idPlace, int idUser, float grade)
     {
+        assert(idPlace > 0);
+        assert(idUser > 0);
         this.ratingEvaluation = new Evaluation(idPlace, idUser, grade);
+        Log.d("ShowPlaceInfo", "rating evaluation has been set");
     }
 }
