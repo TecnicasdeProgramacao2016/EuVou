@@ -29,6 +29,7 @@ public class EventEvaluationDAOTest extends TestCase
         final Integer USER_ID = 1;
         final Integer EVENT_ID = 1;
 
+
         EventEvaluationDAO eventEvaluationDAO = new EventEvaluationDAO();
         try
         {
@@ -38,8 +39,8 @@ public class EventEvaluationDAOTest extends TestCase
         {
             fail();
         }
-        JSONObject jsonObject = eventEvaluationDAO.searchEventEvaluation(EVENT_ID, USER_ID);
 
+        JSONObject jsonObject = (JSONObject) eventEvaluationDAO.searchEventEvaluation(EVENT_ID, USER_ID);
         try
         {
             Float rating = new Float(jsonObject.getJSONObject("0").getString("grade"));

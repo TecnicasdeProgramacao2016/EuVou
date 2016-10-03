@@ -75,7 +75,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
             */
             public boolean onQueryTextSubmit(String query)
             {
-                int checkedButton = radioGroup.getCheckedRadioButtonId();
+                int checkedButton = (int) radioGroup.getCheckedRadioButtonId();
                 switch (checkedButton)
                 {
                     case R.id.radio_events:
@@ -188,7 +188,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_event_consultation, menu);
-        actionBar = getSupportActionBar();
+        actionBar = (ActionBar) getSupportActionBar();
 
         setSearchBar(menu);
         configActionBar();
@@ -305,7 +305,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                 break;
             default:
                 //NOTHING TO DO
-                break;
         }
     }
 }

@@ -72,9 +72,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
 
         try
         {
-            String nameUser = json.getJSONObject("0").getString("nameUser");
-            String birthDate = json.getJSONObject("0").getString("birthDate");
-            String mail = json.getJSONObject("0").getString("email");
+            String nameUser = (String)json.getJSONObject("0").getString("nameUser");
+            String birthDate = (String)json.getJSONObject("0").getString("birthDate");
+            String mail = (String)json.getJSONObject("0").getString("email");
 
             String[] birthDateSplit = birthDate.split("-");
             birthDate = birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];
@@ -130,7 +130,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
 
         } catch (Exception messageOfError)
         {
-            String message = messageOfError.getMessage();
+            String message = (String) messageOfError.getMessage();
 
             if (message.equals(User.EMAIL_CANT_BE_EMPTY_EMAIL))
             {

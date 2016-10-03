@@ -219,7 +219,6 @@ public class ShowPlaceInfo extends FragmentActivity
                 break;
             default:
                 //NOTHING TO DO
-                break;
         }
     }
 
