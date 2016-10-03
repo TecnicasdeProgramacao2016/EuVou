@@ -22,15 +22,15 @@ public class UserEvaluation
     public static final String USER_EVALUATED_ID_IS_INVALID = "O identificador do usuário avaliado é inválido";
 
     /**
-    *Method:   public UserEvaluation(Float rating, Integer userId,
-    *                                              Integer userEvaluatedId) throws UserEvaluationException
+    *Method: public UserEvaluation(Float rating, Integer userId,
+    *                              Integer userEvaluatedId) throws UserEvaluationException
     *Description: sets data on fields of user evaluation
-    *@param Float rating
-    *@param Integer userId
-    *@param Integer userEvaluatedId
+    *@param rating
+    *@param userId
+    *@param userEvaluatedId
     */
     public UserEvaluation(Float rating, Integer userId,
-                                    Integer userEvaluatedId) throws UserEvaluationException
+                          Integer userEvaluatedId) throws UserEvaluationException
     {
         setRating(rating);
         setUserId(userId);
@@ -40,7 +40,7 @@ public class UserEvaluation
     /**
     *Method: public void setRating(Float rating) throws UserEvaluationException
     *Description: sets rating
-    *@param Float rating
+    *@param rating
     */
     public void setRating(Float rating) throws UserEvaluationException
     {
@@ -58,7 +58,7 @@ public class UserEvaluation
     /**
     *Method: public void setUserId(Integer userId) throws UserEvaluationException
     *Description: sets user if
-    *@param Integer userId
+    *@param userId
     */
     public void setUserId(Integer userId) throws UserEvaluationException
     {
@@ -77,7 +77,7 @@ public class UserEvaluation
     /**
     *Method: public void setUserEvaluatedId(Integer userEvaluatedId) throws UserEvaluationException
     *Description: sets user evaluated id
-    *@param Integer userEvaluatedId
+    *@param userEvaluatedId
     */
     public void setUserEvaluatedId(Integer userEvaluatedId) throws UserEvaluationException
     {

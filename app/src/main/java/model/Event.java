@@ -51,22 +51,24 @@ public class Event
     private int idOwner = 0;
 
     /**
-    *Method: public Event(int idOwner, String nameEvent, String date,
-    *                              String hour, String priceReal, String priceDecimal,
-    *                              String address, String description, String latitude,
-    *                              String longitude, Vector<String> category) throws EventException, ParseException
+    * Method: public Event(int idOwner, String nameEvent, String date,
+    *                      String hour, String priceReal, String priceDecimal,
+    *                      String address, String description, String latitude,
+    *                      String longitude, Vector<String> category) throws EventException, ParseException
     *Description: sets fields of event
-    *@param int idUser
-    *@param String nameEvent
-    *@param String date
-    *@param String hour
-    *@param String priceReal
-    *@param String priceDecimal
-    *@param String address
-    *@param String description
-    *@param String latitude
-    *@param String longitude
-    *@param Vector<String> category
+    * @param idOwner
+    * @param nameEvent
+    * @param date
+    * @param hour
+    * @param priceReal
+    * @param priceDecimal
+    * @param address
+    * @param description
+    * @param latitude
+    * @param longitude
+    * @param category
+    * @throws EventException
+    * @throws ParseException
     */
     public Event(int idOwner, String nameEvent, String date,
                       String hour, String priceReal, String priceDecimal,
@@ -85,21 +87,23 @@ public class Event
     }
 
     /**
-    *Method: public Event(int idOwner, String nameEvent, String dateTimeEvent,
-    *                              Integer price, String address, String description,
-    *                              String latitude, String longitude,
-    *                              Vector<String> category) throws EventException, ParseException
-    *Description: sets fields of event
-    *@param int idUser
-    *@param String nameEvent
-    *@param String dateTimeEvent
-    *@param Integer price
-    *@param String address
-    *@param String description
-    *@param String latitude
-    *@param String longitude
-    *@param Vector<String> category
-    */
+     *Method: public Event(int idOwner, String nameEvent, String dateTimeEvent,
+     *                     Integer price, String address, String description,
+     *                     String latitude, String longitude,
+     *                     Vector<String> category) throws EventException, ParseException
+     *Description: sets fields of event
+     * @param idOwner
+     * @param nameEvent
+     * @param dateTimeEvent
+     * @param price
+     * @param address
+     * @param description
+     * @param latitude
+     * @param longitude
+     * @param category
+     * @throws EventException
+     * @throws ParseException
+     */
     public Event(int idOwner, String nameEvent, String dateTimeEvent,
                       Integer price, String address, String description,
                       String latitude, String longitude,
@@ -120,9 +124,9 @@ public class Event
     *Method: public Event(int idOwner, String nameEvent,
     *                              int eventEvaluation) throws EventException, ParseException
     *Description: sets fields of event
-    *@param int idOwner
-    *@param String nameEvent
-    *@param int eventEvaluation
+    *@param idOwner
+    *@param nameEvent
+    *@param eventEvaluation
     */
     public Event(int idOwner, String nameEvent,
                       int eventEvaluation) throws EventException, ParseException
@@ -138,15 +142,15 @@ public class Event
     *                              String address, String description,
     *                              String latitude, String longitude) throws EventException, ParseException
     *Description: sets fields of event
-    *@param int idEvent
-    *@param int idOwner
-    *@param String nameEvent
-    *@param String dateTimeEvent
-    *@param Integer price
-    *@param String address
-    *@param String description
-    *@param String latitude
-    *@param String longitude
+    *@param idEvent
+    *@param idOwner
+    *@param nameEvent
+    *@param dateTimeEvent
+    *@param price
+    *@param address
+    *@param description
+    *@param latitude
+    *@param longitude
     */
     public Event(int idEvent, int idOwner, String nameEvent,
                  String dateTimeEvent, Integer price,
@@ -170,15 +174,15 @@ public class Event
     *                              String address, String description,
     *                              String latitude, String longitude) throws EventException, ParseException
     *Description: sets fields of event
-    *@param int idEvent
-    *@param String nameEvent
-    *@param Integer price
-    *@param String address
-    *@param String dateTimeEvent
-    *@param String description
-    *@param String latitude
-    *@param String longitude
-    *@param int Vector<String> category
+    *@param idEvent
+    *@param nameEvent
+    *@param price
+    *@param address
+    *@param dateTimeEvent
+    *@param description
+    *@param latitude
+    *@param longitude
+    *@param category
     */
     public Event(int idEvent, String nameEvent, Integer price,
                       String address, String dateTimeEvent,
@@ -208,7 +212,7 @@ public class Event
     /**
     *Method: public void setDateTimeEvent(String dateTimeEvent)
     *Description: sets date time of event
-    *@param String dateTimeEvent
+    *@param dateTimeEvent
     */
     public void setDateTimeEvent(String dateTimeEvent)
     {
@@ -219,8 +223,8 @@ public class Event
     /**
     *Method: public void setDateTimeEvent(String date, String hour) throws ParseException, EventException
     *Description: sets date time of event
-    *@param String date
-    *@param String hour
+    *@param date
+    *@param hour
     */
     public void setDateTimeEvent(String date, String hour) throws ParseException, EventException
     {
@@ -288,7 +292,7 @@ public class Event
     /**
     *Method: public void setEvaluation(Integer evaluation) throws  EventException
     *Description: sets evaluation
-    *@param Integer evaluation
+    *@param evaluation
     */
     public void setEvaluation(Integer evaluation) throws  EventException
     {
@@ -306,8 +310,8 @@ public class Event
     /**
     *Method: public void setPrice(String priceReal, String priceDecimal) throws EventException
     *Description: sets price
-    *@param String priceReal
-    *@param String priceDecimal
+    *@param priceReal
+    *@param priceDecimal
     */
     public void setPrice(String priceReal, String priceDecimal) throws EventException
     {
@@ -341,7 +345,7 @@ public class Event
     /**
     *Method: public void setPrice(Integer price)
     *Description: sets price
-    *@param String Integer price
+    *@param price
     */
     public void setPrice(Integer price)
     {
@@ -370,7 +374,7 @@ public class Event
     /**
     *Method: public void setAddress(String adress) throws EventException
     *Description: sets adress
-    *@param String adress
+    *@param adress
     */
     public void setAddress(String adress) throws EventException
     {
@@ -398,7 +402,7 @@ public class Event
     /**
     *Method: public void setIdEvent(int idEvent)
     *Description: set id of event
-    *@param int idEvent
+    *@param idEvent
     */
     public void setIdEvent(int idEvent)
     {
@@ -419,7 +423,7 @@ public class Event
     /**
     *Method: public void setLongitude(String longitude) throws EventException
     *Description: sets longitude
-    *@param String longitude
+    *@param longitude
     */
     public void setLongitude(String longitude) throws EventException
     {
@@ -455,7 +459,7 @@ public class Event
     /**
     *Method: public void setNameEvent(String nameEvent) throws EventException
     *Description: sets name of event
-    *@param String nameEvent
+    *@param nameEvent
     */
     public void setNameEvent(String nameEvent) throws EventException
     {
@@ -489,7 +493,7 @@ public class Event
     /**
     *Method: public void setDescription(String description) throws EventException
     *Description: sets description
-    *@param String description
+    *@param description
     */
     public void setDescription(String description) throws EventException
     {
@@ -524,7 +528,7 @@ public class Event
     /**
     *Method: public void setLatitude(String latitude) throws EventException
     *Description: sets latitude
-    *@param String latitude
+    *@param latitude
     */
     public void setLatitude(String latitude) throws EventException
     {
@@ -549,7 +553,7 @@ public class Event
     /**
     *Method: public void setCategory(Vector<String> category) throws EventException
     *Description: sets category
-    *@param Vector<String> category
+    *@param category
     */
     public void setCategory(Vector<String> category) throws EventException
     {
@@ -585,7 +589,7 @@ public class Event
     /**
     *Method: public void setIdOwner(int idOwner)
     *Description: sets id of owner
-    *@param int idOwner
+    *@param idOwner
     */
     public void setIdOwner(int idOwner)
     {

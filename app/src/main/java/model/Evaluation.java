@@ -19,9 +19,9 @@ public class Evaluation
     /**
     *Method: public Evaluation(int idPlace, int idUser, float grade)
     *Description: sets values to evaluation
-    *@param int idPlace
-    *@param int idUser
-    *@param float grade
+    *@param idPlace
+    *@param idUser
+    *@param grade
     */
     public Evaluation(int idPlace, int idUser, float grade)
     {
@@ -30,22 +30,12 @@ public class Evaluation
         setGrade(grade);
     }
 
-    /**
-    *Method: private void setGrade(float grade)
-    *Description: sets grade
-    *@param float grade
-    */
     private void setGrade(float grade)
     {
         this.grade = grade;
         Log.d("Evaluation", "Grade has been setted");
     }
 
-    /**
-    *Method: private void setIdUser(int idUser)
-    *Description: sets if user
-    *@param int idUser
-    */
     private void setIdUser(int idUser)
     {
         assert( idUser > 0);
@@ -53,11 +43,6 @@ public class Evaluation
         Log.d("Evaluation", "idUser has been setted");
     }
 
-    /**
-    *Method: private void setIdPlace(int idPlace)
-    *Description: sets values to view place
-    *@param int idPlace
-    */
     private void setIdPlace(int idPlace)
     {
         assert( idPlace > 0);

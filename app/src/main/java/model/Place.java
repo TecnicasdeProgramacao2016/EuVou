@@ -34,17 +34,19 @@ public class Place
 
     /**
     *Method: public Place(String name, String evaluate, String longitude,
-    *                              String latitude, String operation, String description,
-    *                              String address, String phone) throws PlaceException, ParseException
+    *                     String latitude, String operation, String description,
+    *                     String address, String phone) throws PlaceException, ParseException
     *Description: sets Place variables
-    *@param String name
-    *@param String evaluate
-    *@param String longitude
-    *@param String latitude
-    *@param String operation
-    *@param String description
-    *@param String address
-    *@param String phone
+    * @param name
+    * @param evaluate
+    * @param longitude
+    * @param latitude
+    * @param operation
+    * @param description
+    * @param address
+    * @param phone
+    * @throws PlaceException
+    * @throws ParseException
     */
     public Place(String name, String evaluate, String longitude,
                       String latitude, String operation, String description,
@@ -64,18 +66,20 @@ public class Place
 
     /**
     *Method: public Place(int id, String name, String evaluate,
-    *                              String longitude, String latitude, String operation,
-    *                              String description, String address, String phone) throws PlaceException, ParseException
+    *                     String longitude, String latitude, String operation,
+    *                     String description, String address, String phone) throws PlaceException, ParseException
     *Description: sets id of event
-    *@param int id
-    *@param String name
-    *@param String evaluate
-    *@param String longitude
-    *@param String latitude
-    *@param String operation
-    *@param String description
-    *@param String address
-    *@param String phone
+    * @param id
+    * @param name
+    * @param evaluate
+    * @param longitude
+    * @param latitude
+    * @param operation
+    * @param description
+    * @param address
+    * @param phone
+    * @throws PlaceException
+    * @throws ParseException
     */
     public Place(int id, String name, String evaluate,
                      String longitude, String latitude, String operation,
@@ -92,11 +96,6 @@ public class Place
         setPhone(phone);
     }
 
-    /**
-    *Method: private void setAddress(String address)
-    *Description: sets iadress
-    *@param String address
-    */
     private void setAddress(String address)
     {
         this.address = address;
@@ -115,7 +114,7 @@ public class Place
     /**
     *Method: private void setName(String name) throws PlaceException
     *Description: sets id of event
-    *@param String name
+    *@param name
     */
     private void setName(String name) throws PlaceException
     {
@@ -144,7 +143,7 @@ public class Place
     /**
     *Method: public void addComment(String comment) throws PlaceException
     *Description: add comments
-    *@param String comment
+    *@param comment
     */
     public void addComment(String comment) throws PlaceException
     {
@@ -192,11 +191,6 @@ public class Place
         return address;
     }
 
-    /**
-    *Method: private void setLatitude(String latitude) throws ParseException, PlaceException
-    *Description: sets latitude
-    *@param String latitude
-    */
     private void setLatitude(String latitude) throws ParseException, PlaceException
     {
         if(latitude.isEmpty())
@@ -211,11 +205,6 @@ public class Place
         Log.d("Place", "latitude has been set");
     }
 
-    /**
-    *Method: private void setLongitude(String longitude) throws ParseException, PlaceException
-    *Description: sets longitude
-    *@param String longitude
-    */
     private void setLongitude(String longitude) throws ParseException, PlaceException
     {
         if(longitude.isEmpty())
@@ -230,11 +219,6 @@ public class Place
         Log.d("Place", "longitude has been set");
     }
 
-    /**
-    *Method: private void setEvaluate(String evaluate) throws NumberFormatException
-    *Description: sets evaluate
-    *@param String evaluate
-    */
     private void setEvaluate(String evaluate) throws NumberFormatException
     {
         if(evaluate.equals("null"))
@@ -248,22 +232,12 @@ public class Place
         Log.d("Place", "evaluate has been set");
     }
 
-    /**
-    *Method: private void setOperation(String operation)
-    *Description: sets ioperation
-    *@param String operation
-    */
     private void setOperation(String operation)
     {
         this.operation = operation;
         Log.d("Place", "operation has been set");
     }
 
-    /**
-    *Method: private void setDescription(String description)
-    *Description: sets description
-    *@param String description
-    */
     private void setDescription(String description)
     {
         this.description = description;
@@ -306,11 +280,6 @@ public class Place
         return phone;
     }
 
-    /**
-    *Method: private void setPhone(String phone)
-    *Description: sets phone
-    *@param String phone
-    */
     private void setPhone(String phone)
     {
         this.phone = phone;
@@ -326,11 +295,6 @@ public class Place
         return id;
     }
 
-    /**
-    *Method: private void setId(int id)
-    *Description: sets id
-    *@param Iint id
-    */
     private void setId(int id)
     {
         assert(id > 0);

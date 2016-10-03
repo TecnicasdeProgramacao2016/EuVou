@@ -24,9 +24,9 @@ public class EventEvaluation
     /**
     *Method: public EventEvaluation(Float rating, Integer userId, Integer eventId) throws EventEvaluationException
     *Description: sets fields of evaluate an event
-    *@param Float rating
-    *@param Integer userId
-    *@param Integer eventId
+    *@param rating
+    *@param userId
+    *@param eventId
     */
     public EventEvaluation(Float rating, Integer userId, Integer eventId) throws EventEvaluationException
     {
@@ -47,7 +47,7 @@ public class EventEvaluation
     /**
     *Method: public void setRating(Float rating) throws EventEvaluationException
     *Description: sets rating
-    *@param Float rating
+    *@param rating
     */
     public void setRating(Float rating) throws EventEvaluationException
     {
@@ -74,7 +74,7 @@ public class EventEvaluation
     /**
     *Method: public void setUserId(Integer userId) throws EventEvaluationException
     *Description: sets id of user
-    *@param Integer userId
+    *@param userId
     */
     public void setUserId(Integer userId) throws EventEvaluationException
     {
@@ -103,7 +103,7 @@ public class EventEvaluation
     /**
     *Method: public void setEventId(Integer eventId) throws EventEvaluationException
     *Description: sets id of event
-    *@param Integer eventId
+    *@param eventId
     */
     public void setEventId(Integer eventId) throws EventEvaluationException
     {

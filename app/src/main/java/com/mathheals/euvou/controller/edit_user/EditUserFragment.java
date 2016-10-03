@@ -187,22 +187,12 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    /**
-    *Method: private void updateUser(User userUpdate)
-    *Description: Updates user on DAO
-    *@paramUser userUpdate
-    */
     private void updateUser(User userUpdate)
     {
         UserDAO userDAO = new UserDAO(getActivity());
         userDAO.update(userUpdate);
     }
 
-    /**
-    *Method: private void setingEditText(View viewOfSettingEditText)
-    *Description: Sets user data
-    *@paramView viewOfSettingEditText
-    */
     private void setingEditText(View viewOfSettingEditText)
     {
         this.nameField = (EditText) viewOfSettingEditText.findViewById(R.id.nameField);
@@ -214,10 +204,6 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         this.birthDateField = (EditText) viewOfSettingEditText.findViewById(R.id.dateField);
     }
 
-    /**
-    *Method: private void setingTextTyped()
-    *Description: sets the text typed
-    */
     private void setingTextTyped()
     {
         this.name = nameField.getText().toString();

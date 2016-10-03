@@ -45,10 +45,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private double latitude = 0;
     private String address = "nothing";
     private float grade = 0;
-    /**
-    *Method: private void setPlaceInfo()
-    *Description: sets place informations
-    */
+
     private void setPlaceInfo()
     {
         Intent intent = getIntent();
@@ -71,7 +68,7 @@ public class ShowPlaceInfo extends FragmentActivity
     /**
     *Method: protected void onCreate(Bundle savedInstanceState)
     *Description: sets values to view place
-    *@param Bundle savedInstanceState
+    *@param savedInstanceState
     */
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -93,11 +90,6 @@ public class ShowPlaceInfo extends FragmentActivity
         setRatingBarIfNeeded();
     }
 
-
-    /**
-    *Method: private void setRatingBarIfNeeded()
-    *Description: If user are logged sets rating bar
-    */
     private void setRatingBarIfNeeded()
     {
         if(isUserLoggedIn)
@@ -113,10 +105,6 @@ public class ShowPlaceInfo extends FragmentActivity
     private int idPlace = 0;
     private RatingBar ratingBar = null;
     private Evaluation ratingEvaluation = null;
-    /**
-    *Method: private void setRatingBar()
-    *Description: sets rating bar
-    */
     private void setRatingBar()
     {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -133,10 +121,6 @@ public class ShowPlaceInfo extends FragmentActivity
         setRatingBarStyle();
     }
 
-    /**
-    *Method: private void setRatingBarStyle()
-    *Description: sets style to rate bar
-    */
     private void setRatingBarStyle()
     {
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
@@ -144,10 +128,6 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     protected GoogleMap mMap = null;
-    /**
-    *Method: private void setUpMapIfNeeded()
-    *Description: set map if does not exist
-    */
     private void setUpMapIfNeeded()
     {
         if (mMap == null)
@@ -169,10 +149,6 @@ public class ShowPlaceInfo extends FragmentActivity
         }
     }
 
-    /**
-    *Method: private void setUpMap()
-    *Description: sets map
-    */
     private void setUpMap()
     {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
@@ -180,10 +156,6 @@ public class ShowPlaceInfo extends FragmentActivity
         markPlaceOnMap();
     }
 
-    /**
-    *Method: private void markPlaceOnMap()
-    *Description: marks a place on map
-    */
     private void markPlaceOnMap()
     {
 
@@ -198,11 +170,6 @@ public class ShowPlaceInfo extends FragmentActivity
 
     private Button showMapButton = null;
     private Button hideMapButton = null;
-    /**
-    *Method: public void showPlaceInfoOnClick(View view)
-    *Description: shows informations about place
-    *@param View view
-    */
     public void showPlaceInfoOnClick(View view)
     {
         switch(view.getId()) {
@@ -222,62 +189,34 @@ public class ShowPlaceInfo extends FragmentActivity
         }
     }
 
-    /**
-    *Method: private void setGrade(float grade)
-    *Description: sets grade
-    *@param float grade
-    */
     private void setGrade(float grade)
     {
         this.grade = grade;
         Log.d("ShowPlaceInfo", "grade has been set");
     }
 
-    /**
-    *Method: private void setAddress(String address)
-    *Description: sets adress
-    *@param String address
-    */
     private void setAddress(String address)
     {
         this.address = address;
         Log.d("ShowPlaceInfo", "adress has been set");
     }
 
-    /**
-    *Method: private String getAddress()
-    *Description: get adress
-    */
     private String getAddress()
     {
         return address;
     }
 
-    /**
-    *Method: private double getLongitude()
-    *Description: get longitude
-    */
     private double getLongitude()
     {
         return longitude;
     }
 
-    /**
-    *Method: private void setLongitude(double longitude)
-    *Description: set longitude
-    *@param double longitude
-    */
     private void setLongitude(double longitude)
     {
         this.longitude = longitude;
         Log.d("ShowPlaceInfo", "longitude has been set");
     }
 
-    /**
-    *Method: private void setDescription(String description)
-    *Description: set description
-    *@param String description
-    */
     private void setDescription(String description)
     {
         this.description = description;
@@ -285,11 +224,6 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private String operation = "operation";
-    /**
-    *Method: private void setOperation(String operation)
-    *Description: set operation
-    *@param String operation
-    */
     private void setOperation(String operation)
     {
         this.operation = operation;
@@ -297,11 +231,6 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private String phone = "phone";
-    /**
-    *Method: private void setPhone(String phone)
-    *Description: set phone
-    *@param String phone
-    */
     private void setPhone(String phone)
     {
         this.phone = phone;
@@ -309,39 +238,21 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private String name = "name";
-    /**
-    *Method: private String getName()
-    *Description: get name
-    */
     private String getName()
     {
         return name;
     }
-
-    /**
-    *Method: private void setName(String name)
-    *Description: set name
-    *@param String name
-    */
     private void setName(String name)
     {
         this.name = name;
         Log.d("ShowPlaceInfo", "name has been set");
     }
 
-    /**
-    *Method: private double getLatitude()
-    *Description: get latitude
-    */
     private double getLatitude()
     {
         return latitude;
     }
 
-    /**
-    *Method: private void setLatitude(double latitude)
-    *Description: set Latitude
-    */
     private void setLatitude(double latitude)
     {
         this.latitude = latitude;
@@ -349,11 +260,6 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private TextView addressText = null;
-    /**
-    *Method: private void setAddressText(String adressText)
-    *Description: set text on adress
-    *@param String adressText
-    */
     private void setAddressText(String adressText)
     {
         this.addressText = (TextView) findViewById(R.id.address_text);
@@ -362,11 +268,6 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private TextView operationText = null;
-    /**
-    *Method: private void setOperationText(String operationText)
-    *Description: set operations text
-    *@param String operationText
-    */
     private void setOperationText(String operationText)
     {
         this.operationText = (TextView) findViewById(R.id.operation_text);
@@ -375,11 +276,6 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private TextView phoneText = null;
-    /**
-    *Method: private void setPhoneText(String phoneText)
-    *Description: set text of phone
-    *@param String phoneText
-    */
     private void setPhoneText(String phoneText)
     {
         this.phoneText = (TextView) findViewById(R.id.phone_text);
@@ -388,11 +284,6 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private TextView gradeText = null;
-    /**
-    *Method: private void setGradeText(String gradeText)
-    *Description: set text on grade
-    *@param String gradeText
-    */
     private void setGradeText(String gradeText)
     {
         this.gradeText = (TextView) findViewById(R.id.grade_text);
@@ -401,11 +292,6 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private TextView descriptionText = null;
-    /**
-    *Method: private void setDescriptionText(String descriptionText)
-    *Description: set text on description
-    *@param String descriptionText
-    */
     private void setDescriptionText(String descriptionText)
     {
         this.descriptionText = (TextView) findViewById(R.id.description_text);
@@ -414,10 +300,6 @@ public class ShowPlaceInfo extends FragmentActivity
         Log.d("ShowPlaceInfo", "description text been set");
     }
 
-    /**
-    *Method: private void setAllTextViews()
-    *Description: set all texts
-    */
     private void setAllTextViews()
     {
         setAddressText(address);
@@ -427,22 +309,12 @@ public class ShowPlaceInfo extends FragmentActivity
         setDescriptionText(description);
     }
 
-    /**
-    *Method: private void setShowMapButton(Button showMapButton)
-    *Description: sets show map button
-    *@param Button showMapButton
-    */
     private void setShowMapButton(Button showMapButton)
     {
         this.showMapButton = showMapButton;
         Log.d("ShowPlaceInfo", "button of show map has been set");
     }
 
-    /**
-    *Method: private void setHideMapButton(Button hideMapButton)
-    *Description: sets hide map button
-    *@param Button hideMapButton
-    */
     private void setHideMapButton(Button hideMapButton)
     {
         this.hideMapButton = hideMapButton;
@@ -450,11 +322,6 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private TextView ratingMessage = null;
-    /**
-    *Method: private void setRatingMessage(boolean isUserLoggedIn)
-    *Description: sets rating message
-    *@param boolean isUserLoggedIn
-    */
     private void setRatingMessage(boolean isUserLoggedIn)
     {
         String message = isUserLoggedIn ? "Sua avaliação:" : "Faça login para avaliar!";
@@ -462,11 +329,6 @@ public class ShowPlaceInfo extends FragmentActivity
         ratingMessage.setText(message);
     }
 
-    /**
-    *Method: private void setUserId(int userId)
-    *Description: sets user id
-    *@param int userId
-    */
     private void setUserId(int userId)
     {
         assert(userId > 0);
@@ -477,7 +339,7 @@ public class ShowPlaceInfo extends FragmentActivity
     /**
     *Method: public void setIsUserLoggedIn(boolean isUserLoggedIn)
     *Description: sets user logged in
-    *@param boolean isUserLoggedIn
+    *@param isUserLoggedIn
     */
     public void setIsUserLoggedIn(boolean isUserLoggedIn)
     {
@@ -497,7 +359,7 @@ public class ShowPlaceInfo extends FragmentActivity
     /**
     *Method: public void setIdPlace(int idPlace)
     *Description: sets id of place
-    *@param int idPlace
+    *@param idPlace
     */
     public void setIdPlace(int idPlace)
     {
@@ -509,9 +371,9 @@ public class ShowPlaceInfo extends FragmentActivity
     /**
     *Method: public void setRatingEvaluation(int idPlace, int idUser, float grade)
     *Description: set rating evaluation
-    *@param int idPlace
-    *@param int idUser
-    *@param float grade
+    *@param idPlace
+    *@param idUser
+    *@param grade
     */
     public void setRatingEvaluation(int idPlace, int idUser, float grade)
     {

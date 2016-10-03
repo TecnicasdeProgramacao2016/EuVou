@@ -36,10 +36,6 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
 {
     ArrayList<Event> events;
     private JSONObject eventDATA;
-    /**
-    *Method: private void fillList()
-    *Description: shows every events on list of events
-    */
     private void fillList()
     {
         EventRecommendationDAO eventRecommendationDAO = new EventRecommendationDAO();
@@ -89,9 +85,9 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
     /**
     *Method: public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     *Description: fills list of events if user are logged
-    *@param LayoutInflater inflater
-    *@param ViewGroup container
-    *@param Bundle savedInstanceState
+    *@param inflater
+    *@param container
+    *@param savedInstanceState
     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -116,10 +112,10 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
     /**
     *Method: public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     *Description:
-    *@param AdapterView<?> parent
-    *@param View view
-    *@param int position
-    *@param long id
+    *@param parent
+    *@param view
+    *@param position
+    *@param id
     */
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {

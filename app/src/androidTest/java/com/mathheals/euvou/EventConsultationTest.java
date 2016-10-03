@@ -196,10 +196,6 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         assertTrue(result);
     }
 
-    /**
-    *Method: private void openShowEventFragment()
-    *Description: tests event to show event fragment
-    */
     private void openShowEventFragment()
     {
         onView(withId(R.id.search)).perform(click());
@@ -221,7 +217,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     /**
     *Method: public void setUserId(Integer userId)
     *Description: sets user id
-    *@param Integer userId
+    *@param userId
     */
     public void setUserId(Integer userId)
     {
@@ -232,7 +228,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     /**
     *Method: public void setIsUserLoggedIn(boolean isUserLoggedIn)
     *Description:sets that user are logged in
-    *@param boolean isUserLoggedIn
+    *@param isUserLoggedIn
     */
     public void setIsUserLoggedIn(boolean isUserLoggedIn)
     {
@@ -263,10 +259,6 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         onView(withId(R.id.EuVou)).check(matches(not(isDisplayed())));
     }
 
-    /**
-    *Method: private void markClick()
-    *Description: test if click marks
-    */
     private void markClick()
     {
         onView(withId(R.id.search)).perform(click());

@@ -25,9 +25,9 @@ public class EventAdapter extends ArrayAdapter<Event>
     /**
     *Method: public View getView(int position, View convertView, ViewGroup parent)
     *Description: method to get of event
-    *@param int position
-    *@param View convertView
-    *@param ViewGroup parent)
+    *@param position
+    *@param convertView
+    *@param parent
     */
     public View getView(int position, View convertView, ViewGroup parent)
     {
@@ -55,8 +55,8 @@ public class EventAdapter extends ArrayAdapter<Event>
     /**
     *Method: public EventAdapter(Context context, List<Event> events)
     *Description:
-    *@param Context context
-    *@param List<Event> events
+    *@param context
+    *@param events
     */
     public EventAdapter(Context context, List<Event> events)
     {

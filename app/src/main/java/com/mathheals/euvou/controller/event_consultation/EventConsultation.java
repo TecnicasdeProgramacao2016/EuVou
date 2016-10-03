@@ -50,11 +50,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     private String option = "option";
     private static final String PEOPLE_NOT_FOUND_MESSAGE = "Nenhum usuário foi encontrado.";
 
-    /**
-    *Method: private void setSearchBar(Menu menuSearchBar)
-    *Description: sets text on search bar
-    *@param Menu menuSearchBar
-    */
     private void setSearchBar(Menu menuSearchBar)
     {
         final String SEARCH_VIEW_HINT = "Pesquisar";
@@ -233,11 +228,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         });
     }
 
-    /**
-    *Method: private void showEventsAsList(String[] eventNames)
-    *Description: shows an event in a list
-    *@param String[] eventNames
-    */
     private void showEventsAsList(String[] eventNames)
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
@@ -246,11 +236,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
     }
 
-    /**
-    *Method: void showPeopleAsList(String[] peopleNames)
-    *Description: shows people in a list
-    *@param String[] eventNames
-    */
     private void showPeopleAsList(String[] peopleNames)
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
@@ -258,10 +243,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         listView.setAdapter(adapter);
     }
 
-    /**
-    *Method: private void configActionBar()
-    *Description: Configures color of action bar
-    */
     private void configActionBar()
     {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00C0C3")));
@@ -292,8 +273,8 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     /**
     *Method: public void onCheckedChanged(RadioGroup group, int checkedId)
     *Description: check changes of event
-    *@param RadioGroup group
-    *@param int checkedId
+    *@param group
+    *@param checkedId
     */
     public void onCheckedChanged(RadioGroup group, int checkedId)
     {
