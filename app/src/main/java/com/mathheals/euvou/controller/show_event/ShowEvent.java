@@ -337,7 +337,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
         EventEvaluationDAO eventEvaluationDAO = new EventEvaluationDAO();
 
-        JSONObject evaluationJSON = eventEvaluationDAO.searchEventEvaluation(Integer.parseInt(eventId), userId);
+        JSONObject evaluationJSON = (JSONObject) eventEvaluationDAO.searchEventEvaluation(Integer.parseInt(eventId), userId);
 
         if(evaluationJSON != null)
         {
@@ -404,10 +404,6 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         }
     }
 
-    /**
-     *
-     *
-     */
     private void setRatingBarStyle()
     {
         //NOTHING TO DO
