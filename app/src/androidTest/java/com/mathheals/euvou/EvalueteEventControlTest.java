@@ -1,7 +1,7 @@
-/*
-* File name: EvalueteEventControlTest.
-* File pourpose: Test class EvalueteEventControl.
-*/
+/**
+  * File name: EvalueteEventControlTest.
+  * File pourpose: Test class EvalueteEventControl.
+  */
 
 package com.mathheals.euvou;
 
@@ -9,6 +9,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.PerformException;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.test.ActivityInstrumentationTestCase2;
+import android.util.Log;
 
 import com.mathheals.euvou.controller.home_page.HomePage;
 import com.mathheals.euvou.controller.utility.LoginUtility;
@@ -49,6 +50,8 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
         super.setUp();
         getActivity();
         isLoged = new LoginUtility(getActivity());
+
+        Log.d("EvalueteEventControlTest", "Throws Exception for setUp logg in");
     }
 
     public void testIfEditUserOptionIsDisplayedForUserLoggedOut()
@@ -70,6 +73,7 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
         if (!isLoged.hasUserLoggedIn())
         {
             isLoged.setUserLogIn(3);
+            Log.d("EvalueteEventControlTest", "It has been setted user logged in");
         }
         else
             //NOTHING TO DO
@@ -86,6 +90,7 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
         if (!isLoged.hasUserLoggedIn())
         {
             isLoged.setUserLogIn(3);
+            Log.d("EvalueteEventControlTest", "It has setted up user loggiing");
         }
         else
             //NOTHING TO DO
@@ -103,9 +108,10 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
             {
                 Thread.sleep(1000);
             }
-            catch (InterruptedException e)
+            catch (InterruptedException exception)
             {
-                e.printStackTrace();
+                exception.printStackTrace();
+                Log.d("EvalueteEventControlTest", "InterruptedException");
             }
 
             result = true;
@@ -113,6 +119,7 @@ public class EvalueteEventControlTest extends ActivityInstrumentationTestCase2<H
         catch (PerformException performException)
         {
             result = false;
+            Log.d("EvalueteEventControlTest", "Perform Exception");
         }
 
         assertTrue(result);
