@@ -49,6 +49,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
+    /**
+     * main method of the activity, it happens when the activity stats
+     * @param inflater - inflater for the layout
+     * @param conteiner - group the objects of the view
+     * @param savedInstanceState - a bundle of the instance
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
                              Bundle savedInstanceState)
     {
@@ -62,13 +68,20 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         return view;
     }
 
-    private void registerUser(final User user)//aplicar assertiva "não confie em ningúem"
+    /**
+     * method that registers an user to the database
+     * @param user - user to be saved
+     */
+    private void registerUser(final User user)
     {
         assert(user != null);
         UserDAO userDAO = new UserDAO(getActivity());
         userDAO.save(user);
     }
 
+    /**
+     * method that starts the login activity
+     */
     private void startLoginActivity()
     {
         Activity activity = getActivity();
@@ -77,6 +90,10 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
 
     }
 
+    /**
+     * method that sets the editText on the atributes that have already been created
+     * @param view - view that has the editTexts
+     */
     private void setingEditText(View view)
     {
         assert(view != null);
@@ -90,6 +107,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         this.birthDateField = (EditText) view.findViewById(R.id.dateField);
     }
 
+    /**
+     * method that casts the editText and turns it into String
+     */
     private void setingTextTyped()
     {
         this.name = nameField.getText().toString();
@@ -102,6 +122,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
+    /**
+     * method that is executed when the click is made in the Activity
+     */
     public void onClick(View view)
     {
         assert(view != null);
@@ -132,6 +155,10 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         }
     }
 
+    /**
+     * method that shows the message of an error ocurred
+     * @param message - message of the error
+     */
     public void UserRegisterErrorMessage(final String message)
     {
         assert(message != null);

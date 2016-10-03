@@ -59,6 +59,9 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     private final int LOGGED_OUT = -1;
 
     @Override
+    /**
+     * method that starts when the activity is called
+     */
     protected void onCreate(final Bundle savedInstanceState)
     {
         assert(savedInstanceState != null);
@@ -69,7 +72,9 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         initViews();
 
         drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, textOptions));
+
         assert(drawerList != null);
+
         callGoogleMaps();
         onConfigActionBar();
         startPrincipalFragment();
@@ -77,6 +82,9 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
                                " the actionbar has been configured and the main fragment has been called");
     }
 
+    /**
+     * method that starts the main fragment of the aplication
+     */
     private void startPrincipalFragment()
     {
         android.support.v4.app.FragmentTransaction fragmentTransaction =
@@ -86,6 +94,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         fragmentTransaction.commit();
     }
 
+    /**
+     * method that searches a place in that was typed
+     * @param view - view that will be searched
+     */
     public void searchPlace(final View view)
     {
         assert(view != null);
@@ -108,11 +120,17 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         }
     }
 
+    /**
+     * method that calls the maps to the application
+     */
     private void callGoogleMaps()
     {
         drawerList.setOnItemClickListener(this);
     }
 
+    /**
+     * method that iniciate the views of the application
+     */
     private void initViews()
     {
         logger.log(Level.INFO,"views have been initializated");
@@ -144,6 +162,9 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         actionBar = getSupportActionBar();
     }
 
+    /**
+     * method that configurates the actionBar
+     */
     private void onConfigActionBar()
     {
         logger.log(Level.INFO,"entered on the method to config the actionBar");
@@ -154,6 +175,11 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
     }
 
+    /**
+     * method that creates the options of the menu
+     * @param menu = menu instance
+     * @return
+     */
     public boolean onCreateOptionsMenu(final Menu menu)
     {
         logger.log(Level.INFO,"entered in the method to create the menus option");
@@ -182,6 +208,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     *Method that changes the configuration
+     * @param newConfig - configuration to the tested
+     */
     public void onConfigurationChanged(final Configuration newConfig)
     {
         logger.log(Level.INFO,"entered in the method that changes the configuration");
@@ -202,6 +232,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     }
 
     @Override
+    /**
+     * method that checks the selected option on the menu
+     * @param - item of the menu
+     */
     public boolean onOptionsItemSelected(MenuItem item)
     {
         logger.log(Level.INFO,"entered in the method that checks the options that were selected");
@@ -233,7 +267,11 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * method that shows the option for ther users that are not logged
+     * @param item - item of the menu
+     * @return
+     */
     public boolean userLoggedInOptions(final MenuItem item)
     {
         logger.log(Level.INFO,"entered in the method that shows the options for the user that is logged");
@@ -242,7 +280,6 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         switch(item.getItemId())
         {
             case R.id.edit_register:
-                // Put here code for "Alterar Cadastro"
                 fragmentTransaction.replace(R.id.content_frame, new EditUserFragment());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -283,6 +320,11 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         }
     }
 
+    /**
+     * method that shows the options for users that are not logged in
+     * @param item - item of  the menu
+     * @return
+     */
     public boolean userLoggedOutOptions(final MenuItem item)
     {
         logger.log(Level.INFO,"entered in the method that shows the options for the users logged out");
@@ -305,6 +347,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         }
     }
 
+    /**
+     * method to get the click on the update informations of the user
+     * @param view - current screen
+     */
     public void editUserUpdateButtonOnClick(View view)
     {
         logger.log(Level.INFO,"entered in the method that informates the user ");
@@ -316,6 +362,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         return;
     }
 
+    /**
+     * method that listen to the search button
+     * @param item - iten of the menu
+     */
     public void searchOnclick(final MenuItem item)
     {
         assert(item != null);
@@ -325,6 +375,13 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         logger.log(Level.INFO,"executed the method searchOnClick with ou error");
     }
         @Override
+        /**
+         * method that gets the item that the user has clicked
+         * @param parent - the adapter of the view to the user
+         * @param view - current view
+         * @param position - the option of the item
+         *
+         */
         public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id)
         {
             logger.log(Level.INFO,"entered in the method that recognize the click on the categories");

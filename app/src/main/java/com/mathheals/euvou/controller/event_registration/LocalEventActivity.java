@@ -37,6 +37,9 @@ public class LocalEventActivity extends FragmentActivity implements GoogleMap.On
     }
 
     @Override
+    /**
+     * method that gets a paused screen and continues it.
+     */
     protected void onResume()
     {
         super.onResume();
