@@ -15,6 +15,11 @@ public class ActivityUtility
 
     public static void restartActivity(Activity activity) 
     {
+        /**
+         * method the login activity
+         * @param activity
+         */
+
         Intent intent = activity.getIntent();
         activity.finish();
         activity.startActivity(intent);
@@ -22,6 +27,11 @@ public class ActivityUtility
 
     public static void clearBackStack(FragmentActivity fragmentActivity) 
     {
+        /**
+         * method the activity of the fragment
+         * @param fragmentActivity
+         */
+
         FragmentManager manager = fragmentActivity.getSupportFragmentManager();
         if (manager.getBackStackEntryCount() > 0) 
         {

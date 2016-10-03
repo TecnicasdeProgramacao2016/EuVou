@@ -26,10 +26,23 @@ public class LoginValidation
 
     private boolean checkUsernameCharacters(String username)
     {
-        if(username.isEmpty())
+        /*
+            * method check if the username is valid
+            * @param username - user's username
+        */
+        if(username.isEmpty()){
             return false;
-        if(username.contains(" "))
+        } else
+        {
+            //NOTHING TO DO
+        }
+
+        if(username.contains(" ")){
             return false;
+        } else
+        {
+            //NOTHING TO DO
+        }
         return true;
     }
 
@@ -37,6 +50,12 @@ public class LoginValidation
 
     public boolean isActivity(String username)
     {
+
+        /*
+            * method check if the username is ative
+            * @param username - user's username
+        */
+
         UserDAO userDAO = new UserDAO(this.activity);
 
         JSONObject json = null;
@@ -45,9 +64,9 @@ public class LoginValidation
         {
             json = userDAO.searchUserByUsername(username);
             isActivity = json.getJSONObject(JSON_FORMAT).getString(COLUMN_USER_STATE);
-        } catch (JSONException e) 
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         }
 
         if(json!=null && isActivity.equals("Y"))
@@ -62,6 +81,10 @@ public class LoginValidation
 
     public boolean isUsernameRegistred(String username)
     {
+        /*
+            * method check if username is registred
+            * @param username - user's username
+        */
         UserDAO userDAO = new UserDAO(this.activity);
 
         JSONObject json = userDAO.searchUserByUsername(username);
@@ -79,6 +102,11 @@ public class LoginValidation
 
     public boolean isUsernameValid(String username)
     {
+        /*
+            * method check if the username is valid
+            * @param username - user's username
+        */
+
         return checkUsernameCharacters(username) && isUsernameRegistred(username);
     }
 

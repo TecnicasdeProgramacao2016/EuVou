@@ -32,17 +32,18 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
 
     private Activity homePage;
 
-    public DisableAccountLoginConfirmation() 
-    {
-        // Required empty public constructor
-    }
-
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
                              Bundle savedInstanceState) 
     {
-        // Inflate the layout for this fragment
+        /**
+         * method inflate the layout for this fragment
+         * @param inflater -
+         * @param container -
+         * @param savedInstanceState -
+         */
 
         homePage = getActivity();
         View view = inflater.inflate(R.layout.fragment_disable_account_login_confirmation, container, false);
@@ -60,6 +61,11 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
     @Override
     public void onClick(View view) 
     {
+
+        /**
+         * method that gets the informations and create the event
+         * @param view
+         */
 
         FragmentActivity activity = this.getActivity();
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
@@ -94,6 +100,10 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
 
     public boolean isLoginConfirmationValid() 
     {
+        /**
+         * method check the confirmation of user login
+         */
+
         View view = getView();
 
         EditText usernameField = (EditText) view.findViewById(R.id.edit_text_login_id);

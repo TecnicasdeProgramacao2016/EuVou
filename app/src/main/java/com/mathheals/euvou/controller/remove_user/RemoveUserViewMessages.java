@@ -15,12 +15,21 @@ public class RemoveUserViewMessages
 
     public static void showWelcomeBackMessage(Context context) 
     {
+        /**
+         * method show the welcome message
+         */
+
         Toast.makeText(context, WELCOME_BACK_MESSAGE, Toast.LENGTH_LONG).show();
     }
 
     public static final String BYE_BYE_MESSAGE = "Conta desativada :(";
 
-    public static void showAccountDeactivateMessage(Context context) {
+    public static void showAccountDeactivateMessage(Context context)
+    {
+        /**
+         * method show the message that count is desactivate
+         */
+
         Toast.makeText(context, BYE_BYE_MESSAGE, Toast.LENGTH_LONG).show();
     }
 }

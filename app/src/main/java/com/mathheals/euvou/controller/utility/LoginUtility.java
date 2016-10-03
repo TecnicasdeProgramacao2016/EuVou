@@ -46,7 +46,7 @@ public class LoginUtility
     public int getUserId(String username) throws org.json.JSONException
     {
         UserDAO userDAO = new UserDAO(this.activity);
-        JSONObject jsonObject = userDAO.searchUserByUsername(username);
+        JSONObject jsonObject = (JSONObject) userDAO.searchUserByUsername(username);
         return Integer.parseInt(jsonObject.getJSONObject("0").getString(COLUMN_USER_ID));
     }
 
@@ -62,7 +62,7 @@ public class LoginUtility
         try 
         {
             UserDAO userDAO = new UserDAO(this.activity);
-            JSONObject jsonObject = userDAO.searchUserByUsername(username);
+            JSONObject jsonObject = (JSONObject) userDAO.searchUserByUsername(username);
 
             user = new User(jsonObject.getJSONObject("0").getString(COLUMN_USER_NAME),
                     jsonObject.getJSONObject("0").getString(COLUMN_USER_LOGIN),
@@ -71,15 +71,15 @@ public class LoginUtility
                     formatDateToBr(jsonObject.getJSONObject("0").getString(COLUMN_USER_BIRTHDATE)));
             return user;
 
-        } catch (ParseException e) 
+        } catch (ParseException exception)
         {
-            e.printStackTrace();
-        } catch (UserException e) 
+            exception.printStackTrace();
+        } catch (UserException exception)
         {
-            e.printStackTrace();
-        } catch (JSONException e) 
+            exception.printStackTrace();
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         }
 
         return user;

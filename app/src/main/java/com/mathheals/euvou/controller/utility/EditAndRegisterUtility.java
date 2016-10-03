@@ -11,13 +11,14 @@ import android.widget.EditText;
 public class EditAndRegisterUtility 
 {
 
-    public EditAndRegisterUtility()
-    {
-    	//NOTHING TO DO
-    }
-
     public void setMessageError(EditText editText, String message) 
     {
+        /**
+         * method that show errors message
+         * @param editText -
+         * @param message - message that show the error
+         */
+
         editText.requestFocus();
         editText.setError(message);
     }

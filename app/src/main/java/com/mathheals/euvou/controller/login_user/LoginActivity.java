@@ -33,6 +33,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private ActionBar actionBar;
 
+    /**
+        * Overrides are used to rewrite methods.
+        * This override saves the state of writh instances
+        * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     {
@@ -54,7 +60,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) 
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        /**
+             * This method inflate the menu and add items to the action bar if it is present.
+             * @param menu -
+         */
+
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
     }
@@ -93,8 +103,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private boolean isPasswordValid = false;
 
     @Override
-    public void onClick(View v) 
+    public void onClick(View view)
     {
+        /**
+         * method that gets the informations and create the event
+         * @param view
+         */
+
         EditText usernameField = (EditText) findViewById(R.id.usernameField);
         String typedUsername = usernameField.getText().toString();
 
@@ -117,9 +132,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Intent i = new Intent(this, HomePage.class);
                 finish();
                 startActivityForResult(i, 1);
-            } catch (JSONException e) 
+            } catch (JSONException exception)
             {
-                e.printStackTrace();
+                exception.printStackTrace();
             }
             Log.d("LoginActivity", "User is logged");
 

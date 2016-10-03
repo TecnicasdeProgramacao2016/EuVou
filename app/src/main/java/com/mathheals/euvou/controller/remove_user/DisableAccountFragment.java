@@ -22,17 +22,17 @@ import com.mathheals.euvou.R;
 public class DisableAccountFragment extends android.support.v4.app.Fragment implements View.OnClickListener 
 {
 
-    public DisableAccountFragment() 
-    {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
                              Bundle savedInstanceState) 
     {
-        // Inflate the layout for this fragment
+        /**
+         * method inflate the layout for this fragment
+         * @param inflater
+         * @param container
+         * @param savedInstanceState
+         */
 
         View view = inflater.inflate(R.layout.fragment_disable_account, container, false);
 
@@ -49,6 +49,11 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
     @Override
     public void onClick(View view) 
     {
+        /**
+         * method that gets the informations and create the event
+         * @param view
+         */
+
         FragmentActivity activity = this.getActivity();
         FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
         FragmentManager fragmentManager = activity.getSupportFragmentManager();

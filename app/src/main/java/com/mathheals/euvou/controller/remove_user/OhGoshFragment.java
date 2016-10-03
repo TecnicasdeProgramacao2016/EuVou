@@ -17,17 +17,18 @@ public class OhGoshFragment extends android.support.v4.app.Fragment
 {
 
 
-    public OhGoshFragment() 
-    {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
                              Bundle savedInstanceState) 
     {
-        // Inflate the layout for this fragment
+        /**
+         * method inflate the layout for this fragment
+         * @param inflater -
+         * @param container -
+         * @param savedInstanceState -
+         */
+
         return inflater.inflate(R.layout.fragment_oh_gosh, container, false);
     }
 
