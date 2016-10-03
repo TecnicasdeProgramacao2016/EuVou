@@ -162,7 +162,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
-        private  Event clicked;
+        Event clicked;
 
         final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         clicked = events.get(position);

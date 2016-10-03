@@ -115,10 +115,10 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
                         result.getJSONObject("" + i).getString("description"),
                         result.getJSONObject("" + i).getString("address"),
                         result.getJSONObject("" + i).getString("phonePlace")
-
-                        Log.d("ShowPlaceRank", "A new place has been created);
-
                 );
+
+                Log.d("ShowPlaceRank", "A new place has been created");
+
                 places.add(aux);
             }
         }catch(JSONException exception)

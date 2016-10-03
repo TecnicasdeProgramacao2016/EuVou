@@ -61,7 +61,7 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
                              Bundle savedInstanceState)
     {
 
-        private View view;
+       View view;
 
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_show_top5_rank, container, false);

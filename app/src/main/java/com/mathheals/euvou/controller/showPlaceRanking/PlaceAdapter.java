@@ -19,7 +19,6 @@ import java.util.List;
 
 import model.Place;
 
-/
 public class PlaceAdapter extends ArrayAdapter<Place>
 {
     /**
