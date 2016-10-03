@@ -33,21 +33,21 @@ public class ShowPlaceInfo extends FragmentActivity
     private final Integer LOGGED_OUT = -1;
     protected GoogleMap mMap;
 
-    private String name;
-    private String phone;
-    private String operation;
-    private String description;
-    private double longitude;
-    private double latitude;
-    private String address;
-    private float grade;
-    private int idPlace;
+    private String name = null;
+    private String phone = null;
+    private String operation = null;
+    private String description = null;
+    private double longitude = 0.0;
+    private double latitude = 0.0;
+    private String address = null;
+    private float grade = 0.0F;
+    private int idPlace = 0;
 
-    private TextView addressText;
-    private TextView operationText;
-    private TextView phoneText;
-    private TextView descriptionText;
-    private TextView gradeText;
+    private TextView addressText = null;
+    private TextView operationText = null;
+    private TextView phoneText = null;
+    private TextView descriptionText = null;
+    private TextView gradeText = null;
 
     private Button showMapButton;
     private Button hideMapButton;
@@ -63,6 +63,11 @@ public class ShowPlaceInfo extends FragmentActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        /**
+         * method that set information on map
+         * @param savedInstanceState
+         */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_place_info);
 
@@ -83,12 +88,24 @@ public class ShowPlaceInfo extends FragmentActivity
 
     private void setRatingBarIfNeeded()
     {
-        if(isUserLoggedIn)
+        /**
+         * method sets rating bar if it is called
+         */
+
+        if(isUserLoggedIn){
             setRatingBar();
+        } else
+        {
+            //NOTHING TO DO
+        }
     }
 
     private void setRatingBar()
     {
+        /**
+         * method that set Rating Bar
+         */
+
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         ratingBar.setVisibility(View.VISIBLE);
         ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
@@ -105,13 +122,20 @@ public class ShowPlaceInfo extends FragmentActivity
 
     private void setRatingBarStyle()
     {
+        /**
+         * method that set Rating Bar Style
+         */
+
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getBaseContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);
     }
 
     private void setUpMapIfNeeded()
     {
-        // Do a null check to confirm that we have not already instantiated the map.
+        /**
+         * method that do a null check to confirm that we have not already instantiated the map.
+         */
+
         if (mMap == null)
         {
             // Try to obtain the map from the SupportMapFragment.
@@ -121,18 +145,32 @@ public class ShowPlaceInfo extends FragmentActivity
             if (mMap != null)
             {
                 setUpMap();
+            } else
+            {
+                //NOTHING TO DO
             }
+        } else
+        {
+            //NOTHING TO DO
         }
     }
 
     private void setUpMap()
     {
+        /**
+         * method that up the map to user
+         */
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(getLatitude(), getLongitude()), 9));
         markPlaceOnMap();
     }
 
     private void markPlaceOnMap() {
+
+        /**
+         * method that mark desired place on map to user
+         */
 
         mMap.addMarker(
                 new MarkerOptions()
@@ -143,6 +181,12 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     public void showPlaceInfoOnClick(View view) {
+
+        /**
+         * method that place info when the user click on it
+         * @param view
+         */
+
         switch(view.getId()) {
             case R.id.button_show_map:
                 setUpMapIfNeeded();
@@ -155,9 +199,16 @@ public class ShowPlaceInfo extends FragmentActivity
                 showMapButton.setVisibility(View.VISIBLE);
                 mMapFragment.getView().setVisibility(View.GONE);
                 break;
+            default:
+                //NOTHING TO DO
         }
     }
     private void setPlaceInfo() {
+
+        /**
+         * method that set Place Info to future calls
+         */
+
         Intent intent = getIntent();
         setName(intent.getStringExtra("name"));
         setPhone(intent.getStringExtra("phone"));
@@ -170,6 +221,9 @@ public class ShowPlaceInfo extends FragmentActivity
         setIdPlace(intent.getIntExtra("idPlace", 0));
     }
 
+    /**
+     * The next methods block have the function to set the info required.
+     */
     private void setGrade(float grade) {
         this.grade = grade;
     }
@@ -218,13 +272,25 @@ public class ShowPlaceInfo extends FragmentActivity
         this.latitude = latitude;
     }
 
+
+
     private void setAddressText(String adressText) {
+        /**
+         * method that set the place adress text
+         * @param adressText
+         */
+
         this.addressText = (TextView) findViewById(R.id.address_text);
         this.addressText.setText(adressText);
         this.addressText.setMovementMethod(new ScrollingMovementMethod());
     }
 
     private void setOperationText(String operationText) {
+        /**
+         * method that set the text operation to user
+         * @param operationText
+         */
+
         this.operationText = (TextView) findViewById(R.id.operation_text);
         this.operationText.setText(operationText);
         this.operationText.setMovementMethod(new ScrollingMovementMethod());
@@ -247,6 +313,10 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private void setAllTextViews() {
+        /**
+         * method that set all the text to user
+         */
+
         setAddressText(address);
         setOperationText(operation);
         setPhoneText(phone);
@@ -263,6 +333,10 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     private void setRatingMessage(boolean isUserLoggedIn) {
+        /**
+         * method that set the message to user to do the login
+         * @param isUserLoggedIn
+         */
         String message = isUserLoggedIn ? "Sua avaliação:" : "Faça login para avaliar!";
         ratingMessage = (TextView) findViewById(R.id.rate_it_text);
         ratingMessage.setText(message);
