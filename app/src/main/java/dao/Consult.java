@@ -40,8 +40,10 @@ public class Consult
     {
         assert(query != null);
         assert(url != null);
+
         this.query= query;
         this.url = url;
+
         setIsDoing(false);
     }
 
@@ -57,8 +59,9 @@ public class Consult
 
     public String exec()
     {
-        new Access().execute();
+
         logger.log(Level.INFO,"entered in the method that makes the connection to access the database");
+        new Access().execute();
         return getResult();
     }
 
@@ -88,15 +91,16 @@ public class Consult
 
             try
             {
-                HttpResponse response;
                 HttpClient client = new DefaultHttpClient();
-                HttpPost post = new HttpPost(url);
+
 
                 List<NameValuePair> pairs = new ArrayList<NameValuePair>();
                 pairs.add(new BasicNameValuePair(PARAM, query));
 
+                HttpPost post = new HttpPost(url);
                 post.setEntity(new UrlEncodedFormEntity(pairs));
-                response = client.execute(post);
+
+                HttpResponse   response = client.execute(post);
 
                 result = inputStreamToString(response.getEntity().getContent()).toString();
                 setIsDoing(true);
@@ -117,10 +121,10 @@ public class Consult
         private StringBuilder inputStreamToString(InputStream is) throws IOException
         {
             assert(is != null);
-            String rLine = "";
             StringBuilder answer = new StringBuilder();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is));
 
+            String rLine = "";
             while ((rLine = rd.readLine()) != null)
             {
                 answer.append(rLine);

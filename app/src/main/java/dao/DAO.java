@@ -36,11 +36,13 @@ public abstract class DAO {
         assert(query != null);
         assert(urlQuery != null);
         logger.log(Level.INFO,"entered in the method that makes the query");
-        Consult consult = new Consult(query,urlQuery);
-        consult.exec();
 
         long currentTime = Calendar.getInstance().getTime().getTime();
         long timeLimit = currentTime + LIMITCONECTIONTIME;
+
+        Consult consult = new Consult(query,urlQuery);
+        consult.exec();
+
         while(!consult.getIsDoing() && currentTime < timeLimit)
         {
             currentTime = Calendar.getInstance().getTime().getTime();
@@ -61,12 +63,16 @@ public abstract class DAO {
         assert(timeLimit > 0);
         assert(currentTime > 0);
         logger.log(Level.INFO,"entered in the method that checks the limit of the time conection");
-        return (currentTime >= timeLimit);
+
+        boolean resultLimitTimeCheck =  (currentTime >= timeLimit);
+
+        return resultLimitTimeCheck;
     }
     protected String executeQuery(String query)
     {
         assert(query != null);
         logger.log(Level.INFO,"entered in the method that executes the query");
+
         return query(query, URLQUERY);
     }
 
@@ -74,11 +80,11 @@ public abstract class DAO {
     {
         assert(query != null);
         logger.log(Level.INFO,"entered in the method that execute the consult on the database");
-        String json;
+
         JSONObject jObject = null;
         try
         {
-            json = query(query,URLCONSULT);
+            String json = query(query,URLCONSULT);
             jObject  = new JSONObject(json);
             assert(jObject != null);
         } catch (Exception exception)

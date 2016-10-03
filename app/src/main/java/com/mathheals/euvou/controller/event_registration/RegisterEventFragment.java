@@ -7,6 +7,7 @@ package com.mathheals.euvou.controller.event_registration;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         assert(inflater != null);
         assert(container != null);
         assert(savedInstanceState != null);
-
+        Log.d("01","started the onCreatView method");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.register_event, container, false);
 
@@ -81,7 +82,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private void addCinemaToCategory(final View view)
     {
         assert(view != null);
-
+        Log.d("01","started the addCinemaToCategory method");
         CheckBox cinemaCheckBox = (CheckBox) view;
 
         if(cinemaCheckBox.isChecked())
@@ -101,7 +102,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private void addToEducationCategory(final View view)
     {
         assert(view != null);
-
+        Log.d("01","started the addToEducationCategory method");
         CheckBox educationCheckBox = (CheckBox) view;
 
         if(educationCheckBox.isChecked())
@@ -121,7 +122,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private void addToExpositionCategory(final View view)
     {
         assert(view != null);
-
+        Log.d("01","started the addToExpositionCategory method");
         CheckBox expositionCheckBox = (CheckBox) view;
 
         if(expositionCheckBox.isChecked())
@@ -141,7 +142,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private void addToMuseumCategory(final View view)
     {
         assert( view != null);
-
+        Log.d("01","started the addToMuseumCategory method");
         CheckBox museumCheckBox = (CheckBox) view;
 
         if(museumCheckBox.isChecked())
@@ -160,7 +161,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private void addToOthersCategory(final View view)
     {
         assert(view != null);
-
+        Log.d("01","started the addToOthersCategory method");
         CheckBox othersCheckBox = (CheckBox) view;
 
         if(othersCheckBox.isChecked())
@@ -180,7 +181,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private void addToPartyCategory(final View view)
     {
         assert(view != null);
-
+        Log.d("01","started the addToPartyCategory method");
         CheckBox partyCheckBox = (CheckBox) view;
 
         if(partyCheckBox.isChecked())
@@ -199,6 +200,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private void addToSportsCategory(final View view)
     {
         assert(view != null);
+        Log.d("01","started the addToSportsCategory method");
         CheckBox sportsCheckBox = (CheckBox) view;
 
         if(sportsCheckBox.isChecked())
@@ -219,7 +221,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     {
         assert(view != null);
         CheckBox theaterCheckBox = (CheckBox) view;
-
+        Log.d("01","started the addToTheatreCategories method");
         if(theaterCheckBox.isChecked())
         {
             categories.add(theaterCheckBox.getText().toString());
@@ -237,7 +239,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private void addToShowCategory(final View view)
     {
         assert(view != null);
-
+        Log.d("01","started the addToShowCategory method");
         CheckBox showCheckBOx = (CheckBox) view;
         if(showCheckBOx.isChecked())
         {
@@ -255,7 +257,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private void addEventCategories(final View view)
     {
         assert(view != null);
-
+        Log.d("01","started the addEventCategories method");
         if(view.getId() == R.id.optionCinema)
         {
             addCinemaToCategory(view);

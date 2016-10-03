@@ -39,7 +39,7 @@ public class EventDAO extends DAO
                 event.getNameEvent() + "', '" + event.getIdOwner() + "', '" + event.getPrice() + "', '" + event.getAddress() + "','" + event.getDateTimeEvent() + "','" + event.getDescription() + "'," +
                 "" + event.getLongitude() + "," + event.getLatitude() + ")");
 
-        Vector<String> categories = event.getCategory();
+
         JSONObject jsonObject = executeConsult("SELECT idEvent FROM tb_event WHERE nameEvent = \"" + event.getNameEvent() + "\"");
 
         int idEvent = 0;
@@ -51,6 +51,8 @@ public class EventDAO extends DAO
         {
             e.printStackTrace();
         }
+
+        Vector<String> categories = event.getCategory();
 
         for(int i=0; i<categories.size(); i++)
         {
