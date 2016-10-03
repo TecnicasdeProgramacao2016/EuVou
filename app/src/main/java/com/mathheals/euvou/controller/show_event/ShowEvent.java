@@ -64,14 +64,21 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     private String eventId;
 
 
-
-
+    /**
+     *
+     */
     public ShowEvent()
     {
         // Required empty public constructor
     }
 
-
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -189,7 +196,11 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         return categoriesArray;
     }
 
-
+    /**
+     *
+     * @param eventId
+     * @param eventCategoriesText
+     */
     public void setCategoriesText(int eventId, TextView eventCategoriesText)
     {
         assert(eventId < 0);
@@ -203,6 +214,11 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         eventCategoriesText.setText(text);
     }
 
+    /**
+     *
+     * @param eventPriceText
+     * @param eventPrice
+     */
     public void setPriceText(TextView eventPriceText, String eventPrice)
     {
         // private String eventPrice;
@@ -245,6 +261,10 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     };
 }
 
+    /**
+     *
+     * @param view
+     */
     public void onClick(View view)
     {
         switch(view.getId())
@@ -262,6 +282,10 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         }
     }
 
+    /**
+     *
+     * @param userId
+     */
     // private int userId;
     public void setUserId(int userId)
     {
@@ -269,6 +293,10 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         this.userId = userId;
     }
 
+    /**
+     *
+     * @param isUserLoggedIn
+     */
     public void setIsUserLoggedIn(boolean isUserLoggedIn)
     {
 
@@ -285,6 +313,10 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         ratingMessage.setText(message);
     }
 
+    /**
+     *
+     * @param showEventView
+     */
     public void setShowEventView(View showEventView)
     {
 
@@ -337,11 +369,21 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         setRatingBarStyle();
     }
 
+    /**
+     *
+     * @return
+     */
     public EventEvaluation getEventEvaluation()
     {
         return eventEvaluation;
     }
 
+    /**
+     *
+     * @param rating
+     * @param userId
+     * @param eventId
+     */
     public void setEventEvaluation(Float rating, Integer userId, Integer eventId)
     {
         try
@@ -362,6 +404,10 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         }
     }
 
+    /**
+     *
+     *
+     */
     private void setRatingBarStyle()
     {
         //NOTHING TO DO

@@ -19,9 +19,14 @@ import java.util.List;
 
 import model.Place;
 
-
+/
 public class PlaceAdapter extends ArrayAdapter<Place>
 {
+    /**
+     *
+     * @param context
+     * @param places
+     */
     public PlaceAdapter(Context context, List<Place> places)
     {
 
@@ -34,6 +39,13 @@ public class PlaceAdapter extends ArrayAdapter<Place>
         TextView placeEvaluation;
     }
 
+    /**
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
@@ -55,6 +67,7 @@ public class PlaceAdapter extends ArrayAdapter<Place>
             convertView.setTag(viewHolder);
             Log.d("PlaceAdapter", "Setting ViewHolder");
         }
+
 
 
         viewHolder.placeName.setText(
