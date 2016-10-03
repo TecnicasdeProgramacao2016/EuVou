@@ -101,45 +101,6 @@ public class ShowUser extends android.support.v4.app.Fragment {
     }
 
 
-    //Set rate messages
-    private void setRatingMessage(boolean isUserLoggedIn)
-    {
-        final String LOGGED_IN_MESSAGE = "Sua avaliação:";
-        final String LOGGED_OUT_MESSAGE = "Faça login para avaliar este usuário!";
-        String message = isUserLoggedIn ? LOGGED_IN_MESSAGE : LOGGED_OUT_MESSAGE;
-
-        ratingMessage = (TextView) showUserView.findViewById(R.id.rate_user_text);
-        ratingMessage.setText(message);
-
-        Log.d("ShowUser", "Setted user status as logged in");
-    }
-
-
-    public void setShowUserView(View showUserView)
-    {
-        this.showUserView = showUserView;
-    }
-
-
-    //Set rate bar
-    private void setRatingBarIfNeeded()
-    {
-        if(isUserLoggedIn)
-        {
-            setRatingBar();
-        }
-        else
-        {
-            //NOTING TO DO
-        }
-    }
-
-    public void setCurrentUserId(int currentUserId)
-    {
-        this.currentUserId = currentUserId;
-    }
-
-
     /**
      * Rating bar is setted as user's wish using user's evaluation
      */
@@ -190,12 +151,58 @@ public class ShowUser extends android.support.v4.app.Fragment {
         Log.d("ShowUser", "Rating bar setted");
     }
 
+    //Set atribute Rating bar Style
+    private void setRatingBarStyle()
+    {
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);
+    }
+
     public UserEvaluation getUserEvaluation()
     {
         return userEvaluation;
     }
 
-    //Set atribut User Evaluation
+    //Set rate messages
+    private void setRatingMessage(boolean isUserLoggedIn)
+    {
+        final String LOGGED_IN_MESSAGE = "Sua avaliação:";
+        final String LOGGED_OUT_MESSAGE = "Faça login para avaliar este usuário!";
+        String message = isUserLoggedIn ? LOGGED_IN_MESSAGE : LOGGED_OUT_MESSAGE;
+
+        ratingMessage = (TextView) showUserView.findViewById(R.id.rate_user_text);
+        ratingMessage.setText(message);
+
+        Log.d("ShowUser", "Setted user status as logged in");
+    }
+
+
+    public void setShowUserView(View showUserView)
+    {
+        this.showUserView = showUserView;
+    }
+
+
+    //Set rate bar
+    private void setRatingBarIfNeeded()
+    {
+        if(isUserLoggedIn)
+        {
+            setRatingBar();
+        }
+        else
+        {
+            //NOTING TO DO
+        }
+    }
+
+    public void setCurrentUserId(int currentUserId)
+    {
+        this.currentUserId = currentUserId;
+    }
+
+
+    //Set atributte User Evaluation
     public void setUserEvaluation(Float rating, Integer userId, Integer userEvaluatedId)
     {
         try
@@ -219,12 +226,5 @@ public class ShowUser extends android.support.v4.app.Fragment {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    //Set atribute Rating bar Style
-    private void setRatingBarStyle()
-    {
-        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);
     }
 }

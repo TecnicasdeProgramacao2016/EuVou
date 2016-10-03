@@ -6,7 +6,6 @@
 
 package com.mathheals.euvou.controller.edit_event;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -53,32 +52,19 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
                     descriptionField = null, addressField = null,
                     priceDecimalField = null, priceRealField = null;
 
-    //Format Date
-    public void formatDate(JSONObject jsonEvent) throws JSONException
+
+    //Sets Text
+    private void setingEditText(View view)
     {
+        this.nameField = (EditText) view.findViewById(R.id.eventName);
+        this.dateField = (EditText) view.findViewById(R.id.eventDate);
+        this.hourField = (EditText) view.findViewById(R.id.eventHour);
+        this.descriptionField = (EditText) view.findViewById(R.id.eventDescription);
+        this.priceRealField = (EditText) view.findViewById(R.id.eventPriceReal);
+        this.priceDecimalField = (EditText) view.findViewById(R.id.eventPriceDecimal);
+        this.addressField = (EditText) view.findViewById(R.id.eventAddress);
 
-        String dateHourEvent = jsonEvent.getJSONObject("0").getString("dateTimeEvent");
-        String[] dateHourEventSplit = dateHourEvent.split(" ");
-
-        String dateEvent = dateHourEventSplit[0];
-        String[] dateEventSplit = dateEvent.split("-");
-        dateEvent = dateEventSplit[2] + "/" + dateEventSplit[1] + "/" + dateEventSplit[0];
-
-        String hourEvent = dateHourEventSplit[1];
-
-        this.dateField.setText(dateEvent);
-        this.hourField.setText(hourEvent);
-
-        Log.d("EditEventFragment", "Date sucessfuly formated");
-    }
-
-    //Format Price
-    public void formatPrice(JSONObject jsonEvent) throws JSONException
-    {
-        Integer priceEvent = jsonEvent.getJSONObject("0").getInt("price");
-        this.priceRealField.setText(Integer.toString(priceEvent / 100));
-        this.priceDecimalField.setText(Integer.toString(priceEvent - priceEvent / 100 * 100));
-        Log.d("EditEventFragment", "Price sucessfuly formated");
+        Log.d("EditEventFragment", "Edit text sucessfuly setted");
     }
 
     private String latitude = null;
@@ -86,8 +72,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     private int idEvent = 0;
     private CheckBox showCheckBox = null, expositionCheckBox = null, cinemaCheckBox = null,
-                     museumCheckBox = null, theaterCheckBox = null, educationCheckBox = null,
-                     othersCheckBox = null,sportsCheckBox = null, partyCheckBox = null;
+            museumCheckBox = null, theaterCheckBox = null, educationCheckBox = null,
+            othersCheckBox = null,sportsCheckBox = null, partyCheckBox = null;
 
 
     @Override
@@ -208,19 +194,35 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         return view;
     }
 
-    //Sets Text
-    private void setingEditText(View view)
+    //Format Date
+    public void formatDate(JSONObject jsonEvent) throws JSONException
     {
-        this.nameField = (EditText) view.findViewById(R.id.eventName);
-        this.dateField = (EditText) view.findViewById(R.id.eventDate);
-        this.hourField = (EditText) view.findViewById(R.id.eventHour);
-        this.descriptionField = (EditText) view.findViewById(R.id.eventDescription);
-        this.priceRealField = (EditText) view.findViewById(R.id.eventPriceReal);
-        this.priceDecimalField = (EditText) view.findViewById(R.id.eventPriceDecimal);
-        this.addressField = (EditText) view.findViewById(R.id.eventAddress);
 
-        Log.d("EditEventFragment", "Edit text sucessfuly setted");
+        String dateHourEvent = jsonEvent.getJSONObject("0").getString("dateTimeEvent");
+        String[] dateHourEventSplit = dateHourEvent.split(" ");
+
+        String dateEvent = dateHourEventSplit[0];
+        String[] dateEventSplit = dateEvent.split("-");
+        dateEvent = dateEventSplit[2] + "/" + dateEventSplit[1] + "/" + dateEventSplit[0];
+
+        String hourEvent = dateHourEventSplit[1];
+
+        this.dateField.setText(dateEvent);
+        this.hourField.setText(hourEvent);
+
+        Log.d("EditEventFragment", "Date sucessfuly formated");
     }
+
+    //Format Price
+    public void formatPrice(JSONObject jsonEvent) throws JSONException
+    {
+        Integer priceEvent = jsonEvent.getJSONObject("0").getInt("price");
+        this.priceRealField.setText(Integer.toString(priceEvent / 100));
+        this.priceDecimalField.setText(Integer.toString(priceEvent - priceEvent / 100 * 100));
+        Log.d("EditEventFragment", "Price sucessfuly formated");
+    }
+
+
 
     //Sets checkbox
     private void setingCheckBoxs(View view)
@@ -238,127 +240,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Log.d("EditEventFragment", "Check box sucessfuly setted");
     }
 
-    //Uptades database
-    private void updateEventOnDataBase(Event event)
-    {
-        EventDAO eventDAO = new EventDAO(getActivity());
-        eventDAO.updateEvent(event);
-
-        Log.d("EditEventFragment", "Database updated");
-    }
-
-
     private static final String SUCCESSFULL_UPDATE_MESSAGE = "Evento alterado com sucesso :)";
 
-    //Update event
-    public void updateEvent()
-    {
-
-        String nameEvent = nameField.getText().toString();
-        String dateEvent = dateField.getText().toString();
-
-        String[] dateEventSplit = dateEvent.split("/");
-        dateEvent = dateEventSplit[2] + "-" + dateEventSplit[1] + "-" + dateEventSplit[0];
-
-        String hourEvent = hourField.getText().toString();
-
-        String dateHourEvent = dateEvent + " " + hourEvent;
-
-        String descriptionEvent = descriptionField.getText().toString();
-
-        String addresEvent = addressField.getText().toString();
-
-        Integer eventPriceReal = Integer.parseInt(priceRealField.getText().toString());
-        Integer eventPriceDecimal = Integer.parseInt(priceDecimalField.getText().toString());
-        Integer priceEvent = eventPriceReal * 100 + eventPriceDecimal;
-
-
-
-        try
-        {
-            Event event = new Event(idEvent, nameEvent, priceEvent, addresEvent, dateHourEvent, descriptionEvent,
-                    latitude, longitude, categories);
-
-            updateEventOnDataBase(event);
-
-            Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_UPDATE_MESSAGE, Toast.LENGTH_LONG).show();
-
-            Log.d("EditEventFragment", "Event Updated");
-
-        } catch (EventException eventException)
-        {
-            String message = eventException.getMessage().toString();
-
-            //Verify address field
-            if(message.equals(Event.ADDRESS_IS_EMPTY))
-            {
-                editAndRegisterUtility.setMessageError(addressField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
-            {
-                editAndRegisterUtility.setMessageError(descriptionField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
-            {
-                editAndRegisterUtility.setMessageError(descriptionField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.EVENT_DATE_IS_EMPTY))
-            {
-                editAndRegisterUtility.setMessageError(dateField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
-            {
-                editAndRegisterUtility.setMessageError(nameField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.INVALID_EVENT_DATE))
-            {
-                editAndRegisterUtility.setMessageError(dateField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
-            {
-                editAndRegisterUtility.setMessageError(nameField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-        } catch (ParseException parseException)
-        {
-            parseException.printStackTrace();
-
-        }
-    }
 
     //Add EventCategories
     private void addEventCategories(View view)
@@ -512,36 +395,6 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    /**
-     * Overrides are used to rewrite methods.
-     * This override sets events location and notfy the user if its sucessfull.
-     */
-
-    @Override
-    //Override Action
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 2)
-        {
-            if (resultCode == Activity.RESULT_OK) {
-                Bundle bundle = data.getExtras();
-                latitude = bundle.getString("latitude");
-                longitude = bundle.getString("longitude");
-
-                Toast.makeText(getContext(), "Local selecionado com sucesso", Toast.LENGTH_LONG).show();
-            }
-            else
-            {
-                //NOTHING TO DO
-            }
-        }
-        else
-        {
-            //NOTHING TO DO
-        }
-    }
 
     /**
      * Listeners are used to check user's actions.
@@ -581,6 +434,116 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     }
 
+    //Update event
+    public void updateEvent()
+    {
+
+        String nameEvent = nameField.getText().toString();
+        String dateEvent = dateField.getText().toString();
+
+        String[] dateEventSplit = dateEvent.split("/");
+        dateEvent = dateEventSplit[2] + "-" + dateEventSplit[1] + "-" + dateEventSplit[0];
+
+        String hourEvent = hourField.getText().toString();
+
+        String dateHourEvent = dateEvent + " " + hourEvent;
+
+        String descriptionEvent = descriptionField.getText().toString();
+
+        String addresEvent = addressField.getText().toString();
+
+        Integer eventPriceReal = Integer.parseInt(priceRealField.getText().toString());
+        Integer eventPriceDecimal = Integer.parseInt(priceDecimalField.getText().toString());
+        Integer priceEvent = eventPriceReal * 100 + eventPriceDecimal;
+
+
+
+        try
+        {
+            Event event = new Event(idEvent, nameEvent, priceEvent, addresEvent, dateHourEvent, descriptionEvent,
+                    latitude, longitude, categories);
+
+            updateEventOnDataBase(event);
+
+            Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_UPDATE_MESSAGE, Toast.LENGTH_LONG).show();
+
+            Log.d("EditEventFragment", "Event Updated");
+
+        } catch (EventException eventException)
+        {
+            String message = eventException.getMessage().toString();
+
+            //Verify address field
+            if(message.equals(Event.ADDRESS_IS_EMPTY))
+            {
+                editAndRegisterUtility.setMessageError(addressField, message);
+            }
+            else
+            {
+                //NOTING TO DO
+            }
+
+            if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
+            {
+                editAndRegisterUtility.setMessageError(descriptionField, message);
+            }
+            else
+            {
+                //NOTING TO DO
+            }
+
+            if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
+            {
+                editAndRegisterUtility.setMessageError(descriptionField, message);
+            }
+            else
+            {
+                //NOTING TO DO
+            }
+
+            if(message.equals(Event.EVENT_DATE_IS_EMPTY))
+            {
+                editAndRegisterUtility.setMessageError(dateField, message);
+            }
+            else
+            {
+                //NOTING TO DO
+            }
+
+            if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
+            {
+                editAndRegisterUtility.setMessageError(nameField, message);
+            }
+            else
+            {
+                //NOTING TO DO
+            }
+
+            if(message.equals(Event.INVALID_EVENT_DATE))
+            {
+                editAndRegisterUtility.setMessageError(dateField, message);
+            }
+            else
+            {
+                //NOTING TO DO
+            }
+
+            if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
+            {
+                editAndRegisterUtility.setMessageError(nameField, message);
+            }
+            else
+            {
+                //NOTING TO DO
+            }
+
+        } catch (ParseException parseException)
+        {
+            parseException.printStackTrace();
+
+        }
+    }
+
     //Remove Event
     private void removeEvent(int eventId)
     {
@@ -600,5 +563,14 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         }
 
         Log.d("EditEventFragment", "Event Removed");
+    }
+
+    //Uptades database
+    private void updateEventOnDataBase(Event event)
+    {
+        EventDAO eventDAO = new EventDAO(getActivity());
+        eventDAO.updateEvent(event);
+
+        Log.d("EditEventFragment", "Database updated");
     }
 }

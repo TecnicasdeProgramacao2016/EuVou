@@ -1,4 +1,4 @@
-/*
+    /*
 * File name: EventRegistrationControlTest.
 * File pourpose: Test if an event can be registred.
 */
@@ -44,6 +44,7 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         super(HomePage.class);
     }
 
+
     private Event event;
     private UiDevice device;
     private LoginUtility isLoged;
@@ -59,6 +60,38 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
     }
 
     private TestUtility setLogin;
+
+    //Test Choosen Place to the event
+    public void testChoosePlaceOnMap()
+    {
+
+        if(!isLoged.hasUserLoggedIn())
+        {
+            setLogin.makeUserLogIn();
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+
+        openRegisterEvent();
+        onView(withId(R.id.eventLocal)).perform(click());
+        onView(withId(R.id.map)).perform(click());
+
+        try
+        {
+            Thread.sleep(3000);
+        } catch (InterruptedException interruptedException)
+        {
+            interruptedException.printStackTrace();
+        }
+
+        final String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";
+
+        onView(withText(SUCESSFULL_CHOICE_MESSAGE))
+                .inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView()))))
+                .check(matches(isDisplayed()));
+    }
 
     //Test Categories Checkbox return
     public void testCategoriesCheckBox()
@@ -132,38 +165,6 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         }
 
         onView(withId(R.id.eventAddress)).check(matches(hasErrorText(event.ADDRESS_IS_EMPTY)));
-    }
-
-    //Test Choosen Place to the event
-    public void testChoosePlaceOnMap()
-    {
-
-        if(!isLoged.hasUserLoggedIn())
-        {
-            setLogin.makeUserLogIn();
-        }
-        else
-        {
-            //NOTHING TO DO
-        }
-
-        openRegisterEvent();
-        onView(withId(R.id.eventLocal)).perform(click());
-        onView(withId(R.id.map)).perform(click());
-
-        try
-        {
-            Thread.sleep(3000);
-        } catch (InterruptedException interruptedException)
-        {
-            interruptedException.printStackTrace();
-        }
-
-        final String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";
-
-        onView(withText(SUCESSFULL_CHOICE_MESSAGE))
-                .inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView()))))
-                .check(matches(isDisplayed()));
     }
 
     //Test if registred event is funcional

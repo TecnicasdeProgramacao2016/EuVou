@@ -18,6 +18,27 @@ import model.Place;
 public class PlaceTest extends TestCase
 {
 
+    //Test if name value was gotten
+    public void testGetName()
+    {
+        boolean ok = true;
+        try
+        {
+            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
+                    "rua das flores","33613110");
+            assertTrue(place.getName().equals("Nome"));
+
+        } catch (PlaceException placeException)
+        {
+            ok = false;
+        } catch (ParseException parseException)
+        {
+            ok = false;
+        }
+
+        assertTrue(ok);
+    }
+
     //Test if place's name is empty
     public void testEmptyName()
     {
@@ -160,27 +181,6 @@ public class PlaceTest extends TestCase
         {
             assertFalse(ok);
         }
-    }
-
-    //Test if name value was gotten
-    public void testGetName()
-    {
-        boolean ok = true;
-        try
-        {
-            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
-            assertTrue(place.getName().equals("Nome"));
-
-        } catch (PlaceException placeException)
-        {
-            ok = false;
-        } catch (ParseException parseException)
-        {
-            ok = false;
-        }
-
-        assertTrue(ok);
     }
 
     //Test if latitude value was gotten
