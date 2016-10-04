@@ -36,16 +36,6 @@ public class LocalEventActivity extends FragmentActivity implements GoogleMap.On
         mMap.setOnMapClickListener(this);
     }
 
-    @Override
-    /**
-     * method that gets a paused screen and continues it.
-     */
-    protected void onResume()
-    {
-        super.onResume();
-        setUpMapIfNeeded();
-    }
-
     /**
      * it inflates the map if it is not inflated yet
      */
@@ -56,22 +46,22 @@ public class LocalEventActivity extends FragmentActivity implements GoogleMap.On
         {
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager()
-                                        .findFragmentById(R.id.map))
-                                        .getMap();
+                    .findFragmentById(R.id.map))
+                    .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null)
             {
                 setUpMap();
             }
+            else
+            {
+                //NOTHING TO DO
+            }
+        }else
+        {
+            //NOTHING TO DO
         }
     }
-
-
-    private void setUpMap()
-    {
-
-    }
-
     /**
      * it sets the latitude and the longitude to mark a point on the map
      * @param latLng - coodenates of the point
@@ -86,4 +76,21 @@ public class LocalEventActivity extends FragmentActivity implements GoogleMap.On
         setResult(Activity.RESULT_OK, resultado);
         finish();
     }
+
+    @Override
+    /**
+     * method that gets a paused screen and continues it.
+     */
+    protected void onResume()
+    {
+        super.onResume();
+        setUpMapIfNeeded();
+    }
+
+
+    private void setUpMap()
+    {
+
+    }
+
 }

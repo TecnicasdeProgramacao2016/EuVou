@@ -68,6 +68,41 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         return view;
     }
 
+    @Override
+    /**
+     * method that is executed when the click is made in the Activity
+     */
+    public void onClick(View view)
+    {
+        assert(view != null);
+        setingTextTyped();
+
+        try
+        {
+            User user = new User(name,
+                    username,
+                    mail,
+                    mailConfirm,
+                    password,
+                    passwordConfirm,
+                    birthDate);
+            assert(user != null);
+            registerUser(user);
+
+            Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE,
+                    Toast.LENGTH_LONG).show();
+            startLoginActivity();
+
+        } catch (Exception exception)
+        {
+
+            String message = exception.getMessage();
+            UserRegisterErrorMessage(message);
+
+        }
+    }
+
+
     /**
      * method that registers an user to the database
      * @param user - user to be saved
@@ -122,39 +157,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         this.birthDate = birthDateField.getText().toString();
     }
 
-    @Override
-    /**
-     * method that is executed when the click is made in the Activity
-     */
-    public void onClick(View view)
-    {
-        assert(view != null);
-        setingTextTyped();
-
-        try
-        {
-            User user = new User(name,
-                                 username,
-                                 mail,
-                                 mailConfirm,
-                                 password,
-                                 passwordConfirm,
-                                 birthDate);
-            assert(user != null);
-            registerUser(user);
-
-            Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE,
-                           Toast.LENGTH_LONG).show();
-            startLoginActivity();
-
-        } catch (Exception exception)
-        {
-
-            String message = exception.getMessage();
-            UserRegisterErrorMessage(message);
-
-        }
-    }
 
     /**
      * method that shows the message of an error ocurred
