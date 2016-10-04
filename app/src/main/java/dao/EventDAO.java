@@ -63,12 +63,11 @@ public class EventDAO extends DAO
         }
 
     }
-
-    public  String deleteEvent(int idEvent)
+    public JSONObject searchEventByName(String eventName)
     {
-        logger.log(Level.INFO,"entered in the method that deletes an event");
-        assert(idEvent > 0);
-        return this.executeQuery("DELETE FROM tb_event WHERE idEvent ="+idEvent);
+        assert(eventName != null);
+        logger.log(Level.INFO,"entered in the method that searches an Event by it's name");
+        return this.executeConsult("SELECT * FROM vw_event WHERE nameEvent LIKE'%"+eventName+"%'");
     }
 
     public void updateEvent(Event event)
@@ -91,12 +90,11 @@ public class EventDAO extends DAO
         }
 
     }
-
-    public JSONObject searchEventByName(String eventName)
+    public  String deleteEvent(int idEvent)
     {
-        assert(eventName != null);
-        logger.log(Level.INFO,"entered in the method that searches an Event by it's name");
-        return this.executeConsult("SELECT * FROM vw_event WHERE nameEvent LIKE'%"+eventName+"%'");
+        logger.log(Level.INFO,"entered in the method that deletes an event");
+        assert(idEvent > 0);
+        return this.executeQuery("DELETE FROM tb_event WHERE idEvent ="+idEvent);
     }
 
     public JSONObject searchEventByNameGroup(String eventName)

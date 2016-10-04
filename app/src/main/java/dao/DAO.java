@@ -31,6 +31,25 @@ public abstract class DAO {
 
     }
 
+    protected JSONObject executeConsult(String query)
+    {
+        assert(query != null);
+        logger.log(Level.INFO,"entered in the method that execute the consult on the database");
+
+        JSONObject jObject = null;
+        try
+        {
+            String json = query(query,URLCONSULT);
+            jObject  = new JSONObject(json);
+            assert(jObject != null);
+        } catch (Exception exception)
+        {
+            exception.printStackTrace();
+        }
+
+        return jObject;
+    }
+
     private String query(final String query,final String urlQuery)
     {
         assert(query != null);
@@ -76,23 +95,6 @@ public abstract class DAO {
         return query(query, URLQUERY);
     }
 
-    protected JSONObject executeConsult(String query)
-    {
-        assert(query != null);
-        logger.log(Level.INFO,"entered in the method that execute the consult on the database");
 
-        JSONObject jObject = null;
-        try
-        {
-            String json = query(query,URLCONSULT);
-            jObject  = new JSONObject(json);
-            assert(jObject != null);
-        } catch (Exception exception)
-        {
-            exception.printStackTrace();
-        }
-
-        return jObject;
-    }
 
 }

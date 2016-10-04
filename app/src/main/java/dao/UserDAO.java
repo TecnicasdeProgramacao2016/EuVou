@@ -36,6 +36,20 @@ public class UserDAO extends DAO
                 " STR_TO_DATE(\"" + user.getBirthDate() + "\",'%d/%m/%Y'),\"" + user.getEmail() + "\")");
     }
 
+    public JSONObject searchUserByName(String name)
+    {
+        assert(name != null);
+        logger.log(Level.INFO,"entered in the method that searches the user by it's name");
+        return this.executeConsult("SELECT * FROM vw_user WHERE nameUser LIKE \"%" + name + "%\"");
+    }
+
+    public JSONObject searchUserByUsername(String username)
+    {
+        assert(username != null);
+        logger.log(Level.INFO,"entered in the method that searches an user by it's username");
+        return this.executeConsult("SELECT * FROM vw_user WHERE login=\"" + username + "\"");
+    }
+
     public String searchUserById(int idUser)
     {
         assert(idUser > 0);
@@ -73,19 +87,5 @@ public class UserDAO extends DAO
         assert(idUser > 0);
         logger.log(Level.INFO,"entered in the method that disables the user from the database");
         return this.executeQuery("UPDATE tb_user SET isActivity=\"N\" WHERE idUser=" +idUser+ "");
-    }
-
-    public JSONObject searchUserByUsername(String username)
-    {
-        assert(username != null);
-        logger.log(Level.INFO,"entered in the method that searches an user by it's username");
-        return this.executeConsult("SELECT * FROM vw_user WHERE login=\"" + username + "\"");
-    }
-
-    public JSONObject searchUserByName(String name)
-    {
-        assert(name != null);
-        logger.log(Level.INFO,"entered in the method that searches the user by it's name");
-        return this.executeConsult("SELECT * FROM vw_user WHERE nameUser LIKE \"%" + name + "%\"");
     }
 }

@@ -82,6 +82,29 @@ public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<Home
     }
 
     /**
+     * Testing if it is possible to remove an account with an invalid login confirmation
+     */
+    public void testRemoveWithInvalidLoginConfirmation()
+    {
+        if(!userIsLoged.hasUserLoggedIn())
+        {
+            TestUtility setLogin = null;
+            setLogin.makeUserLogIn();
+        }else
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Configurações")).perform(click());
+            onView(withText("DESATIVAR")).perform(click());
+            onView(withText("Não")).perform(click());
+            onView(withId(R.id.edit_text_login_id)).perform(typeText("izacris"));
+            onView(withId(R.id.edit_text_password_id)).perform(typeText("123456"));
+            onView(withId(R.id.button_disable_account_confirmation_id)).perform(click());
+            onView(withId(R.id.edit_text_login_id)).check(matches(hasErrorText("Ops, acho que você digitou o login errado")));
+        }
+
+    }
+
+    /**
      * testing if the remove button is working well
      */
     public void testRemoveButton()
@@ -148,27 +171,6 @@ public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<Home
 
     }
 
-    /**
-     * Testing if it is possible to remove an account with an invalid login confirmation
-     */
-    public void testRemoveWithInvalidLoginConfirmation()
-    {
-        if(!userIsLoged.hasUserLoggedIn())
-        {
-            TestUtility setLogin = null;
-            setLogin.makeUserLogIn();
-        }else
-        {
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-            onView(withText("Configurações")).perform(click());
-            onView(withText("DESATIVAR")).perform(click());
-            onView(withText("Não")).perform(click());
-            onView(withId(R.id.edit_text_login_id)).perform(typeText("izacris"));
-            onView(withId(R.id.edit_text_password_id)).perform(typeText("123456"));
-            onView(withId(R.id.button_disable_account_confirmation_id)).perform(click());
-            onView(withId(R.id.edit_text_login_id)).check(matches(hasErrorText("Ops, acho que você digitou o login errado")));
-        }
 
-    }
 
 }

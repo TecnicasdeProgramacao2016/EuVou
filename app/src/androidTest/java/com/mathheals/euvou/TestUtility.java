@@ -28,15 +28,6 @@ public class TestUtility
     }
 
     /**
-     * testing if the logout feature is working well
-     */
-    public static void makeUserLogOut()
-    {
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Sair")).perform(click());
-    }
-
-    /**
      * testing if the user login is working well in a functional test
      * @param login  user's login
      * @param password - user's password
@@ -48,6 +39,15 @@ public class TestUtility
         onView(withId(R.id.usernameField)).perform(typeText(login));
         onView(withId(R.id.passwordField)).perform(typeText(password));
         onView(withText("Login")).perform(click());
+    }
+
+    /**
+     * testing if the logout feature is working well
+     */
+    public static void makeUserLogOut()
+    {
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        onView(withText("Sair")).perform(click());
     }
 
 }
