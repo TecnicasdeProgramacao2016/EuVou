@@ -83,6 +83,87 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     }
 
     /**
+     * method that shows the option for ther users that are not logged
+     * @param item - item of the menu
+     * @return
+     */
+    public boolean userLoggedInOptions(final MenuItem item)
+    {
+        logger.log(Level.INFO,"entered in the method that shows the options for the user that is logged");
+        assert(item != null);
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        switch(item.getItemId())
+        {
+            case R.id.edit_register:
+                fragmentTransaction.replace(R.id.content_frame, new EditUserFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                return true;
+            case R.id.settings:
+                ActivityUtility.clearBackStack(this);
+                fragmentTransaction.replace(R.id.content_frame, new RemoveUserFragment(), SETTINGS_FRAGMENT);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                return true;
+            case R.id.register_event:
+                fragmentTransaction.replace(R.id.content_frame, new RegisterEventFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                return true;
+            case R.id.logout:
+                new LoginUtility(HomePage.this).setUserLogOff();
+                Intent intent = getIntent();
+                assert(intent != null);
+                finish();
+                startActivity(intent);
+                return true;
+            case R.id.myEvents:
+                try
+                {
+                    fragmentTransaction.replace(R.id.content_frame, new ListEvents());
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+                }
+                catch (NullPointerException exception)
+                {
+                    Toast.makeText(getBaseContext(),"Sem eventos criados",Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * method that shows the options for users that are not logged in
+     * @param item - item of  the menu
+     * @return
+     */
+    public boolean userLoggedOutOptions(final MenuItem item)
+    {
+        logger.log(Level.INFO,"entered in the method that shows the options for the users logged out");
+        assert(item != null);
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        switch (item.getItemId())
+        {
+            case R.id.registration:
+                fragmentTransaction.replace(R.id.content_frame, new RegisterFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                return true;
+            case R.id.log_in:
+                Intent myIntent = new Intent(HomePage.this, LoginActivity.class);
+                assert(myIntent != null);
+                HomePage.this.startActivity(myIntent);
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    /**
      * method that starts the main fragment of the aplication
      */
     private void startPrincipalFragment()
@@ -115,7 +196,8 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
             HomePage.this.startActivity(map);
             drawerLayout.closeDrawer(linearLayout);
         }
-        else{
+        else
+        {
             Toast.makeText(this, INVALID_SEARCH, Toast.LENGTH_LONG).show();
         }
     }
@@ -153,6 +235,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
                         supportInvalidateOptionsMenu();
                     }
                 };
+
         assert(drawerToggle != null);
 
         textOptions = getResources().getStringArray(R.array.itens_menu_string);
@@ -184,8 +267,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     {
         logger.log(Level.INFO,"entered in the method to create the menus option");
         assert(menu != null);
+
         MenuInflater inflater = getMenuInflater();
         LoginUtility loginUtility = new LoginUtility(HomePage.this);
+
         assert(loginUtility != null);
         // Inflating menu for logged users
 
@@ -195,7 +280,6 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         {
             inflater.inflate(R.menu.home_page_logged_in, menu);
         }
-        // Inflating menu for not logged users
         else if(USER_STATUS == LOGGED_OUT)
         {
             inflater.inflate(R.menu.home_page_logged_out, menu);
@@ -265,86 +349,6 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
             return false;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * method that shows the option for ther users that are not logged
-     * @param item - item of the menu
-     * @return
-     */
-    public boolean userLoggedInOptions(final MenuItem item)
-    {
-        logger.log(Level.INFO,"entered in the method that shows the options for the user that is logged");
-        assert(item != null);
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        switch(item.getItemId())
-        {
-            case R.id.edit_register:
-                fragmentTransaction.replace(R.id.content_frame, new EditUserFragment());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-                return true;
-            case R.id.settings:
-                ActivityUtility.clearBackStack(this);
-                fragmentTransaction.replace(R.id.content_frame, new RemoveUserFragment(), SETTINGS_FRAGMENT);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-                return true;
-            case R.id.register_event:
-                fragmentTransaction.replace(R.id.content_frame, new RegisterEventFragment());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-                return true;
-            case R.id.logout:
-                new LoginUtility(HomePage.this).setUserLogOff();
-                Intent intent = getIntent();
-                assert(intent != null);
-                finish();
-                startActivity(intent);
-                return true;
-            case R.id.myEvents:
-                try
-                {
-                    fragmentTransaction.replace(R.id.content_frame, new ListEvents());
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
-
-                }
-                catch (NullPointerException exception)
-                {
-                    Toast.makeText(getBaseContext(),"Sem eventos criados",Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    /**
-     * method that shows the options for users that are not logged in
-     * @param item - item of  the menu
-     * @return
-     */
-    public boolean userLoggedOutOptions(final MenuItem item)
-    {
-        logger.log(Level.INFO,"entered in the method that shows the options for the users logged out");
-        assert(item != null);
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        switch (item.getItemId())
-        {
-            case R.id.registration:
-                fragmentTransaction.replace(R.id.content_frame, new RegisterFragment());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-                return true;
-            case R.id.log_in:
-                Intent myIntent = new Intent(HomePage.this, LoginActivity.class);
-                assert(myIntent != null);
-                HomePage.this.startActivity(myIntent);
-                return true;
-            default:
-                return false;
-        }
     }
 
     /**
