@@ -49,8 +49,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     }
 
     private EditText nameField = null, dateField = null, hourField = null,
-                    descriptionField = null, addressField = null,
-                    priceDecimalField = null, priceRealField = null;
+            descriptionField = null, addressField = null,
+            priceDecimalField = null, priceRealField = null;
 
 
     //Sets Text

@@ -4,11 +4,15 @@ import android.app.Activity;
 
 import org.json.JSONObject;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import model.UserEvaluation;
 
 
 public class UserEvaluationDAO extends DAO
 {
+    private final static Logger logger = Logger.getLogger(UserEvaluationDAO.class.getName());
     public UserEvaluationDAO()
     {
 
@@ -21,10 +25,11 @@ public class UserEvaluationDAO extends DAO
 
     public void evaluateUser(UserEvaluation evaluation)
     {
-        final String QUERY;
-
+        assert(evaluation != null);
+        logger.log(Level.INFO,"entered in the method that evaluates the user and saves in the database");
         JSONObject findEvaluation = searchUserEvaluation(evaluation.getUserEvaluatedId(), evaluation.getUserId());
 
+        String QUERY = " ";
         if(findEvaluation==null)
         {
             QUERY = "INSERT INTO evaluate_user(grade, idUser, idUserEvaluated) VALUES (\"" + evaluation.getRating() +
@@ -42,6 +47,9 @@ public class UserEvaluationDAO extends DAO
 
     public JSONObject searchUserEvaluation(int userEvaluatedtId, int userId)
     {
+        assert(userId > 0);
+        assert(userEvaluatedtId > 0);
+        logger.log(Level.INFO,"entered in the method that searches the user evaluation");
         final String QUERY = "SELECT * FROM evaluate_user WHERE idUser = \"" + userId
                 + "\" AND idUserEvaluated = " + userEvaluatedtId;
         return executeConsult(QUERY);

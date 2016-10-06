@@ -1,15 +1,23 @@
+/**
+ * file:EvaluatePlaceDAO.java
+ * purpose:class to execute the database conection to the class EvaluatePlace
+ */
 package dao;
 
 import android.app.Activity;
+import android.util.Log;
 
 import org.json.JSONObject;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.Evaluation;
 
 
 public class EvaluatePlaceDAO extends DAO
 {
-
+    private final static Logger logger = Logger.getLogger(EvaluatePlaceDAO.class.getName());
     public EvaluatePlaceDAO()
     {
 
@@ -22,12 +30,14 @@ public class EvaluatePlaceDAO extends DAO
 
     public void evaluatePlace(Evaluation evaluation)
     {
-        final String QUERY;
+        assert(evaluation != null);
+        logger.log(Level.INFO,"entered in the method that saves the place evaluation");
+
 
         JSONObject findEvaluation = executeConsult("SELECT * FROM evaluate_place WHERE idPlace = \"" +
                                                     evaluation.getIdPlace() + "\" " +
                                                     "AND idUser = \"" + evaluation.getIdUser() + "\"");
-
+        final String QUERY;
         if(findEvaluation==null)
         {
             QUERY = "INSERT INTO evaluate_place(grade, idUser, idPlace) VALUES (\"" + evaluation.getgrade() +
@@ -47,6 +57,10 @@ public class EvaluatePlaceDAO extends DAO
 
     public JSONObject searchPlaceEvaluation(int placeId, int userId)
     {
+        assert(placeId > 0);
+        assert(userId > 0);
+
+        logger.log(Level.INFO,"entered in the method that searches the place by the evaluation");
         final String QUERY = "SELECT * FROM evaluate_place WHERE idUser = \"" + userId
                             + "\" AND idPlace = " + placeId;
         return executeConsult(QUERY);

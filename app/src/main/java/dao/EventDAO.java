@@ -1,3 +1,7 @@
+/**
+ * file:EventDAO.java
+ * purpose:class to execute the database conection to the Event class
+ */
 package dao;
 
 import android.app.Activity;
@@ -8,16 +12,15 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import exception.EventException;
 import model.Event;
 
-/**
- * Created by geovanni on 10/10/15.
- */
 public class EventDAO extends DAO
 {
-
+    private final  static Logger logger = Logger.getLogger(EventDAO.class.getName());
     public EventDAO(Activity currentActivity)
     {
         super(currentActivity);
@@ -30,13 +33,17 @@ public class EventDAO extends DAO
 
     public void saveEvent(Event event)
     {
+        assert(event != null);
+        logger.log(Level.INFO,"entered in the method that saves an event");
         executeQuery("insert into tb_event(nameEvent, idOwner, price, address, dateTimeEvent,description,longitude,latitude) VALUES('" +
                 event.getNameEvent() + "', '" + event.getIdOwner() + "', '" + event.getPrice() + "', '" + event.getAddress() + "','" + event.getDateTimeEvent() + "','" + event.getDescription() + "'," +
                 "" + event.getLongitude() + "," + event.getLatitude() + ")");
 
-        Vector<String> categories = event.getCategory();
+
         JSONObject jsonObject = executeConsult("SELECT idEvent FROM tb_event WHERE nameEvent = \"" + event.getNameEvent() + "\"");
+
         int idEvent = 0;
+
         try
         {
             idEvent = jsonObject.getJSONObject("0").getInt("idEvent");
@@ -44,6 +51,8 @@ public class EventDAO extends DAO
         {
             e.printStackTrace();
         }
+
+        Vector<String> categories = event.getCategory();
 
         for(int i=0; i<categories.size(); i++)
         {
@@ -54,14 +63,17 @@ public class EventDAO extends DAO
         }
 
     }
-
-    public  String deleteEvent(int idEvent)
+    public JSONObject searchEventByName(String eventName)
     {
-        return this.executeQuery("DELETE FROM tb_event WHERE idEvent ="+idEvent);
+        assert(eventName != null);
+        logger.log(Level.INFO,"entered in the method that searches an Event by it's name");
+        return this.executeConsult("SELECT * FROM vw_event WHERE nameEvent LIKE'%"+eventName+"%'");
     }
 
     public void updateEvent(Event event)
     {
+        assert(event != null);
+        logger.log(Level.INFO,"entered in the method that updates an event");
         executeQuery("UPDATE tb_event SET price=\"" + event.getPrice() + "\", address=\"" + event.getAddress() + "\", " +
                 "nameEvent=\""+event.getNameEvent()+"\", "+"dateTimeEvent=\""+event.getDateTimeEvent()+
                 "\", "+"description=\""+event.getDescription()+"\", "+"longitude=\""+event.getLongitude()+"\", " +
@@ -78,24 +90,31 @@ public class EventDAO extends DAO
         }
 
     }
-
-    public JSONObject searchEventByName(String eventName)
+    public  String deleteEvent(int idEvent)
     {
-        return this.executeConsult("SELECT * FROM vw_event WHERE nameEvent LIKE'%"+eventName+"%'");
+        logger.log(Level.INFO,"entered in the method that deletes an event");
+        assert(idEvent > 0);
+        return this.executeQuery("DELETE FROM tb_event WHERE idEvent ="+idEvent);
     }
 
     public JSONObject searchEventByNameGroup(String eventName)
     {
+        assert(eventName != null);
+        logger.log(Level.INFO,"entered in the method that searches an event by the group name");
         return this.executeConsult("SELECT * FROM tb_event WHERE nameEvent LIKE'%"+eventName+"%' GROUP BY idEvent");
     }
 
     public JSONObject searchEventById(int idEvent)
     {
+        assert(idEvent > 0);
+        logger.log(Level.INFO,"entered in the method that searches an event by it's id");
         return this.executeConsult("SELECT * FROM tb_event WHERE idEvent = " + idEvent);
     }
 
     public Vector<Event> searchEventByOwner(int owner) throws JSONException, ParseException, EventException
     {
+        assert(owner > 0);
+        logger.log(Level.INFO,"entered in the method that searches an event by it's owner");
         JSONObject json = this.executeConsult("SELECT * FROM tb_event WHERE idOwner=" + owner + " GROUP BY idEvent");
 
         if(json == null)
@@ -124,21 +143,33 @@ public class EventDAO extends DAO
 
     public String markParticipate(int idUser, int idEvent)
     {
+        assert(idEvent > 0);
+        assert(idUser > 0);
+        logger.log(Level.INFO,"entered in the method that marks presence");
         return this.executeQuery("INSERT INTO participate(idEvent, idUser) VALUES(" + idEvent + "," + idUser + ");");
     }
 
     public JSONObject verifyParticipate(int idUser, int idEvent)
     {
+        assert(idEvent > 0);
+        assert(idUser > 0);
+
+        logger.log(Level.INFO,"entered in the method that verifies the participation");
         return this.executeConsult("SELECT * FROM participate WHERE idEvent=" + idEvent + " AND idUser=" + idUser);
     }
 
     public String markOffParticipate(int idUser, int idEvent)
     {
+        assert(idEvent > 0);
+        assert(idUser > 0);
+        logger.log(Level.INFO,"entered in the method that turns the participation off");
         return this.executeQuery("DELETE FROM participate WHERE idEvent=" + idEvent + " AND idUser=" + idUser);
     }
 
     public void saveEventWithId(Event event)
     {
+        assert(event != null);
+        logger.log(Level.INFO,"entered in the method that saves the event whith the id");
         executeQuery("insert into tb_event(idEvent,nameEvent, idOwner, price, address, dateTimeEvent,description,longitude,latitude)"+
                     "VALUES('" + event.getIdEvent() + "', '" + event.getNameEvent() + "', '" + event.getIdOwner() + "', '" + event.getPrice() +
                     "', '" + event.getAddress() + "','" + event.getDateTimeEvent() + "','" + event.getDescription() + "'," +
