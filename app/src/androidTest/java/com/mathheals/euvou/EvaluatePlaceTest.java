@@ -1,11 +1,12 @@
-/*
-* File name: EvaluatePlaceTest.
-* File pourpose: Test class EvaluatePlace
-*/
+/**
+  * File name: EvaluatePlaceTest.
+  * File pourpose: Test class EvaluatePlace
+  */
 
 package com.mathheals.euvou;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import junit.framework.TestCase;
 
@@ -41,9 +42,10 @@ public class EvaluatePlaceTest extends TestCase
             assertEquals(ID_USER, userId);
             assertEquals(ID_PLACE, placeId);
 
-        }catch (JSONException e)
+        }catch (JSONException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
+            Log.d("EvaluatePlaceTest","JSONException");
         }
     }
 }
