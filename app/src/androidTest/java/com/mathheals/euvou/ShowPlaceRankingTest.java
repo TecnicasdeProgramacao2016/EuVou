@@ -14,9 +14,9 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
 
-/*
- * File name: ShowPlaceRankingTest.
- * File pourpose: This file have the pourpose to test the ranking of the show places with true and falses parameters.
+/**
+  * File name: ShowPlaceRankingTest.
+  * File pourpose: This file have the pourpose to test the ranking of the show places with true and falses parameters.
  */
 
 

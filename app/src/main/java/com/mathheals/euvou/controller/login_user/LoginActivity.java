@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.util.Log;
 
 import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.home_page.HomePage;
@@ -31,6 +32,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 {
 
     private ActionBar actionBar;
+
+    /**
+        * Overrides are used to rewrite methods.
+        * This override saves the state of writh instances
+        * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -53,7 +60,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) 
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        /**
+             * This method inflate the menu and add items to the action bar if it is present.
+             * @param menu -
+         */
+
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
     }
@@ -64,12 +75,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        int userId = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) 
+        if (userId == R.id.action_settings)
         {
             return true;
+        } else 
+        {
+            //NOTHING TO DO
         }
 
         return super.onOptionsItemSelected(item);
@@ -89,8 +103,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private boolean isPasswordValid = false;
 
     @Override
-    public void onClick(View v) 
+    public void onClick(View view)
     {
+        /**
+         * method that gets the informations and create the event
+         * @param view
+         */
+
         EditText usernameField = (EditText) findViewById(R.id.usernameField);
         String typedUsername = usernameField.getText().toString();
 
@@ -100,39 +119,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         LoginValidation loginValidation = new LoginValidation(LoginActivity.this);
 
         isUsernameValid = loginValidation.isUsernameValid(typedUsername);
-
-        if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
-        {
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-        } else
-        {
-            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
-
-            if(isPasswordValid==false)
-            {
-                passwordField.requestFocus();
-                passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            }
-        }
-
-        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
-        {
-            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
-
-            if(isPasswordValid==false)
-            {
-                passwordField.requestFocus();
-                passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            }
-
-        } else
-        {
-
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-            
-        }
 
         if(isUsernameValid && isPasswordValid)
         {
@@ -146,11 +132,55 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Intent i = new Intent(this, HomePage.class);
                 finish();
                 startActivityForResult(i, 1);
-            } catch (JSONException e) 
+            } catch (JSONException exception)
             {
-                e.printStackTrace();
+                exception.printStackTrace();
+            }
+            Log.d("LoginActivity", "User is logged");
+
+        } else 
+        {
+            //NOTHING TO DO
+        }
+
+        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
+        {
+            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+
+            if(isPasswordValid==false)
+            {
+                passwordField.requestFocus();
+                passwordField.setError(loginValidation.getInvalidPasswordMessage());
+            } else 
+            {
+                //NOTHING TO DO
             }
 
+        } else
+        {
+
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+            
         }
+
+        if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
+        {
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+        } else
+        {
+            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+
+            if(isPasswordValid==false)
+            {
+                passwordField.requestFocus();
+                passwordField.setError(loginValidation.getInvalidPasswordMessage());
+            } else 
+            {
+                //NOTHING TO DO
+            }
+        }
+
     }
 }

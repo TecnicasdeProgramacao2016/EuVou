@@ -9,10 +9,11 @@ import exception.UserException;
 import model.User;
 import model.UserEvaluation;
 
- /*
- * File name: UserEvaluationTest.
- * File pourpose: Test user's evaluation with true and falses parameters.
+ /**
+  * File name: UserEvaluationTest.
+  * File pourpose: Test user's evaluation with true and falses parameters.
  */
+
 public class UserEvaluationTest extends TestCase
 {
 
@@ -26,7 +27,7 @@ public class UserEvaluationTest extends TestCase
         {
             userEvaluation = new UserEvaluation(3f, 3, 1);
             isUserEvaluationValid = true;
-        } catch (UserEvaluationException e) 
+        } catch (UserEvaluationException userEvaluationException)
         {
            isUserEvaluationValid = false;
         }
@@ -43,7 +44,7 @@ public class UserEvaluationTest extends TestCase
         {
             userEvaluation = new UserEvaluation(3f, -3, 1);
             isUserEvaluationValid = true;
-        } catch (UserEvaluationException e) 
+        } catch (UserEvaluationException userEvaluationException)
         {
             isUserEvaluationValid = false;
         }
@@ -60,7 +61,7 @@ public class UserEvaluationTest extends TestCase
         {
             userEvaluation = new UserEvaluation(3f, 3, -1);
             isUserEvaluationValid = true;
-        } catch (UserEvaluationException e) 
+        } catch (UserEvaluationException userEvaluationException)
         {
             isUserEvaluationValid = false;
         }
@@ -77,7 +78,7 @@ public class UserEvaluationTest extends TestCase
         {
             userEvaluation = new UserEvaluation(3f, -3, 1);
             isUserEvaluationValid = true;
-        } catch (UserEvaluationException e) 
+        } catch (UserEvaluationException userEvaluationException)
         {
             isUserEvaluationValid = false;
         }
@@ -94,7 +95,7 @@ public class UserEvaluationTest extends TestCase
         {
             userEvaluation = new UserEvaluation(6f, 3, 1);
             isUserEvaluationValid = true;
-        } catch (UserEvaluationException e) 
+        } catch (UserEvaluationException userEvaluationException)
         {
             isUserEvaluationValid = false;
         }

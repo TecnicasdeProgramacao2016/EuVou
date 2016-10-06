@@ -19,12 +19,9 @@ import model.User;
 
 public class LoginUtility 
 {
-    
-    private Activity activity = null;
     SharedPreferences sharedPreferences = null;
     SharedPreferences.Editor editor = null;
-
-    public LoginUtility(Activity activity) 
+    public LoginUtility(Activity activity)
     {
         this.activity = activity;
         sharedPreferences = activity.getSharedPreferences(ID_FIELD, activity.MODE_PRIVATE);
@@ -32,21 +29,35 @@ public class LoginUtility
     }
 
     public LoginUtility(){}
-    
+
+    /**
+     * method that make the user's login
+     */
+
+    private Activity activity = null;
+
     private static final int LOGGED_OUT = -1;
 
     public boolean hasUserLoggedIn() 
     {
+        /**
+         * method that check if the user is logged
+         */
+
         return getUserId() != LOGGED_OUT;
     }
 
     private static final String COLUMN_USER_ID = "idUser";
 
-    // gets user's ID by username. OBS: IT'S ASSUMED THAT USERNAME DOES EXIST
+
     public int getUserId(String username) throws org.json.JSONException
     {
+        /**
+         * method gets user's ID by username. OBS: IT'S ASSUMED THAT USERNAME DOES EXIST
+         */
+
         UserDAO userDAO = new UserDAO(this.activity);
-        JSONObject jsonObject = userDAO.searchUserByUsername(username);
+        JSONObject jsonObject = (JSONObject) userDAO.searchUserByUsername(username);
         return Integer.parseInt(jsonObject.getJSONObject("0").getString(COLUMN_USER_ID));
     }
 
@@ -58,11 +69,16 @@ public class LoginUtility
 
     public User getUser(String username)
     {
+        /**
+         * method get a user to make a posterior action
+         * @param username
+         */
+
         User user=null;
         try 
         {
             UserDAO userDAO = new UserDAO(this.activity);
-            JSONObject jsonObject = userDAO.searchUserByUsername(username);
+            JSONObject jsonObject = (JSONObject) userDAO.searchUserByUsername(username);
 
             user = new User(jsonObject.getJSONObject("0").getString(COLUMN_USER_NAME),
                     jsonObject.getJSONObject("0").getString(COLUMN_USER_LOGIN),
@@ -71,29 +87,37 @@ public class LoginUtility
                     formatDateToBr(jsonObject.getJSONObject("0").getString(COLUMN_USER_BIRTHDATE)));
             return user;
 
-        } catch (ParseException e) 
+        } catch (ParseException exception)
         {
-            e.printStackTrace();
-        } catch (UserException e) 
+            exception.printStackTrace();
+        } catch (UserException exception)
         {
-            e.printStackTrace();
-        } catch (JSONException e) 
+            exception.printStackTrace();
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         }
 
         return user;
     }
 
-    // gets current user's ID
+
     public int getUserId() 
     {
+        /**
+         * method gets current user's ID
+         */
+
         SharedPreferences sharedId = activity.getSharedPreferences(ID_FIELD, activity.MODE_PRIVATE);
         return sharedId.getInt(ID_FIELD, LOGGED_OUT);
     }
 
     public void setUserLogIn(int userId) 
     {
+        /**
+         * method sets current user's ID
+         */
+
         editor.putInt(ID_FIELD, userId);
         editor.commit();
     }
@@ -102,6 +126,10 @@ public class LoginUtility
 
     public void setUserLogOff() 
     {
+        /**
+         * method sets current user's LogOff
+         */
+
         editor.putInt(ID_FIELD, LOGGED_OUT);
         editor.commit();
     }
@@ -110,8 +138,12 @@ public class LoginUtility
 
     public boolean isUserActive(String username) 
     {
+        /**
+         * method see if the user is active
+         */
+
         UserDAO userDAO = new UserDAO(this.activity);
-        JSONObject jsonObject = userDAO.searchUserByUsername(username);
+        JSONObject jsonObject = (JSONObject) userDAO.searchUserByUsername(username);
         String userState = null;
         try 
         {
@@ -126,6 +158,10 @@ public class LoginUtility
 
     public String formatDateToBr(String birthDate)
     {
+        /**
+         * method take a international date and transform to brazilian date
+         */
+
         String[] birthDateSplit = birthDate.split("-");
         return birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];
     }
