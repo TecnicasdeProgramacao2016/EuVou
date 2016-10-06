@@ -1,3 +1,8 @@
+/*
+* File name: EditUserFragment.
+* File pourpose: Edit User and validate.
+*/
+
 package com.mathheals.euvou.controller.edit_user;
 
 import android.app.Activity;
@@ -10,18 +15,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.utility.EditAndRegisterUtility;
 import com.mathheals.euvou.controller.utility.LoginUtility;
 import com.mathheals.euvou.controller.utility.Mask;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import dao.UserDAO;
 import model.User;
 
+
+/**
+*Class: EditUserFragment extends Fragment implements View.OnClickListener
+*Description: Class to Edit an User
+*/
 public class EditUserFragment extends Fragment implements View.OnClickListener
 {
 
@@ -34,6 +41,13 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     private int USER_STATUS = 0;
 
     @Override
+    /**
+    *Method: public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    *Description: Creates view of user
+    *@param LayoutInflater inflater
+    *@param ViewGroup container
+    *@param Bundle savedInstanceState
+    */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View viewOfEditUser = inflater.inflate(R.layout.fragment_edit_user, container, false);
@@ -46,11 +60,11 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
         USER_STATUS = loginUtility.getUserId();
 
-        String str = userDAO.searchUserById(USER_STATUS);
+        String stringUserStatus = userDAO.searchUserById(USER_STATUS);
         JSONObject json = null;
         try
         {
-            json = new JSONObject(str);
+            json = new JSONObject(stringUserStatus);
         } catch (JSONException exceptionJSON)
         {
             exceptionJSON.printStackTrace();
@@ -58,9 +72,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
 
         try
         {
-            String nameUser = json.getJSONObject("0").getString("nameUser");
-            String birthDate = json.getJSONObject("0").getString("birthDate");
-            String mail = json.getJSONObject("0").getString("email");
+            String nameUser = (String)json.getJSONObject("0").getString("nameUser");
+            String birthDate = (String)json.getJSONObject("0").getString("birthDate");
+            String mail = (String)json.getJSONObject("0").getString("email");
 
             String[] birthDateSplit = birthDate.split("-");
             birthDate = birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];
@@ -90,17 +104,19 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     private String passwordConfirm = "passwordConfirm";
 
     @Override
+    /**
+    *Method: public void onClick(View viewOnClick)
+    *Description: Validates and Updates
+    *@param View viewOnClick
+    */
     public void onClick(View viewOnClick)
     {
-
         setingTextTyped();
 
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
         USER_STATUS = loginUtility.getUserId();
 
-        /*
-         * Validates and set user alteration
-         */
+        //Validates and set user alteration
         try
         {
             User userUpdate = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password, passwordConfirm);
@@ -114,7 +130,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
 
         } catch (Exception messageOfError)
         {
-            String message = messageOfError.getMessage();
+            String message = (String) messageOfError.getMessage();
 
             if (message.equals(User.EMAIL_CANT_BE_EMPTY_EMAIL))
             {
@@ -198,8 +214,13 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         this.birthDate = birthDateField.getText().toString();
     }
 
+    /**
+    *Method: public EditUserFragment()
+    *Description: Empty method to create edit user fragment
+    */
     public EditUserFragment()
     {
+        //Requires a empty public constructor
     }
 
 }

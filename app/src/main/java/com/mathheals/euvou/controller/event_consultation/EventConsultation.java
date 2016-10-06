@@ -1,3 +1,8 @@
+/*
+* File name: EventConsultation.
+* File pourpose: Consults Event.
+*/
+
 package com.mathheals.euvou.controller.event_consultation;
 
 import android.app.Activity;
@@ -33,6 +38,10 @@ import java.util.ArrayList;
 import dao.EventDAO;
 import dao.UserDAO;
 
+/**
+*Class: public class EventConsultation extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
+*Description: Class to consult an event
+*/
 public class EventConsultation extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
 {
     private JSONObject eventDATA = null;
@@ -54,9 +63,14 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         {
 
             @Override
+            /**
+            *Method: public boolean onQueryTextSubmit(String query)
+            *Description: serachs by name an event
+            *@param String query
+            */
             public boolean onQueryTextSubmit(String query)
             {
-                int checkedButton = radioGroup.getCheckedRadioButtonId();
+                int checkedButton = (int) radioGroup.getCheckedRadioButtonId();
                 switch (checkedButton)
                 {
                     case R.id.radio_events:
@@ -144,6 +158,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     private TextView event_not_found_text = null;
 
     @Override
+    /**
+    *Method: protected void onCreate(Bundle savedInstanceState)
+    *Description: sets content of event
+    *@param Bundle savedInstanceState
+    */
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -156,10 +175,15 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     private ActionBar actionBar = null;
     private RadioGroup radioGroup = null;
     @Override
+    /**
+    *Method: public boolean onCreateOptionsMenu(Menu menu)
+    *Description: set search bar on menu
+    *@param Menu menu
+    */
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_event_consultation, menu);
-        actionBar = getSupportActionBar();
+        actionBar = (ActionBar) getSupportActionBar();
 
         setSearchBar(menu);
         configActionBar();
@@ -170,6 +194,10 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     }
 
     private Integer idItem = 0;
+    /**
+    *Method: private void setListViewListener()
+    *Description: sets view listener
+    */
     private void setListViewListener()
     {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -180,7 +208,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
             public void onItemClick(AdapterView<?> parent, View clickView, int position, long id) {
                 final String ID_COLUMN = option=="event" ? "idEvent" : (option=="people" ? "idUser" : "idPlace");
-
                 try
                 {
                     final android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -223,6 +250,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     }
 
     @Override
+    /**
+    *Method: public boolean onOptionsItemSelected(MenuItem item)
+    *Description: gets an iten by id
+    *@param MenuItem item
+    */
     public boolean onOptionsItemSelected(MenuItem item)
     {
         if(item.getItemId() == android.R.id.home){
@@ -238,6 +270,12 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
     }
 
+    /**
+    *Method: public void onCheckedChanged(RadioGroup group, int checkedId)
+    *Description: check changes of event
+    *@param group
+    *@param checkedId
+    */
     public void onCheckedChanged(RadioGroup group, int checkedId)
     {
         switch(checkedId)
@@ -248,7 +286,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                 break;
             default:
                 //NOTHING TO DO
-                break;
         }
     }
 }

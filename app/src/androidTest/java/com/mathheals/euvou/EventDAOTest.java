@@ -1,26 +1,38 @@
+/*
+* File name: EventDAOTest.
+* File pourpose: Test Event search delete and update.
+*/
+
 package com.mathheals.euvou;
 
-import android.app.Activity;
-
 import junit.framework.TestCase;
-
 import org.json.JSONException;
-
 import java.text.ParseException;
 import java.util.Vector;
-
 import dao.EventDAO;
 import exception.EventException;
 import model.Event;
 
+/**
+*Class: public class EventDAOTest extends TestCase
+*Description: Class to test Event DAO
+*/
 public class EventDAOTest extends TestCase
 {
+    /**
+    *Method: public void testSearchEventByOwner() throws ParseException, EventException, JSONException
+    *Description: tests search event by owner
+    */
     public void testSearchEventByOwner() throws ParseException, EventException, JSONException
     {
         EventDAO eventDAO = new EventDAO();
         assertEquals(eventDAO.searchEventByOwner(-1), null);
     }
 
+    /**
+    *Method: public void testUpdateEvent() throws ParseException, EventException, JSONException
+    *Description: tests an updated event
+    */
     public void testUpdateEvent() throws ParseException, EventException, JSONException
     {
         EventDAO eventDAO = new EventDAO();
@@ -33,12 +45,20 @@ public class EventDAOTest extends TestCase
         eventDAO.updateEvent(event);
     }
 
+    /**
+    *Method: public void testSearchEventByOwner2() throws ParseException, EventException, JSONException
+    *Description: tests search event by second owner
+    */
     public void testSearchEventByOwner2() throws ParseException, EventException, JSONException
     {
         EventDAO eventDAO = new EventDAO();
         assertFalse(eventDAO.searchEventByOwner(3).isEmpty());
     }
 
+    /**
+    *Method: public void testEventDelet() throws ParseException, EventException, JSONException
+    *Description: tests if event has been deleted
+    */
    public void testEventDelet() throws ParseException, EventException, JSONException
    {
         EventDAO eventDAO = new EventDAO();

@@ -1,8 +1,17 @@
+/*
+* File name: UserEvaluation.
+* File pourpose: Sets User Evaluation data.
+*/
+
 package model;
 
-import exception.EventEvaluationException;
+import android.util.Log;
 import exception.UserEvaluationException;
 
+/**
+*Class: public class UserEvaluation
+*Description: Class of user Evaluation
+*/
 public class UserEvaluation
 {
     private Float rating = null;
@@ -12,6 +21,14 @@ public class UserEvaluation
     public static final String USER_ID_IS_INVALID = "O identificador do usuário é inválido";
     public static final String USER_EVALUATED_ID_IS_INVALID = "O identificador do usuário avaliado é inválido";
 
+    /**
+    *Method: public UserEvaluation(Float rating, Integer userId,
+    *                              Integer userEvaluatedId) throws UserEvaluationException
+    *Description: sets data on fields of user evaluation
+    *@param rating
+    *@param userId
+    *@param userEvaluatedId
+    */
     public UserEvaluation(Float rating, Integer userId,
                           Integer userEvaluatedId) throws UserEvaluationException
     {
@@ -20,6 +37,11 @@ public class UserEvaluation
         setUserEvaluatedId(userEvaluatedId);
     }
 
+    /**
+    *Method: public void setRating(Float rating) throws UserEvaluationException
+    *Description: sets rating
+    *@param rating
+    */
     public void setRating(Float rating) throws UserEvaluationException
     {
         if(rating >= 0f && rating <= 5f)
@@ -30,10 +52,17 @@ public class UserEvaluation
         {
             throw new UserEvaluationException(EVALUATION_IS_INVALID);
         }
+        Log.d("UserEvaluation", "rating has been set");
     }
 
+    /**
+    *Method: public void setUserId(Integer userId) throws UserEvaluationException
+    *Description: sets user if
+    *@param userId
+    */
     public void setUserId(Integer userId) throws UserEvaluationException
     {
+        assert(userId > 0);
         if(userId <= Integer.MAX_VALUE && userId >= 1)
         {
             this.userId = userId;
@@ -42,8 +71,14 @@ public class UserEvaluation
         {
             throw new UserEvaluationException(USER_ID_IS_INVALID);
         }
+        Log.d("UserEvaluation", "idUser has been set");
     }
 
+    /**
+    *Method: public void setUserEvaluatedId(Integer userEvaluatedId) throws UserEvaluationException
+    *Description: sets user evaluated id
+    *@param userEvaluatedId
+    */
     public void setUserEvaluatedId(Integer userEvaluatedId) throws UserEvaluationException
     {
         if(userEvaluatedId <= Integer.MAX_VALUE && userEvaluatedId >= 1)
@@ -54,18 +89,31 @@ public class UserEvaluation
         {
             throw new UserEvaluationException(USER_EVALUATED_ID_IS_INVALID);
         }
+        Log.d("UserEvaluation", "userEvaluatedId has been set");
     }
 
+    /**
+    *Method: public Float getRating()
+    *Description: gets Rating
+    */
     public Float getRating()
     {
         return rating;
     }
 
+    /**
+    *Method: public public Integer getUserEvaluatedId()
+    *Description: gets user evaluated id
+    */
     public Integer getUserEvaluatedId()
     {
         return userEvaluatedId;
     }
 
+    /**
+    *Method:  public Integer getUserId()
+    *Description: gets user id
+    */
     public Integer getUserId()
     {
         return userId;

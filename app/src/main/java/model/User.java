@@ -1,18 +1,21 @@
+/*
+* File name: User.
+* File pourpose: Set and verify User data.
+*/
+
 package model;
-import android.app.Activity;
+
+import android.util.Log;
 import android.util.Patterns;
-import android.widget.Toast;
-
-import com.mathheals.euvou.controller.login_user.LoginValidation;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import dao.UserDAO;
 import exception.UserException;
-/*
-Description: This class validates the user
+
+/**
+*Class: public class User
+*Description: This class validates the user
 */
 public class User
 {
@@ -37,7 +40,6 @@ public class User
     private static final int MAX_LENGTH_EMAIL = 150;
     private static final int MAX_LENGTH_USERNAME = 100;
     private static final int MIN_LENGTH_PASSWORD = 6;
-
     private int idUser = 0;
     private String name = "name";
     private String username = "username";
@@ -45,18 +47,37 @@ public class User
     private String password = "password";
     private String birthDate = "birthDate";
 
+    /**
+    *Method: public boolean equals(User user)
+    *Description: validates if name taked and this name are the same
+    *@param user
+    */
     public boolean equals(User user)
     {
         return this.name.equals(user.getName()) &&
-                this.username.equals(user.getUsername()) &&
-                this.email.equals(user.getEmail()) &&
-                this.password.equals(user.getPassword()) &&
-                this.birthDate.equals(user.getBirthDate());
+                  this.username.equals(user.getUsername()) &&
+                  this.email.equals(user.getEmail()) &&
+                  this.password.equals(user.getPassword()) &&
+                  this.birthDate.equals(user.getBirthDate());
     }
 
+    /**
+    *Method: public User(int idUser, String name, String username,
+    *                             String birthDate, String email, String mailConfirmation,
+    *                             String password, String passwordConfirmation) throws UserException, ParseException
+    *Description: sets user information
+    *@param idUser
+    *@param name
+    *@param username
+    *@param birthDate
+    *@param email
+    *@param mailConfirmation
+    *@param password
+    *@param passwordConfirmation
+    */
     public User(int idUser, String name, String username,
-                String birthDate, String email, String mailConfirmation,
-                String password, String passwordConfirmation) throws UserException, ParseException
+                    String birthDate, String email, String mailConfirmation,
+                    String password, String passwordConfirmation) throws UserException, ParseException
     {
         setIdUser(idUser);
         setName(name);
@@ -69,8 +90,17 @@ public class User
 
     }
 
+    /**
+    *Method: public User(int idUser, String name, String birthDate,
+    *                            String email) throws UserException, ParseException
+    *Description: sets user information
+    *@param idUser
+    *@param name
+    *@param birthDate
+    *@param email
+    */
     public User(int idUser, String name, String birthDate,
-                String email) throws UserException, ParseException
+                    String email) throws UserException, ParseException
     {
         setName(name);
         setBirthDate(birthDate);
@@ -78,6 +108,19 @@ public class User
         setEmail(email);
     }
 
+    /**
+    *Method: public User(int idUser, String name, String birthDate,
+    *                            String email, String mailConfirmation, String password,
+    *                            String passwordConfirmation) throws UserException, ParseException
+    *Description: sets user information
+    *@param idUser
+    *@param name
+    *@param birthDate
+    *@param email
+    *@param mailConfirmation
+    *@param password
+    *@param passwordConfirmation
+    */
     public User(int idUser, String name, String birthDate,
                 String email, String mailConfirmation, String password,
                 String passwordConfirmation) throws UserException, ParseException
@@ -92,6 +135,16 @@ public class User
 
     }
 
+    /**
+    *Method:     public User(String name, String username, String email,
+    *                                 String password,String birthDate) throws UserException, ParseException
+    *Description: sets user information
+    *@param name
+    *@param username
+    *@param email
+    *@param password
+    *@param birthDate
+    */
     public User(String name, String username, String email,
                 String password,String birthDate) throws UserException, ParseException
     {
@@ -102,6 +155,21 @@ public class User
         setBirthDate(birthDate);
     }
 
+    /**
+    *Method: public User(String name, String username, String email,
+    *                    String mailConfirmation, String password,
+    *                    String passwordConfirmation, String birthDate) throws UserException, ParseException
+    *Description: sets user information
+    * @param name
+    * @param username
+    * @param email
+    * @param mailConfirmation
+    * @param password
+    * @param passwordConfirmation
+    * @param birthDate
+    * @throws UserException
+    * @throws ParseException
+    */
     public User(String name, String username, String email,
                 String mailConfirmation, String password,
                 String passwordConfirmation, String birthDate) throws UserException, ParseException
@@ -115,21 +183,21 @@ public class User
         verifyPasswordConfirmation(passwordConfirmation);
     }
 
-
     private void setIdUser(int idUser) throws UserException
     {
+        assert(idUser > 0);
         if(idUser <= Integer.MAX_VALUE && idUser >= 1){
-            this.idUser =idUser;
+            this.idUser = idUser;
         }
         else
         {
             throw new UserException(ID_IS_INVALID);
         }
+        Log.d("User", "idUser has been set");
     }
 
     private void setName(String name) throws UserException
     {
-
         if(!name.isEmpty() && name != null)
         {
             if(name.length() <= MAX_LENGTH_NAME)
@@ -145,6 +213,7 @@ public class User
         {
             throw new UserException(NAME_CANT_BE_EMPTY_NAME);
         }
+        Log.d("User", "name has been set");
     }
 
     private  void  setEmail(String email) throws UserException
@@ -172,6 +241,7 @@ public class User
         {
             throw  new UserException(EMAIL_CANT_BE_EMPTY_EMAIL);
         }
+        Log.d("User", "email has been set");
     }
 
     private void verifyEmailConfirmation(String confirmationMail) throws UserException
@@ -191,19 +261,20 @@ public class User
         {
             throw new UserException(EMAIL_CONFIRMATION_CANT_BE_EMPTY);
         }
+        Log.d("User", "Email has been verified");
     }
 
     private  void  setUsername (String username) throws UserException
     {
         if (username != null && !username.isEmpty())
         {
-            if (new UserDAO().searchUserByUsername(username) != null)
-            {
-                throw new UserException(USERNAME_EXISTENT);
-            }
-            else if(username.length() <= MAX_LENGTH_USERNAME)
+            if(username.length() <= MAX_LENGTH_USERNAME)
             {
                 this.username = username;
+            }
+            else if (new UserDAO().searchUserByUsername(username) != null)
+            {
+                throw new UserException(USERNAME_EXISTENT);
             }
             else
             {
@@ -214,6 +285,7 @@ public class User
         {
             throw  new UserException(USERNAME_CANT_BE_EMPTY_USERNAME);
         }
+        Log.d("User", "username has been set");
 
     }
 
@@ -235,6 +307,7 @@ public class User
         {
             throw  new UserException(PASSWORD_CANT_BE_EMPTY_PASSWORD);
         }
+        Log.d("User", "password has been set");
     }
 
     private void verifyPasswordConfirmation(String confirmationPassword) throws UserException
@@ -254,6 +327,7 @@ public class User
         {
             throw new UserException(CONFIRM_PASSWORD_CANT_BE_EMPTY);
         }
+        Log.d("User", "password has been confirmed");
     }
 
     private void setBirthDate (String birthDate) throws UserException, ParseException
@@ -284,33 +358,59 @@ public class User
         {
             throw new UserException(BIRTH_DATE_CANT_BE_EMPTY);
         }
+        Log.d("User", "birthDate has been set");
     }
 
+
+    /**
+    *Method: public int getIdUser()
+    *Description: gets id of user
+    */
     public int getIdUser()
     {
         return idUser;
     }
 
+    /**
+    *Method: public String getName()
+    *Description: gets name
+    */
     public String getName()
     {
         return name;
     }
 
+    /**
+    *Method: public String getUsername()
+    *Description: gets username
+    */
     public String getUsername()
     {
         return username;
     }
 
+    /**
+    *Method: public String getEmail()
+    *Description: gets email
+    */
     public String getEmail()
     {
         return email;
     }
 
+    /**
+    *Method: public String getPassword()
+    *Description: gets password
+    */
     public String getPassword()
     {
         return password;
     }
 
+    /**
+    *Method: public String getBirthDate()
+    *Description: gets birth date
+    */
     public String getBirthDate()
     {
         return birthDate;
