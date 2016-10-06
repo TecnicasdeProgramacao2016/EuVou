@@ -38,26 +38,6 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     private JSONObject result;
     private ArrayList<Place> places;
 
-
-    /**
-     *
-     */
-    public ShowPlaceRank()
-    {
-        // Required empty public constructor
-    }
-
-    /**
-     *
-     * @param savedInstanceState
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-
-        super.onCreate(savedInstanceState);
-    }
-
     /**
      *
      * @param inflater
@@ -69,7 +49,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_show_place_rank, container, false);
+        View view = (View) inflater.inflate(R.layout.fragment_show_place_rank, container, false);
         // Inflate the layout for this fragment
         listView = (ListView) view.findViewById(R.id.listViewPlacesTotall);
         listView.setOnItemClickListener(this);
@@ -77,18 +57,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         return  view;
     }
 
-    private void fillList()
-    {
-        int id = (new LoginUtility(getActivity())).getUserId();
 
-        assert(id < 0);
-
-        result = new PlaceDAO(getActivity()).searchAllPlaces();
-        places = new ArrayList<>();
-        populateArrayOfPlaces(result,places);
-        PlaceAdapter placeAdapter = new PlaceAdapter(getActivity(),places);
-        listView.setAdapter(placeAdapter);
-    }
 
     /**
      *
@@ -151,20 +120,53 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         startShowInfoActivity(position);
     }
 
+    /**
+     *
+     * @param savedInstanceState
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+
+        super.onCreate(savedInstanceState);
+    }
+
+    /**
+     *
+     */
+    public ShowPlaceRank()
+    {
+        // Required empty public constructor
+    }
+
+
     private void startShowInfoActivity(int id)
     {
-        Intent intent = new Intent(getActivity(), ShowPlaceInfo.class);
+        Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
         intent.putExtras(getPlaceInfoAsBundle(id));
         startActivity(intent);
 
         Log.d("ShowPlaceRank", "It has been started to insert in activity");
     }
 
+    private void fillList()
+    {
+        int id = (new LoginUtility(getActivity())).getUserId();
+
+        assert(id < 0);
+
+        result = new PlaceDAO(getActivity()).searchAllPlaces();
+        places = new ArrayList<>();
+        populateArrayOfPlaces(result,places);
+        PlaceAdapter placeAdapter = (PlaceAdapter) new PlaceAdapter(getActivity(),places);
+        listView.setAdapter(placeAdapter);
+    }
+
     private Bundle getPlaceInfoAsBundle(int id)
     {
         assert(id < 0);
 
-        Bundle placeInfo = new Bundle();
+        Bundle placeInfo = (Bundle) new Bundle();
         Toast.makeText(getActivity(),"" + id,Toast.LENGTH_LONG);
         placeInfo.putString("name", places.get(id).getName());
         placeInfo.putString("phone", places.get(id).getPhone());

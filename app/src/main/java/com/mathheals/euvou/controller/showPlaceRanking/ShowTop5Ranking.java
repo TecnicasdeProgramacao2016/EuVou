@@ -37,15 +37,6 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     private ArrayList<Place> places;
     private ListView listView;
 
-
-    /**
-     *
-     */
-    public ShowTop5Ranking()
-    {
-        // Required empty public constructor
-    }
-
     /**
      *
      * @param savedInstanceState
@@ -69,7 +60,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_show_top5_ranking, container, false);
+        View view = (View) inflater.inflate(R.layout.fragment_show_top5_ranking, container, false);
         // Inflate the layout for this fragment
         listView = (ListView) view.findViewById(R.id.listViewPlaces5);
         listView.setOnItemClickListener(this);
@@ -80,6 +71,27 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         return  view;
     }
 
+    /**
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
+        startShowInfoActivity(position);
+    }
+
+    /**
+     *
+     */
+    public ShowTop5Ranking()
+    {
+        // Required empty public constructor
+    }
+
     private void fillList()
     {
         JSONObject result;
@@ -87,7 +99,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         try
         {
             int id = (new LoginUtility(getActivity())).getUserId();
-            result = new PlaceDAO(getActivity()).searchTop5Places();
+            result =(JSONObject) new PlaceDAO(getActivity()).searchTop5Places();
             places = new ArrayList<>();
             for (int i = 0; i < result.length(); i++)
             {
@@ -109,7 +121,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
                 places.add(aux);
 
             }
-            PlaceAdapter placeAdapter = new PlaceAdapter(getActivity(),places);
+            PlaceAdapter placeAdapter = (PlaceAdapter) new PlaceAdapter(getActivity(),places);
 
             listView.setAdapter(placeAdapter);
 
@@ -128,25 +140,14 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         }
     }
 
-    /**
-     *
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
-     */
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-    {
-        startShowInfoActivity(position);
-    }
+
 
 
     private void startShowInfoActivity(int id)
     {
         assert(id < 0);
 
-        Intent intent = new Intent(getActivity(), ShowPlaceInfo.class);
+        Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
         intent.putExtras(getPlaceInfoAsBundle(id));
         startActivity(intent);
 

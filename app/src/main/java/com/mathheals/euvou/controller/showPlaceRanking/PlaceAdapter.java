@@ -23,23 +23,6 @@ public class PlaceAdapter extends ArrayAdapter<Place>
 {
     /**
      *
-     * @param context
-     * @param places
-     */
-    public PlaceAdapter(Context context, List<Place> places)
-    {
-
-        super(context, 0,places);
-    }
-
-    private static class ViewHolder
-    {
-        TextView placeName;
-        TextView placeEvaluation;
-    }
-
-    /**
-     *
      * @param position
      * @param convertView
      * @param parent
@@ -49,7 +32,7 @@ public class PlaceAdapter extends ArrayAdapter<Place>
     public View getView(int position, View convertView, ViewGroup parent)
     {
 
-        Place place = getItem(position);
+        Place place = (Place) getItem(position);
         ViewHolder viewHolder;
 
         if(convertView != null)
@@ -76,4 +59,23 @@ public class PlaceAdapter extends ArrayAdapter<Place>
 
 
     }
+
+    /**
+     *
+     * @param context
+     * @param places
+     */
+    public PlaceAdapter(Context context, List<Place> places)
+    {
+
+        super(context, 0,places);
+    }
+
+    private static class ViewHolder
+    {
+        TextView placeName;
+        TextView placeEvaluation;
+    }
+
+
 }

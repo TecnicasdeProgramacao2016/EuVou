@@ -19,13 +19,6 @@ import com.mathheals.euvou.R;
 
 public class ShowPlaceRanking extends android.support.v4.app.Fragment
 {
-    /**
-     *
-     */
-    public ShowPlaceRanking()
-    {
-        // Required empty public constructor
-    }
 
     /**
      *
@@ -52,5 +45,13 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
     {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_show_place_ranking, container, false);
+    }
+
+    /**
+     *
+     */
+    public ShowPlaceRanking()
+    {
+        // Required empty public constructor
     }
 }

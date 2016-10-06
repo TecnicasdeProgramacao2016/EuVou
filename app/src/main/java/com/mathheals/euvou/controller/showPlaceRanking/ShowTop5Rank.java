@@ -64,7 +64,7 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
        View view;
 
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_show_top5_rank, container, false);
+        view = (View) inflater.inflate(R.layout.fragment_show_top5_rank, container, false);
         Button bt = (Button) view.findViewById(R.id.more);
         bt.setOnClickListener(this);
 
