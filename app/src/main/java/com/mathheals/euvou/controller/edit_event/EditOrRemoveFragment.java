@@ -80,7 +80,10 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
     }
 
     @Override
-    //Override onClick Method
+    /*
+     * Override onClick method to relace the content previouslly filled by
+     * the content that is shown
+     */
     public void onClick(View view)
     {
         if(view.getId()==R.id.editRemoveButton)

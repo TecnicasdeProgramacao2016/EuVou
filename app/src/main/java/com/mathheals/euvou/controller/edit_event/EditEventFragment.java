@@ -77,7 +77,10 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
 
     @Override
-    //Override View to get event atributte's values
+    /*
+     * Override View to change event's atributtes values, at firts get the values
+     *  from the DB and displays them as the create event screen but filled
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {

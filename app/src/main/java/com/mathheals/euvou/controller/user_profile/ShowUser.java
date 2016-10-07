@@ -47,7 +47,10 @@ public class ShowUser extends android.support.v4.app.Fragment {
     }
 
 
-    //Create user's view
+    /*
+     * Creates a view for user's information, using user's current ID gets the necessary
+     * data from DB and displays it
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
@@ -145,6 +148,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
         Log.d("ShowUser", "Rating bar setted");
     }
 
+    //Sets evaluation bar
     private void settingRateBarEvaluation(JSONObject evaluationJSON, RatingBar ratingBar)
     {
         if(evaluationJSON!=null)
