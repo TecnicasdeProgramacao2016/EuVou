@@ -28,6 +28,14 @@ public class EventTest extends TestCase
             event = new Event(3,"Swing na casa do Miranda",  10010, "casa do miranda",
                                 "25/10/2016", "e trenzinho e eu fico no meio",
                                 "1", "2", null);
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
         }
         catch (EventException eventException)
         {
@@ -51,6 +59,15 @@ public class EventTest extends TestCase
             event = new Event(3,"Swing na casa do Miranda", 10010, "casa do miranda",
                                 "25/10/2016", "e trenzinho e eu fico no meio","1",
                                 "2", categories);
+
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
         } catch(EventException eventException)
         {
             ok = false;
@@ -74,6 +91,15 @@ public class EventTest extends TestCase
             event = new Event(3,"Swing na casa do Miranda", 10010, "casa do miranda",
                                 "25/10/2016", "e trenzinho e eu fico no meio", "1",
                                 "2", categories);
+
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
         }
         catch (EventException eventException)
         {
@@ -100,6 +126,15 @@ public class EventTest extends TestCase
             event = new Event(3,"", 10010, "casa do miranda", "25/10/2016",
                                 "e trenzinho e eu fico no meio", "50.01",
                                 "60.002", categories);
+
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
         } catch(EventException eventException)
         {
             ok = false;
@@ -122,6 +157,15 @@ public class EventTest extends TestCase
             event =  new Event(3,"Geovanni", 10010, "casa do miranda", "25/10/2016",
                                  "e trenzinho e eu fico no meio","21.4","30.2",
                                  categories);
+
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
         } catch(EventException eventException)
         {
             ok = false;
@@ -146,6 +190,14 @@ public class EventTest extends TestCase
                               10010, "casa do miranda", "25/10/2016",
                               "e trenzinho e eu fico no meio","50.8","60.2", categories);
 
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
         } catch (EventException eventException)
         {
             eventException.printStackTrace();
@@ -171,6 +223,15 @@ public class EventTest extends TestCase
                               "","44.2","46.2", categories);
             ok = true;
 
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
+
         } catch(EventException e)
         {
             ok = false;
@@ -193,6 +254,15 @@ public class EventTest extends TestCase
                               "Venha se perder com a gente!", "44.2","65.2",
                               categories);
 
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
+
         }catch(EventException eventException)
         {
             ok = false;
@@ -212,19 +282,18 @@ public class EventTest extends TestCase
 
         try
         {
-            event = new Event(3,"FG a Party",10010, "FGA","10/10/2016",
-                    "Test\n" +
-                    "Test\n" +
-                    "Test\n" +
-                    "Test\n" +
-                    "Test\n" +
-                    "Test\n" +
-                    "Test\n" +
-                    "Test\n" +
-                    "Test\n" +
-                    "Test\n" +
-                    "Test",
-                    "55.2","79.9", categories);
+            event = new Event(3,"FG a Party",10010, "FGA","10/10/2016", "Test\n" + "Test\n"
+                    +"Test\n" + "Test\n" + "Test\n" + "Test\n" + "Test\n" + "Test\n" + "Test\n" +
+                    "Test\n" + "Test", "55.2","79.9", categories);
+
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
 
         } catch(EventException eventException)
         {
@@ -247,6 +316,15 @@ public class EventTest extends TestCase
         {
             event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
                               "Descrição","-90.9","140.2", categories);
+
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
         } catch(EventException eventException)
         {
             ok = false;
@@ -268,6 +346,15 @@ public class EventTest extends TestCase
         {
             event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
                               "Descrição","99.2","130.2", categories);
+
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
         } catch(EventException eventException)
         {
             ok = false;
@@ -288,6 +375,15 @@ public class EventTest extends TestCase
         {
             event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
                               "Descrição","-40.9","140.2", categories);
+
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
 
         }catch(EventException eventException)
         {
@@ -310,6 +406,15 @@ public class EventTest extends TestCase
         {
             event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
                                 "Descrição","90.0","-181.1", categories);
+
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
 
         }catch(EventException eventException)
         {
@@ -334,6 +439,15 @@ public class EventTest extends TestCase
             event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
                                 "Descrição","19.2","190.2", categories);
 
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
+
         }catch(EventException eventException)
         {
             ok = false;
@@ -355,6 +469,15 @@ public class EventTest extends TestCase
         {
             event = new Event(3,"Evento teste", 10010, "endereco", "12/12/2016",
                                 "Descrição", "1", "2", categories);
+
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
 
         }catch(EventException eventException)
         {

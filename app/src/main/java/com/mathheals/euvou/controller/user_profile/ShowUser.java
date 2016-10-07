@@ -30,14 +30,14 @@ import exception.UserEvaluationException;
 import model.UserEvaluation;
 
 public class ShowUser extends android.support.v4.app.Fragment {
-    private UserEvaluation userEvaluation;
+    private UserEvaluation userEvaluation = null;
     private final String SUCCESSFULL_EVALUATION_MESSAGE = "Avaliação cadastrada com sucesso";
-    private RatingBar ratingBar;
-    private View showUserView;
-    private String userEvaluatedId;
-    private int currentUserId;
-    private boolean isUserLoggedIn;
-    private TextView ratingMessage;
+    private RatingBar ratingBar = null;
+    private View showUserView = null;
+    private String userEvaluatedId = null;
+    private int currentUserId = 0;
+    private boolean isUserLoggedIn = true;
+    private TextView ratingMessage = null;
     private final Integer LOGGED_OUT = -1;
 
 
@@ -112,6 +112,15 @@ public class ShowUser extends android.support.v4.app.Fragment {
     {
         ratingBar = (RatingBar) showUserView.findViewById(R.id.ratingBar);
         ratingBar.setVisibility(View.VISIBLE);
+
+        if(ratingBar == null)
+        {
+            Log.d("ShowUser", "Rating bar is null");
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
 
         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
 
@@ -219,13 +228,26 @@ public class ShowUser extends android.support.v4.app.Fragment {
             {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
             }
+            else
+            {
+                //NOTING TO DO
+            }
             if(exception.getMessage()==UserEvaluation.USER_EVALUATED_ID_IS_INVALID)
             {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(exception.getMessage()==UserEvaluation.USER_ID_IS_INVALID)
             {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                //NOTING TO DO
             }
         }
     }

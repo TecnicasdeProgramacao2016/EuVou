@@ -7,7 +7,6 @@
 package com.mathheals.euvou;
 
 import junit.framework.TestCase;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

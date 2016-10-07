@@ -115,6 +115,15 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
             latitude = jsonEvent.getJSONObject("0").getString("latitude");
             longitude = jsonEvent.getJSONObject("0").getString("longitude");
 
+            if(latitude == null || longitude == null)
+            {
+                Log.d("EditEventFragment", "Valores inválidos de longitude e latitude");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
+
             Vector <Integer> idCategories = new Vector<>();
             String idCategory;
 
@@ -461,7 +470,34 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Integer eventPriceDecimal = Integer.parseInt(priceDecimalField.getText().toString());
         Integer priceEvent = eventPriceReal * 100 + eventPriceDecimal;
 
-
+        if(nameEvent == null)
+        {
+            Log.d("EditEventFragment", "Event name null");
+        }
+        if (dateEvent == null)
+        {
+            Log.d("EditEventFragment", "Event date null");
+        }
+        if (hourEvent == null)
+        {
+            Log.d("EditEventFragment", "Event hour null");
+        }
+        if (descriptionEvent == null)
+        {
+            Log.d("EditEventFragment", "Event description null");
+        }
+        if (addresEvent == null)
+        {
+            Log.d("EditEventFragment", "Event adress null");
+        }
+        if (priceEvent == null)
+        {
+            Log.d("EditEventFragment", "Event price null");
+        }
+        else
+        {
+            //NOTHINHG TO DO
+        }
 
         try
         {
