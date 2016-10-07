@@ -18,7 +18,7 @@ import model.Place;
 public class PlaceTest extends TestCase
 {
 
-    //Test if name value was gotten
+    //Test if got name value
     public void testGetName()
     {
         boolean ok = true;

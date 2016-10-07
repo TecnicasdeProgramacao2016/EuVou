@@ -77,7 +77,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
 
     @Override
-    //Override View
+    //Override View to get event atributte's values
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
@@ -97,7 +97,29 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         JSONObject jsonEvent = eventDAO.searchEventById(idEvent);
         JSONObject jsonEventCategory = eventCategoryDAO.searchCategoriesByEventId(idEvent);
 
+        setEventsAtributtesButCategory (jsonEvent);
+        setEventsCategory(jsonEventCategory, categoryDAO);
 
+
+        //Adding listener to eventLocal EditText
+        Button eventLocal = (Button) view.findViewById(R.id.eventLocal);
+        eventLocal.setOnClickListener(this);
+
+        //Adding listener to CheckBoxs to verify if each CheckBox is checked or not
+        addCheckBoxListeners(view);
+
+        Button removeEvent = (Button)view.findViewById(R.id.removeEvent);
+        removeEvent.setOnClickListener(this);
+
+        Button updateEvent = (Button)view.findViewById(R.id.updateEvent);
+        updateEvent.setOnClickListener(this);
+
+        return view;
+    }
+
+    //Sets all atributtes but categorie
+    private void setEventsAtributtesButCategory (JSONObject jsonEvent)
+    {
         try
         {
             String nameEvent = jsonEvent.getJSONObject("0").getString("nameEvent");
@@ -123,23 +145,29 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
             {
                 //NOTHINHG TO DO
             }
+        } catch (JSONException jsonException)
+        {
+            jsonException.printStackTrace();
+        }
+    }
 
+    //Sets categorie
+    private void setEventsCategory(JSONObject jsonEventCategory,CategoryDAO categoryDAO)
+    {
+        try {
             Vector <Integer> idCategories = new Vector<>();
             String idCategory;
 
-            for(int counter = 0; counter < jsonEventCategory.length(); counter++)
-            {
+            for (int counter = 0; counter < jsonEventCategory.length(); counter++) {
                 idCategory = jsonEventCategory.getJSONObject(Integer.toString(counter)).getString("idCategory");
                 idCategories.add(Integer.parseInt(idCategory));
             }
 
-            for(int i = 0; i < idCategories.size(); i++)
-            {
+            for (int i = 0; i < idCategories.size(); i++) {
                 JSONObject jsonCategory = categoryDAO.searchCategoryById(idCategories.get(i));
                 String nameCategory = jsonCategory.getJSONObject("0").getString("nameCategory");
 
-                switch (nameCategory)
-                {
+                switch (nameCategory) {
                     case "Show":
                         showCheckBox.setChecked(true);
                         categories.add("Show");
@@ -181,26 +209,11 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
             }
 
             Log.d("EditEventFragment", "Check box clicked");
-
-        } catch (JSONException jsonExceptio)
-        {
-            jsonExceptio.printStackTrace();
         }
-
-        //Adding listener to eventLocal EditText
-        Button eventLocal = (Button) view.findViewById(R.id.eventLocal);
-        eventLocal.setOnClickListener(this);
-
-        //Adding listener to CheckBoxs to verify if each CheckBox is checked or not
-        addCheckBoxListeners(view);
-
-        Button removeEvent = (Button)view.findViewById(R.id.removeEvent);
-        removeEvent.setOnClickListener(this);
-
-        Button updateEvent = (Button)view.findViewById(R.id.updateEvent);
-        updateEvent.setOnClickListener(this);
-
-        return view;
+        catch (JSONException jsonException)
+        {
+            jsonException.printStackTrace();
+        }
     }
 
     //Format Date
@@ -259,123 +272,75 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         {
             CheckBox cinemaCheckBox = (CheckBox) view;
 
-            if(cinemaCheckBox.isChecked())
-            {
-                categories.add(cinemaCheckBox.getText().toString());
-            }
-            else
-            {
-                categories.remove(cinemaCheckBox.getText().toString());
-            }
+            setAsChecked(cinemaCheckBox);
         }
         else if(view.getId() == R.id.optionEducation)
         {
             CheckBox educationCheckBox = (CheckBox) view;
 
-            if(educationCheckBox.isChecked())
-            {
-                categories.add("Educacao");
-            }
-            else
-            {
-                categories.remove("Educacao");
-            }
+            setAsChecked(educationCheckBox);
         }
         else if(view.getId() == R.id.optionExposition)
         {
             CheckBox expositionCheckBox = (CheckBox) view;
 
-            if(expositionCheckBox.isChecked())
-            {
-                categories.add("Exposicao");
-            }
-            else
-            {
-                categories.remove("Exposicao");
-            }
+            setAsChecked(expositionCheckBox);
         }
         else if(view.getId() == R.id.optionMuseum)
         {
             CheckBox museumCheckBox = (CheckBox) view;
 
-            if(museumCheckBox.isChecked())
-            {
-                categories.add(museumCheckBox.getText().toString());
-            }
-            else
-            {
-                categories.remove(museumCheckBox.getText().toString());
-            }
+            setAsChecked(museumCheckBox);
         }
         else if(view.getId() == R.id.optionOthers)
         {
             CheckBox othersCheckBox = (CheckBox) view;
 
-            if(othersCheckBox.isChecked())
-            {
-                categories.add(othersCheckBox.getText().toString());
-            }
-            else
-            {
-                categories.remove(othersCheckBox.getText().toString());
-            }
+            setAsChecked(othersCheckBox);
         }
         else if(view.getId() == R.id.optionParty)
         {
             CheckBox partyCheckBox = (CheckBox) view;
 
-            if(partyCheckBox.isChecked())
-            {
-                categories.add(partyCheckBox.getText().toString());
-            }
-            else
-            {
-                categories.remove(partyCheckBox.getText().toString());
-            }
+            setAsChecked(partyCheckBox);
         }
         else if(view.getId() == R.id.optionShow)
         {
             CheckBox showCheckBox = (CheckBox) view;
 
-            if(showCheckBox.isChecked())
-            {
-                categories.add(showCheckBox.getText().toString());
-            }
-            else
-            {
-                categories.remove(showCheckBox.getText().toString());
-            }
+            setAsChecked(showCheckBox);
         }
         else if(view.getId() == R.id.optionSports)
         {
             CheckBox sportsCheckBox = (CheckBox) view;
 
-            if(sportsCheckBox.isChecked())
-            {
-                categories.add(sportsCheckBox.getText().toString());
-            }
-            else
-            {
-                categories.remove(sportsCheckBox.getText().toString());
-            }
+            setAsChecked(sportsCheckBox);
         }
         else if(view.getId() == R.id.optionTheater)
         {
             CheckBox theaterCheckBox = (CheckBox) view;
 
-            if(theaterCheckBox.isChecked())
-            {
-                categories.add(theaterCheckBox.getText().toString());
-            }
-            else
-            {
-                categories.remove(theaterCheckBox.getText().toString());
-            }
+            setAsChecked(theaterCheckBox);
+        }
+        else
+        {
+            //NOTHING TO DO
         }
 
         Log.d("EditEventFragment", "Event type setted");
     }
 
+    private void setAsChecked (CheckBox checkBox)
+    {
+        if(checkBox.isChecked())
+        {
+            categories.add(checkBox.getText().toString());
+        }
+        else
+        {
+            categories.remove(checkBox.getText().toString());
+        }
+    }
 
     /**
      * Method: public void onClick
@@ -470,34 +435,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Integer eventPriceDecimal = Integer.parseInt(priceDecimalField.getText().toString());
         Integer priceEvent = eventPriceReal * 100 + eventPriceDecimal;
 
-        if(nameEvent == null)
-        {
-            Log.d("EditEventFragment", "Event name null");
-        }
-        if (dateEvent == null)
-        {
-            Log.d("EditEventFragment", "Event date null");
-        }
-        if (hourEvent == null)
-        {
-            Log.d("EditEventFragment", "Event hour null");
-        }
-        if (descriptionEvent == null)
-        {
-            Log.d("EditEventFragment", "Event description null");
-        }
-        if (addresEvent == null)
-        {
-            Log.d("EditEventFragment", "Event adress null");
-        }
-        if (priceEvent == null)
-        {
-            Log.d("EditEventFragment", "Event price null");
-        }
-        else
-        {
-            //NOTHINHG TO DO
-        }
+        checksValuesNotNull(nameEvent, dateEvent, hourEvent, descriptionEvent, addresEvent, priceEvent);
 
         try
         {
@@ -512,77 +450,135 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
         } catch (EventException eventException)
         {
-            String message = eventException.getMessage().toString();
-
-            //Verify address field
-            if(message.equals(Event.ADDRESS_IS_EMPTY))
-            {
-                editAndRegisterUtility.setMessageError(addressField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
-            {
-                editAndRegisterUtility.setMessageError(descriptionField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
-            {
-                editAndRegisterUtility.setMessageError(descriptionField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.EVENT_DATE_IS_EMPTY))
-            {
-                editAndRegisterUtility.setMessageError(dateField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
-            {
-                editAndRegisterUtility.setMessageError(nameField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.INVALID_EVENT_DATE))
-            {
-                editAndRegisterUtility.setMessageError(dateField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
-
-            if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
-            {
-                editAndRegisterUtility.setMessageError(nameField, message);
-            }
-            else
-            {
-                //NOTING TO DO
-            }
+            warnIfValuesAreInvalid(eventException);
 
         } catch (ParseException parseException)
         {
             parseException.printStackTrace();
 
         }
+    }
+
+    private void warnIfValuesAreInvalid (EventException eventException)
+    {
+        String message = eventException.getMessage().toString();
+
+        if(message.equals(Event.ADDRESS_IS_EMPTY))
+        {
+            editAndRegisterUtility.setMessageError(addressField, message);
+        }
+        else
+        {
+            //NOTING TO DO
+        }
+
+        if(message.equals(Event.DESCRIPTION_CANT_BE_EMPTY))
+        {
+            editAndRegisterUtility.setMessageError(descriptionField, message);
+        }
+        else
+        {
+            //NOTING TO DO
+        }
+
+        if(message.equals(Event.DESCRIPTION_CANT_BE_GREATER_THAN))
+        {
+            editAndRegisterUtility.setMessageError(descriptionField, message);
+        }
+        else
+        {
+            //NOTING TO DO
+        }
+
+        if(message.equals(Event.EVENT_DATE_IS_EMPTY))
+        {
+            editAndRegisterUtility.setMessageError(dateField, message);
+        }
+        else
+        {
+            //NOTING TO DO
+        }
+
+        if(message.equals(Event.EVENT_NAME_CANT_BE_EMPTY_NAME))
+        {
+            editAndRegisterUtility.setMessageError(nameField, message);
+        }
+        else
+        {
+            //NOTING TO DO
+        }
+
+        if(message.equals(Event.INVALID_EVENT_DATE))
+        {
+            editAndRegisterUtility.setMessageError(dateField, message);
+        }
+        else
+        {
+            //NOTING TO DO
+        }
+
+        if(message.equals(Event.NAME_CANT_BE_GREATER_THAN_50))
+        {
+            editAndRegisterUtility.setMessageError(nameField, message);
+        }
+        else
+        {
+            //NOTING TO DO
+        }
+    }
+
+    private void checksValuesNotNull(String nameEvent, String dateEvent, String hourEvent,
+                              String descriptionEvent, String addresEvent, Integer priceEvent)
+    {
+        if(nameEvent == null)
+        {
+            Log.d("EditEventFragment", "Event name null");
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+        if (dateEvent == null)
+        {
+            Log.d("EditEventFragment", "Event date null");
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+        if (hourEvent == null)
+        {
+            Log.d("EditEventFragment", "Event hour null");
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+        if (descriptionEvent == null)
+        {
+            Log.d("EditEventFragment", "Event description null");
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+        if (addresEvent == null)
+        {
+            Log.d("EditEventFragment", "Event adress null");
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+        if (priceEvent == null)
+        {
+            Log.d("EditEventFragment", "Event price null");
+        }
+        else
+        {
+            //NOTHINHG TO DO
+        }
+
     }
 
     //Remove Event

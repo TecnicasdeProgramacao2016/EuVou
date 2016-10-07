@@ -67,10 +67,16 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
         description.setText(eventDescription);
         dateEvent.setText(Mask.getDateTimeInBrazilianFormat(eventDateTime));
         eventAddres.setText(eventAddress);
-        showEvent.setPriceText(eventPriceText, eventPrice+"");
-        showEvent.setCategoriesText(new Integer(evento.getIdEvent()), eventCategoriesText);
+        setShowEvent(eventPrice);
 
         return view;
+    }
+
+    //Sets atributtes for event's show
+    private void setShowEvent(Integer eventPrice)
+    {
+        showEvent.setPriceText(eventPriceText, eventPrice+"");
+        showEvent.setCategoriesText(new Integer(evento.getIdEvent()), eventCategoriesText);
     }
 
     @Override

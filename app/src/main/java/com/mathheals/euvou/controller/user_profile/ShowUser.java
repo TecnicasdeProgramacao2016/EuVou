@@ -53,11 +53,25 @@ public class ShowUser extends android.support.v4.app.Fragment {
     {
 
         setShowUserView(inflater.inflate(R.layout.show_user, container, false));
-        UserDAO userDAO = new UserDAO(getActivity());
-
         userEvaluatedId=this.getArguments().getString("id");
         setCurrentUserId(new LoginUtility(getActivity()).getUserId());
+
+        getDBValuesToSetView();
+
+        setIsUserLoggedIn(currentUserId != LOGGED_OUT);
+        setRatingMessage(isUserLoggedIn);
+        setRatingBarIfNeeded();
+
+        Log.d("ShowUser", "User logged in");
+
+        return showUserView;
+    }
+
+    private void getDBValuesToSetView()
+    {
+        UserDAO userDAO = new UserDAO(getActivity());
         JSONObject userData = null;
+
         try
         {
             userData = new JSONObject(userDAO.searchUserById(Integer.parseInt(userEvaluatedId)));
@@ -83,14 +97,6 @@ public class ShowUser extends android.support.v4.app.Fragment {
         {
             jsonException.printStackTrace();
         }
-
-        setIsUserLoggedIn(currentUserId != LOGGED_OUT);
-        setRatingMessage(isUserLoggedIn);
-        setRatingBarIfNeeded();
-
-        Log.d("ShowUser", "User logged in");
-
-        return showUserView;
     }
 
 
@@ -113,36 +119,13 @@ public class ShowUser extends android.support.v4.app.Fragment {
         ratingBar = (RatingBar) showUserView.findViewById(R.id.ratingBar);
         ratingBar.setVisibility(View.VISIBLE);
 
-        if(ratingBar == null)
-        {
-            Log.d("ShowUser", "Rating bar is null");
-        }
-        else
-        {
-            //NOTHING TO DO
-        }
+        checkRateBar(ratingBar);
 
         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
 
         JSONObject evaluationJSON = (JSONObject) userEvaluationDAO.searchUserEvaluation(Integer.parseInt(userEvaluatedId), currentUserId);
 
-        if(evaluationJSON!=null)
-        {
-            Float evaluation = null;
-            try
-            {
-                evaluation = new Float(evaluationJSON.getJSONObject("0").getDouble("grade"));
-            } catch (JSONException e)
-            {
-                e.printStackTrace();
-            }
-
-            ratingBar.setRating(evaluation);
-        }
-        else
-        {
-            //NOTHING TO DO
-        }
+        settingRateBarEvaluation(evaluationJSON, ratingBar);
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.
                 OnRatingBarChangeListener()
@@ -160,6 +143,39 @@ public class ShowUser extends android.support.v4.app.Fragment {
         );
         setRatingBarStyle();
         Log.d("ShowUser", "Rating bar setted");
+    }
+
+    private void settingRateBarEvaluation(JSONObject evaluationJSON, RatingBar ratingBar)
+    {
+        if(evaluationJSON!=null)
+        {
+            Float evaluation = null;
+            try
+            {
+                evaluation = new Float(evaluationJSON.getJSONObject("0").getDouble("grade"));
+            } catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+            ratingBar.setRating(evaluation);
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+    }
+
+    private void checkRateBar(RatingBar ratingBar)
+    {
+        if(ratingBar == null)
+        {
+            Log.d("ShowUser", "Rating bar is null");
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
     }
 
     //Set atribute Rating bar Style
