@@ -102,7 +102,9 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
 
     /**
+     * Method:  private void setRatingBar()
      * Rating bar is setted as user's wish using user's evaluation
+     * @param
      */
 
     //Set Atribute Rate

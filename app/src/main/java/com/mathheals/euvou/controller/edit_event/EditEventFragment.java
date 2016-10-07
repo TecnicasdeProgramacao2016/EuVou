@@ -367,9 +367,12 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Log.d("EditEventFragment", "Event type setted");
     }
 
+
     /**
+     * Method: public void onClick
      * Overrides are used to rewrite methods.
      * This override sets or removes events as user's will.
+     * @param view
      */
 
     @Override
@@ -396,12 +399,14 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     }
 
 
+
     /**
+     * Method: private void addCheckBoxListeners
      * Listeners are used to check user's actions.
      * This checks the category option
+     * @param view
      */
 
-    //Add listener to checkbox
     private void addCheckBoxListeners(View view)
     {
 

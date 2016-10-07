@@ -1,4 +1,4 @@
-    /*
+/*
 * File name: EventRegistrationControlTest.
 * File pourpose: Test if an event can be registred.
 */
