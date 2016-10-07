@@ -29,6 +29,21 @@ import model.Event;
 
 public class RegisterEventFragment extends android.support.v4.app.Fragment implements View.OnClickListener
 {
+    private EditText nameEventField = null;
+    private EditText dateEventField = null;
+    private EditText hourEventField = null;
+    private EditText descriptionEventField = null;
+    private EditText addressEventField = null;
+    private EditText priceEventRealField = null;
+    private EditText priceEventDecimalField = null;
+    private EditText eventDate;
+    private String nameEvent;
+    private String dateEvent;
+    private String eventHour;
+    private String descriptionEvent;
+    private String addressEvent;
+    private String priceEventReal;
+    private String priceEventDecimal;
     private final String DEFAULT_MESSAGE = " ";
     private static final String SUCCESSFULL_CADASTRATION_MESSAGE = "Evento cadastrado com sucesso :)";
     private String latitude = DEFAULT_MESSAGE;
@@ -66,7 +81,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         eventLocal.setOnClickListener(this);
 
 
-        EditText eventDate = (EditText) view.findViewById(R.id.eventDate);
+        this.eventDate = (EditText) view.findViewById(R.id.eventDate);
         eventDate.addTextChangedListener(Mask.insert("##/##/####", eventDate));
 
 
@@ -145,12 +160,16 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToMuseumCategory method");
         CheckBox museumCheckBox = (CheckBox) view;
 
+        String nameMuseum = museumCheckBox.getText().toString();
+
+        assert(nameMuseum != null);
+
         if(museumCheckBox.isChecked())
         {
-            categories.add(museumCheckBox.getText().toString());
+            categories.add(nameMuseum);
         }else
         {
-            categories.remove(museumCheckBox.getText().toString());
+            categories.remove(nameMuseum);
         }
     }
 
@@ -164,13 +183,14 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToOthersCategory method");
         CheckBox othersCheckBox = (CheckBox) view;
 
+        String othersString = othersCheckBox.getText().toString();
         if(othersCheckBox.isChecked())
         {
-            categories.add(othersCheckBox.getText().toString());
+            categories.add(othersString);
         }
         else
         {
-            categories.remove(othersCheckBox.getText().toString());
+            categories.remove(othersString);
         }
     }
 
@@ -184,12 +204,15 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToPartyCategory method");
         CheckBox partyCheckBox = (CheckBox) view;
 
+        String partyString = partyCheckBox.getText().toString();
+        assert(partyString != null);
+
         if(partyCheckBox.isChecked())
         {
-            categories.add(partyCheckBox.getText().toString());
+            categories.add(partyString);
         }else
         {
-            categories.remove(partyCheckBox.getText().toString());
+            categories.remove(partyString);
         }
     }
 
@@ -203,13 +226,14 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToSportsCategory method");
         CheckBox sportsCheckBox = (CheckBox) view;
 
+        String sportsString = sportsCheckBox.getText().toString();
         if(sportsCheckBox.isChecked())
         {
-            categories.add(sportsCheckBox.getText().toString());
+            categories.add(sportsString);
         }
         else
         {
-            categories.remove(sportsCheckBox.getText().toString());
+            categories.remove(sportsString);
         }
     }
 
@@ -222,13 +246,17 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         assert(view != null);
         CheckBox theaterCheckBox = (CheckBox) view;
         Log.d("01","started the addToTheatreCategories method");
+
+        String theaterString = theaterCheckBox.getText().toString();
+        assert(theaterString != null);
+
         if(theaterCheckBox.isChecked())
         {
-            categories.add(theaterCheckBox.getText().toString());
+            categories.add(theaterString);
         }
         else
         {
-            categories.remove(theaterCheckBox.getText().toString());
+            categories.remove(theaterString);
         }
     }
 
@@ -241,12 +269,14 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         assert(view != null);
         Log.d("01","started the addToShowCategory method");
         CheckBox showCheckBOx = (CheckBox) view;
+
+        String showString = showCheckBOx.getText().toString();
         if(showCheckBOx.isChecked())
         {
-            categories.add(showCheckBOx.getText().toString());
+            categories.add(showString);
         }else
         {
-            categories.remove(showCheckBOx.getText().toString());
+            categories.remove(showString);
         }
     }
 
@@ -301,26 +331,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
 
         if(view.getId() == R.id.saveEvent)
         {
-            EditText nameEventField = (EditText) this.getActivity().findViewById(R.id.eventName);
-            String nameEvent = nameEventField.getText().toString();
+            setEditTextView();
 
-            EditText dateEventField = (EditText) this.getActivity().findViewById(R.id.eventDate);
-            String dateEvent = dateEventField.getText().toString();
-
-            EditText hourEventField = (EditText) this.getActivity().findViewById(R.id.eventHour);
-            String eventHour = hourEventField.getText().toString();
-
-            EditText descriptionEventField = (EditText) this.getActivity().findViewById(R.id.eventDescription);
-            String descriptionEvent = descriptionEventField.getText().toString();
-
-            EditText addressEventField = (EditText) this.getActivity().findViewById(R.id.eventAddress);
-            String addressEvent = addressEventField.getText().toString();
-
-            EditText priceEventRealField = (EditText) this.getActivity().findViewById(R.id.eventPriceReal);
-            String priceEventReal = priceEventRealField.getText().toString();
-
-            EditText priceEventDecimalField = (EditText) this.getActivity().findViewById(R.id.eventPriceDecimal);
-            String priceEventDecimal = priceEventDecimalField.getText().toString();
+            setStringsOfTextViews();
 
             LoginUtility loginUtility = new LoginUtility(getActivity());
             assert(loginUtility != null);
@@ -420,6 +433,113 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         }
     }
 
+       @Override
+    public void onActivityResult(final int requestCode, final int resultCode, final Intent data)
+    {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode)
+        {
+            case (2) :
+            {
+                if (resultCode == Activity.RESULT_OK)
+                {
+                    Bundle bundle = data.getExtras();
+                    latitude = bundle.getString("latitude");
+                    longitude = bundle.getString("longitude");
+
+                    Toast.makeText(getContext(), "Local selecionado com sucesso", Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+            default:
+                //NOTHING TO DO
+
+        }
+    }
+
+    /**
+     * it registers an event in the database
+     * @param event - event that was created and that will be saved
+     */
+    private void registerEvent(final Event event)
+    {
+        assert(event != null);
+
+        EventDAO eventDAO = new EventDAO(getActivity());
+
+        assert(eventDAO != null);
+
+        eventDAO.saveEvent(event);
+    }
+
+
+    /**
+     * method that creates the textviews of the fragment
+     */
+    private void setEditTextView ()
+    {
+        this.nameEventField = (EditText) this.getActivity().findViewById(R.id.eventName);
+        this.dateEventField = (EditText) this.getActivity().findViewById(R.id.eventDate);
+        this.hourEventField = (EditText) this.getActivity().findViewById(R.id.eventHour);
+        this.descriptionEventField = (EditText) this.getActivity().findViewById(R.id.eventDescription);
+        this.addressEventField = (EditText) this.getActivity().findViewById(R.id.eventAddress);
+        this.priceEventRealField = (EditText) this.getActivity().findViewById(R.id.eventPriceReal);
+        this.priceEventDecimalField = (EditText) this.getActivity().findViewById(R.id.eventPriceDecimal);
+    }
+
+    /**
+     * method that sets the strings that were on the textFields
+     */
+    private void setStringsOfTextViews()
+    {
+
+        this.nameEvent = nameEventField.getText().toString();
+        this.dateEvent = dateEventField.getText().toString();
+        this.eventHour = hourEventField.getText().toString();
+        this.descriptionEvent = descriptionEventField.getText().toString();
+        this.addressEvent = addressEventField.getText().toString();
+        this.priceEventReal = priceEventRealField.getText().toString();
+        this.priceEventDecimal = priceEventDecimalField.getText().toString();
+    }
+
+    /**
+     * adding the listeniers to the checkboxess of the categories
+     * @param view - the current view
+     */
+    private void addCheckBoxListeners(final View view)
+    {
+        assert(view != null);
+
+        CheckBox showCategory = (CheckBox) view.findViewById(R.id.optionShow);
+        showCategory.setOnClickListener(this);
+
+        CheckBox expositionCategory = (CheckBox) view.findViewById(R.id.optionExposition);
+        expositionCategory.setOnClickListener(this);
+
+        CheckBox museumCategory = (CheckBox) view.findViewById(R.id.optionMuseum);
+        museumCategory.setOnClickListener(this);
+
+        CheckBox cinemaCategory = (CheckBox) view.findViewById(R.id.optionCinema);
+        cinemaCategory.setOnClickListener(this);
+
+        CheckBox theaterCategory = (CheckBox) view.findViewById(R.id.optionTheater);
+        theaterCategory.setOnClickListener(this);
+
+        CheckBox partyCategory = (CheckBox) view.findViewById(R.id.optionParty);
+        partyCategory.setOnClickListener(this);
+
+        CheckBox educationCategory = (CheckBox) view.findViewById(R.id.optionEducation);
+        educationCategory.setOnClickListener(this);
+
+        CheckBox sportsCategory = (CheckBox) view.findViewById(R.id.optionSports);
+        sportsCategory.setOnClickListener(this);
+
+        CheckBox othersCategory = (CheckBox) view.findViewById(R.id.optionOthers);
+        othersCategory.setOnClickListener(this);
+
+    }
+
     /**
      * method to identify the error and send a message warning
      * @param message - get the message from the exception
@@ -494,82 +614,6 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         {
             //NOTHING TO DO
         }
-    }
-    @Override
-    public void onActivityResult(final int requestCode, final int resultCode, final Intent data)
-    {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode)
-        {
-            case (2) :
-            {
-                if (resultCode == Activity.RESULT_OK)
-                {
-                    Bundle bundle = data.getExtras();
-                    latitude = bundle.getString("latitude");
-                    longitude = bundle.getString("longitude");
-
-                    Toast.makeText(getContext(), "Local selecionado com sucesso", Toast.LENGTH_LONG).show();
-                }
-                break;
-            }
-            default:
-                //NOTHING TO DO
-
-        }
-    }
-
-    /**
-     * it registers an event in the database
-     * @param event - event that was created and that will be saved
-     */
-    private void registerEvent(final Event event)
-    {
-        assert(event != null);
-
-        EventDAO eventDAO = new EventDAO(getActivity());
-
-        assert(eventDAO != null);
-
-        eventDAO.saveEvent(event);
-    }
-
-    /**
-     * adding the listeniers to the checkboxess of the categories
-     * @param view - the current view
-     */
-    private void addCheckBoxListeners(final View view)
-    {
-        assert(view != null);
-
-        CheckBox showCategory = (CheckBox) view.findViewById(R.id.optionShow);
-        showCategory.setOnClickListener(this);
-
-        CheckBox expositionCategory = (CheckBox) view.findViewById(R.id.optionExposition);
-        expositionCategory.setOnClickListener(this);
-
-        CheckBox museumCategory = (CheckBox) view.findViewById(R.id.optionMuseum);
-        museumCategory.setOnClickListener(this);
-
-        CheckBox cinemaCategory = (CheckBox) view.findViewById(R.id.optionCinema);
-        cinemaCategory.setOnClickListener(this);
-
-        CheckBox theaterCategory = (CheckBox) view.findViewById(R.id.optionTheater);
-        theaterCategory.setOnClickListener(this);
-
-        CheckBox partyCategory = (CheckBox) view.findViewById(R.id.optionParty);
-        partyCategory.setOnClickListener(this);
-
-        CheckBox educationCategory = (CheckBox) view.findViewById(R.id.optionEducation);
-        educationCategory.setOnClickListener(this);
-
-        CheckBox sportsCategory = (CheckBox) view.findViewById(R.id.optionSports);
-        sportsCategory.setOnClickListener(this);
-
-        CheckBox othersCategory = (CheckBox) view.findViewById(R.id.optionOthers);
-        othersCategory.setOnClickListener(this);
-
     }
 
 }
