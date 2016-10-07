@@ -54,22 +54,22 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         assert(container != null);
         assert(savedInstanceState != null);
         Log.d("01","started the onCreatView method");
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.register_event, container, false);
 
-        //Adding listener to saveEvent Button
+
         Button registerEvent = (Button) view.findViewById(R.id.saveEvent);
         registerEvent.setOnClickListener(this);
 
-        //Adding listener to eventLocal EditText
+
         Button eventLocal = (Button) view.findViewById(R.id.eventLocal);
         eventLocal.setOnClickListener(this);
 
-        //Adding mask to eventDate Field
+
         EditText eventDate = (EditText) view.findViewById(R.id.eventDate);
         eventDate.addTextChangedListener(Mask.insert("##/##/####", eventDate));
 
-        //Adding listener to CheckBoxs to verify if each CheckBox is checked or not
+
         addCheckBoxListeners(view);
 
         return view;

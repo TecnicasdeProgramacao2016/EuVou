@@ -359,7 +359,9 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     {
         logger.log(Level.INFO,"entered in the method that informates the user ");
         assert(view != null);
+
         final String SUCESS_EDIT_MESSAGE = "Dados alterados com sucesso :)";
+        assert(SUCESS_EDIT_MESSAGE != null);
         Toast.makeText(getBaseContext(), SUCESS_EDIT_MESSAGE, Toast.LENGTH_LONG).show();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.popBackStack();
@@ -397,18 +399,23 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
             {
                 case 1:
                     aux = "Museu";
+                    assert(aux == "Museu");
                     break;
                 case 2:
                     aux = "Parque";
+                    assert(aux == "Parque");
                     break;
                 case 3:
                     aux = "Teatro";
+                    assert(aux == "Teatro");
                     break;
                 case 4:
                     aux = "shop";
+                    assert(aux == "shop");
                     break;
                 case 5:
                     aux = "Unidade";
+                    assert( aux == "Unidade");
                     break;
                 default:
                     //NOTHING TO DO

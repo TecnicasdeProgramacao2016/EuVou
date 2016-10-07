@@ -57,10 +57,11 @@ public abstract class DAO {
         logger.log(Level.INFO,"entered in the method that makes the query");
 
         long currentTime = Calendar.getInstance().getTime().getTime();
-        long timeLimit = currentTime + LIMITCONECTIONTIME;
 
         Consult consult = new Consult(query,urlQuery);
         consult.exec();
+
+        long timeLimit = currentTime + LIMITCONECTIONTIME;
 
         while(!consult.getIsDoing() && currentTime < timeLimit)
         {

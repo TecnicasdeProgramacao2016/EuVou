@@ -60,9 +60,14 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     {
         assert(inflater != null);
         View view = inflater.inflate(R.layout.register_user, container, false);
+        assert(view != null);
+
         Button register = (Button) view.findViewById(R.id.saveButton);
+        assert(register != null);
+
         register.setOnClickListener(this);
         setingEditText(view);
+
         birthDateField.addTextChangedListener(Mask.insert("##/##/####", birthDateField));
 
         return view;
@@ -97,6 +102,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         {
 
             String message = exception.getMessage();
+            assert(message != null);
             UserRegisterErrorMessage(message);
 
         }
@@ -111,6 +117,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     {
         assert(user != null);
         UserDAO userDAO = new UserDAO(getActivity());
+
+        assert(userDAO != null);
+
         userDAO.save(user);
 
     }
@@ -122,6 +131,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     {
         Activity activity = getActivity();
         Intent myIntent = new Intent(activity, LoginActivity.class);
+
+        assert(myIntent != null);
         activity.startActivity(myIntent);
 
     }

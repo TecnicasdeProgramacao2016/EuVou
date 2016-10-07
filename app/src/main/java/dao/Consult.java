@@ -91,8 +91,6 @@ public class Consult
 
             try
             {
-                HttpClient client = new DefaultHttpClient();
-
 
                 List<NameValuePair> pairs = new ArrayList<NameValuePair>();
                 pairs.add(new BasicNameValuePair(PARAM, query));
@@ -100,6 +98,7 @@ public class Consult
                 HttpPost post = new HttpPost(url);
                 post.setEntity(new UrlEncodedFormEntity(pairs));
 
+                HttpClient client = new DefaultHttpClient();
                 HttpResponse   response = client.execute(post);
 
                 result = inputStreamToString(response.getEntity().getContent()).toString();
@@ -121,10 +120,13 @@ public class Consult
         private StringBuilder inputStreamToString(InputStream is) throws IOException
         {
             assert(is != null);
-            StringBuilder answer = new StringBuilder();
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
 
             String rLine = "";
+
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+
+            StringBuilder answer = new StringBuilder();
+
             while ((rLine = rd.readLine()) != null)
             {
                 answer.append(rLine);
