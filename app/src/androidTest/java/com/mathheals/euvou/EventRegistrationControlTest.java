@@ -1,4 +1,4 @@
-/*
+    /*
 * File name: EventRegistrationControlTest.
 * File pourpose: Test if an event can be registred.
 */
@@ -78,6 +78,7 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         onView(withId(R.id.eventLocal)).perform(click());
         onView(withId(R.id.map)).perform(click());
 
+        //This try-catch structure forces the application principal thread to stop for a while
         try
         {
             Thread.sleep(3000);

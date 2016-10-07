@@ -161,11 +161,19 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
             Vector <Integer> idCategories = new Vector<>();
             String idCategory;
 
+            /*
+             * As known, events can have many categories, this structure get all chosed
+             * options and save then ad idCategories
+             */
             for (int counter = 0; counter < jsonEventCategory.length(); counter++) {
                 idCategory = jsonEventCategory.getJSONObject(Integer.toString(counter)).getString("idCategory");
                 idCategories.add(Integer.parseInt(idCategory));
             }
 
+            /*
+             * This structure searchs all categories from a certain event using IdCategories,
+             * the previous structure, and displays them to the user as he wants to edit an event
+             */
             for (int i = 0; i < idCategories.size(); i++) {
                 JSONObject jsonCategory = categoryDAO.searchCategoryById(idCategories.get(i));
                 String nameCategory = jsonCategory.getJSONObject("0").getString("nameCategory");
@@ -271,6 +279,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     //Add EventCategories
     private void addEventCategories(View view)
     {
+
+        //This if-else structure sets checked events as event's categorie
         if(view.getId() == R.id.optionCinema)
         {
             CheckBox cinemaCheckBox = (CheckBox) view;
@@ -356,6 +366,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     //Override ClickAction
     public void onClick(View view)
     {
+        //This if-else structure checks user's option and displays an event information
         if(view.getId() == R.id.updateEvent)
         {
             updateEvent();
@@ -466,6 +477,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     {
         String message = eventException.getMessage().toString();
 
+        //This if-else structure tests if the information given is correct
         if(message.equals(Event.ADDRESS_IS_EMPTY))
         {
             editAndRegisterUtility.setMessageError(addressField, message);
@@ -533,6 +545,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     private void checksValuesNotNull(String nameEvent, String dateEvent, String hourEvent,
                               String descriptionEvent, String addresEvent, Integer priceEvent)
     {
+        //This structure checks if atributte's values are null
         if(nameEvent == null)
         {
             Log.d("EditEventFragment", "Event name null");

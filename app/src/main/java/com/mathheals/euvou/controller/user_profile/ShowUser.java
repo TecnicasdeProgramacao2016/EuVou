@@ -244,6 +244,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
         }
         catch (UserEvaluationException exception)
         {
+            //This if-else structure tests if the information given is correct
             if(exception.getMessage()==UserEvaluation.EVALUATION_IS_INVALID)
             {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
