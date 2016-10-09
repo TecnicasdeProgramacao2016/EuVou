@@ -62,90 +62,100 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         searchView.setQueryHint(SEARCH_VIEW_HINT);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
-
             @Override
             /**
-            *Method: public boolean onQueryTextSubmit(String query)
-            *Description: serachs by name an event
-            *@param String query
-            */
+             *Method: public boolean onQueryTextSubmit(String query)
+             *Description: serachs by name an event
+             *@param query
+             */
             public boolean onQueryTextSubmit(String query)
             {
+
                 int checkedButton = (int) radioGroup.getCheckedRadioButtonId();
                 switch (checkedButton)
                 {
                     case R.id.radio_events:
-                        option="event";
-                        EventDAO eventDAO = new EventDAO(getParent());
-
-                        ArrayList<String> eventsFound = new ArrayList<String>();
-                        eventDATA = eventDAO.searchEventByNameGroup(query);
-                        final String EVENT_COLUMN = "nameEvent";
-
-                        if (eventDATA != null)
-                        {
-                            event_not_found_text.setVisibility(View.GONE);
-                            try
-                            {
-                                //Find events
-                                for(int i = 0; i < eventDATA.length(); ++i)
-                                {
-                                    eventsFound.add(eventDATA.getJSONObject(new Integer(i).toString()).getString(EVENT_COLUMN));
-                                }
-
-                                String[] eventsFoundArray = eventsFound.toArray(new String[eventsFound.size()]);
-                                showEventsAsList(eventsFoundArray);
-                            }catch (JSONException exceptionJSON)
-                            {
-                                exceptionJSON.printStackTrace();
-                            }
-                        }
-                        else
-                        {
-                            listView.setAdapter(null);
-                            event_not_found_text.setVisibility(View.VISIBLE);
-                        }
+                        ifCheckButtonIsEvents(query);
                         break;
 
                     case R.id.radio_people:
-                        option="people";
-                        UserDAO userDAO = new UserDAO(getParent());
-
-                        ArrayList<String> peopleFound = new ArrayList<String>();
-                        peopleDATA = userDAO.searchUserByName(query);
-                        final String NAME_USER_COLUMN = "nameUser";
-
-                        if (peopleDATA != null)
-                        {
-                            event_not_found_text.setVisibility(View.GONE);
-                            try
-                            {
-                                //Finds People
-                                for(int i = 0; i < peopleDATA.length(); i++)
-                                {
-                                    peopleFound.add(peopleDATA.getJSONObject(new Integer(i).toString()).getString(NAME_USER_COLUMN));
-                                }
-
-                                String[] peopleFoundArray = peopleFound.toArray(new String[peopleFound.size()]);
-                                showPeopleAsList(peopleFoundArray);
-                            }catch (JSONException exceptionOfJSON)
-                            {
-                                exceptionOfJSON.printStackTrace();
-                            }
-                        }
-                        else
-                        {
-                            listView.setAdapter(null);
-                            event_not_found_text.setText(PEOPLE_NOT_FOUND_MESSAGE);
-                            event_not_found_text.setVisibility(View.VISIBLE);
-                        }
-
+                        ifCheckButtonIsPeople(query);
                         break;
                     default:
                         //NOTHING TO DO
-                        break;
+
                 }
                 return true;
+            }
+
+            //If selected is event
+            private void ifCheckButtonIsEvents(String query){
+                option="event";
+                EventDAO eventDAO = new EventDAO(getParent());
+
+                ArrayList<String> eventsFound = new ArrayList<String>();
+                eventDATA = eventDAO.searchEventByNameGroup(query);
+                final String EVENT_COLUMN = "nameEvent";
+
+                if (eventDATA != null)
+                {
+                    event_not_found_text.setVisibility(View.GONE);
+                    try
+                    {
+                        //Find events
+                        for(int i = 0; i < eventDATA.length(); ++i)
+                        {
+                            eventsFound.add(eventDATA.getJSONObject(new Integer(i).toString()).getString(EVENT_COLUMN));
+                        }
+
+                        String[] eventsFoundArray = eventsFound.toArray(new String[eventsFound.size()]);
+                        showEventsAsList(eventsFoundArray);
+                    }catch (JSONException exceptionJSON)
+                    {
+                        exceptionJSON.printStackTrace();
+                    }
+                }
+                else
+                {
+                    listView.setAdapter(null);
+                    event_not_found_text.setVisibility(View.VISIBLE);
+                }
+            }
+
+            //If selected is people
+            private void ifCheckButtonIsPeople(String query){
+                option="people";
+                UserDAO userDAO = new UserDAO(getParent());
+
+                ArrayList<String> peopleFound = new ArrayList<String>();
+                peopleDATA = userDAO.searchUserByName(query);
+                final String NAME_USER_COLUMN = "nameUser";
+
+                if (peopleDATA != null)
+                {
+                    event_not_found_text.setVisibility(View.GONE);
+                    try
+                    {
+                        //Finds People
+                        for(int i = 0; i < peopleDATA.length(); i++)
+                        {
+                            peopleFound.add(peopleDATA.getJSONObject(new Integer(i).toString()).getString(NAME_USER_COLUMN));
+                        }
+
+                        String[] peopleFoundArray = peopleFound.toArray(new String[peopleFound.size()]);
+                        showPeopleAsList(peopleFoundArray);
+                    }catch (JSONException exceptionOfJSON)
+                    {
+                        exceptionOfJSON.printStackTrace();
+                    }
+                }
+                else
+                {
+                    listView.setAdapter(null);
+                    event_not_found_text.setText(PEOPLE_NOT_FOUND_MESSAGE);
+                    event_not_found_text.setVisibility(View.VISIBLE);
+                }
+
             }
 
             @Override

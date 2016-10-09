@@ -131,60 +131,63 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         } catch (Exception messageOfError)
         {
             String message = (String) messageOfError.getMessage();
+            seeErrorOnAnyMessage(message);
+        }
+    }
 
-            //See if has an error on input of some information
-            if(message.equals(User.EMAIL_CANT_BE_EMPTY_EMAIL))
-            {
-                editAndRegisterUtility.setMessageError(mailField, message);
-            }
-            if(message.equals(User.NAME_CANT_BE_EMPTY_NAME))
-            {
-                editAndRegisterUtility.setMessageError(nameField, message);
-            }
-            if(message.equals(User.NAME_CANT_BE_HIGHER_THAN_50))
-            {
-                editAndRegisterUtility.setMessageError(nameField, message);
-            }
-            if(message.equals(User.EMAIL_CANT_BE_HIGHER_THAN_150))
-            {
-                editAndRegisterUtility.setMessageError(mailField, message);
-            }
-            if(message.equals(User.INVALID_EMAIL))
-            {
-                editAndRegisterUtility.setMessageError(mailField, message);
-            }
-            if(message.equals(User.EMAIL_ARE_NOT_EQUALS))
-            {
-                editAndRegisterUtility.setMessageError(mailField, message);
-            }
-            if(message.equals(User.PASSWORD_CANT_BE_EMPTY_PASSWORD))
-            {
-                editAndRegisterUtility.setMessageError(passwordField, message);
-            }
-            if(message.equals(User.PASSWORD_CANT_BE_LESS_THAN_6))
-            {
-                editAndRegisterUtility.setMessageError(passwordField, message);
-            }
-            if(message.equals(User.PASSWORD_ARE_NOT_EQUALS))
-            {
-                editAndRegisterUtility.setMessageError(passwordField, message);
-            }
-            if(message.equals(User.BIRTH_DATE_CANT_BE_EMPTY))
-            {
-                editAndRegisterUtility.setMessageError(birthDateField, message);
-            }
-            if(message.equals(User.INVALID_BIRTH_DATE))
-            {
-                editAndRegisterUtility.setMessageError(birthDateField, message);
-            }
-            if(message.equals(User.EMAIL_CONFIRMATION_CANT_BE_EMPTY))
-            {
-                editAndRegisterUtility.setMessageError(mailConfirmationField, message);
-            }
-            if(message.equals(User.CONFIRM_PASSWORD_CANT_BE_EMPTY))
-            {
-                editAndRegisterUtility.setMessageError(passwordConfirmField, message);
-            }
+    //See if has an error on input of some information
+    private void seeErrorOnAnyMessage(String message){
+        if(message.equals(User.EMAIL_CANT_BE_EMPTY_EMAIL))
+        {
+            editAndRegisterUtility.setMessageError(mailField, message);
+        }
+        if(message.equals(User.NAME_CANT_BE_EMPTY_NAME))
+        {
+            editAndRegisterUtility.setMessageError(nameField, message);
+        }
+        if(message.equals(User.NAME_CANT_BE_HIGHER_THAN_50))
+        {
+            editAndRegisterUtility.setMessageError(nameField, message);
+        }
+        if(message.equals(User.EMAIL_CANT_BE_HIGHER_THAN_150))
+        {
+            editAndRegisterUtility.setMessageError(mailField, message);
+        }
+        if(message.equals(User.INVALID_EMAIL))
+        {
+            editAndRegisterUtility.setMessageError(mailField, message);
+        }
+        if(message.equals(User.EMAIL_ARE_NOT_EQUALS))
+        {
+            editAndRegisterUtility.setMessageError(mailField, message);
+        }
+        if(message.equals(User.PASSWORD_CANT_BE_EMPTY_PASSWORD))
+        {
+            editAndRegisterUtility.setMessageError(passwordField, message);
+        }
+        if(message.equals(User.PASSWORD_CANT_BE_LESS_THAN_6))
+        {
+            editAndRegisterUtility.setMessageError(passwordField, message);
+        }
+        if(message.equals(User.PASSWORD_ARE_NOT_EQUALS))
+        {
+            editAndRegisterUtility.setMessageError(passwordField, message);
+        }
+        if(message.equals(User.BIRTH_DATE_CANT_BE_EMPTY))
+        {
+            editAndRegisterUtility.setMessageError(birthDateField, message);
+        }
+        if(message.equals(User.INVALID_BIRTH_DATE))
+        {
+            editAndRegisterUtility.setMessageError(birthDateField, message);
+        }
+        if(message.equals(User.EMAIL_CONFIRMATION_CANT_BE_EMPTY))
+        {
+            editAndRegisterUtility.setMessageError(mailConfirmationField, message);
+        }
+        if(message.equals(User.CONFIRM_PASSWORD_CANT_BE_EMPTY))
+        {
+            editAndRegisterUtility.setMessageError(passwordConfirmField, message);
         }
     }
 
