@@ -108,14 +108,10 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     public void testConsultationByCategory()
     {
         onView(withId(R.id.search)).perform(click());
-        onView(withId(R.id.radio_people))
-                .perform(click());
-        onView(withId(R.id.radio_people))
-                .check(matches(isChecked()));
-        onView(withId(R.id.radio_events))
-                .perform(click());
-        onView(withId(R.id.radio_events))
-                .check(matches(isChecked()));
+        onView(withId(R.id.radio_people)).perform(click());
+        onView(withId(R.id.radio_people)).check(matches(isChecked()));
+        onView(withId(R.id.radio_events)).perform(click());
+        onView(withId(R.id.radio_events)).check(matches(isChecked()));
     }
 
     /**
@@ -179,8 +175,11 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         {
             int[] ratingNumbersForTest = new int[]{1, 3, 5};
 
+            //sets rating numbers
             for(Integer ratingNumber : ratingNumbersForTest)
+            {
                 onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
+            }
             try
             {
                 Thread.sleep(1000);

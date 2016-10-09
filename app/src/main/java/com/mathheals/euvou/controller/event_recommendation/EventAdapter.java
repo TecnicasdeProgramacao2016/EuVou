@@ -33,7 +33,9 @@ public class EventAdapter extends ArrayAdapter<Event>
     {
         Event event = getItem(position);
         ViewHolder viewHolder;
-        if (convertView == null)
+
+        //Sets informations to event
+        if(convertView == null)
         {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_recommend_event, parent, false);

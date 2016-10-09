@@ -132,7 +132,8 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         {
             String message = (String) messageOfError.getMessage();
 
-            if (message.equals(User.EMAIL_CANT_BE_EMPTY_EMAIL))
+            //See if has an error on input of some information
+            if(message.equals(User.EMAIL_CANT_BE_EMPTY_EMAIL))
             {
                 editAndRegisterUtility.setMessageError(mailField, message);
             }
@@ -144,11 +145,11 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             {
                 editAndRegisterUtility.setMessageError(nameField, message);
             }
-            if (message.equals(User.EMAIL_CANT_BE_HIGHER_THAN_150))
+            if(message.equals(User.EMAIL_CANT_BE_HIGHER_THAN_150))
             {
                 editAndRegisterUtility.setMessageError(mailField, message);
             }
-            if (message.equals(User.INVALID_EMAIL))
+            if(message.equals(User.INVALID_EMAIL))
             {
                 editAndRegisterUtility.setMessageError(mailField, message);
             }
@@ -156,11 +157,11 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             {
                 editAndRegisterUtility.setMessageError(mailField, message);
             }
-            if (message.equals(User.PASSWORD_CANT_BE_EMPTY_PASSWORD))
+            if(message.equals(User.PASSWORD_CANT_BE_EMPTY_PASSWORD))
             {
                 editAndRegisterUtility.setMessageError(passwordField, message);
             }
-            if (message.equals(User.PASSWORD_CANT_BE_LESS_THAN_6))
+            if(message.equals(User.PASSWORD_CANT_BE_LESS_THAN_6))
             {
                 editAndRegisterUtility.setMessageError(passwordField, message);
             }
@@ -168,11 +169,11 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             {
                 editAndRegisterUtility.setMessageError(passwordField, message);
             }
-            if (message.equals(User.BIRTH_DATE_CANT_BE_EMPTY))
+            if(message.equals(User.BIRTH_DATE_CANT_BE_EMPTY))
             {
                 editAndRegisterUtility.setMessageError(birthDateField, message);
             }
-            if (message.equals(User.INVALID_BIRTH_DATE))
+            if(message.equals(User.INVALID_BIRTH_DATE))
             {
                 editAndRegisterUtility.setMessageError(birthDateField, message);
             }

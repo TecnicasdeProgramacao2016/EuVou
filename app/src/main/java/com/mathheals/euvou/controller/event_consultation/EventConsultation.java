@@ -86,7 +86,8 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                             event_not_found_text.setVisibility(View.GONE);
                             try
                             {
-                                for (int i = 0; i < eventDATA.length(); ++i)
+                                //Find events
+                                for(int i = 0; i < eventDATA.length(); ++i)
                                 {
                                     eventsFound.add(eventDATA.getJSONObject(new Integer(i).toString()).getString(EVENT_COLUMN));
                                 }
@@ -118,7 +119,8 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                             event_not_found_text.setVisibility(View.GONE);
                             try
                             {
-                                for (int i = 0; i < peopleDATA.length(); i++)
+                                //Finds People
+                                for(int i = 0; i < peopleDATA.length(); i++)
                                 {
                                     peopleFound.add(peopleDATA.getJSONObject(new Integer(i).toString()).getString(NAME_USER_COLUMN));
                                 }
@@ -252,11 +254,12 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     @Override
     /**
     *Method: public boolean onOptionsItemSelected(MenuItem item)
-    *Description: gets an iten by id
+    *Description: gets an iten by id and starts activity according itens selected on menu
     *@param MenuItem item
     */
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        //Starts action selected on menu
         if(item.getItemId() == android.R.id.home){
             Intent intent = new Intent(this, HomePage.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

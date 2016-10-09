@@ -80,6 +80,7 @@ public class EventEvaluation
     {
         assert(userId > 0);
 
+        //Alterates user identification
         if(userId <= Integer.MAX_VALUE && userId >= 1)
         {
             this.userId = userId;
@@ -107,6 +108,7 @@ public class EventEvaluation
     */
     public void setEventId(Integer eventId) throws EventEvaluationException
     {
+        //Alterates event identification
         if(eventId <= Integer.MAX_VALUE && eventId >= 1)
         {
             this.eventId = eventId;
