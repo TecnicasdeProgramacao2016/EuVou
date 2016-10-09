@@ -37,12 +37,29 @@ public class EventDAOTest extends TestCase
     {
         EventDAO eventDAO = new EventDAO();
         Vector<String> category = new Vector<>();
-        category.add("Show");
-        Event event = new Event(1, "Teste Abacate", 10010, "oi", "00/00/0000", "xablau", "0", "0", category);
-        eventDAO.updateEvent(event);
-        assertEquals(eventDAO.searchEventById(1).getJSONObject("0").getString("nameEvent"), "Teste Abacate");
-        event = new Event(1, "Teste", 10010, "oi", "00/00/0000", "xablau", "0", "0", category);
-        eventDAO.updateEvent(event);
+        boolean runningOK = true;
+        try
+        {
+            category.add("Show");
+            Event event = new Event(1, "Teste Abacate", 10010, "oi", "00/00/0000", "xablau", "0", "0", category);
+            eventDAO.updateEvent(event);
+            assertEquals(eventDAO.searchEventById(1).getJSONObject("0").getString("nameEvent"), "Teste Abacate");
+            event = new Event(1, "Teste", 10010, "oi", "00/00/0000", "xablau", "0", "0", category);
+            eventDAO.updateEvent(event);
+            if(eventDAO == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
+
+        } catch(EventException eventException)
+        {
+            runningOK = false;
+        }
+        assertFalse(runningOK);
     }
 
     /**
@@ -51,8 +68,26 @@ public class EventDAOTest extends TestCase
     */
     public void testSearchEventByOwner2() throws ParseException, EventException, JSONException
     {
-        EventDAO eventDAO = new EventDAO();
-        assertFalse(eventDAO.searchEventByOwner(3).isEmpty());
+        boolean runningOK = true;
+        try
+        {
+            EventDAO eventDAO = new EventDAO();
+
+            if(eventDAO.searchEventByOwner(3).isEmpty())
+            {
+                assertFalse(eventDAO.searchEventByOwner(3).isEmpty());
+                throw new EventException("Search is empty");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
+
+        } catch(EventException eventException)
+        {
+            runningOK = false;
+        }
+        assertFalse(runningOK);
     }
 
     /**
@@ -63,13 +98,30 @@ public class EventDAOTest extends TestCase
    {
         EventDAO eventDAO = new EventDAO();
         Vector<String> category = new Vector<>();
-        category.add("Outros");
+        boolean runningOK = true;
+        try
+        {
+            category.add("Outros");
 
-        Event event = new Event(3,"Evento Delete",10010, "FGA","14/02/2017","DESCRICAO", "12.20","78.41520",category);
+            Event event = new Event(3,"Evento Delete",10010, "FGA","14/02/2017","DESCRICAO", "12.20","78.41520",category);
 
-        eventDAO.saveEvent(event);
-        eventDAO.deleteEvent(3);
+            eventDAO.saveEvent(event);
+            if(event == null)
+            {
+                throw new EventException("Evento nulo");
+            }
+            else
+            {
+                //NOTHINHG TO DO
+            }
+            eventDAO.deleteEvent(3);
 
-        assertNull(eventDAO.searchEventByName("Evento Delete"));
-    }
+            assertNull(eventDAO.searchEventByName("Evento Delete"));
+        }catch(EventException eventException)
+        {
+            runningOK = false;
+        }
+        assertFalse(runningOK);
+
+       }
 }
