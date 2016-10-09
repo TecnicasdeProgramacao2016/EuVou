@@ -195,6 +195,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         assertTrue(result);
     }
 
+    //tests event to show event
     private void openShowEventFragment()
     {
         onView(withId(R.id.search)).perform(click());
@@ -258,6 +259,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         onView(withId(R.id.EuVou)).check(matches(not(isDisplayed())));
     }
 
+    //test clicks
     private void markClick()
     {
         onView(withId(R.id.search)).perform(click());

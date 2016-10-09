@@ -50,6 +50,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     private String option = "option";
     private static final String PEOPLE_NOT_FOUND_MESSAGE = "Nenhum usuário foi encontrado.";
 
+    //sets text on search bar
     private void setSearchBar(Menu menuSearchBar)
     {
         final String SEARCH_VIEW_HINT = "Pesquisar";
@@ -196,10 +197,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     }
 
     private Integer idItem = 0;
-    /**
-    *Method: private void setListViewListener()
-    *Description: sets view listener
-    */
+    //sets view
     private void setListViewListener()
     {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -230,6 +228,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         });
     }
 
+    //shows an event in a list
     private void showEventsAsList(String[] eventNames)
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
@@ -238,6 +237,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
     }
 
+    //shows people in a list
     private void showPeopleAsList(String[] peopleNames)
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
@@ -245,6 +245,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         listView.setAdapter(adapter);
     }
 
+    //Configures color of action bar
     private void configActionBar()
     {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00C0C3")));

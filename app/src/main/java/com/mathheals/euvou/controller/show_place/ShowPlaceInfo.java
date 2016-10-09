@@ -46,6 +46,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private String address = "nothing";
     private float grade = 0;
 
+    //sets place informations
     private void setPlaceInfo()
     {
         Intent intent = getIntent();
@@ -90,6 +91,7 @@ public class ShowPlaceInfo extends FragmentActivity
         setRatingBarIfNeeded();
     }
 
+    //If user are logged sets rating bar
     private void setRatingBarIfNeeded()
     {
         if(isUserLoggedIn)
@@ -105,6 +107,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private int idPlace = 0;
     private RatingBar ratingBar = null;
     private Evaluation ratingEvaluation = null;
+    //sets rating bar
     private void setRatingBar()
     {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -120,7 +123,7 @@ public class ShowPlaceInfo extends FragmentActivity
         });
         setRatingBarStyle();
     }
-
+    //sets style to rate bar
     private void setRatingBarStyle()
     {
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
@@ -128,6 +131,7 @@ public class ShowPlaceInfo extends FragmentActivity
     }
 
     protected GoogleMap mMap = null;
+    //set map if does not exist
     private void setUpMapIfNeeded()
     {
         if (mMap == null)
@@ -149,6 +153,7 @@ public class ShowPlaceInfo extends FragmentActivity
         }
     }
 
+    //sets map
     private void setUpMap()
     {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
@@ -156,6 +161,7 @@ public class ShowPlaceInfo extends FragmentActivity
         markPlaceOnMap();
     }
 
+    //marks a place on map
     private void markPlaceOnMap()
     {
 
@@ -170,6 +176,11 @@ public class ShowPlaceInfo extends FragmentActivity
 
     private Button showMapButton = null;
     private Button hideMapButton = null;
+    /**
+    *Method: public void showPlaceInfoOnClick(View view)
+    *Description: shows informations about place
+    *@param view
+    */
     public void showPlaceInfoOnClick(View view)
     {
         switch(view.getId()) {
