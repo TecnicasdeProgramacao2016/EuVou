@@ -21,7 +21,8 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
 {
 
     /**
-     *
+     * Method: public void onCreate(Bundle savedInstanceState)
+     * Description: Save a instanciated state
      * @param savedInstanceState
      */
     @Override
@@ -33,7 +34,9 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
     }
 
     /**
-     *
+     * Method:public View onCreateView(LayoutInflater inflater, ViewGroup container,
+     * Bundle savedInstanceState)
+     * Description: Join resources to a specific view
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -48,7 +51,8 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
     }
 
     /**
-     *
+     * Method: public ShowPlaceRanking()
+     * Description: Present a place in rank
      */
     public ShowPlaceRanking()
     {

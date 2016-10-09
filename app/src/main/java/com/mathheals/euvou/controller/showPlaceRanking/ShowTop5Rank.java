@@ -31,7 +31,8 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
 {
 
     /**
-     *
+     * Method: public ShowTop5Rank()
+     * Desciption:Show top 5 place in event rank
      */
     public ShowTop5Rank()
     {
@@ -39,7 +40,8 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
     }
 
     /**
-     *
+     * Method: public void onCreate(Bundle savedInstanceState)
+     * Description: Save instanciated state
      * @param savedInstanceState
      */
     @Override
@@ -50,7 +52,9 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
     }
 
     /**
-     *
+     * Method: public View onCreateView(LayoutInflater inflater, ViewGroup container,
+     * Bundle savedInstanceState)
+     * Description: Present content from top 5 positions
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -74,7 +78,8 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
     }
 
     /**
-     *
+     * Method: public void onClick(View v)
+     * Desciption: Add an action when a button is clicked
      * @param v
      */
     @Override

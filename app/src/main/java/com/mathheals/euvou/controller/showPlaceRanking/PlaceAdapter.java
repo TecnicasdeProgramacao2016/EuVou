@@ -22,7 +22,8 @@ import model.Place;
 public class PlaceAdapter extends ArrayAdapter<Place>
 {
     /**
-     *
+     * Method: public View getView(int position, View convertView, ViewGroup parent)
+     * Description: Set and create a view to information about places
      * @param position
      * @param convertView
      * @param parent
@@ -35,11 +36,13 @@ public class PlaceAdapter extends ArrayAdapter<Place>
         Place place = (Place) getItem(position);
         ViewHolder viewHolder;
 
+        //Convert a view
         if(convertView != null)
         {
             viewHolder = (ViewHolder) convertView.getTag();
-            Log.d("PlaceAdapter", "Getiing TAG for Converting view");
+            Log.d("PlaceAdapter", "Getting TAG for Converting view");
         }
+        //Create a view with informatios about an event ranking
         else
         {
             viewHolder = new ViewHolder();
@@ -61,7 +64,8 @@ public class PlaceAdapter extends ArrayAdapter<Place>
     }
 
     /**
-     *
+     * Method: public PlaceAdapter(Context context, List<Place> places)
+     * Description: Call informations about place and content
      * @param context
      * @param places
      */
@@ -71,6 +75,8 @@ public class PlaceAdapter extends ArrayAdapter<Place>
         super(context, 0,places);
     }
 
+
+    //Save information aboit name and evaluation about a place
     private static class ViewHolder
     {
         TextView placeName;
