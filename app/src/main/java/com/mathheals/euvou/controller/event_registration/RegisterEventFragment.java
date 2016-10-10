@@ -36,14 +36,14 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private EditText addressEventField = null;
     private EditText priceEventRealField = null;
     private EditText priceEventDecimalField = null;
-    private EditText eventDate;
-    private String nameEvent;
-    private String dateEvent;
-    private String eventHour;
-    private String descriptionEvent;
-    private String addressEvent;
-    private String priceEventReal;
-    private String priceEventDecimal;
+    private EditText eventDate = null;
+    private String nameEvent = null;
+    private String dateEvent = null;
+    private String eventHour = null;
+    private String descriptionEvent = null;
+    private String addressEvent = null;
+    private String priceEventReal = null;
+    private String priceEventDecimal = null;
     private final String DEFAULT_MESSAGE = " ";
     private static final String SUCCESSFULL_CADASTRATION_MESSAGE = "Evento cadastrado com sucesso :)";
     private String latitude = DEFAULT_MESSAGE;
@@ -160,7 +160,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToMuseumCategory method");
         CheckBox museumCheckBox = (CheckBox) view;
 
-        String nameMuseum = museumCheckBox.getText().toString();
+        String nameMuseum = (String) museumCheckBox.getText().toString();
 
         assert(nameMuseum != null);
 
@@ -183,7 +183,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToOthersCategory method");
         CheckBox othersCheckBox = (CheckBox) view;
 
-        String othersString = othersCheckBox.getText().toString();
+        String othersString = (String) othersCheckBox.getText().toString();
         if(othersCheckBox.isChecked())
         {
             categories.add(othersString);
@@ -204,7 +204,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToPartyCategory method");
         CheckBox partyCheckBox = (CheckBox) view;
 
-        String partyString = partyCheckBox.getText().toString();
+        String partyString = (String) partyCheckBox.getText().toString();
         assert(partyString != null);
 
         if(partyCheckBox.isChecked())
@@ -247,7 +247,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         CheckBox theaterCheckBox = (CheckBox) view;
         Log.d("01","started the addToTheatreCategories method");
 
-        String theaterString = theaterCheckBox.getText().toString();
+        String theaterString = (String) theaterCheckBox.getText().toString();
         assert(theaterString != null);
 
         if(theaterCheckBox.isChecked())
@@ -270,7 +270,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToShowCategory method");
         CheckBox showCheckBOx = (CheckBox) view;
 
-        String showString = showCheckBOx.getText().toString();
+        String showString = (String) showCheckBOx.getText().toString();
         if(showCheckBOx.isChecked())
         {
             categories.add(showString);
@@ -419,7 +419,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
 
         } catch (EventException exception)
         {
-            String message = exception.getMessage();
+            String message = (String) exception.getMessage();
 
             eventCreatorExceptionMessage(message,addressEventField,hourEventField,
                                          descriptionEventField,dateEventField,
@@ -494,13 +494,13 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private void setStringsOfTextViews()
     {
 
-        this.nameEvent = nameEventField.getText().toString();
-        this.dateEvent = dateEventField.getText().toString();
-        this.eventHour = hourEventField.getText().toString();
-        this.descriptionEvent = descriptionEventField.getText().toString();
-        this.addressEvent = addressEventField.getText().toString();
-        this.priceEventReal = priceEventRealField.getText().toString();
-        this.priceEventDecimal = priceEventDecimalField.getText().toString();
+        this.nameEvent = (String) nameEventField.getText().toString();
+        this.dateEvent = (String) dateEventField.getText().toString();
+        this.eventHour = (String) hourEventField.getText().toString();
+        this.descriptionEvent = (String) descriptionEventField.getText().toString();
+        this.addressEvent = (String) addressEventField.getText().toString();
+        this.priceEventReal = (String) priceEventRealField.getText().toString();
+        this.priceEventDecimal = (String) priceEventDecimalField.getText().toString();
     }
 
     /**

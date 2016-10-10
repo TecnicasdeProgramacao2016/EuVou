@@ -71,6 +71,7 @@ public class LocalEventActivity extends FragmentActivity implements GoogleMap.On
     {
         assert(latLng != null);
         Intent resultado = new Intent();
+        assert(resultado == new Intent());
         resultado.putExtra("longitude", " " + latLng.longitude);
         resultado.putExtra("latitude", " " + latLng.latitude);
         setResult(Activity.RESULT_OK, resultado);

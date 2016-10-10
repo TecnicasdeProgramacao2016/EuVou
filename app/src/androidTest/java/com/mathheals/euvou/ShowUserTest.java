@@ -22,11 +22,11 @@ public class ShowUserTest extends TestCase
 
         UserDAO userDAO = new UserDAO();
 
-        JSONObject userData = userDAO.searchUserByUsername("igodudu");
+        JSONObject userData = (JSONObject )userDAO.searchUserByUsername("igodudu");
 
         try
         {
-            String nameUserDB = userData.getJSONObject("0").getString("nameUser");
+            String nameUserDB = (String) userData.getJSONObject("0").getString("nameUser");
 
             assertEquals("Igor Duarte",nameUserDB);
         } catch (JSONException exception)
@@ -46,11 +46,11 @@ public class ShowUserTest extends TestCase
     {
         UserDAO userDAO = new UserDAO();
 
-        JSONObject userData = userDAO.searchUserByUsername("igodudu");
+        JSONObject userData = (JSONObject) userDAO.searchUserByUsername("igodudu");
 
         try
         {
-             String birthDateDB = userData.getJSONObject("0").getString("birthDate");
+             String birthDateDB = (String) userData.getJSONObject("0").getString("birthDate");
 
             assertEquals("1995-11-14",birthDateDB);
         } catch (JSONException e)
@@ -70,11 +70,11 @@ public class ShowUserTest extends TestCase
     {
         UserDAO userDAO = new UserDAO();
 
-        JSONObject userData = userDAO.searchUserByUsername("igodudu");
+        JSONObject userData = (JSONObject) userDAO.searchUserByUsername("igodudu");
 
         try
         {
-            String mailDB = userData.getJSONObject("0").getString("email");
+            String mailDB = (String) userData.getJSONObject("0").getString("email");
 
             assertEquals("igor-ribeiro@hotmail.com",mailDB);
         } catch (JSONException exception)

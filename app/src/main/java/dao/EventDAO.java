@@ -43,11 +43,11 @@ public class EventDAO extends DAO
 
 
         int idEvent = 0;
-        JSONObject jsonObject = executeConsult("SELECT idEvent FROM tb_event WHERE nameEvent = \"" + event.getNameEvent() + "\"");
+        JSONObject jsonObject = (JSONObject) executeConsult("SELECT idEvent FROM tb_event WHERE nameEvent = \"" + event.getNameEvent() + "\"");
 
         try
         {
-            idEvent = jsonObject.getJSONObject("0").getInt("idEvent");
+            idEvent = (int)jsonObject.getJSONObject("0").getInt("idEvent");
         } catch (JSONException e)
         {
             e.printStackTrace();
@@ -176,7 +176,7 @@ public class EventDAO extends DAO
                     "', '" + event.getAddress() + "','" + event.getDateTimeEvent() + "','" + event.getDescription() + "'," +
                     "" + event.getLongitude() + "," + event.getLatitude() + ")");
 
-        JSONObject jsonObject = executeConsult("SELECT idEvent FROM tb_event WHERE nameEvent = \"" + event.getNameEvent() + "\"");
+        JSONObject jsonObject = (JSONObject) executeConsult("SELECT idEvent FROM tb_event WHERE nameEvent = \"" + event.getNameEvent() + "\"");
 
     }
 

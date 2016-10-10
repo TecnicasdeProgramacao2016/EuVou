@@ -37,7 +37,7 @@ public class EvaluatePlaceDAO extends DAO
 
         final String QUERY;
 
-        JSONObject findEvaluation = executeConsult("SELECT * FROM evaluate_place WHERE idPlace = \"" +
+        JSONObject findEvaluation = (JSONObject) executeConsult("SELECT * FROM evaluate_place WHERE idPlace = \"" +
                 evaluation.getIdPlace() + "\" " +
                 "AND idUser = \"" + evaluation.getIdUser() + "\"");
 

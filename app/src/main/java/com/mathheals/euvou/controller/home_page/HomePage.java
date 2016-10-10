@@ -184,7 +184,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         assert(view != null);
         final String INVALID_SEARCH = "Pesquisa Invalida";
 
-        String filter = ((EditText)findViewById(R.id.place_search)).getText().toString();
+        String filter = (String) ((EditText)findViewById(R.id.place_search)).getText().toString();
         Intent map = new Intent(HomePage.this, SearchPlaceMaps.class);
         assert(map != null);
 
