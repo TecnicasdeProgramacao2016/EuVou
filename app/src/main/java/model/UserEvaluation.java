@@ -44,7 +44,9 @@ public class UserEvaluation
     */
     public void setRating(Float rating) throws UserEvaluationException
     {
-        if(rating >= 0f && rating <= 5f)
+        final float minRating = 0f;
+        final float maxRating = 5f;
+        if(rating >= minRating && rating <= maxRating)
         {
             this.rating = rating;
         }
@@ -63,7 +65,8 @@ public class UserEvaluation
     public void setUserId(Integer userId) throws UserEvaluationException
     {
         assert(userId > 0);
-        if(userId <= Integer.MAX_VALUE && userId >= 1)
+        final int validId = 1;
+        if(userId <= Integer.MAX_VALUE && userId >= validId)
         {
             this.userId = userId;
         }
@@ -81,7 +84,8 @@ public class UserEvaluation
     */
     public void setUserEvaluatedId(Integer userEvaluatedId) throws UserEvaluationException
     {
-        if(userEvaluatedId <= Integer.MAX_VALUE && userEvaluatedId >= 1)
+        final int validId = 1;
+        if(userEvaluatedId <= Integer.MAX_VALUE && userEvaluatedId >= validId)
         {
             this.userEvaluatedId = userEvaluatedId;
         }

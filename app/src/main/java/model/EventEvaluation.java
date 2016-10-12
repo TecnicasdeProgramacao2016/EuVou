@@ -28,7 +28,7 @@ public class EventEvaluation
     *@param userId has to be above 0
     *@param eventId has to be above 0
     */
-    public EventEvaluation(Float rating, Integer userId, Integer eventId) throws EventEvaluationException
+    public EventEvaluation(final Float rating, final Integer userId, final Integer eventId) throws EventEvaluationException
     {
         setRating(rating);
         setUserId(userId);

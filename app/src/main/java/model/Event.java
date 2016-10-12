@@ -296,8 +296,9 @@ public class Event
     */
     public void setEvaluation(Integer evaluation) throws  EventException
     {
-
-        if(evaluation >= 1 && evaluation <= 5)
+        final int minEvaluation = 1;
+        final int maxEvaluation = 5;
+        if(evaluation >= minEvaluation && evaluation <= maxEvaluation)
         {
             this.evaluation = evaluation;
         }
@@ -428,11 +429,12 @@ public class Event
     */
     public void setLongitude(String longitude) throws EventException
     {
-
+        final int minLongitude = -180;
+        final int maxLongitude = 180;
         if(!(longitude.toString().isEmpty()) && longitude != null)
         {
             Double longitudeDouble = Double.parseDouble(longitude);
-            if(longitudeDouble >= -180 && longitudeDouble <= 180)
+            if(longitudeDouble >= minLongitude && longitudeDouble <= maxLongitude)
             {
                 this.longitude = longitudeDouble;
 
@@ -534,10 +536,12 @@ public class Event
     */
     public void setLatitude(String latitude) throws EventException
     {
+        final int minLatitude = -90;
+        final int maxLatitude = 90;
         if(!(latitude.toString().isEmpty()) && latitude!=null)
         {
             Double latitudeDouble = Double.parseDouble(latitude);
-            if(latitudeDouble >= -90 && latitudeDouble <= 90)
+            if(latitudeDouble >= minLatitude && latitudeDouble <= maxLatitude)
             {
                 this.latitude = latitudeDouble;
             }
