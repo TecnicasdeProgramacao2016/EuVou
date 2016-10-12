@@ -34,10 +34,13 @@ public class EvaluatePlaceDAO extends DAO
         logger.log(Level.INFO,"entered in the method that saves the place evaluation");
 
 
-        JSONObject findEvaluation = executeConsult("SELECT * FROM evaluate_place WHERE idPlace = \"" +
-                                                    evaluation.getIdPlace() + "\" " +
-                                                    "AND idUser = \"" + evaluation.getIdUser() + "\"");
+
         final String QUERY;
+
+        JSONObject findEvaluation = (JSONObject) executeConsult("SELECT * FROM evaluate_place WHERE idPlace = \"" +
+                evaluation.getIdPlace() + "\" " +
+                "AND idUser = \"" + evaluation.getIdUser() + "\"");
+
         if(findEvaluation==null)
         {
             QUERY = "INSERT INTO evaluate_place(grade, idUser, idPlace) VALUES (\"" + evaluation.getgrade() +

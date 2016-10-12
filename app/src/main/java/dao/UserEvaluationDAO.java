@@ -27,7 +27,7 @@ public class UserEvaluationDAO extends DAO
     {
         assert(evaluation != null);
         logger.log(Level.INFO,"entered in the method that evaluates the user and saves in the database");
-        JSONObject findEvaluation = searchUserEvaluation(evaluation.getUserEvaluatedId(), evaluation.getUserId());
+        JSONObject findEvaluation = (JSONObject) searchUserEvaluation(evaluation.getUserEvaluatedId(), evaluation.getUserId());
 
         String QUERY = " ";
         if(findEvaluation==null)

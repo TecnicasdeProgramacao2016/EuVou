@@ -59,10 +59,15 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
                              Bundle savedInstanceState)
     {
         assert(inflater != null);
-        View view = inflater.inflate(R.layout.register_user, container, false);
+        View view = (View) inflater.inflate(R.layout.register_user, container, false);
+        assert(view != null);
+
         Button register = (Button) view.findViewById(R.id.saveButton);
+        assert(register != null);
+
         register.setOnClickListener(this);
         setingEditText(view);
+
         birthDateField.addTextChangedListener(Mask.insert("##/##/####", birthDateField));
 
         return view;
@@ -96,7 +101,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         } catch (Exception exception)
         {
 
-            String message = exception.getMessage();
+            String message = (String) exception.getMessage();
+            assert(message != null);
             UserRegisterErrorMessage(message);
 
         }
@@ -111,6 +117,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     {
         assert(user != null);
         UserDAO userDAO = new UserDAO(getActivity());
+
+        assert(userDAO != null);
+
         userDAO.save(user);
 
     }
@@ -122,6 +131,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     {
         Activity activity = getActivity();
         Intent myIntent = new Intent(activity, LoginActivity.class);
+
+        assert(myIntent != null);
         activity.startActivity(myIntent);
 
     }
@@ -148,13 +159,13 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
      */
     private void setingTextTyped()
     {
-        this.name = nameField.getText().toString();
-        this.username = usernameField.getText().toString();
-        this.mail = mailField.getText().toString();
-        this.mailConfirm = mailConfirmationField.getText().toString();
-        this.password = passwordField.getText().toString();
-        this.passwordConfirm = passwordConfirmField.getText().toString();
-        this.birthDate = birthDateField.getText().toString();
+        this.name = (String) nameField.getText().toString();
+        this.username = (String) usernameField.getText().toString();
+        this.mail = (String) mailField.getText().toString();
+        this.mailConfirm = (String) mailConfirmationField.getText().toString();
+        this.password = (String) passwordField.getText().toString();
+        this.passwordConfirm = (String) passwordConfirmField.getText().toString();
+        this.birthDate = (String) birthDateField.getText().toString();
     }
 
 

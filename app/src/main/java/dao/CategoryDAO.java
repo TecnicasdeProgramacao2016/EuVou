@@ -23,6 +23,10 @@ public class CategoryDAO extends DAO
     {
         assert(idCategory > 0);
         logger.log(Level.INFO,"entered in the method that searches the category by it's id");
-        return this.executeConsult("SELECT nameCategory FROM tb_category WHERE idCategory = " + idCategory);
+
+        String query = "SELECT nameCategory FROM tb_category WHERE idCategory = " + idCategory;
+        JSONObject consult = this.executeConsult(query);
+
+        return consult;
     }
 }
