@@ -29,10 +29,13 @@ public class EventAdapter extends ArrayAdapter<Event>
     *@param convertView
     *@param parent
     */
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
         Event event = getItem(position);
         ViewHolder viewHolder;
+        final int eventNameMaxLength = 40;
+        final int eventNameMinLenghtPossible = 0;
+        final int eventNameMaxLengthPossible = 39;
 
         //Sets informations to event
         if(convertView == null)
@@ -49,7 +52,8 @@ public class EventAdapter extends ArrayAdapter<Event>
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.eventName.setText(
-                ((event.getNameEvent().length() > 40) ? event.getNameEvent().substring(0, 39).concat("...") : event.getNameEvent()));
+                                    ((event.getNameEvent().length() > eventNameMaxLength) ? event.getNameEvent()
+                                    .substring(eventNameMinLenghtPossible, eventNameMaxLengthPossible).concat("...") : event.getNameEvent()));
         viewHolder.eventEvaluation.setText(event.getEvaluation().toString());
 
         return convertView;

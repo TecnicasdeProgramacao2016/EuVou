@@ -296,6 +296,7 @@ public class Event
     */
     public void setEvaluation(Integer evaluation) throws  EventException
     {
+
         if(evaluation >= 1 && evaluation <= 5)
         {
             this.evaluation = evaluation;
@@ -427,6 +428,7 @@ public class Event
     */
     public void setLongitude(String longitude) throws EventException
     {
+
         if(!(longitude.toString().isEmpty()) && longitude != null)
         {
             Double longitudeDouble = Double.parseDouble(longitude);

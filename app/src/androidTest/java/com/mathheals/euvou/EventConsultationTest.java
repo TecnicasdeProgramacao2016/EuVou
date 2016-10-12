@@ -306,6 +306,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     */
     public void testMarkOffParticipateTwoTimeLoged()
     {
+        //If are not logged, user has to login
         if (!isUserLoggedIn)
         {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());

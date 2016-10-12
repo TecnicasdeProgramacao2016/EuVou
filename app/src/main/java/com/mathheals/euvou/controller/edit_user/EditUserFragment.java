@@ -60,7 +60,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
         USER_STATUS = loginUtility.getUserId();
 
-        String stringUserStatus = userDAO.searchUserById(USER_STATUS);//Searchs user by id on database
+        final String stringUserStatus = userDAO.searchUserById(USER_STATUS);//Searchs user by id on database
         JSONObject json = null;
         try
         {

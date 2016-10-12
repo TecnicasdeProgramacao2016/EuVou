@@ -47,11 +47,11 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
             eventDATA = eventRecommendationDAO.recommendEvents(idUser);
 
             //Recomends an Event
-            for(int i=0 ; i < eventDATA.length() ; i++)
+            for(int i = 0 ; i < eventDATA.length() ; i++)
             {
-                int idEvent = eventDATA.getJSONObject(Integer.toString(i)).getInt("idEvent");
-                String nameEvent = eventDATA.getJSONObject(Integer.toString(i)).getString("nameEvent");
-                int eventEvaluation = 4;
+                final int idEvent = eventDATA.getJSONObject(Integer.toString(i)).getInt("idEvent");
+                final String nameEvent = eventDATA.getJSONObject(Integer.toString(i)).getString("nameEvent");
+                final int eventEvaluation = 4;
 
                 Event event = new Event(idEvent, nameEvent, eventEvaluation);
 
