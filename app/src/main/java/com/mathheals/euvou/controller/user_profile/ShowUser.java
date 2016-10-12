@@ -30,14 +30,14 @@ import exception.UserEvaluationException;
 import model.UserEvaluation;
 
 public class ShowUser extends android.support.v4.app.Fragment {
-    private UserEvaluation userEvaluation;
+    private UserEvaluation userEvaluation = null;
     private final String SUCCESSFULL_EVALUATION_MESSAGE = "Avaliação cadastrada com sucesso";
-    private RatingBar ratingBar;
-    private View showUserView;
-    private String userEvaluatedId;
-    private int currentUserId;
-    private boolean isUserLoggedIn;
-    private TextView ratingMessage;
+    private RatingBar ratingBar = null;
+    private View showUserView = null;
+    private String userEvaluatedId = null;
+    private int currentUserId = 0;
+    private boolean isUserLoggedIn = true;
+    private TextView ratingMessage = null;
     private final Integer LOGGED_OUT = -1;
 
 
@@ -47,17 +47,34 @@ public class ShowUser extends android.support.v4.app.Fragment {
     }
 
 
-    //Create user's view
+    /*
+     * Creates a view for user's information, using user's current ID gets the necessary
+     * data from DB and displays it
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
 
         setShowUserView(inflater.inflate(R.layout.show_user, container, false));
-        UserDAO userDAO = new UserDAO(getActivity());
-
         userEvaluatedId=this.getArguments().getString("id");
         setCurrentUserId(new LoginUtility(getActivity()).getUserId());
+
+        getDBValuesToSetView();
+
+        setIsUserLoggedIn(currentUserId != LOGGED_OUT);
+        setRatingMessage(isUserLoggedIn);
+        setRatingBarIfNeeded();
+
+        Log.d("ShowUser", "User logged in");
+
+        return showUserView;
+    }
+
+    private void getDBValuesToSetView()
+    {
+        UserDAO userDAO = new UserDAO(getActivity());
         JSONObject userData = null;
+
         try
         {
             userData = new JSONObject(userDAO.searchUserById(Integer.parseInt(userEvaluatedId)));
@@ -83,14 +100,6 @@ public class ShowUser extends android.support.v4.app.Fragment {
         {
             jsonException.printStackTrace();
         }
-
-        setIsUserLoggedIn(currentUserId != LOGGED_OUT);
-        setRatingMessage(isUserLoggedIn);
-        setRatingBarIfNeeded();
-
-        Log.d("ShowUser", "User logged in");
-
-        return showUserView;
     }
 
 
@@ -102,7 +111,9 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
 
     /**
+     * Method:  private void setRatingBar()
      * Rating bar is setted as user's wish using user's evaluation
+     * @param
      */
 
     //Set Atribute Rate
@@ -111,27 +122,13 @@ public class ShowUser extends android.support.v4.app.Fragment {
         ratingBar = (RatingBar) showUserView.findViewById(R.id.ratingBar);
         ratingBar.setVisibility(View.VISIBLE);
 
+        checkRateBar(ratingBar);
+
         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
 
         JSONObject evaluationJSON = (JSONObject) userEvaluationDAO.searchUserEvaluation(Integer.parseInt(userEvaluatedId), currentUserId);
 
-        if(evaluationJSON!=null)
-        {
-            Float evaluation = null;
-            try
-            {
-                evaluation = new Float(evaluationJSON.getJSONObject("0").getDouble("grade"));
-            } catch (JSONException e)
-            {
-                e.printStackTrace();
-            }
-
-            ratingBar.setRating(evaluation);
-        }
-        else
-        {
-            //NOTHING TO DO
-        }
+        settingRateBarEvaluation(evaluationJSON, ratingBar);
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.
                 OnRatingBarChangeListener()
@@ -149,6 +146,40 @@ public class ShowUser extends android.support.v4.app.Fragment {
         );
         setRatingBarStyle();
         Log.d("ShowUser", "Rating bar setted");
+    }
+
+    //Sets evaluation bar
+    private void settingRateBarEvaluation(JSONObject evaluationJSON, RatingBar ratingBar)
+    {
+        if(evaluationJSON!=null)
+        {
+            Float evaluation = null;
+            try
+            {
+                evaluation = new Float(evaluationJSON.getJSONObject("0").getDouble("grade"));
+            } catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+            ratingBar.setRating(evaluation);
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+    }
+
+    private void checkRateBar(RatingBar ratingBar)
+    {
+        if(ratingBar == null)
+        {
+            Log.d("ShowUser", "Rating bar is null");
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
     }
 
     //Set atribute Rating bar Style
@@ -213,17 +244,31 @@ public class ShowUser extends android.support.v4.app.Fragment {
         }
         catch (UserEvaluationException exception)
         {
+            //This if-else structure tests if the information given is correct
             if(exception.getMessage()==UserEvaluation.EVALUATION_IS_INVALID)
             {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                //NOTING TO DO
             }
             if(exception.getMessage()==UserEvaluation.USER_EVALUATED_ID_IS_INVALID)
             {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
             }
+            else
+            {
+                //NOTING TO DO
+            }
+
             if(exception.getMessage()==UserEvaluation.USER_ID_IS_INVALID)
             {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                //NOTING TO DO
             }
         }
     }
