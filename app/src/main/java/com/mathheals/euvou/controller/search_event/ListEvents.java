@@ -45,16 +45,10 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     private Vector<Event> events;
 
 
-    /**
-     *
-     */
-    public ListEvents()
-    {
-        // Required empty public constructor
-    }
 
     /**
-     *
+     * Method: public void onCreate(Bundle savedInstanceState)
+     * Description: Conctruct method to instaciate a state
      * @param savedInstanceState
      */
     @Override
@@ -64,7 +58,9 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     }
 
     /**
-     *
+     * Method:  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+       Bundle savedInstanceState)
+     * Description: Join views to present to user
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -74,7 +70,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_list_events, container, false);
+        View view =(View) inflater.inflate(R.layout.fragment_list_events, container, false);
 
         // Inflate the layout for this fragment
         listView = (ListView) view.findViewById(R.id.eventList);
@@ -83,6 +79,43 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
         return view;
     }
 
+    /**
+     * Method:  public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+     * Description: Present content from a click
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
+        Event clicked;
+
+        final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        clicked = events.get(position);
+        EditOrRemoveFragment editOrRemoveFragment = new EditOrRemoveFragment();
+        editOrRemoveFragment.evento = clicked;
+        fragmentTransaction.replace(R.id.content_frame, editOrRemoveFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+        Log.d("ListEvents", "Apllying action when is clicked");
+
+
+    }
+
+    /**
+     * Method: public ListEvents()
+     * Description: public constructor
+     */
+    public ListEvents()
+    {
+        // Required empty public constructor
+    }
+
+
+    //Add event to event list
     private void populaList()
     {
         try
@@ -93,6 +126,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
 
             events = new EventDAO(getActivity()).searchEventByOwner(id);
 
+            //Add a new a event in a event list
             if(events != null)
             {
                 List<Map<String, String>> eventList = new ArrayList<Map<String, String>>();
@@ -108,6 +142,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
 
                 Log.d("ListEvents", "Event is not NULL");
             }
+            //If there is not any event created it add a new event to a event list
             else
             {
                 Toast.makeText(getContext(), "Você ainda não criou nenhum evento, que tal criar um agora?", Toast.LENGTH_LONG).show();
@@ -141,6 +176,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     }
 
 
+    //Create an event acord to a hash position
     private HashMap<String, String> createEvent(String name, String number)
     {
         HashMap<String, String> eventName = new HashMap<String, String>();
@@ -152,28 +188,4 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
         return eventName;
     }
 
-    /**
-     *
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
-     */
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-    {
-        Event clicked;
-
-        final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        clicked = events.get(position);
-        EditOrRemoveFragment editOrRemoveFragment = new EditOrRemoveFragment();
-        editOrRemoveFragment.evento = clicked;
-        fragmentTransaction.replace(R.id.content_frame, editOrRemoveFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-
-        Log.d("ListEvents", "Apllying action when is clicked");
-
-
-    }
 }

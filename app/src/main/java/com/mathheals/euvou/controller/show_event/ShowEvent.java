@@ -64,13 +64,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     private String eventId;
 
 
-    /**
-     *
-     */
-    public ShowEvent()
-    {
-        // Required empty public constructor
-    }
+
 
     /**
      *
@@ -91,7 +85,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
         eventDAO = new EventDAO(this.getActivity());
         eventId = this.getArguments().getString("id");
-        JSONObject eventDATA = eventDAO.searchEventById(Integer.parseInt(eventId));
+        JSONObject eventDATA = (JSONObject) eventDAO.searchEventById(Integer.parseInt(eventId));
 
         setUserId(new LoginUtility(getActivity()).getUserId());
         if(userId == LOGGED_OUT)
@@ -160,58 +154,30 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         return showEventView;
     }
 
-
-    private String[] getEventCategoriesById(int eventId)
-    {
-        final String ID_CATEGORY = "idCategory";
-        final String NAME_CATEGORY = "nameCategory";
-        final String FIRST_COLUMN = "0";
-
-        EventCategoryDAO eventCategoryDAO = new EventCategoryDAO(getActivity());
-        JSONObject eventCategoryJSON = eventCategoryDAO.searchCategoriesByEventId(eventId);
-        CategoryDAO categoryDAO = new CategoryDAO(getActivity());
-
-
-        ArrayList<String> categories = new ArrayList<>();
-
-        for(int i = 0; i < eventCategoryJSON.length(); ++i)
-        {
-            try
-            {
-                int categoryId = eventCategoryJSON.getJSONObject(Integer.toString(i)).getInt(ID_CATEGORY);
-                JSONObject categoryJSON = categoryDAO.searchCategoryById(categoryId);
-                String categoryName = categoryJSON.getJSONObject(FIRST_COLUMN).getString(NAME_CATEGORY);
-                categories.add(categoryName);
-            }catch (JSONException exception)
-            {
-                exception.printStackTrace();
-                Log.d("ShowEvent", "JSONExeception");
-            }
-
-        }
-
-        String[] categoriesArray = new String[categories.size()];
-        categoriesArray = categories.toArray(categoriesArray);
-
-        return categoriesArray;
-    }
-
     /**
      *
+     * @param rating
+     * @param userId
      * @param eventId
-     * @param eventCategoriesText
      */
-    public void setCategoriesText(int eventId, TextView eventCategoriesText)
+    public void setEventEvaluation(Float rating, Integer userId, Integer eventId)
     {
-        assert(eventId < 0);
+        try
+        {
+            this.eventEvaluation = new EventEvaluation(rating, userId, eventId);
+            Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_EVALUATION_MESSAGE, Toast.LENGTH_LONG).show();
+        }catch (EventEvaluationException exception)
+        {
 
-        String[] eventCategories = getEventCategoriesById(eventId);
-        String text = eventCategories[0];
+            if(   exception.getMessage() == EventEvaluation.EVALUATION_IS_INVALID ||
+                    exception.getMessage() == EventEvaluation.EVENT_ID_IS_INVALID ||
+                    exception.getMessage() == EventEvaluation.USER_ID_IS_INVALID )
+            {
+                Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+            }
 
-        for(int i = 1; i < eventCategories.length; ++i)
-            text += (", " + eventCategories[i]);
 
-        eventCategoriesText.setText(text);
+        }
     }
 
     /**
@@ -231,35 +197,23 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         return;
     }
 
-    private void showEventOnMap()
+    /**
+     *
+     * @param eventId
+     * @param eventCategoriesText
+     */
+    public void setCategoriesText(int eventId, TextView eventCategoriesText)
     {
-        Bundle latitudeAndLongitude = new Bundle();
-        latitudeAndLongitude.putStringArray("LatitudeAndLongitude", new String[]{eventLatitude, eventLongitude});
-        Intent intent = new Intent(getContext(), ShowOnMap.class);
-        intent.putExtras(latitudeAndLongitude);
-        startActivity(intent);
-    }
-    private void markParticipate()
-    {
-        if(eventDAO.verifyParticipate(userId,Integer.parseInt(eventId)) != null)
-            Toast.makeText(getActivity(), "Heyy, você já marcou sua participação", Toast.LENGTH_SHORT).show();
-        else
-        {
-            eventDAO.markParticipate(userId, Integer.parseInt(eventId));
-            Toast.makeText(getActivity(),"Salvo com sucesso" , Toast.LENGTH_SHORT).show();
-        }
-    }
-    private void markOffParticipate()
-    {
-       if(eventDAO.verifyParticipate(userId,Integer.parseInt(eventId)) == null)
-            Toast.makeText(getActivity(), "Heyy, você já desmarcou sua participação", Toast.LENGTH_SHORT).show();
-       else
-    {
+        assert(eventId < 0);
 
-        eventDAO.markOffParticipate(userId, Integer.parseInt(eventId));
-        Toast.makeText(getActivity(),"Salvo com sucesso" , Toast.LENGTH_SHORT).show();
-    };
-}
+        String[] eventCategories = getEventCategoriesById(eventId);
+        String text = eventCategories[0];
+
+        for(int i = 1; i < eventCategories.length; ++i)
+            text += (", " + eventCategories[i]);
+
+        eventCategoriesText.setText(text);
+    }
 
     /**
      *
@@ -284,6 +238,16 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
     /**
      *
+     * @param showEventView
+     */
+    public void setShowEventView(View showEventView)
+    {
+
+        this.showEventView = showEventView;
+    }
+
+    /**
+     *
      * @param userId
      */
     // private int userId;
@@ -292,6 +256,16 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
         this.userId = userId;
     }
+
+
+    /**
+     *
+     */
+    public ShowEvent()
+    {
+        // Required empty public constructor
+    }
+
 
     /**
      *
@@ -303,6 +277,87 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         this.isUserLoggedIn = isUserLoggedIn;
     }
 
+    /**
+     *
+     * @return
+     */
+    public EventEvaluation getEventEvaluation()
+    {
+        return eventEvaluation;
+    }
+
+    private String[] getEventCategoriesById(int eventId)
+    {
+        final String ID_CATEGORY = "idCategory";
+        final String NAME_CATEGORY = "nameCategory";
+        final String FIRST_COLUMN = "0";
+
+        EventCategoryDAO eventCategoryDAO = (EventCategoryDAO) new EventCategoryDAO(getActivity());
+        JSONObject eventCategoryJSON = (JSONObject) eventCategoryDAO.searchCategoriesByEventId(eventId);
+        CategoryDAO categoryDAO = (CategoryDAO) new CategoryDAO(getActivity());
+
+
+        ArrayList<String> categories = new ArrayList<>();
+
+        for(int i = 0; i < eventCategoryJSON.length(); ++i)
+        {
+            try
+            {
+                int categoryId = eventCategoryJSON.getJSONObject(Integer.toString(i)).getInt(ID_CATEGORY);
+                JSONObject categoryJSON = (JSONObject) categoryDAO.searchCategoryById(categoryId);
+                String categoryName = categoryJSON.getJSONObject(FIRST_COLUMN).getString(NAME_CATEGORY);
+                categories.add(categoryName);
+            }catch (JSONException exception)
+            {
+                exception.printStackTrace();
+                Log.d("ShowEvent", "JSONExeception");
+            }
+
+        }
+
+        String[] categoriesArray = new String[categories.size()];
+        categoriesArray = categories.toArray(categoriesArray);
+
+        return categoriesArray;
+    }
+
+
+
+
+
+    private void showEventOnMap()
+    {
+        Bundle latitudeAndLongitude = (Bundle) new Bundle();
+        latitudeAndLongitude.putStringArray("LatitudeAndLongitude", new String[]{eventLatitude, eventLongitude});
+        Intent intent = (Intent) new Intent(getContext(), ShowOnMap.class);
+        intent.putExtras(latitudeAndLongitude);
+        startActivity(intent);
+    }
+
+    private void markParticipate()
+    {
+        if(eventDAO.verifyParticipate(userId,Integer.parseInt(eventId)) != null)
+            Toast.makeText(getActivity(), "Heyy, você já marcou sua participação", Toast.LENGTH_SHORT).show();
+        else
+        {
+            eventDAO.markParticipate(userId, Integer.parseInt(eventId));
+            Toast.makeText(getActivity(),"Salvo com sucesso" , Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void markOffParticipate()
+    {
+       if(eventDAO.verifyParticipate(userId,Integer.parseInt(eventId)) == null)
+            Toast.makeText(getActivity(), "Heyy, você já desmarcou sua participação", Toast.LENGTH_SHORT).show();
+       else
+       {
+
+        eventDAO.markOffParticipate(userId, Integer.parseInt(eventId));
+        Toast.makeText(getActivity(),"Salvo com sucesso" , Toast.LENGTH_SHORT).show();
+       };
+    }
+
+
     private void setRatingMessage(boolean isUserLoggedIn)
     {
         final String LOGGED_IN_MESSAGE = "Sua avaliação:";
@@ -313,15 +368,6 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         ratingMessage.setText(message);
     }
 
-    /**
-     *
-     * @param showEventView
-     */
-    public void setShowEventView(View showEventView)
-    {
-
-        this.showEventView = showEventView;
-    }
 
     private void setRatingBarIfNeeded()
     {
@@ -335,7 +381,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         ratingBar = (RatingBar) showEventView.findViewById(R.id.ratingBar);
         ratingBar.setVisibility(View.VISIBLE);
 
-        EventEvaluationDAO eventEvaluationDAO = new EventEvaluationDAO();
+        EventEvaluationDAO eventEvaluationDAO = (EventEvaluationDAO) new EventEvaluationDAO();
 
         JSONObject evaluationJSON = (JSONObject) eventEvaluationDAO.searchEventEvaluation(Integer.parseInt(eventId), userId);
 
@@ -360,7 +406,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
             {
                 setEventEvaluation(rateValue, userId, new Integer(eventId));
 
-                EventEvaluationDAO eventEvaluationDAO = new EventEvaluationDAO();
+                EventEvaluationDAO eventEvaluationDAO = (EventEvaluationDAO) new EventEvaluationDAO();
 
                 eventEvaluationDAO.evaluateEvent(getEventEvaluation());
             }
@@ -369,40 +415,6 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         setRatingBarStyle();
     }
 
-    /**
-     *
-     * @return
-     */
-    public EventEvaluation getEventEvaluation()
-    {
-        return eventEvaluation;
-    }
-
-    /**
-     *
-     * @param rating
-     * @param userId
-     * @param eventId
-     */
-    public void setEventEvaluation(Float rating, Integer userId, Integer eventId)
-    {
-        try
-        {
-            this.eventEvaluation = new EventEvaluation(rating, userId, eventId);
-            Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_EVALUATION_MESSAGE, Toast.LENGTH_LONG).show();
-        }catch (EventEvaluationException exception)
-        {
-
-            if(   exception.getMessage() == EventEvaluation.EVALUATION_IS_INVALID ||
-                  exception.getMessage() == EventEvaluation.EVENT_ID_IS_INVALID ||
-                  exception.getMessage() == EventEvaluation.USER_ID_IS_INVALID )
-            {
-                Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
-
-        }
-    }
 
     private void setRatingBarStyle()
     {

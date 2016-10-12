@@ -39,7 +39,9 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     private ArrayList<Place> places;
 
     /**
-     *
+     * Method:  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+     * Bundle savedInstanceState)
+     * Description: Return resources to present a rank place
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -60,7 +62,8 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
 
 
     /**
-     *
+     * Method: public void populateArrayOfPlaces(JSONObject result,ArrayList<Place> places)
+     * Description: Insert places to present in a rank
      * @param result
      * @param places
      */
@@ -68,6 +71,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     {
         try
         {
+            //Insert an id to any place found
             for (int i = 0; i < result.length(); i++)
             {
                 int idPlace = result.getJSONObject("" + i).getInt("idPlace");
@@ -108,7 +112,8 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     }
 
     /**
-     *
+     * Method:  public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+     * Description: Present indo abour an event when it is clicked
      * @param parent
      * @param view
      * @param position
@@ -121,7 +126,8 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     }
 
     /**
-     *
+     * Method:  public void onCreate(Bundle savedInstanceState)
+     * Description: Save a instanciated state
      * @param savedInstanceState
      */
     @Override
@@ -132,14 +138,15 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     }
 
     /**
-     *
+     * Method: public ShowPlaceRank()
+     * Description: Present rank
      */
     public ShowPlaceRank()
     {
         // Required empty public constructor
     }
 
-
+    //Present information about an event
     private void startShowInfoActivity(int id)
     {
         Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
@@ -149,6 +156,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         Log.d("ShowPlaceRank", "It has been started to insert in activity");
     }
 
+    //Fill a list according
     private void fillList()
     {
         int id = (new LoginUtility(getActivity())).getUserId();
@@ -162,6 +170,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         listView.setAdapter(placeAdapter);
     }
 
+    //Insert information in events
     private Bundle getPlaceInfoAsBundle(int id)
     {
         assert(id < 0);

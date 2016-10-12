@@ -29,7 +29,8 @@ public class ShowOnMap extends FragmentActivity
     private String filter;
 
     /**
-     *
+     * Method: public String getFilter()
+     * Description: Constructor to setFilter
      * @return
      */
     public String getFilter()
@@ -39,7 +40,8 @@ public class ShowOnMap extends FragmentActivity
     }
 
     /**
-     *
+     * Method: public void setFilter(String filter)
+     * Description: Constructor to setFilter
      * @param filter
      */
     public void setFilter(String filter)
@@ -48,7 +50,7 @@ public class ShowOnMap extends FragmentActivity
         this.filter = filter;
     }
 
-
+    //Save instanciated state to an event in map
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -63,6 +65,7 @@ public class ShowOnMap extends FragmentActivity
         longitude = Double.parseDouble(array[1]);
     }
 
+    // Set a map if it is null
     @Override
     protected void onResume()
     {
@@ -70,16 +73,17 @@ public class ShowOnMap extends FragmentActivity
         setUpMapIfNeeded();
     }
 
+
+    //Protected GoogleMap mMap
     private void setUpMapIfNeeded()
     {
-        //  protected GoogleMap mMap
         // Do a null check to confirm that we have not already instantiated the map.
-
         if(mMap != null)
         {
             //NOTHING TO DO
             Log.d("ShowOnMap", "Map is not null");
         }
+        //Create a map if it is null
         else
         {
             Log.d("ShowOnMap", "Map is null");
@@ -104,11 +108,9 @@ public class ShowOnMap extends FragmentActivity
 
     }
 
+    //Set a map with latitude and logitude
     private void setUpMap()
     {
-        // private Double latitude;
-        // private Double longitude;
-
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(latitude, longitude), 9));
         setFilter(getIntent().getStringExtra("query"));
@@ -118,6 +120,7 @@ public class ShowOnMap extends FragmentActivity
 
     }
 
+    // Add a marker to place in map
     private void addMarkerPlace(Double latitude, Double longitude)
     {
         mMap.addMarker(

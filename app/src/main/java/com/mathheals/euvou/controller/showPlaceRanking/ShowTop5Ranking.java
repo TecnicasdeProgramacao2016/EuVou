@@ -38,7 +38,8 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     private ListView listView;
 
     /**
-     *
+     * Method: public void onCreate(Bundle savedInstanceState)
+     * Description: Save a state instanciated to top 5 positions in rank.
      * @param savedInstanceState
      */
     @Override
@@ -49,7 +50,9 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     }
 
     /**
-     *
+     * Method:  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+     * Bundle savedInstanceState)
+     * Description: create a view to top 5 positions in rank.
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -72,7 +75,8 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     }
 
     /**
-     *
+     * Method: public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+     * Desciption: Present content to 5 rank position
      * @param parent
      * @param view
      * @param position
@@ -85,13 +89,15 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     }
 
     /**
-     *
+     * Method: public ShowTop5Ranking()
+     * Description: Present top 5 rank positions
      */
     public ShowTop5Ranking()
     {
         // Required empty public constructor
     }
 
+    // Fill list with events
     private void fillList()
     {
         JSONObject result;
@@ -101,6 +107,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
             int id = (new LoginUtility(getActivity())).getUserId();
             result =(JSONObject) new PlaceDAO(getActivity()).searchTop5Places();
             places = new ArrayList<>();
+            //set list using an specific id
             for (int i = 0; i < result.length(); i++)
             {
                 int idPlace = result.getJSONObject("" + i).getInt("idPlace");
@@ -142,7 +149,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
 
 
 
-
+    // Swow content about an event
     private void startShowInfoActivity(int id)
     {
         assert(id < 0);
@@ -156,6 +163,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
 
     }
 
+    //Insert information in event
     private Bundle getPlaceInfoAsBundle(int id)
     {
         Bundle placeInfo = new Bundle();
