@@ -102,11 +102,13 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
 
         if(cinemaCheckBox.isChecked())
         {
-            categories.add(cinemaCheckBox.getText().toString());
+            String cinemaText = (String) cinemaCheckBox.getText().toString();
+            categories.add(cinemaText);
         }
         else
         {
-            categories.remove(cinemaCheckBox.getText().toString());
+            String cinemaText = (String) cinemaCheckBox.getText().toString();
+            categories.remove(cinemaText);
         }
     }
 
@@ -226,7 +228,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToSportsCategory method");
         CheckBox sportsCheckBox = (CheckBox) view;
 
-        String sportsString = sportsCheckBox.getText().toString();
+        String sportsString = (String) sportsCheckBox.getText().toString();
         if(sportsCheckBox.isChecked())
         {
             categories.add(sportsString);

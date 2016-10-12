@@ -123,7 +123,9 @@ public class Consult
 
             String rLine = "";
 
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+            InputStreamReader streamReader = new InputStreamReader(is);
+
+            BufferedReader rd = new BufferedReader(streamReader);
 
             StringBuilder answer = new StringBuilder();
 

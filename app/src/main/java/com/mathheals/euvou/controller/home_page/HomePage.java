@@ -71,7 +71,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         setContentView(R.layout.fragment_navigation_drawer);
         initViews();
 
-        drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, textOptions));
+        ArrayAdapter<String> adapterArray = new ArrayAdapter<String>(this, R.layout.
+                                                                            drawer_list_item, textOptions);
+
+        drawerList.setAdapter(adapterArray);
 
         assert(drawerList != null);
 
@@ -96,18 +99,22 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         switch(item.getItemId())
         {
             case R.id.edit_register:
-                fragmentTransaction.replace(R.id.content_frame, new EditUserFragment());
+                EditUserFragment editUser = new EditUserFragment();
+                assert(editUser != null);
+                fragmentTransaction.replace(R.id.content_frame, editUser);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 return true;
             case R.id.settings:
                 ActivityUtility.clearBackStack(this);
-                fragmentTransaction.replace(R.id.content_frame, new RemoveUserFragment(), SETTINGS_FRAGMENT);
+                RemoveUserFragment removeUser = new RemoveUserFragment();
+                fragmentTransaction.replace(R.id.content_frame, removeUser, SETTINGS_FRAGMENT);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 return true;
             case R.id.register_event:
-                fragmentTransaction.replace(R.id.content_frame, new RegisterEventFragment());
+                RegisterEventFragment registerEvent = new RegisterEventFragment();
+                fragmentTransaction.replace(R.id.content_frame, registerEvent);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 return true;
@@ -121,7 +128,8 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
             case R.id.myEvents:
                 try
                 {
-                    fragmentTransaction.replace(R.id.content_frame, new ListEvents());
+                    ListEvents eventList = new ListEvents();
+                    fragmentTransaction.replace(R.id.content_frame,eventList);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
 
@@ -149,7 +157,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         switch (item.getItemId())
         {
             case R.id.registration:
-                fragmentTransaction.replace(R.id.content_frame, new RegisterFragment());
+                RegisterFragment registerFragment = new RegisterFragment();
+                assert(registerFragment != null);
+
+                fragmentTransaction.replace(R.id.content_frame,registerFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 return true;
@@ -170,7 +181,9 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     {
         android.support.v4.app.FragmentTransaction fragmentTransaction =
                                                         getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
+        ShowTop5Rank showTop5Rank = new ShowTop5Rank();
+        assert(showTop5Rank != null);
+        fragmentTransaction.replace(R.id.content_frame,showTop5Rank);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

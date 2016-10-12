@@ -23,6 +23,11 @@ public class EventCategoryDAO extends DAO
     {
         assert(idEvent > 0);
         logger.log(Level.INFO,"entered in the method that searches the category of the event");
-        return this.executeConsult("SELECT idCategory FROM event_category WHERE idEvent = " + idEvent);
+
+        String query = "SELECT idCategory FROM event_category WHERE idEvent = " + idEvent;
+
+        JSONObject consultExecution = this.executeConsult(query);
+
+        return consultExecution;
     }
 }
