@@ -108,14 +108,10 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     public void testConsultationByCategory()
     {
         onView(withId(R.id.search)).perform(click());
-        onView(withId(R.id.radio_people))
-                .perform(click());
-        onView(withId(R.id.radio_people))
-                .check(matches(isChecked()));
-        onView(withId(R.id.radio_events))
-                .perform(click());
-        onView(withId(R.id.radio_events))
-                .check(matches(isChecked()));
+        onView(withId(R.id.radio_people)).perform(click());
+        onView(withId(R.id.radio_people)).check(matches(isChecked()));
+        onView(withId(R.id.radio_events)).perform(click());
+        onView(withId(R.id.radio_events)).check(matches(isChecked()));
     }
 
     /**
@@ -179,8 +175,11 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         {
             int[] ratingNumbersForTest = new int[]{1, 3, 5};
 
+            //sets rating numbers
             for(Integer ratingNumber : ratingNumbersForTest)
+            {
                 onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
+            }
             try
             {
                 Thread.sleep(1000);
@@ -196,6 +195,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         assertTrue(result);
     }
 
+    //tests event to show event
     private void openShowEventFragment()
     {
         onView(withId(R.id.search)).perform(click());
@@ -259,6 +259,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         onView(withId(R.id.EuVou)).check(matches(not(isDisplayed())));
     }
 
+    //test clicks
     private void markClick()
     {
         onView(withId(R.id.search)).perform(click());
@@ -305,6 +306,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     */
     public void testMarkOffParticipateTwoTimeLoged()
     {
+        //If are not logged, user has to login
         if (!isUserLoggedIn)
         {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());

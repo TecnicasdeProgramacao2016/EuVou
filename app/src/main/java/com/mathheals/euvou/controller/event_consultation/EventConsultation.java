@@ -5,7 +5,6 @@
 
 package com.mathheals.euvou.controller.event_consultation;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -23,18 +22,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.Toast;
 import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.home_page.HomePage;
 import com.mathheals.euvou.controller.show_event.ShowEvent;
 import com.mathheals.euvou.controller.user_profile.ShowUser;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import dao.EventDAO;
 import dao.UserDAO;
 
@@ -50,6 +44,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     private String option = "option";
     private static final String PEOPLE_NOT_FOUND_MESSAGE = "Nenhum usuário foi encontrado.";
 
+    //sets text on search bar
     private void setSearchBar(Menu menuSearchBar)
     {
         final String SEARCH_VIEW_HINT = "Pesquisar";
@@ -61,88 +56,98 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         searchView.setQueryHint(SEARCH_VIEW_HINT);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
-
             @Override
             /**
-            *Method: public boolean onQueryTextSubmit(String query)
-            *Description: serachs by name an event
-            *@param String query
-            */
+             *Method: public boolean onQueryTextSubmit(String query)
+             *Description: serachs by name an event
+             *@param query
+             */
             public boolean onQueryTextSubmit(String query)
             {
+
                 int checkedButton = (int) radioGroup.getCheckedRadioButtonId();
                 switch (checkedButton)
                 {
                     case R.id.radio_events:
-                        option="event";
-                        EventDAO eventDAO = new EventDAO(getParent());
-
-                        ArrayList<String> eventsFound = new ArrayList<String>();
-                        eventDATA = eventDAO.searchEventByNameGroup(query);
-                        final String EVENT_COLUMN = "nameEvent";
-
-                        if (eventDATA != null)
-                        {
-                            event_not_found_text.setVisibility(View.GONE);
-                            try
-                            {
-                                for (int i = 0; i < eventDATA.length(); ++i)
-                                {
-                                    eventsFound.add(eventDATA.getJSONObject(new Integer(i).toString()).getString(EVENT_COLUMN));
-                                }
-
-                                String[] eventsFoundArray = eventsFound.toArray(new String[eventsFound.size()]);
-                                showEventsAsList(eventsFoundArray);
-                            }catch (JSONException exceptionJSON)
-                            {
-                                exceptionJSON.printStackTrace();
-                            }
-                        }
-                        else
-                        {
-                            listView.setAdapter(null);
-                            event_not_found_text.setVisibility(View.VISIBLE);
-                        }
+                        ifCheckButtonIsEvents(query);
                         break;
-
                     case R.id.radio_people:
-                        option="people";
-                        UserDAO userDAO = new UserDAO(getParent());
-
-                        ArrayList<String> peopleFound = new ArrayList<String>();
-                        peopleDATA = userDAO.searchUserByName(query);
-                        final String NAME_USER_COLUMN = "nameUser";
-
-                        if (peopleDATA != null)
-                        {
-                            event_not_found_text.setVisibility(View.GONE);
-                            try
-                            {
-                                for (int i = 0; i < peopleDATA.length(); i++)
-                                {
-                                    peopleFound.add(peopleDATA.getJSONObject(new Integer(i).toString()).getString(NAME_USER_COLUMN));
-                                }
-
-                                String[] peopleFoundArray = peopleFound.toArray(new String[peopleFound.size()]);
-                                showPeopleAsList(peopleFoundArray);
-                            }catch (JSONException exceptionOfJSON)
-                            {
-                                exceptionOfJSON.printStackTrace();
-                            }
-                        }
-                        else
-                        {
-                            listView.setAdapter(null);
-                            event_not_found_text.setText(PEOPLE_NOT_FOUND_MESSAGE);
-                            event_not_found_text.setVisibility(View.VISIBLE);
-                        }
-
+                        ifCheckButtonIsPeople(query);
                         break;
                     default:
                         //NOTHING TO DO
-                        break;
                 }
                 return true;
+            }
+
+            //If option selected on menu is event
+            private void ifCheckButtonIsEvents(String query){
+                option="event";
+                EventDAO eventDAO = new EventDAO(getParent());
+
+                ArrayList<String> eventsFound = new ArrayList<String>();
+                eventDATA = eventDAO.searchEventByNameGroup(query);
+                final String EVENT_COLUMN = "nameEvent";
+
+                if (eventDATA != null)
+                {
+                    event_not_found_text.setVisibility(View.GONE);
+                    try
+                    {
+                        //Find events
+                        for(int i = 0; i < eventDATA.length(); ++i)
+                        {
+                            eventsFound.add(eventDATA.getJSONObject(new Integer(i).toString()).getString(EVENT_COLUMN));
+                        }
+
+                        String[] eventsFoundArray = eventsFound.toArray(new String[eventsFound.size()]);
+                        showEventsAsList(eventsFoundArray);
+                    }catch (JSONException exceptionJSON)
+                    {
+                        exceptionJSON.printStackTrace();
+                    }
+                }
+                else
+                {
+                    listView.setAdapter(null);
+                    event_not_found_text.setVisibility(View.VISIBLE);
+                }
+            }
+
+            //If option selected on menu is people
+            private void ifCheckButtonIsPeople(String query){
+                option="people";
+                UserDAO userDAO = new UserDAO(getParent());
+
+                ArrayList<String> peopleFound = new ArrayList<String>();
+                peopleDATA = userDAO.searchUserByName(query);
+                final String NAME_USER_COLUMN = "nameUser";
+
+                if (peopleDATA != null)
+                {
+                    event_not_found_text.setVisibility(View.GONE);
+                    try
+                    {
+                        //Finds People
+                        for(int i = 0; i < peopleDATA.length(); i++)
+                        {
+                            peopleFound.add(peopleDATA.getJSONObject(new Integer(i).toString()).getString(NAME_USER_COLUMN));
+                        }
+
+                        String[] peopleFoundArray = peopleFound.toArray(new String[peopleFound.size()]);
+                        showPeopleAsList(peopleFoundArray);
+                    }catch (JSONException exceptionOfJSON)
+                    {
+                        exceptionOfJSON.printStackTrace();
+                    }
+                }
+                else
+                {
+                    listView.setAdapter(null);
+                    event_not_found_text.setText(PEOPLE_NOT_FOUND_MESSAGE);
+                    event_not_found_text.setVisibility(View.VISIBLE);
+                }
+
             }
 
             @Override
@@ -156,7 +161,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
     private ListView listView = null;
     private TextView event_not_found_text = null;
-
     @Override
     /**
     *Method: protected void onCreate(Bundle savedInstanceState)
@@ -182,22 +186,19 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     */
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_event_consultation, menu);
+        getMenuInflater().inflate(R.menu.menu_event_consultation, menu); //Takes view from menu of consultation
         actionBar = (ActionBar) getSupportActionBar();
 
         setSearchBar(menu);
         configActionBar();
 
-        radioGroup = (RadioGroup) findViewById(R.id.search_radio_group);
+        radioGroup = (RadioGroup) findViewById(R.id.search_radio_group); //Button selected by field of menu selected
         radioGroup.setOnCheckedChangeListener(this);
         return true;
     }
 
     private Integer idItem = 0;
-    /**
-    *Method: private void setListViewListener()
-    *Description: sets view listener
-    */
+    //sets view
     private void setListViewListener()
     {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -228,6 +229,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         });
     }
 
+    //shows an event in a list
     private void showEventsAsList(String[] eventNames)
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
@@ -236,6 +238,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
     }
 
+    //shows people in a list
     private void showPeopleAsList(String[] peopleNames)
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
@@ -243,6 +246,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         listView.setAdapter(adapter);
     }
 
+    //Configures color of action bar
     private void configActionBar()
     {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00C0C3")));
@@ -252,11 +256,12 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     @Override
     /**
     *Method: public boolean onOptionsItemSelected(MenuItem item)
-    *Description: gets an iten by id
+    *Description: gets an iten by id and starts activity according itens selected on menu
     *@param MenuItem item
     */
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        //Starts action selected on menu
         if(item.getItemId() == android.R.id.home){
             Intent intent = new Intent(this, HomePage.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

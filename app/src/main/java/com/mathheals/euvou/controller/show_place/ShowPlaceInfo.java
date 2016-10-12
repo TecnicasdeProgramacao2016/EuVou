@@ -12,15 +12,12 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.method.ScrollingMovementMethod;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.RatingBar.*;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Button;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -28,11 +25,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.utility.LoginUtility;
-
 import dao.EvaluatePlaceDAO;
 import model.Evaluation;
-import model.Place;
-
 
 /**
  *Class: public class ShowPlaceInfo extends FragmentActivity
@@ -44,8 +38,9 @@ public class ShowPlaceInfo extends FragmentActivity
     private double longitude = 0;
     private double latitude = 0;
     private String address = "nothing";
-    private float grade = 0;
+    private float grade = 0;//Has to be above 0
 
+    //sets place informations
     private void setPlaceInfo()
     {
         Intent intent = getIntent();
@@ -60,8 +55,8 @@ public class ShowPlaceInfo extends FragmentActivity
         setIdPlace(intent.getIntExtra("idPlace", 0));
     }
 
-    private SupportMapFragment mMapFragment = null;
-    private Integer userId = 0;
+    private SupportMapFragment mMapFragment = null;//Map to be setted
+    private Integer userId = 0;//Has to be above 0
     private boolean isUserLoggedIn;
     private final Integer LOGGED_OUT = -1;
     @Override
@@ -90,6 +85,7 @@ public class ShowPlaceInfo extends FragmentActivity
         setRatingBarIfNeeded();
     }
 
+    //If user are logged sets rating bar
     private void setRatingBarIfNeeded()
     {
         if(isUserLoggedIn)
@@ -102,9 +98,10 @@ public class ShowPlaceInfo extends FragmentActivity
         }
     }
 
-    private int idPlace = 0;
+    private int idPlace = 0;//Has to be above 0
     private RatingBar ratingBar = null;
     private Evaluation ratingEvaluation = null;
+    //sets rating bar
     private void setRatingBar()
     {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -120,19 +117,22 @@ public class ShowPlaceInfo extends FragmentActivity
         });
         setRatingBarStyle();
     }
-
+    //sets style to rate bar
     private void setRatingBarStyle()
     {
-        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getBaseContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable(); //draw stars of rating saved before
+        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getBaseContext(), R.color.turquesa_app),
+                PorterDuff.Mode.SRC_ATOP);//Puts Color on rating bar
     }
 
     protected GoogleMap mMap = null;
+    //set map if does not exist
     private void setUpMapIfNeeded()
     {
         if (mMap == null)
         {
-            mMapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_show_place_info_map));
+            mMapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id
+                    .fragment_show_place_info_map));
             mMap = mMapFragment.getMap();
             if (mMap != null)
             {
@@ -149,6 +149,7 @@ public class ShowPlaceInfo extends FragmentActivity
         }
     }
 
+    //sets map
     private void setUpMap()
     {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
@@ -156,6 +157,7 @@ public class ShowPlaceInfo extends FragmentActivity
         markPlaceOnMap();
     }
 
+    //marks a place on map
     private void markPlaceOnMap()
     {
 
@@ -170,6 +172,11 @@ public class ShowPlaceInfo extends FragmentActivity
 
     private Button showMapButton = null;
     private Button hideMapButton = null;
+    /**
+    *Method: public void showPlaceInfoOnClick(View view)
+    *Description: shows informations about place
+    *@param view
+    */
     public void showPlaceInfoOnClick(View view)
     {
         switch(view.getId()) {
@@ -359,7 +366,7 @@ public class ShowPlaceInfo extends FragmentActivity
     /**
      *Method: public void setIdPlace(int idPlace)
      *Description: sets id of place
-     *@param idPlace
+     *@param idPlace has to be above 0
      */
     public void setIdPlace(int idPlace)
     {
@@ -371,8 +378,8 @@ public class ShowPlaceInfo extends FragmentActivity
     /**
      *Method: public void setRatingEvaluation(int idPlace, int idUser, float grade)
      *Description: set rating evaluation
-     *@param idPlace
-     *@param idUser
+     *@param idPlace has to be above 0
+     *@param idUser has to be above 0
      *@param grade
      */
     public void setRatingEvaluation(int idPlace, int idUser, float grade)

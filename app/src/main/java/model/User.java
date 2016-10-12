@@ -66,7 +66,7 @@ public class User
     *                             String birthDate, String email, String mailConfirmation,
     *                             String password, String passwordConfirmation) throws UserException, ParseException
     *Description: sets user information
-    *@param idUser
+    *@param idUser has to be above 0
     *@param name
     *@param username
     *@param birthDate
@@ -94,7 +94,7 @@ public class User
     *Method: public User(int idUser, String name, String birthDate,
     *                            String email) throws UserException, ParseException
     *Description: sets user information
-    *@param idUser
+    *@param idUser has to be above 0
     *@param name
     *@param birthDate
     *@param email
@@ -113,7 +113,7 @@ public class User
     *                            String email, String mailConfirmation, String password,
     *                            String passwordConfirmation) throws UserException, ParseException
     *Description: sets user information
-    *@param idUser
+    *@param idUser has to be above 0
     *@param name
     *@param birthDate
     *@param email

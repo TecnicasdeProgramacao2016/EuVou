@@ -15,8 +15,8 @@ import exception.UserEvaluationException;
 public class UserEvaluation
 {
     private Float rating = null;
-    private Integer userId = null;
-    private Integer userEvaluatedId = null;
+    private Integer userId = null; //has to be above 0
+    private Integer userEvaluatedId = null; //has to be above 0
     public static final String EVALUATION_IS_INVALID = "Avaliação deve estar entre 0 e 5";
     public static final String USER_ID_IS_INVALID = "O identificador do usuário é inválido";
     public static final String USER_EVALUATED_ID_IS_INVALID = "O identificador do usuário avaliado é inválido";
@@ -26,7 +26,7 @@ public class UserEvaluation
     *                              Integer userEvaluatedId) throws UserEvaluationException
     *Description: sets data on fields of user evaluation
     *@param rating
-    *@param userId
+    *@param userId has to be above 0
     *@param userEvaluatedId
     */
     public UserEvaluation(Float rating, Integer userId,
@@ -44,7 +44,9 @@ public class UserEvaluation
     */
     public void setRating(Float rating) throws UserEvaluationException
     {
-        if(rating >= 0f && rating <= 5f)
+        final float minRating = 0f;
+        final float maxRating = 5f;
+        if(rating >= minRating && rating <= maxRating)
         {
             this.rating = rating;
         }
@@ -63,7 +65,8 @@ public class UserEvaluation
     public void setUserId(Integer userId) throws UserEvaluationException
     {
         assert(userId > 0);
-        if(userId <= Integer.MAX_VALUE && userId >= 1)
+        final int validId = 1;
+        if(userId <= Integer.MAX_VALUE && userId >= validId)
         {
             this.userId = userId;
         }
@@ -81,7 +84,8 @@ public class UserEvaluation
     */
     public void setUserEvaluatedId(Integer userEvaluatedId) throws UserEvaluationException
     {
-        if(userEvaluatedId <= Integer.MAX_VALUE && userEvaluatedId >= 1)
+        final int validId = 1;
+        if(userEvaluatedId <= Integer.MAX_VALUE && userEvaluatedId >= validId)
         {
             this.userEvaluatedId = userEvaluatedId;
         }

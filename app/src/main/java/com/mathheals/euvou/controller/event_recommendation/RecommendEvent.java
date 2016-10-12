@@ -46,11 +46,12 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         {
             eventDATA = eventRecommendationDAO.recommendEvents(idUser);
 
-            for(int i=0 ; i < eventDATA.length() ; i++)
+            //Recomends an Event
+            for(int i = 0 ; i < eventDATA.length() ; i++)
             {
-                int idEvent = eventDATA.getJSONObject(Integer.toString(i)).getInt("idEvent");
-                String nameEvent = eventDATA.getJSONObject(Integer.toString(i)).getString("nameEvent");
-                int eventEvaluation = 4;
+                final int idEvent = eventDATA.getJSONObject(Integer.toString(i)).getInt("idEvent");
+                final String nameEvent = eventDATA.getJSONObject(Integer.toString(i)).getString("nameEvent");
+                final int eventEvaluation = 4;
 
                 Event event = new Event(idEvent, nameEvent, eventEvaluation);
 
@@ -103,7 +104,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
             fillList();
         }else
         {
-            Toast.makeText(getActivity().getBaseContext(), "Sem eventos recomendados!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getBaseContext(), "Sem eventos recomendados!", Toast.LENGTH_LONG).show(); //Quick message with Toast of no recommended events
         }
         return  viewOfList;
     }
@@ -126,7 +127,8 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         final ShowEvent event = new ShowEvent();
         try
         {
-            final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity()
+                    .getSupportFragmentManager().beginTransaction();
             eventId = new Integer(eventDATA.getJSONObject(Integer.toString(position)).getString(ID_COLUMN));
             bundle.putString("idEventSearch", Integer.toString(eventId));
 

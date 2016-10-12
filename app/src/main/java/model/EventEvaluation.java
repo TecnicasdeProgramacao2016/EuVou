@@ -25,10 +25,10 @@ public class EventEvaluation
     *Method: public EventEvaluation(Float rating, Integer userId, Integer eventId) throws EventEvaluationException
     *Description: sets fields of evaluate an event
     *@param rating
-    *@param userId
-    *@param eventId
+    *@param userId has to be above 0
+    *@param eventId has to be above 0
     */
-    public EventEvaluation(Float rating, Integer userId, Integer eventId) throws EventEvaluationException
+    public EventEvaluation(final Float rating, final Integer userId, final Integer eventId) throws EventEvaluationException
     {
         setRating(rating);
         setUserId(userId);
@@ -74,12 +74,13 @@ public class EventEvaluation
     /**
     *Method: public void setUserId(Integer userId) throws EventEvaluationException
     *Description: sets id of user
-    *@param userId
+    *@param userId has to be above 0
     */
     public void setUserId(Integer userId) throws EventEvaluationException
     {
         assert(userId > 0);
 
+        //Alterates user identification
         if(userId <= Integer.MAX_VALUE && userId >= 1)
         {
             this.userId = userId;
@@ -103,10 +104,11 @@ public class EventEvaluation
     /**
     *Method: public void setEventId(Integer eventId) throws EventEvaluationException
     *Description: sets id of event
-    *@param eventId
+    *@param eventId has to be above 0
     */
     public void setEventId(Integer eventId) throws EventEvaluationException
     {
+        //Alterates event identification
         if(eventId <= Integer.MAX_VALUE && eventId >= 1)
         {
             this.eventId = eventId;

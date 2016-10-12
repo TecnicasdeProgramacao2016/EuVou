@@ -14,8 +14,8 @@ import android.util.Log;
 public class Evaluation
 {
     private float grade = 0;
-    private int idPlace = 0;
-    private int idUser = 0;
+    private int idPlace = 0;//has to be above 0
+    private int idUser = 0;//has to be above 0
     /**
     *Method: public Evaluation(int idPlace, int idUser, float grade)
     *Description: sets values to evaluation
@@ -23,27 +23,27 @@ public class Evaluation
     *@param idUser
     *@param grade
     */
-    public Evaluation(int idPlace, int idUser, float grade)
+    public Evaluation(final int idPlace, final int idUser, final float grade)
     {
         setIdPlace(idPlace);
         setIdUser(idUser);
         setGrade(grade);
     }
 
-    private void setGrade(float grade)
+    private void setGrade(final float grade)
     {
         this.grade = grade;
         Log.d("Evaluation", "Grade has been setted");
     }
 
-    private void setIdUser(int idUser)
+    private void setIdUser(final int idUser)
     {
         assert( idUser > 0);
         this.idUser = idUser;
         Log.d("Evaluation", "idUser has been setted");
     }
 
-    private void setIdPlace(int idPlace)
+    private void setIdPlace(final int idPlace)
     {
         assert( idPlace > 0);
         this.idPlace = idPlace;
