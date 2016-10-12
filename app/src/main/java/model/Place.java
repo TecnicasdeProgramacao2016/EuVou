@@ -21,7 +21,7 @@ public class Place
     private final String INVALID_LATITUDE = "Sem a latitude não é possível encontrar o lugar";
     private final String INVALID_LONGITUDE= "Sem a longitude não é possível encontrar o lugar";
     private final String INVALID_COMMENT= "O comentario não pode ser vazio";
-    private int id = 0;
+    private int id = 0; //has to be above 0
     private String name = null;
     private ArrayList<String> comment = null;
     private Float evaluate = null;
@@ -69,7 +69,7 @@ public class Place
     *                     String longitude, String latitude, String operation,
     *                     String description, String address, String phone) throws PlaceException, ParseException
     *Description: sets id of event
-    * @param id
+    * @param id has to be above 0
     * @param name
     * @param evaluate
     * @param longitude

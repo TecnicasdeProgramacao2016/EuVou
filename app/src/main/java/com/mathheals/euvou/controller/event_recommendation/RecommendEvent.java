@@ -104,7 +104,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
             fillList();
         }else
         {
-            Toast.makeText(getActivity().getBaseContext(), "Sem eventos recomendados!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getBaseContext(), "Sem eventos recomendados!", Toast.LENGTH_LONG).show(); //Quick message with Toast of no recommended events
         }
         return  viewOfList;
     }
@@ -127,7 +127,8 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         final ShowEvent event = new ShowEvent();
         try
         {
-            final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity()
+                    .getSupportFragmentManager().beginTransaction();
             eventId = new Integer(eventDATA.getJSONObject(Integer.toString(position)).getString(ID_COLUMN));
             bundle.putString("idEventSearch", Integer.toString(eventId));
 

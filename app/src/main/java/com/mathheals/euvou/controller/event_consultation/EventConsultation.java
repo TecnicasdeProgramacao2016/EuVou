@@ -5,7 +5,6 @@
 
 package com.mathheals.euvou.controller.event_consultation;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -23,18 +22,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.Toast;
 import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.home_page.HomePage;
 import com.mathheals.euvou.controller.show_event.ShowEvent;
 import com.mathheals.euvou.controller.user_profile.ShowUser;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import dao.EventDAO;
 import dao.UserDAO;
 
@@ -77,18 +71,16 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                     case R.id.radio_events:
                         ifCheckButtonIsEvents(query);
                         break;
-
                     case R.id.radio_people:
                         ifCheckButtonIsPeople(query);
                         break;
                     default:
                         //NOTHING TO DO
-
                 }
                 return true;
             }
 
-            //If selected is event
+            //If option selected on menu is event
             private void ifCheckButtonIsEvents(String query){
                 option="event";
                 EventDAO eventDAO = new EventDAO(getParent());
@@ -122,7 +114,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                 }
             }
 
-            //If selected is people
+            //If option selected on menu is people
             private void ifCheckButtonIsPeople(String query){
                 option="people";
                 UserDAO userDAO = new UserDAO(getParent());
@@ -169,7 +161,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
     private ListView listView = null;
     private TextView event_not_found_text = null;
-
     @Override
     /**
     *Method: protected void onCreate(Bundle savedInstanceState)
@@ -195,13 +186,13 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     */
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_event_consultation, menu);
+        getMenuInflater().inflate(R.menu.menu_event_consultation, menu); //Takes view from menu of consultation
         actionBar = (ActionBar) getSupportActionBar();
 
         setSearchBar(menu);
         configActionBar();
 
-        radioGroup = (RadioGroup) findViewById(R.id.search_radio_group);
+        radioGroup = (RadioGroup) findViewById(R.id.search_radio_group); //Button selected by field of menu selected
         radioGroup.setOnCheckedChangeListener(this);
         return true;
     }

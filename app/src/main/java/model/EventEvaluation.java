@@ -25,8 +25,8 @@ public class EventEvaluation
     *Method: public EventEvaluation(Float rating, Integer userId, Integer eventId) throws EventEvaluationException
     *Description: sets fields of evaluate an event
     *@param rating
-    *@param userId
-    *@param eventId
+    *@param userId has to be above 0
+    *@param eventId has to be above 0
     */
     public EventEvaluation(Float rating, Integer userId, Integer eventId) throws EventEvaluationException
     {
@@ -74,7 +74,7 @@ public class EventEvaluation
     /**
     *Method: public void setUserId(Integer userId) throws EventEvaluationException
     *Description: sets id of user
-    *@param userId
+    *@param userId has to be above 0
     */
     public void setUserId(Integer userId) throws EventEvaluationException
     {
@@ -104,7 +104,7 @@ public class EventEvaluation
     /**
     *Method: public void setEventId(Integer eventId) throws EventEvaluationException
     *Description: sets id of event
-    *@param eventId
+    *@param eventId has to be above 0
     */
     public void setEventId(Integer eventId) throws EventEvaluationException
     {

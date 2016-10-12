@@ -36,7 +36,7 @@ public class Event
     public static final String EVENT_HOUR_IS_EMPTY = "Hey, você esqueceu de informar a hora";
     public static final String CATEGORY_IS_INVALID = "Hey, você esqueceu de informar a categoria do evento, preenche ela aí vai!";
 
-    private int idEvent = 0;
+    private int idEvent = 0;//has to be above 0
     private String nameEvent = "nameEvent";
     private String dateTimeEvent = "dateTimeEvent";
     private String description = "description";
@@ -56,7 +56,7 @@ public class Event
     *                      String address, String description, String latitude,
     *                      String longitude, Vector<String> category) throws EventException, ParseException
     *Description: sets fields of event
-    * @param idOwner
+    * @param idOwner has to be above 0
     * @param nameEvent
     * @param date
     * @param hour
@@ -92,7 +92,7 @@ public class Event
      *                     String latitude, String longitude,
      *                     Vector<String> category) throws EventException, ParseException
      *Description: sets fields of event
-     * @param idOwner
+     * @param idOwner has to be above 0
      * @param nameEvent
      * @param dateTimeEvent
      * @param price
@@ -124,7 +124,7 @@ public class Event
     *Method: public Event(int idOwner, String nameEvent,
     *                              int eventEvaluation) throws EventException, ParseException
     *Description: sets fields of event
-    *@param idOwner
+    *@param idOwner has to be above 0
     *@param nameEvent
     *@param eventEvaluation
     */
@@ -142,8 +142,8 @@ public class Event
     *                              String address, String description,
     *                              String latitude, String longitude) throws EventException, ParseException
     *Description: sets fields of event
-    *@param idEvent
-    *@param idOwner
+    *@param idEvent has to be above 0
+    *@param idOwner has to be above 0
     *@param nameEvent
     *@param dateTimeEvent
     *@param price
@@ -174,7 +174,7 @@ public class Event
     *                              String address, String description,
     *                              String latitude, String longitude) throws EventException, ParseException
     *Description: sets fields of event
-    *@param idEvent
+    *@param idEvent has to be above 0
     *@param nameEvent
     *@param price
     *@param address
@@ -402,7 +402,7 @@ public class Event
     /**
     *Method: public void setIdEvent(int idEvent)
     *Description: set id of event
-    *@param idEvent
+    *@param idEvent has to be above 0
     */
     public void setIdEvent(int idEvent)
     {
@@ -589,7 +589,7 @@ public class Event
     /**
     *Method: public void setIdOwner(int idOwner)
     *Description: sets id of owner
-    *@param idOwner
+    *@param idOwner has to be above 0
     */
     public void setIdOwner(int idOwner)
     {

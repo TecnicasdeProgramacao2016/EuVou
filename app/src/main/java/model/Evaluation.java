@@ -14,8 +14,8 @@ import android.util.Log;
 public class Evaluation
 {
     private float grade = 0;
-    private int idPlace = 0;
-    private int idUser = 0;
+    private int idPlace = 0;//has to be above 0
+    private int idUser = 0;//has to be above 0
     /**
     *Method: public Evaluation(int idPlace, int idUser, float grade)
     *Description: sets values to evaluation

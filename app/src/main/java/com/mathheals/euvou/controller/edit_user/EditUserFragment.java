@@ -50,7 +50,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View viewOfEditUser = inflater.inflate(R.layout.fragment_edit_user, container, false);
+        View viewOfEditUser = inflater.inflate(R.layout.fragment_edit_user, container, false);//Returns view from main layout
 
         UserDAO userDAO = new UserDAO(this.getActivity());
 
@@ -60,7 +60,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
         USER_STATUS = loginUtility.getUserId();
 
-        String stringUserStatus = userDAO.searchUserById(USER_STATUS);
+        String stringUserStatus = userDAO.searchUserById(USER_STATUS);//Searchs user by id on database
         JSONObject json = null;
         try
         {
@@ -77,7 +77,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             String mail = (String)json.getJSONObject("0").getString("email");
 
             String[] birthDateSplit = birthDate.split("-");
-            birthDate = birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];
+            birthDate = birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];//Format of date mm/dd/yyyy
 
             nameField.setText(nameUser);
             birthDateField.setText(birthDate);
@@ -121,7 +121,8 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         {
             User userUpdate = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password, passwordConfirm);
             updateUser(userUpdate);
-            Toast.makeText(this.getActivity().getBaseContext(), "Usuário alterado com sucesso", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getActivity().getBaseContext(),
+                           "Usuário alterado com sucesso", Toast.LENGTH_LONG).show();//Quick message with Toast of alteration of user
 
             Activity activity = getActivity();
             Intent intent = activity.getIntent();
@@ -141,53 +142,57 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         {
             editAndRegisterUtility.setMessageError(mailField, message);
         }
-        if(message.equals(User.NAME_CANT_BE_EMPTY_NAME))
+        else if(message.equals(User.NAME_CANT_BE_EMPTY_NAME))
         {
             editAndRegisterUtility.setMessageError(nameField, message);
         }
-        if(message.equals(User.NAME_CANT_BE_HIGHER_THAN_50))
+        else if(message.equals(User.NAME_CANT_BE_HIGHER_THAN_50))
         {
             editAndRegisterUtility.setMessageError(nameField, message);
         }
-        if(message.equals(User.EMAIL_CANT_BE_HIGHER_THAN_150))
+        else if(message.equals(User.EMAIL_CANT_BE_HIGHER_THAN_150))
         {
             editAndRegisterUtility.setMessageError(mailField, message);
         }
-        if(message.equals(User.INVALID_EMAIL))
+        else if(message.equals(User.INVALID_EMAIL))
         {
             editAndRegisterUtility.setMessageError(mailField, message);
         }
-        if(message.equals(User.EMAIL_ARE_NOT_EQUALS))
+        else if(message.equals(User.EMAIL_ARE_NOT_EQUALS))
         {
             editAndRegisterUtility.setMessageError(mailField, message);
         }
-        if(message.equals(User.PASSWORD_CANT_BE_EMPTY_PASSWORD))
+        else if(message.equals(User.PASSWORD_CANT_BE_EMPTY_PASSWORD))
         {
             editAndRegisterUtility.setMessageError(passwordField, message);
         }
-        if(message.equals(User.PASSWORD_CANT_BE_LESS_THAN_6))
+        else if(message.equals(User.PASSWORD_CANT_BE_LESS_THAN_6))
         {
             editAndRegisterUtility.setMessageError(passwordField, message);
         }
-        if(message.equals(User.PASSWORD_ARE_NOT_EQUALS))
+        else if(message.equals(User.PASSWORD_ARE_NOT_EQUALS))
         {
             editAndRegisterUtility.setMessageError(passwordField, message);
         }
-        if(message.equals(User.BIRTH_DATE_CANT_BE_EMPTY))
+        else if(message.equals(User.BIRTH_DATE_CANT_BE_EMPTY))
         {
             editAndRegisterUtility.setMessageError(birthDateField, message);
         }
-        if(message.equals(User.INVALID_BIRTH_DATE))
+        else if(message.equals(User.INVALID_BIRTH_DATE))
         {
             editAndRegisterUtility.setMessageError(birthDateField, message);
         }
-        if(message.equals(User.EMAIL_CONFIRMATION_CANT_BE_EMPTY))
+        else if(message.equals(User.EMAIL_CONFIRMATION_CANT_BE_EMPTY))
         {
             editAndRegisterUtility.setMessageError(mailConfirmationField, message);
         }
-        if(message.equals(User.CONFIRM_PASSWORD_CANT_BE_EMPTY))
+        else if(message.equals(User.CONFIRM_PASSWORD_CANT_BE_EMPTY))
         {
             editAndRegisterUtility.setMessageError(passwordConfirmField, message);
+        }
+        else
+        {
+            //NOTHING TO DO
         }
     }
 
