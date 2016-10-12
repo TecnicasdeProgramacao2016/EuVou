@@ -87,6 +87,7 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
 
     public void testIfRatingBarIsAvailableForLoggedOutUser() 
     {
+        //check if user is logged
         if(isUserLoggedIn) 
         {
             TestUtility.makeUserLogOut();
@@ -109,19 +110,22 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
     public void testIfRatingBarIsAvailableForLoggedInUser() 
     {
         boolean result;
-        if(!isUserLoggedIn) 
+
+        //check if user is logged
+        if(isUserLoggedIn)
+        {
+            //NOTHING TO DO
+        } else
         {
             TestUtility.makeUserLogIn();
             isUserLoggedIn = true;
-        } else
-        {
-            //NOTHING TO DO
         }
         startShowPlaceInfoForSettedUpPlace();
         try 
         {
             int[] ratingNumbersForTest = new int[]{1, 3, 5};
 
+            //inserting test numbers in SetRating
             for(Integer ratingNumber : ratingNumbersForTest)
                 onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
             try 

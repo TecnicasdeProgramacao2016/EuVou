@@ -136,12 +136,17 @@ public class ShowPlaceInfo extends FragmentActivity
          * method that do a null check to confirm that we have not already instantiated the map.
          */
 
-        if (mMap == null)
+        // check if have a map
+        if (mMap != null)
+        {
+            //NOTHING TO DO
+        } else
         {
             // Try to obtain the map from the SupportMapFragment.
             mMapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_show_place_info_map));
             mMap = mMapFragment.getMap();
-            // Check if we were successful in obtaining the map.
+
+            // Check if we were successful in obtaining the map
             if (mMap != null)
             {
                 setUpMap();
@@ -149,9 +154,6 @@ public class ShowPlaceInfo extends FragmentActivity
             {
                 //NOTHING TO DO
             }
-        } else
-        {
-            //NOTHING TO DO
         }
     }
 
@@ -187,6 +189,7 @@ public class ShowPlaceInfo extends FragmentActivity
          * @param view
          */
 
+        // select if map will be show or hide
         switch(view.getId()) {
             case R.id.button_show_map:
                 setUpMapIfNeeded();
@@ -335,7 +338,7 @@ public class ShowPlaceInfo extends FragmentActivity
     private void setRatingMessage(boolean isUserLoggedIn) {
         /**
          * method that set the message to user to do the login
-         * @param isUserLoggedIn
+         * @param isUserLoggedInui
          */
         String message = isUserLoggedIn ? "Sua avaliação:" : "Faça login para avaliar!";
         ratingMessage = (TextView) findViewById(R.id.rate_it_text);

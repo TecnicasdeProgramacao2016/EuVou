@@ -61,6 +61,7 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
 
         switch(view.getId()) 
         {
+            //Check if disable button was pressionaded
             case R.id.button_yes_id:
                 fragmentManager.popBackStack();
                 RemoveUserViewMessages.showWelcomeBackMessage(homePageContext);

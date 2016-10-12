@@ -33,6 +33,8 @@ public class ActivityUtility
          */
 
         FragmentManager manager = fragmentActivity.getSupportFragmentManager();
+
+        //check if manager is positive
         if (manager.getBackStackEntryCount() > 0) 
         {
             FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(0);

@@ -51,6 +51,7 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
 
     public void testIfRatingBarIsAvailableForLoggedOutUser() 
     {
+        //check if user is logged
         if(isLoged.hasUserLoggedIn()) 
         {
             TestUtility.makeUserLogOut();
@@ -65,6 +66,7 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
 
     public void testIfRatingBarIsAvailableForLoggedInUser() 
     {
+        //check if user is logged
         if(!isLoged.hasUserLoggedIn()) 
         {
             TestUtility.makeUserLogIn();
@@ -80,6 +82,7 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
     public void testIfRatingBarIsSetingEvaluation() 
     {
         boolean result;
+        //check if user is logged
         if(!isLoged.hasUserLoggedIn()) 
         {
             TestUtility.makeUserLogIn();
@@ -92,6 +95,7 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
         {
             int[] ratingNumbersForTest = new int[]{1, 3, 5};
 
+            //inserting test numbers in SetRating
             for(Integer ratingNumber : ratingNumbersForTest)
                 onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
             try 

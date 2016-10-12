@@ -69,7 +69,9 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
 
         FragmentActivity activity = this.getActivity();
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
-        switch (view.getId()) 
+
+       //check if disable account was pressioned to show feedback message
+        switch (view.getId())
         {
             case R.id.button_back_id:
                 returnToConfigurationOptions(fragmentManager);
@@ -116,10 +118,12 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
 
         boolean isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
+        //check if username is valid to login
         if(isUsernameValid==true)
         {
             boolean isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
 
+            //check if passoword is valid to login
             if(isPasswordValid==true)
             {
                 Log.d("DisableAccountLoginConfirmation", "Login valid");

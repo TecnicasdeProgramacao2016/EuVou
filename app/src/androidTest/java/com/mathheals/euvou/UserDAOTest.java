@@ -39,6 +39,8 @@ public class UserDAOTest extends TestCase
 
         UserDAO userDAO = new UserDAO();
         User user = new User("Marcelo", "marceloChavosaoa", "galudo11cm@uol.com", "123456", "24/11/1969");
+
+        //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
         {
             assertTrue(false);
@@ -55,6 +57,8 @@ public class UserDAOTest extends TestCase
 
         UserDAO userDAO = new UserDAO();
         User user = new User("VIny", "viny", "viny@uol.com", "123456", "14/02/1995");
+
+        //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
         {
             assertTrue(false);
@@ -77,6 +81,7 @@ public class UserDAOTest extends TestCase
         UserDAO userDAO = new UserDAO();
         User user = new User(1,"Vinicius ppp", "umteste", "14/02/1995", "viny-pinheiro@hotmail.com",
                 "viny-pinheiro@hotmail.com", "123456", "123456");
+        //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
         {
             assertTrue(false);
@@ -95,6 +100,7 @@ public class UserDAOTest extends TestCase
         UserDAO userDAO = new UserDAO();
         User user = new User(1,"Vinicius Pinheiro", "umteste", "14/02/1995", "viny-pinheiro@hotmail.com",
                 "viny-pinheiro@hotmail.com", "123456", "123456");
+        //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
         {
             assertTrue(false);

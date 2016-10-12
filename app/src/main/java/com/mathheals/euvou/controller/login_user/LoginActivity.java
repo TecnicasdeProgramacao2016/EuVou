@@ -120,6 +120,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
+        //do the operation if username and password are valids
         if(isUsernameValid && isPasswordValid)
         {
             
@@ -143,6 +144,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //NOTHING TO DO
         }
 
+        // do the operation if username and login validation are valids
         if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
         {
             isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
@@ -164,6 +166,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             
         }
 
+        // show message when username and login validation are false
         if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
         {
             usernameField.requestFocus();

@@ -29,6 +29,8 @@ public abstract class Mask
 
                 String str = Mask.unmask(s.toString());
                 String mascara = "";
+
+                //check if the information is updating according the user's actions
                 if (isUpdating) 
                 {
                     old = str;
