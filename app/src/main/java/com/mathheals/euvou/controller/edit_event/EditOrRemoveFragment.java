@@ -91,7 +91,13 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
             EditEventFragment editEventFragment = new EditEventFragment();
             Bundle bundle = new Bundle();
 
+            /*
+             * As default, the fragment transaction is gotten by the system, but in this line it is
+             * gotten from the support libary. Both of them achieve the same purpose, but they cannot be
+             * replaced with one another in code.
+             */
             android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
             bundle.putInt("idEvent", evento.getIdEvent());
             editEventFragment.setArguments(bundle);
 

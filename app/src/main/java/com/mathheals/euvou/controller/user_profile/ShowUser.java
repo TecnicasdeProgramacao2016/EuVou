@@ -126,10 +126,12 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
 
-        JSONObject evaluationJSON = (JSONObject) userEvaluationDAO.searchUserEvaluation(Integer.parseInt(userEvaluatedId), currentUserId);
+        JSONObject evaluationJSON = (JSONObject) userEvaluationDAO.searchUserEvaluation(Integer.
+                                                    parseInt(userEvaluatedId), currentUserId);
 
         settingRateBarEvaluation(evaluationJSON, ratingBar);
 
+        //This line ckecks if the status are different to change them
         ratingBar.setOnRatingBarChangeListener(new RatingBar.
                 OnRatingBarChangeListener()
                 {
@@ -186,7 +188,8 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private void setRatingBarStyle()
     {
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.turquesa_app),
+                                                                    PorterDuff.Mode.SRC_ATOP);
     }
 
     public UserEvaluation getUserEvaluation()

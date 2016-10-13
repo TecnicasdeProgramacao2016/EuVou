@@ -251,6 +251,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     {
         Integer priceEvent = jsonEvent.getJSONObject("0").getInt("price");
         this.priceRealField.setText(Integer.toString(priceEvent / 100));
+
+        //At this line, gets the price of the field, turn into string with the right value
         this.priceDecimalField.setText(Integer.toString(priceEvent - priceEvent / 100 * 100));
         Log.d("EditEventFragment", "Price sucessfuly formated");
     }
