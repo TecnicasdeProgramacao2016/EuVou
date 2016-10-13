@@ -36,7 +36,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private View showUserView = null;
     private String userEvaluatedId = null;
     private int currentUserId = 0;
-    private boolean isUserLoggedIn = true;
+    private static boolean isUserLoggedIn = true;
     private TextView ratingMessage = null;
     private final Integer LOGGED_OUT = -1;
 
