@@ -47,7 +47,7 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
 
     private Event event;
     private UiDevice device;
-    private static LoginUtility isLoged;
+    private static LoginUtility isLoged; //Check if user's is logged in
 
     @Before
     //Set up user.

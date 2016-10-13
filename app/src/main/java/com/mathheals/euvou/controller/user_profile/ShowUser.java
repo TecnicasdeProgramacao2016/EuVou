@@ -35,7 +35,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private RatingBar ratingBar = null;
     private View showUserView = null;
     private String userEvaluatedId = null;
-    private int currentUserId = 0;
+    private int currentUserId = 0;  //This variable has the pourpose to check if current user is logged, as it compares with LOGGED_OUT
     private static boolean isUserLoggedIn = true;
     private TextView ratingMessage = null;
     private final Integer LOGGED_OUT = -1;

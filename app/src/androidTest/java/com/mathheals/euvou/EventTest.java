@@ -17,7 +17,7 @@ import model.Event;
 
 public class EventTest extends TestCase
 {
-    private static Event event;
+    private static Event event;  //Event that is going to be used at tests
 
     //Test if event's category is null
     public void testIfCategoryIsNull ()

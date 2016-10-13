@@ -38,8 +38,9 @@ import model.Event;
 
 public class EditEventFragment extends Fragment implements View.OnClickListener
 {
-    public Vector<String> categories = new Vector<>();
-    private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
+    public Vector<String> categories = new Vector<>(); //Contains all possible categories
+    private EditAndRegisterUtility  editAndRegisterUtility =
+            new EditAndRegisterUtility();  //This variable is responsable for showing error mesages to the user
 
 
     //Constructor
