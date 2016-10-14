@@ -35,8 +35,7 @@ public class ShowOnMap extends FragmentActivity
      */
     public String getFilter()
     {
-        // private String filter;
-        return filter;
+       return filter;
     }
 
     /**
@@ -46,16 +45,14 @@ public class ShowOnMap extends FragmentActivity
      */
     public void setFilter(String filter)
     {
-        //  private String filter;
-        this.filter = filter;
+         this.filter = filter;
     }
 
     //Save instanciated state to an event in map
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        // private Double latitude;
-        // private Double longitude;
+        assert(savedInstanceState != null);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
@@ -90,7 +87,6 @@ public class ShowOnMap extends FragmentActivity
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
-
             assert(mMap != null);
 
             // Check if we were successful in obtaining the map.
@@ -123,6 +119,8 @@ public class ShowOnMap extends FragmentActivity
     // Add a marker to place in map
     private void addMarkerPlace(Double latitude, Double longitude)
     {
+        assert(latitude > 0 && longitude > 0);
+
         mMap.addMarker(
                 new MarkerOptions()
                         .title("Nome do Evento")

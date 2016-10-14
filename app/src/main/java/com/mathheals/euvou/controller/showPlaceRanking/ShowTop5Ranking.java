@@ -62,8 +62,14 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
+
         // Inflate the layout for this fragment
         View view = (View) inflater.inflate(R.layout.fragment_show_top5_ranking, container, false);
+        assert(view != null);
+
         // Inflate the layout for this fragment
         listView = (ListView) view.findViewById(R.id.listViewPlaces5);
         listView.setOnItemClickListener(this);
@@ -100,19 +106,19 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     // Fill list with events
     private void fillList()
     {
-        JSONObject result;
-
         try
         {
             int id = (new LoginUtility(getActivity())).getUserId();
-            result =(JSONObject) new PlaceDAO(getActivity()).searchTop5Places();
+            JSONObject result =(JSONObject) new PlaceDAO(getActivity()).searchTop5Places();
+            assert(result != null);
+
             places = new ArrayList<>();
             //set list using an specific id
             for (int i = 0; i < result.length(); i++)
             {
                 int idPlace = result.getJSONObject("" + i).getInt("idPlace");
 
-                assert(idPlace < 0);
+                assert(idPlace > 0);
 
                 String namePlace = result.getJSONObject("" + i).getString("namePlace");
                 Place aux = new Place(idPlace,
@@ -152,9 +158,11 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     // Swow content about an event
     private void startShowInfoActivity(int id)
     {
-        assert(id < 0);
+        assert(id > 0);
 
         Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
+        assert(intent != null);
+
         intent.putExtras(getPlaceInfoAsBundle(id));
         startActivity(intent);
 
@@ -167,6 +175,8 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     private Bundle getPlaceInfoAsBundle(int id)
     {
         Bundle placeInfo = new Bundle();
+        assert(placeInfo != null);
+
         Toast.makeText(getActivity(), "" + id, Toast.LENGTH_LONG);
         placeInfo.putString("name", places.get(id).getName());
         placeInfo.putString("phone", places.get(id).getPhone());

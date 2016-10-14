@@ -28,6 +28,7 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        assert(savedInstanceState != null);
 
         super.onCreate(savedInstanceState);
         Log.d("ShowPLaceRanking", "The instance state has been saved");
@@ -46,6 +47,10 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_show_place_ranking, container, false);
     }

@@ -70,12 +70,20 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
+
         View view =(View) inflater.inflate(R.layout.fragment_list_events, container, false);
+        assert(view != null);
 
         // Inflate the layout for this fragment
         listView = (ListView) view.findViewById(R.id.eventList);
+        assert(listView != null);
+
         listView.setOnItemClickListener(this);
         populaList();
+
         return view;
     }
 
@@ -90,10 +98,16 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
+        assert(view != null);
+        assert(id > 0);
+
+
         Event clicked;
 
         final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         clicked = events.get(position);
+        assert(clicked != null);
+
         EditOrRemoveFragment editOrRemoveFragment = new EditOrRemoveFragment();
         editOrRemoveFragment.evento = clicked;
         fragmentTransaction.replace(R.id.content_frame, editOrRemoveFragment);
@@ -121,8 +135,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
         try
         {
             int id = (new LoginUtility(getActivity())).getUserId();
-
-            assert(id < 0);
+            assert(id > 0);
 
             events = new EventDAO(getActivity()).searchEventByOwner(id);
 

@@ -97,7 +97,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         {
             participateButton.setVisibility(View.VISIBLE);
 
-            assert(userId < 0);
+            assert(userId > 0);
 
             if(eventDAO.verifyParticipate(userId,Integer.parseInt(eventId)) == null)
             {
@@ -162,6 +162,9 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
      */
     public void setEventEvaluation(Float rating, Integer userId, Integer eventId)
     {
+        assert(rating > 0);
+
+
         try
         {
             this.eventEvaluation = new EventEvaluation(rating, userId, eventId);
@@ -169,7 +172,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         }catch (EventEvaluationException exception)
         {
 
-            if(   exception.getMessage() == EventEvaluation.EVALUATION_IS_INVALID ||
+            if(     exception.getMessage() == EventEvaluation.EVALUATION_IS_INVALID ||
                     exception.getMessage() == EventEvaluation.EVENT_ID_IS_INVALID ||
                     exception.getMessage() == EventEvaluation.USER_ID_IS_INVALID )
             {
@@ -204,12 +207,15 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
      */
     public void setCategoriesText(int eventId, TextView eventCategoriesText)
     {
-        assert(eventId < 0);
+        assert(eventCategoriesText != null);
+        assert(eventId > 0);
 
         String[] eventCategories = getEventCategoriesById(eventId);
         String text = eventCategories[0];
 
-        for(int i = 1; i < eventCategories.length; ++i)
+        final int CategoriesNumber = eventCategories.length;
+
+        for(int i = 1; i < CategoriesNumber; ++i)
             text += (", " + eventCategories[i]);
 
         eventCategoriesText.setText(text);
@@ -221,7 +227,9 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
      */
     public void onClick(View view)
     {
-        switch(view.getId())
+        final int viewId = view.getId();
+
+        switch(viewId)
         {
             case R.id.showEventOnMapButton:
                 showEventOnMap();
