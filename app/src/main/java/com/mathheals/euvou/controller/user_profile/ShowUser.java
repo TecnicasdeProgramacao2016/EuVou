@@ -38,7 +38,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private  int currentUserId = 0;
     private boolean isUserLoggedIn = true;
     private TextView ratingMessage = null;
-    private Integer LOGGED_OUT = -1;
+    private final Integer LOGGED_OUT = -1;
 
     public ShowUser()
     {
@@ -148,7 +148,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
     }
 
     //Sets evaluation bar
-    private void settingRateBarEvaluation(JSONObject evaluationJSON, RatingBar ratingBar)
+    private void settingRateBarEvaluation(final JSONObject evaluationJSON, final RatingBar ratingBar)
     {
         if(evaluationJSON!=null)
         {
@@ -169,7 +169,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
         }
     }
 
-    private void checkRateBar(RatingBar ratingBar)
+    private void checkRateBar(final RatingBar ratingBar)
     {
         if(ratingBar == null)
         {

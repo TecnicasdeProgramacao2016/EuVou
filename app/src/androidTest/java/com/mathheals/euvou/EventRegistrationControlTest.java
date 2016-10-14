@@ -87,7 +87,7 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
             interruptedException.printStackTrace();
         }
 
-        String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";
+        final String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";
 
         onView(withText(SUCESSFULL_CHOICE_MESSAGE))
                 .inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView()))))

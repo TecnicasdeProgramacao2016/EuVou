@@ -273,7 +273,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Log.d("EditEventFragment", "Check box sucessfuly setted");
     }
 
-    private static String SUCCESSFULL_UPDATE_MESSAGE = "Evento alterado com sucesso :)";
+    private static final String SUCCESSFULL_UPDATE_MESSAGE = "Evento alterado com sucesso :)";
 
 
     //Add EventCategories
@@ -343,7 +343,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Log.d("EditEventFragment", "Event type setted");
     }
 
-    private void setAsChecked (CheckBox checkBox)
+    private void setAsChecked (final CheckBox checkBox)
     {
         if(checkBox.isChecked())
         {
@@ -475,7 +475,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     private void warnIfValuesAreInvalid (EventException eventException)
     {
-        String message = eventException.getMessage().toString();
+        final String message = eventException.getMessage().toString();
 
         //This if-else structure tests if the information given is correct
         if(message.equals(Event.ADDRESS_IS_EMPTY))
@@ -542,8 +542,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private void checksValuesNotNull(String nameEvent, String dateEvent, String hourEvent,
-                              String descriptionEvent, String addresEvent, Integer priceEvent)
+    private void checksValuesNotNull(final String nameEvent, final String dateEvent, final String hourEvent,
+                              final String descriptionEvent, final String addresEvent, final Integer priceEvent)
     {
         //This structure checks if atributte's values are null
         if(nameEvent == null)
@@ -598,7 +598,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     }
 
     //Remove Event
-    private void removeEvent(int eventId)
+    private void removeEvent(final int eventId)
     {
         EventDAO eventDAO = new EventDAO(getActivity());
         if(eventDAO.deleteEvent(eventId).contains("Salvo"))
@@ -619,7 +619,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     }
 
     //Uptades database
-    private void updateEventOnDataBase(Event event)
+    private void updateEventOnDataBase(final Event event)
     {
         EventDAO eventDAO = new EventDAO(getActivity());
         eventDAO.updateEvent(event);
