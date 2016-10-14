@@ -30,6 +30,14 @@ public class UserDAOTest extends TestCase
             UserDAO userDAO = new UserDAO();
             User user;
             user = new User("marceloChavosaao","marceloChavosaao","marceloChavosao@euvou.com","marceloChavosao@euvou.com","123456","123456","11/09/2015");
+            if(user == null)
+            {
+                throw new UserException("Usuário nulo");
+            }
+            else
+            {
+                //NOTHINHG TO
+            }
             assertTrue(userDAO.save(user).contains("Salvo"));
             userDAO.delete("marceloChavosaao");
     }
@@ -39,6 +47,14 @@ public class UserDAOTest extends TestCase
 
         UserDAO userDAO = new UserDAO();
         User user = new User("Marcelo", "marceloChavosaoa", "galudo11cm@uol.com", "123456", "24/11/1969");
+        if(user == null)
+        {
+            throw new UserException("Usuário nulo");
+        }
+        else
+        {
+            //NOTHINHG TO
+        }
 
         //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
@@ -57,6 +73,15 @@ public class UserDAOTest extends TestCase
 
         UserDAO userDAO = new UserDAO();
         User user = new User("VIny", "viny", "viny@uol.com", "123456", "14/02/1995");
+        if(user == null)
+        {
+            throw new UserException("Usuário nulo");
+        }
+        else
+        {
+            //NOTHINHG TO
+        }
+
 
         //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
@@ -81,6 +106,15 @@ public class UserDAOTest extends TestCase
         UserDAO userDAO = new UserDAO();
         User user = new User(1,"Vinicius ppp", "umteste", "14/02/1995", "viny-pinheiro@hotmail.com",
                 "viny-pinheiro@hotmail.com", "123456", "123456");
+        if(user == null)
+        {
+            throw new UserException("Usuário nulo");
+        }
+        else
+        {
+            //NOTHINHG TO
+        }
+
         //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
         {
@@ -100,6 +134,16 @@ public class UserDAOTest extends TestCase
         UserDAO userDAO = new UserDAO();
         User user = new User(1,"Vinicius Pinheiro", "umteste", "14/02/1995", "viny-pinheiro@hotmail.com",
                 "viny-pinheiro@hotmail.com", "123456", "123456");
+
+        if(user == null)
+        {
+            throw new UserException("Usuário nulo");
+        }
+        else
+        {
+            //NOTHINHG TO
+        }
+
         //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
         {
