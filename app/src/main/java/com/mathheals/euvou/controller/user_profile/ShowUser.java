@@ -40,7 +40,6 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private TextView ratingMessage = null;
     private final Integer LOGGED_OUT = -1;
 
-
     public ShowUser()
     {
         //Required Empty Constructor
@@ -151,7 +150,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
     }
 
     //Sets evaluation bar
-    private void settingRateBarEvaluation(JSONObject evaluationJSON, RatingBar ratingBar)
+    private void settingRateBarEvaluation(final JSONObject evaluationJSON, final RatingBar ratingBar)
     {
         if(evaluationJSON!=null)
         {
@@ -172,7 +171,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
         }
     }
 
-    private void checkRateBar(RatingBar ratingBar)
+    private void checkRateBar(final RatingBar ratingBar)
     {
         if(ratingBar == null)
         {
@@ -206,6 +205,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
         ratingMessage = (TextView) showUserView.findViewById(R.id.rate_user_text);
         ratingMessage.setText(message);
+        finilizeObject(message);
 
         Log.d("ShowUser", "Setted user status as logged in");
     }
@@ -274,5 +274,11 @@ public class ShowUser extends android.support.v4.app.Fragment {
                 //NOTING TO DO
             }
         }
+    }
+
+    //Free object's memory to make it easyer to the garbage collector get it
+    private void finilizeObject(Object object)
+    {
+        object = null;
     }
 }

@@ -47,6 +47,7 @@ public class EventTest extends TestCase
         }
 
         assertFalse(ok);
+        finilize(categories);
     }
 
     //Test if event's category is empty
@@ -76,7 +77,9 @@ public class EventTest extends TestCase
         {
             ok = false;
         }
+
         assertFalse(ok);
+        finilize(categories);
     }
 
     //Test if event's category is not null
@@ -111,6 +114,7 @@ public class EventTest extends TestCase
         }
 
         assertTrue(ok);
+        finilize(categories);
     }
 
     //Test if event's name is empty
@@ -142,7 +146,9 @@ public class EventTest extends TestCase
         {
             ok = false;
         }
+
         assertFalse(ok);
+        finilize(categories);
     }
 
     //Test if event's name is not empty
@@ -175,6 +181,7 @@ public class EventTest extends TestCase
         }
 
         assertTrue(ok);
+        finilize(categories);
     }
 
     //Test name's length
@@ -206,7 +213,9 @@ public class EventTest extends TestCase
         {
             ok = false;
         }
+
         assertFalse(ok);
+        finilize(categories);
     }
 
 
@@ -239,7 +248,9 @@ public class EventTest extends TestCase
         {
             ok=false;
         }
+
         assertFalse(ok);
+        finilize(categories);
     }
 
     //Test if event's description if not empty
@@ -270,7 +281,9 @@ public class EventTest extends TestCase
         {
             ok = false;
         }
+
         assertTrue(ok);
+        finilize(categories);
     }
 
     //Test if event's description is bigger than possivel
@@ -302,7 +315,9 @@ public class EventTest extends TestCase
         {
             ok = false;
         }
+
         assertFalse(ok);
+        finilize(categories);
     }
 
     //Test latitude is too big
@@ -332,7 +347,9 @@ public class EventTest extends TestCase
         {
             ok = false;
         }
+
         assertFalse(ok);
+        finilize(categories);
     }
 
     //Test if latitude is too small
@@ -362,7 +379,9 @@ public class EventTest extends TestCase
         {
             ok = false;
         }
+
         assertFalse(ok);
+        finilize(categories);
     }
 
     //Test if latitude is valid
@@ -392,7 +411,9 @@ public class EventTest extends TestCase
         {
             ok = false;
         }
+
         assertTrue(ok);
+        finilize(categories);
     }
 
     //Test if longitude is too small
@@ -425,6 +446,7 @@ public class EventTest extends TestCase
         }
 
         assertFalse(ok);
+        finilize(categories);
     }
 
     //Test if longitude is too big
@@ -455,7 +477,9 @@ public class EventTest extends TestCase
         {
             ok = false;
         }
+
         assertFalse(ok);
+        finilize(categories);
     }
 
     //Test if longitude if valid
@@ -488,6 +512,7 @@ public class EventTest extends TestCase
         }
 
         assertTrue(ok);
+        finilize(categories);
     }
 
 
@@ -498,6 +523,18 @@ public class EventTest extends TestCase
         categories.add("Esporte");
         Event event = new Event(1,"nome",10010, "endereco", "14/02/2020 20:15:10","DESCRICAO", "12.20","78.41520", categories);
         assertEquals("nome",event.getNameEvent());
+
+        finilize(categories);
+    }
+
+    //Free the memory that the categories vector use
+    private void finilize(Vector<String> categories)
+    {
+        for(String category : categories)
+        {
+            category = null;
+        }
+        categories = null;
     }
 
 }

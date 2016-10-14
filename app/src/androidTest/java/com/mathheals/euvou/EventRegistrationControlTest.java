@@ -92,6 +92,8 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         onView(withText(SUCESSFULL_CHOICE_MESSAGE))
                 .inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
+
+        finilizeObject(SUCESSFULL_CHOICE_MESSAGE);
     }
 
     //Test Categories Checkbox return
@@ -173,5 +175,11 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
     {
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar Evento")).perform(click());
+    }
+
+    //Free object's memory to make it easyer to the garbage collector get it
+    private void finilizeObject(Object object)
+    {
+        object = null;
     }
 }
