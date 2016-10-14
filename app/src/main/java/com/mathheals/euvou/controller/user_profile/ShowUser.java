@@ -35,11 +35,10 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private RatingBar ratingBar = null;
     private View showUserView = null;
     private String userEvaluatedId = null;
-    private int currentUserId = 0;
+    private  int currentUserId = 0;
     private boolean isUserLoggedIn = true;
     private TextView ratingMessage = null;
-    private final Integer LOGGED_OUT = -1;
-
+    private Integer LOGGED_OUT = -1;
 
     public ShowUser()
     {
@@ -203,6 +202,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
         ratingMessage = (TextView) showUserView.findViewById(R.id.rate_user_text);
         ratingMessage.setText(message);
+        finilizeObject(message);
 
         Log.d("ShowUser", "Setted user status as logged in");
     }
@@ -271,5 +271,11 @@ public class ShowUser extends android.support.v4.app.Fragment {
                 //NOTING TO DO
             }
         }
+    }
+
+    //Free object's memory to make it easyer to the garbage collector get it
+    private void finilizeObject(Object object)
+    {
+        object = null;
     }
 }

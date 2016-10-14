@@ -273,7 +273,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Log.d("EditEventFragment", "Check box sucessfuly setted");
     }
 
-    private static final String SUCCESSFULL_UPDATE_MESSAGE = "Evento alterado com sucesso :)";
+    private static String SUCCESSFULL_UPDATE_MESSAGE = "Evento alterado com sucesso :)";
 
 
     //Add EventCategories
@@ -624,6 +624,18 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         EventDAO eventDAO = new EventDAO(getActivity());
         eventDAO.updateEvent(event);
 
+        finilize();
+
         Log.d("EditEventFragment", "Database updated");
+    }
+
+    //Free the memory that the categories vector use
+    private void finilize()
+    {
+        for(String category : categories)
+        {
+            category = null;
+        }
+        categories = null;
     }
 }
