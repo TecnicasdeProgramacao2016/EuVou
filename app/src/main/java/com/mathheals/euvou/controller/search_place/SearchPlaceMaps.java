@@ -183,7 +183,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
         intent.putExtras(getPlaceInfoAsBundle());
         startActivity(intent);
     }
-    
+
     private Bundle getPlaceInfoAsBundle() 
     {
         Bundle placeInfo = new Bundle();

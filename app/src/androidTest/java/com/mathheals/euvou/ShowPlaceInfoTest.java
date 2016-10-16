@@ -123,7 +123,7 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
         startShowPlaceInfoForSettedUpPlace();
         try 
         {
-            int[] ratingNumbersForTest = new int[]{1, 3, 5};
+            final int[] ratingNumbersForTest = new int[]{1, 3, 5};
 
             //inserting test numbers in SetRating
             for(Integer ratingNumber : ratingNumbersForTest)
