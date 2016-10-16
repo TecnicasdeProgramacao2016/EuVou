@@ -60,10 +60,9 @@ public class PlaceAdapter extends ArrayAdapter<Place>
         }
 
 
-        final int LengthPlaceName = (place.getName().length()
-
+        final int LengthPlaceName = place.getName().length();
         viewHolder.placeName.setText(
-                (LengthPlaceName > 40) ? place.getName().substring(0, 39).concat("...") : place.getName()));
+                (LengthPlaceName > 40) ? place.getName().substring(0, 39).concat("...") : place.getName());
         viewHolder.placeEvaluation.setText(place.getEvaluate().toString());
         return convertView;
 
