@@ -91,7 +91,7 @@ public class LoginValidation
         */
         UserDAO userDAO = new UserDAO(this.activity);
 
-        JSONObject json = userDAO.searchUserByUsername(username);
+        JSONObject json = (JSONObject) userDAO.searchUserByUsername(username);
 
         //check if json is prepared to be used
         if(json!=null)
@@ -123,7 +123,7 @@ public class LoginValidation
     {
         UserDAO userDAO = new UserDAO(this.activity);
 
-        JSONObject json = userDAO.searchUserByUsername(validUsername);
+        JSONObject json = (JSONObject) userDAO.searchUserByUsername(validUsername);
 
         try 
         {

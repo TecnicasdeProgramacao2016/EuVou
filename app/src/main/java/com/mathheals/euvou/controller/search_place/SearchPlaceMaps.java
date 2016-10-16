@@ -154,9 +154,9 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     }
 
     @Override
-    public boolean onMarkerClick(Marker marker) 
+    public boolean onMarkerClick(final Marker marker)
     {
-        String marke = marker.getId().substring(1);
+        String marke = (String) marker.getId().substring(1);
         int id = Integer.parseInt(marke);
         select(id);
         startShowInfoActivity();
@@ -166,7 +166,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     private Place clickedPlace;
     private int selectedPlaceId;
 
-    private void select(int id) 
+    private void select(int id)
     {
         clickedPlace = places.get(id);
         try 

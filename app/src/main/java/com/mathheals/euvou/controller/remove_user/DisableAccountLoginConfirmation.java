@@ -46,7 +46,7 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
          */
 
         homePage = getActivity();
-        View view = inflater.inflate(R.layout.fragment_disable_account_login_confirmation, container, false);
+        View view = (View) inflater.inflate(R.layout.fragment_disable_account_login_confirmation, container, false);
 
         Button backButton = (Button)view.findViewById(R.id.button_back_id);
         backButton.setOnClickListener(this);
@@ -106,13 +106,13 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
          * method check the confirmation of user login
          */
 
-        View view = getView();
+        View view = (View)getView();
 
         EditText usernameField = (EditText) view.findViewById(R.id.edit_text_login_id);
-        String typedUsername = usernameField.getText().toString();
+        String typedUsername = (String)usernameField.getText().toString();
 
         EditText passwordField = (EditText) view.findViewById(R.id.edit_text_password_id);
-        String typedPassword = passwordField.getText().toString();
+        String typedPassword = (String)passwordField.getText().toString();
 
         LoginValidation loginValidation = new LoginValidation(homePage);
 

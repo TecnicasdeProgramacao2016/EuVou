@@ -74,7 +74,7 @@ public class LoginUtility
          * @param username
          */
 
-        User user=null;
+        User user = null;
         try 
         {
             UserDAO userDAO = new UserDAO(this.activity);
@@ -149,9 +149,9 @@ public class LoginUtility
         {
             userState = jsonObject.getJSONObject("0").getString(COLUMN_USER_STATE);
             return userState == "Y";
-        } catch (JSONException e) 
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         }
         return false;
     }

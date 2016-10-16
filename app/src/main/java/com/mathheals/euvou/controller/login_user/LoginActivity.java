@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int userId = item.getItemId();
+        int userId = (int)item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (userId == R.id.action_settings)
@@ -111,10 +111,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
          */
 
         EditText usernameField = (EditText) findViewById(R.id.usernameField);
-        String typedUsername = usernameField.getText().toString();
+        String typedUsername = (String) usernameField.getText().toString();
 
         EditText passwordField = (EditText) findViewById(R.id.passwordField);
-        String typedPassword = passwordField.getText().toString();
+        String typedPassword = (String) passwordField.getText().toString();
 
         LoginValidation loginValidation = new LoginValidation(LoginActivity.this);
 
@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             try 
             {
-                int idUser = loginUtility.getUserId(typedUsername);
+                int idUser = (int)loginUtility.getUserId(typedUsername);
                 loginUtility.setUserLogIn(idUser);
                 Intent i = new Intent(this, HomePage.class);
                 finish();
