@@ -52,7 +52,7 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
         assert(savedInstanceState != null);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_show_place_ranking, container, false);
+        return inflater.inflate(R.layout.fragment_show_place_ranking, container, false); // inflate a view when it is created
     }
 
     /**

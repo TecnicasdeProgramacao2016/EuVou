@@ -77,7 +77,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
             //Insert an id to any place found
             for (int i = 0; i < result.length(); i++)
             {
-                int idPlace = result.getJSONObject("" + i).getInt("idPlace");
+                int idPlace = result.getJSONObject("" + i).getInt("idPlace"); // idPlace must be greater than zero
 
                 assert (idPlace <  0);
 
@@ -162,7 +162,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     //Fill a list according
     private void fillList()
     {
-        int id = (new LoginUtility(getActivity())).getUserId();
+        int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
 
         assert(id < 0);
 

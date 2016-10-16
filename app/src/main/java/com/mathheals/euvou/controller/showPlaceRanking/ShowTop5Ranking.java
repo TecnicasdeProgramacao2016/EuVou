@@ -108,19 +108,22 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     {
         try
         {
-            int id = (new LoginUtility(getActivity())).getUserId();
+            int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
             JSONObject result =(JSONObject) new PlaceDAO(getActivity()).searchTop5Places();
             assert(result != null);
 
             places = new ArrayList<>();
+
             //set list using an specific id
-            for (int i = 0; i < result.length(); i++)
+            final int findResultsLenght = result.length();
+
+            for (int i = 0; i < findResultsLenght; i++)
             {
-                int idPlace = result.getJSONObject("" + i).getInt("idPlace");
+                int idPlace = result.getJSONObject("" + i).getInt("idPlace"); // id must be greater than zero
 
                 assert(idPlace > 0);
 
-                String namePlace = result.getJSONObject("" + i).getString("namePlace");
+                String namePlace = result.getJSONObject("" + i).getString("namePlace"); // Setting a name place
                 Place aux = new Place(idPlace,
                         namePlace,
                         result.getJSONObject("" + i).getString("evaluate"),
@@ -163,7 +166,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
         assert(intent != null);
 
-        intent.putExtras(getPlaceInfoAsBundle(id));
+        intent.putExtras(getPlaceInfoAsBundle(id));// Present info in extra options
         startActivity(intent);
 
         Log.d("ShowTop5Ranking", "Show info has been inserted");

@@ -89,7 +89,7 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
     @Override
     public void onClick(View v)
     {
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();;
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();// Android tool to allow transaction
         fragmentTransaction.replace(R.id.content_frame, new ShowPlaceRanking());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();

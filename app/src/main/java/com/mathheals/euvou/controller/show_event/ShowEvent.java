@@ -85,9 +85,9 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
         eventDAO = new EventDAO(this.getActivity());
         eventId = this.getArguments().getString("id");
-        JSONObject eventDATA = (JSONObject) eventDAO.searchEventById(Integer.parseInt(eventId));
+        JSONObject eventDATA = (JSONObject) eventDAO.searchEventById(Integer.parseInt(eventId)); // create a JSON for event content
 
-        setUserId(new LoginUtility(getActivity()).getUserId());
+        setUserId(new LoginUtility(getActivity()).getUserId()); // userId must be greater than zero
         if(userId == LOGGED_OUT)
         {
             participateButton.setVisibility(showEventView.GONE);
@@ -227,7 +227,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
      */
     public void onClick(View view)
     {
-        final int viewId = view.getId();
+        final int viewId = view.getId(); // id must be greater than one//
 
         switch(viewId)
         {
@@ -262,7 +262,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     public void setUserId(int userId)
     {
 
-        this.userId = userId;
+        this.userId = userId; // userId must be greater than zero
     }
 
 
@@ -301,19 +301,21 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         final String FIRST_COLUMN = "0";
 
         EventCategoryDAO eventCategoryDAO = (EventCategoryDAO) new EventCategoryDAO(getActivity());
-        JSONObject eventCategoryJSON = (JSONObject) eventCategoryDAO.searchCategoriesByEventId(eventId);
+        JSONObject eventCategoryJSON = (JSONObject) eventCategoryDAO.searchCategoriesByEventId(eventId); // Create a JSON for event category
         CategoryDAO categoryDAO = (CategoryDAO) new CategoryDAO(getActivity());
 
 
         ArrayList<String> categories = new ArrayList<>();
 
-        for(int i = 0; i < eventCategoryJSON.length(); ++i)
+        final int categoriesNumber = eventCategoryJSON.length();
+
+        for(int i = 0; i < categoriesNumber; ++i)
         {
             try
             {
-                int categoryId = eventCategoryJSON.getJSONObject(Integer.toString(i)).getInt(ID_CATEGORY);
+                int categoryId = eventCategoryJSON.getJSONObject(Integer.toString(i)).getInt(ID_CATEGORY); // CategoryId must be greater than one
                 JSONObject categoryJSON = (JSONObject) categoryDAO.searchCategoryById(categoryId);
-                String categoryName = categoryJSON.getJSONObject(FIRST_COLUMN).getString(NAME_CATEGORY);
+                String categoryName = categoryJSON.getJSONObject(FIRST_COLUMN).getString(NAME_CATEGORY); // Insert a catergory name from JSON
                 categories.add(categoryName);
             }catch (JSONException exception)
             {
@@ -324,7 +326,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         }
 
         String[] categoriesArray = new String[categories.size()];
-        categoriesArray = categories.toArray(categoriesArray);
+        categoriesArray = categories.toArray(categoriesArray); // Array with categories setted up.
 
         return categoriesArray;
     }

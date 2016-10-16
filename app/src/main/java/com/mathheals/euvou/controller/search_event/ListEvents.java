@@ -74,7 +74,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
         assert(container != null);
         assert(savedInstanceState != null);
 
-        View view =(View) inflater.inflate(R.layout.fragment_list_events, container, false);
+        View view =(View) inflater.inflate(R.layout.fragment_list_events, container, false); // Inflate view when it is created
         assert(view != null);
 
         // Inflate the layout for this fragment
@@ -99,12 +99,13 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
         assert(view != null);
-        assert(id > 0);
 
+        assert(id > 0);
 
         Event clicked;
 
         final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
         clicked = events.get(position);
         assert(clicked != null);
 
@@ -134,7 +135,8 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     {
         try
         {
-            int id = (new LoginUtility(getActivity())).getUserId();
+            int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
+
             assert(id > 0);
 
             events = new EventDAO(getActivity()).searchEventByOwner(id);
@@ -149,7 +151,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
 
                 SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), eventList,
                         android.R.layout.simple_list_item_1,
-                        new String[]{"Nome"}, new int[]{android.R.id.text1});
+                        new String[]{"Nome"}, new int[]{android.R.id.text1}); // Adapt an event to list layout
 
                 listView.setAdapter(simpleAdapter);
 
@@ -159,7 +161,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
             else
             {
                 Toast.makeText(getContext(), "Você ainda não criou nenhum evento, que tal criar um agora?", Toast.LENGTH_LONG).show();
-                android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction(); //Andoroid functionality to support a transaction
                 fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -192,7 +194,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     //Create an event acord to a hash position
     private HashMap<String, String> createEvent(String name, String number)
     {
-        HashMap<String, String> eventName = new HashMap<String, String>();
+        HashMap<String, String> eventName = new HashMap<String, String>();//Create a hash to event
         eventName.put(name, number);
 
         Log.d("ListEvents", "A event has been created");
