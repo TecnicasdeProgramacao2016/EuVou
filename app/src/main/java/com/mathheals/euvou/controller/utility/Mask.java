@@ -2,6 +2,7 @@ package com.mathheals.euvou.controller.utility;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 
 /*
@@ -34,6 +35,14 @@ public abstract class Mask
                 if (isUpdating) 
                 {
                     old = str;
+                    if(old == null)
+                    {
+                        Log.d("Mask", "older string was not passed right");
+                    }
+                    else
+                    {
+                        //NOTHINHG TO DO
+                    }
                     isUpdating = false;
                     return;
                 }

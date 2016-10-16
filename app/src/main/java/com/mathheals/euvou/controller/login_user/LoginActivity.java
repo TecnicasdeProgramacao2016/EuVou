@@ -167,11 +167,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         // show message when username and login validation are false
-        if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
-        {
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-        } else
+        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
         {
             isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
 
@@ -179,10 +175,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             {
                 passwordField.requestFocus();
                 passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            } else 
+            } else
             {
                 //NOTHING TO DO
             }
+        } else
+        {
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+            Log.d("LoginActivity", "Login failed");
         }
 
     }
