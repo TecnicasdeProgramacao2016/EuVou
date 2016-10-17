@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) 
+    public boolean onCreateOptionsMenu(final Menu menu)
     {
         /**
              * This method inflate the menu and add items to the action bar if it is present.
@@ -70,12 +70,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) 
+    public boolean onOptionsItemSelected(final MenuItem item)
     {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int userId = item.getItemId();
+        int userId = (int)item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (userId == R.id.action_settings)
@@ -111,15 +111,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
          */
 
         EditText usernameField = (EditText) findViewById(R.id.usernameField);
-        String typedUsername = usernameField.getText().toString();
+        String typedUsername = (String) usernameField.getText().toString();
 
         EditText passwordField = (EditText) findViewById(R.id.passwordField);
-        String typedPassword = passwordField.getText().toString();
+        String typedPassword = (String) passwordField.getText().toString();
 
         LoginValidation loginValidation = new LoginValidation(LoginActivity.this);
 
         isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
+        //do the operation if username and password are valids
         if(isUsernameValid && isPasswordValid)
         {
             
@@ -127,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             try 
             {
-                int idUser = loginUtility.getUserId(typedUsername);
+                int idUser = (int)loginUtility.getUserId(typedUsername);
                 loginUtility.setUserLogIn(idUser);
                 Intent i = new Intent(this, HomePage.class);
                 finish();
@@ -143,6 +144,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //NOTHING TO DO
         }
 
+        // do the operation if username and login validation are valids
         if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
         {
             isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
@@ -164,11 +166,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             
         }
 
-        if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
-        {
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-        } else
+        // show message when username and login validation are false
+        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
         {
             isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
 
@@ -176,10 +175,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             {
                 passwordField.requestFocus();
                 passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            } else 
+            } else
             {
                 //NOTHING TO DO
             }
+        } else
+        {
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+            Log.d("LoginActivity", "Login failed");
         }
 
     }

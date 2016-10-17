@@ -54,6 +54,7 @@ public class RemoveUserFragment extends android.support.v4.app.Fragment implemen
         FragmentActivity activity = this.getActivity();
         android.support.v4.app.FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
 
+        //check if disable acount was pressed
         switch(view.getId()) 
         {
             case R.id.button_disable_account_id:

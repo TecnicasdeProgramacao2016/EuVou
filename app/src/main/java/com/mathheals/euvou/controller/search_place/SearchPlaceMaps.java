@@ -3,6 +3,7 @@ package com.mathheals.euvou.controller.search_place;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -96,15 +97,15 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
         {
             convertJsonToPlace(foundPlaces);
             addMarkerPlace();
-        } catch (JSONException e) 
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
-        } catch (PlaceException e) 
+            exception.printStackTrace();
+        } catch (PlaceException exception)
         {
-            e.printStackTrace();
-        } catch (ParseException e) 
+            exception.printStackTrace();
+        } catch (ParseException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         }
 
     }
@@ -117,6 +118,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
         if(result == null) 
         {
             Toast.makeText(this, "Sem Resultados", Toast.LENGTH_LONG).show();
+            Log.d("SearchPlaceMaps", "No results");
             return;
         }
         for (int i = 0; i < result.length(); i++) 
@@ -152,9 +154,9 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     }
 
     @Override
-    public boolean onMarkerClick(Marker marker) 
+    public boolean onMarkerClick(final Marker marker)
     {
-        String marke = marker.getId().substring(1);
+        String marke = (String) marker.getId().substring(1);
         int id = Integer.parseInt(marke);
         select(id);
         startShowInfoActivity();
@@ -164,15 +166,15 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     private Place clickedPlace;
     private int selectedPlaceId;
 
-    private void select(int id) 
+    private void select(int id)
     {
         clickedPlace = places.get(id);
         try 
         {
             selectedPlaceId = foundPlaces.getJSONObject(Integer.toString(id)).getInt("idPlace");
-        } catch (JSONException e) 
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         }
     }
     private void startShowInfoActivity() 

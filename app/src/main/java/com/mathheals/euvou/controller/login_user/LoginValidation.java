@@ -30,6 +30,8 @@ public class LoginValidation
             * method check if the username is valid
             * @param username - user's username
         */
+
+        //return false case username is empty
         if(username.isEmpty()){
             return false;
         } else
@@ -37,6 +39,7 @@ public class LoginValidation
             //NOTHING TO DO
         }
 
+        //return false case username have space
         if(username.contains(" ")){
             return false;
         } else
@@ -69,6 +72,7 @@ public class LoginValidation
             exception.printStackTrace();
         }
 
+        // case json and activities are null, return false in function
         if(json!=null && isActivity.equals("Y"))
         {
             return true;
@@ -87,8 +91,9 @@ public class LoginValidation
         */
         UserDAO userDAO = new UserDAO(this.activity);
 
-        JSONObject json = userDAO.searchUserByUsername(username);
+        JSONObject json = (JSONObject) userDAO.searchUserByUsername(username);
 
+        //check if json is prepared to be used
         if(json!=null)
         {
             Log.d("LoginValidation", "Username is already registraded");
@@ -118,12 +123,13 @@ public class LoginValidation
     {
         UserDAO userDAO = new UserDAO(this.activity);
 
-        JSONObject json = userDAO.searchUserByUsername(validUsername);
+        JSONObject json = (JSONObject) userDAO.searchUserByUsername(validUsername);
 
         try 
         {
             String password = json.getJSONObject(JSON_FORMAT).getString(PASSWORD_USER);
 
+            // check if password is the same of the database
             if(password.equals(passwordTyped))
             {
                 return true;
@@ -132,9 +138,9 @@ public class LoginValidation
                 return false;
             }
 
-        } catch (JSONException e) 
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
             return false;
         }
 

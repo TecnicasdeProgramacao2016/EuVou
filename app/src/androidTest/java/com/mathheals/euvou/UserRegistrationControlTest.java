@@ -55,6 +55,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterOptionInActionBarMenu() 
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -70,6 +71,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
     
     public void testIfNameLabelIsCorrect() 
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -83,7 +85,9 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         onView(withId(R.id.userNameLabel)).check(matches(withText("Nome")));
     }
 
-    public void testNameField(){
+    public void testNameField()
+    {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -101,6 +105,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testIfDateLabelIsCorrect() 
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -116,6 +121,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testDateField()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -133,6 +139,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testIfMailLabelIsCorrect() 
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -149,6 +156,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testMailField()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -166,6 +174,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testIfMailConfirmationLabelIsCorrect() 
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -181,6 +190,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testMailConfirmationField()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -198,6 +208,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testIfLoginLabelIsCorrect() 
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -213,6 +224,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testLoginField()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -230,6 +242,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testIfPasswordLabelIsCorrect() 
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -245,6 +258,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testPasswordField()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -262,6 +276,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testIfConfirmPasswordLabelIsCorrect() 
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -277,6 +292,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testConfirmPasswordField()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -294,6 +310,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithEmptyName()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -323,6 +340,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithEmptyDate()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -353,6 +371,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithInvalidDate()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -385,6 +404,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithEmptyMail()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -416,6 +436,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithInvalidMail()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -448,6 +469,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithEmptyMailConfirmation()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -480,6 +502,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithInvalidMailConfirmation()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -513,6 +536,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithEmptyLogin()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -546,6 +570,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithExistentLogin()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -580,6 +605,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithEmptyPassword()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -614,6 +640,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithInvalidPassword()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -649,6 +676,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithEmptyPasswordConfirmation()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -684,6 +712,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithInvalidPasswordConfirmation()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -720,6 +749,7 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
 
     public void testRegisterUserButtonWithValidInput()
     {
+        // check if user is logged
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();

@@ -46,7 +46,7 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
          */
 
         homePage = getActivity();
-        View view = inflater.inflate(R.layout.fragment_disable_account_login_confirmation, container, false);
+        View view = (View) inflater.inflate(R.layout.fragment_disable_account_login_confirmation, container, false);
 
         Button backButton = (Button)view.findViewById(R.id.button_back_id);
         backButton.setOnClickListener(this);
@@ -69,7 +69,9 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
 
         FragmentActivity activity = this.getActivity();
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
-        switch (view.getId()) 
+
+       //check if disable account was pressioned to show feedback message
+        switch (view.getId())
         {
             case R.id.button_back_id:
                 returnToConfigurationOptions(fragmentManager);
@@ -104,22 +106,24 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
          * method check the confirmation of user login
          */
 
-        View view = getView();
+        View view = (View)getView();
 
         EditText usernameField = (EditText) view.findViewById(R.id.edit_text_login_id);
-        String typedUsername = usernameField.getText().toString();
+        String typedUsername = (String)usernameField.getText().toString();
 
         EditText passwordField = (EditText) view.findViewById(R.id.edit_text_password_id);
-        String typedPassword = passwordField.getText().toString();
+        String typedPassword = (String)passwordField.getText().toString();
 
         LoginValidation loginValidation = new LoginValidation(homePage);
 
         boolean isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
+        //check if username is valid to login
         if(isUsernameValid==true)
         {
             boolean isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
 
+            //check if passoword is valid to login
             if(isPasswordValid==true)
             {
                 Log.d("DisableAccountLoginConfirmation", "Login valid");

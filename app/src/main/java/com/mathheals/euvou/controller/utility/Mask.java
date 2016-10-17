@@ -2,6 +2,7 @@ package com.mathheals.euvou.controller.utility;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 
 /*
@@ -27,11 +28,21 @@ public abstract class Mask
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
 
-                String str = Mask.unmask(s.toString());
+                String str = (String) Mask.unmask(s.toString());
                 String mascara = "";
+
+                //check if the information is updating according the user's actions
                 if (isUpdating) 
                 {
                     old = str;
+                    if(old == null)
+                    {
+                        Log.d("Mask", "older string was not passed right");
+                    }
+                    else
+                    {
+                        //NOTHINHG TO DO
+                    }
                     isUpdating = false;
                     return;
                 }
@@ -46,7 +57,7 @@ public abstract class Mask
                     try 
                     {
                         mascara += str.charAt(i);
-                    } catch (Exception e) 
+                    } catch (Exception exception)
                     {
                         break;
                     }
@@ -64,7 +75,7 @@ public abstract class Mask
     public static String getDateTimeInBrazilianFormat(String dateTime) 
     {
         String[] dateAndTime = dateTime.split(" ");
-        String date = dateAndTime[0];
+        String date = (String) dateAndTime[0];
 
         String[] dateSplit = date.split("-");
 

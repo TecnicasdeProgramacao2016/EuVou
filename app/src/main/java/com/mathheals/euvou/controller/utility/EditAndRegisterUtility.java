@@ -11,7 +11,7 @@ import android.widget.EditText;
 public class EditAndRegisterUtility 
 {
 
-    public void setMessageError(EditText editText, String message) 
+    public void setMessageError(EditText editText, final String message)
     {
         /**
          * method that show errors message
