@@ -65,7 +65,15 @@ public class SearchUser extends ActionBarActivity implements View.OnClickListene
 
         EditText searchName = (EditText) findViewById(R.id.searchNameField);
         String searchNameStr = searchName.getText().toString();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        /*
+         * As default, the fragment transaction is gotten by the system, but in this line it is
+         * gotten from the support libary. Both of them achieve the same purpose, but they cannot be
+         * replaced with one another in code.
+         */
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().
+                                                                                    beginTransaction();
+
         if(view.getId() == R.id.btnSearch)
         {
             fragmentTransaction.replace(R.id.content_frame, new ShowUser());

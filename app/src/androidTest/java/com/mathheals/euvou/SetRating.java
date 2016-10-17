@@ -23,7 +23,7 @@ public class SetRating implements ViewAction
         setRating(rating);
     }
 
-    private Integer rating;
+    private static Integer rating;
 
     @Override
     //Checks if raiting bar is constrint

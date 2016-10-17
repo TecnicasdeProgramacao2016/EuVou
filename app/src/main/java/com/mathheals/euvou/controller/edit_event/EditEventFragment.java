@@ -38,8 +38,9 @@ import model.Event;
 
 public class EditEventFragment extends Fragment implements View.OnClickListener
 {
-    Vector<String> categories = new Vector<>();
-    private EditAndRegisterUtility  editAndRegisterUtility = new EditAndRegisterUtility();
+    public Vector<String> categories = new Vector<>(); //Contains all possible categories
+    private EditAndRegisterUtility  editAndRegisterUtility =
+            new EditAndRegisterUtility();  //This variable is responsable for showing error mesages to the user
 
 
     //Constructor
@@ -251,6 +252,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     {
         Integer priceEvent = jsonEvent.getJSONObject("0").getInt("price");
         this.priceRealField.setText(Integer.toString(priceEvent / 100));
+
+        //At this line, gets the price of the field, turn into string with the right value
         this.priceDecimalField.setText(Integer.toString(priceEvent - priceEvent / 100 * 100));
         Log.d("EditEventFragment", "Price sucessfuly formated");
     }
@@ -343,7 +346,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Log.d("EditEventFragment", "Event type setted");
     }
 
-    private void setAsChecked (CheckBox checkBox)
+    private void setAsChecked (final CheckBox checkBox)
     {
         if(checkBox.isChecked())
         {
@@ -475,7 +478,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     private void warnIfValuesAreInvalid (EventException eventException)
     {
-        String message = eventException.getMessage().toString();
+        final String message = eventException.getMessage().toString();
 
         //This if-else structure tests if the information given is correct
         if(message.equals(Event.ADDRESS_IS_EMPTY))
@@ -542,8 +545,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private void checksValuesNotNull(String nameEvent, String dateEvent, String hourEvent,
-                              String descriptionEvent, String addresEvent, Integer priceEvent)
+    private void checksValuesNotNull(final String nameEvent, final String dateEvent, final String hourEvent,
+                              final String descriptionEvent, final String addresEvent, final Integer priceEvent)
     {
         //This structure checks if atributte's values are null
         if(nameEvent == null)
@@ -598,7 +601,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     }
 
     //Remove Event
-    private void removeEvent(int eventId)
+    private void removeEvent(final int eventId)
     {
         EventDAO eventDAO = new EventDAO(getActivity());
         if(eventDAO.deleteEvent(eventId).contains("Salvo"))
@@ -619,11 +622,23 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     }
 
     //Uptades database
-    private void updateEventOnDataBase(Event event)
+    private void updateEventOnDataBase(final Event event)
     {
         EventDAO eventDAO = new EventDAO(getActivity());
         eventDAO.updateEvent(event);
 
+        finilize();
+
         Log.d("EditEventFragment", "Database updated");
+    }
+
+    //Free the memory that the categories vector use
+    private void finilize()
+    {
+        for(String category : categories)
+        {
+            category = null;
+        }
+        categories = null;
     }
 }

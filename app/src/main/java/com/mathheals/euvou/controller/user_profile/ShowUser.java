@@ -35,11 +35,10 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private RatingBar ratingBar = null;
     private View showUserView = null;
     private String userEvaluatedId = null;
-    private int currentUserId = 0;
-    private boolean isUserLoggedIn = true;
+    private int currentUserId = 0;  //This variable has the pourpose to check if current user is logged, as it compares with LOGGED_OUT
+    private static boolean isUserLoggedIn = true;
     private TextView ratingMessage = null;
     private final Integer LOGGED_OUT = -1;
-
 
     public ShowUser()
     {
@@ -126,10 +125,12 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
         UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
 
-        JSONObject evaluationJSON = (JSONObject) userEvaluationDAO.searchUserEvaluation(Integer.parseInt(userEvaluatedId), currentUserId);
+        JSONObject evaluationJSON = (JSONObject) userEvaluationDAO.searchUserEvaluation(Integer.
+                                                    parseInt(userEvaluatedId), currentUserId);
 
         settingRateBarEvaluation(evaluationJSON, ratingBar);
 
+        //This line ckecks if the status are different to change them
         ratingBar.setOnRatingBarChangeListener(new RatingBar.
                 OnRatingBarChangeListener()
                 {
@@ -149,7 +150,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
     }
 
     //Sets evaluation bar
-    private void settingRateBarEvaluation(JSONObject evaluationJSON, RatingBar ratingBar)
+    private void settingRateBarEvaluation(final JSONObject evaluationJSON, final RatingBar ratingBar)
     {
         if(evaluationJSON!=null)
         {
@@ -170,7 +171,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
         }
     }
 
-    private void checkRateBar(RatingBar ratingBar)
+    private void checkRateBar(final RatingBar ratingBar)
     {
         if(ratingBar == null)
         {
@@ -186,7 +187,8 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private void setRatingBarStyle()
     {
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.turquesa_app), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.turquesa_app),
+                                                                    PorterDuff.Mode.SRC_ATOP);
     }
 
     public UserEvaluation getUserEvaluation()
@@ -203,6 +205,7 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
         ratingMessage = (TextView) showUserView.findViewById(R.id.rate_user_text);
         ratingMessage.setText(message);
+        finilizeObject(message);
 
         Log.d("ShowUser", "Setted user status as logged in");
     }
@@ -271,5 +274,11 @@ public class ShowUser extends android.support.v4.app.Fragment {
                 //NOTING TO DO
             }
         }
+    }
+
+    //Free object's memory to make it easyer to the garbage collector get it
+    private void finilizeObject(Object object)
+    {
+        object = null;
     }
 }

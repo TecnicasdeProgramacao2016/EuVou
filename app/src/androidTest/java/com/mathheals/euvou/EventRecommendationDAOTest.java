@@ -17,9 +17,9 @@ public class EventRecommendationDAOTest extends TestCase
     //Test recommended events
     public void testRecommendEvent()
     {
-        EventRecommendationDAO eventRecommendationDAO = new EventRecommendationDAO();
+        final EventRecommendationDAO eventRecommendationDAO = new EventRecommendationDAO();
 
-        JSONObject jsonObject = (JSONObject) eventRecommendationDAO.recommendEvents(3);
+        final JSONObject jsonObject = (JSONObject) eventRecommendationDAO.recommendEvents(3);
 
         boolean check;
         try
