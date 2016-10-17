@@ -68,11 +68,16 @@ public abstract class DAO {
             currentTime = Calendar.getInstance().getTime().getTime();
         }
 
+        //verification of the current time used
         if(limitExceded(timeLimit,currentTime))
         {
             Toast.makeText(currentActivity,"Problema de conexão com o servidor (verifique se esta "+
                                             "conectado a internet)", Toast.LENGTH_LONG).show();
             return null;
+        }
+        else
+        {
+            //NOTHING TO DO
         }
 
 

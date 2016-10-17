@@ -71,6 +71,7 @@ public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<Hom
      */
     public void testIfRemoveEventOptionIsDisplayedForUserLoggedOut()
     {
+        //It checks if the user is already logged in, if so, he/she is logged out to make the test
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -89,7 +90,7 @@ public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<Hom
      */
     public void testRemoveEventButton() throws ParseException, EventException
     {
-
+        //it checks if the user is not logged in, if so, makes the login
         if(!isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogIn();

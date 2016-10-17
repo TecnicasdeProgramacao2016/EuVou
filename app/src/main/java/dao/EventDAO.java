@@ -135,9 +135,15 @@ public class EventDAO extends DAO
         logger.log(Level.INFO,"entered in the method that searches an event by it's owner");
         JSONObject json = this.executeConsult("SELECT * FROM tb_event WHERE idOwner=" + owner + " GROUP BY idEvent");
 
+        //checks if the result of the consult of the database is null or not
         if(json == null)
+        {
             return null;
-
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
         Vector<Event> events = new Vector<>();
 
         for (int i = 0; i < json.length(); i++)

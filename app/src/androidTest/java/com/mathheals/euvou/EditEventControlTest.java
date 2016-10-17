@@ -52,10 +52,15 @@ public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomeP
 
     private void testIfEditUserOptionIsDisplayedForUserLoggedOut()
     {
+        //It checks if the user is logged in, if so, it's necessary to logout
         if (isLoged.hasUserLoggedIn())
         {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
             onView(withText("Sair")).perform(click());
+        }
+        else
+        {
+            //NOTHING TO DO
         }
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Alterar")).check((doesNotExist()));
@@ -63,6 +68,7 @@ public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomeP
 
     private void testIfEditUserOptionIsDisplayedForUserLoggedIn() throws ParseException, EventException
     {
+        //It checks if the user is logged out, if so, it's necessary to make the login
         if (!isLoged.hasUserLoggedIn())
         {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -70,6 +76,10 @@ public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomeP
             onView(withId(R.id.usernameField)).perform(typeText("igodudu"));
             onView(withId(R.id.passwordField)).perform(typeText("123456"));
             onView(withText("Login")).perform(click());
+        }
+        else
+        {
+            //NOTHING TO DO
         }
 
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -93,6 +103,7 @@ public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomeP
 
      private void testSelectCheckBoxCategories() throws ParseException, EventException
      {
+         //It checks if the user is logged out, if so, it's necessary to make the login
          if (!isLoged.hasUserLoggedIn())
          {
              openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -100,6 +111,10 @@ public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomeP
              onView(withId(R.id.usernameField)).perform(typeText("igodudu"));
              onView(withId(R.id.passwordField)).perform(typeText("123456"));
              onView(withText("Login")).perform(click());
+         }
+         else
+         {
+             //NOTHING TO DO
          }
 
          openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -138,6 +153,7 @@ public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomeP
 
      private void testNotSelectCheckBoxCategories() throws ParseException, EventException
      {
+         //It checks if the user is logged out, if so, it's necessary to make the login
          if (!isLoged.hasUserLoggedIn())
          {
              openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -145,6 +161,10 @@ public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomeP
              onView(withId(R.id.usernameField)).perform(typeText("igodudu"));
              onView(withId(R.id.passwordField)).perform(typeText("123456"));
              onView(withText("Login")).perform(click());
+         }
+         else
+         {
+             //NOTHING TO DO
          }
 
          Vector<String> category = new Vector<>();
