@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    //flags to charge when the User can not log
     private boolean isUsernameValid = false;
     private boolean isPasswordValid = false;
 

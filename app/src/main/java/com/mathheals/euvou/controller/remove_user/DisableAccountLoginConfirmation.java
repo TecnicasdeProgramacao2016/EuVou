@@ -46,7 +46,7 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
          */
 
         homePage = getActivity();
-        View view = inflater.inflate(R.layout.fragment_disable_account_login_confirmation, container, false);
+        View view = inflater.inflate(R.layout.fragment_disable_account_login_confirmation, container, false); // Inflate view when it is created
 
         Button backButton = (Button)view.findViewById(R.id.button_back_id);
         backButton.setOnClickListener(this);

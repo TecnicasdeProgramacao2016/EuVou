@@ -36,7 +36,7 @@ public class LoginUtility
 
     private Activity activity = null;
 
-    private static final int LOGGED_OUT = -1;
+    private static final int LOGGED_OUT = -1; // flag that accuse when the user is logged out
 
     public boolean hasUserLoggedIn() 
     {
@@ -149,9 +149,9 @@ public class LoginUtility
         {
             userState = jsonObject.getJSONObject("0").getString(COLUMN_USER_STATE);
             return userState == "Y";
-        } catch (JSONException e) 
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         }
         return false;
     }

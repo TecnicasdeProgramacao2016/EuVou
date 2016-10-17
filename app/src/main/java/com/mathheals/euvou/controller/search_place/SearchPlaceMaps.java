@@ -88,7 +88,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     private void setUpMap() 
     {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(-15.7941454, -47.8825479), 9));
+                new LatLng(-15.7941454, -47.8825479), 9)); // put the gps to start in the center of Brasilia
         setFilter(getIntent().getStringExtra("query"));
         foundPlaces = searchPlaces();
 
