@@ -123,10 +123,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if(isUsernameValid && isPasswordValid)
         {
-            
+
             LoginUtility loginUtility = new LoginUtility(LoginActivity.this);
 
-            try 
+            try
             {
                 int idUser = loginUtility.getUserId(typedUsername);
                 loginUtility.setUserLogIn(idUser);
@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             Log.d("LoginActivity", "User is logged");
 
-        } else 
+        } else
         {
             //NOTHING TO DO
         }
@@ -152,7 +152,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             {
                 passwordField.requestFocus();
                 passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            } else 
+            } else
             {
                 //NOTHING TO DO
             }
@@ -162,7 +162,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             usernameField.requestFocus();
             usernameField.setError(loginValidation.getInvalidUsernameMessage());
-            
+
         }
 
         if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
@@ -177,7 +177,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             {
                 passwordField.requestFocus();
                 passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            } else 
+            } else
             {
                 //NOTHING TO DO
             }

@@ -118,7 +118,11 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
         {
             Toast.makeText(this, "Sem Resultados", Toast.LENGTH_LONG).show();
             return;
+        } else
+        {
+            //NOTHING TO DO
         }
+
         for (int i = 0; i < result.length(); i++) 
         {
             Place aux;
