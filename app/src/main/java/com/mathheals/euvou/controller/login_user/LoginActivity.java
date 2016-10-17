@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#008B8B")));
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#008B8B"))); //Set the color blue onde parse
 
     }
 

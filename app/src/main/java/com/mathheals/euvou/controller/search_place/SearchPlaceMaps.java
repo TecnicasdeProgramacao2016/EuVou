@@ -96,15 +96,15 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
         {
             convertJsonToPlace(foundPlaces);
             addMarkerPlace();
-        } catch (JSONException e) 
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
-        } catch (PlaceException e) 
+            exception.printStackTrace();
+        } catch (PlaceException exception)
         {
-            e.printStackTrace();
-        } catch (ParseException e) 
+            exception.printStackTrace();
+        } catch (ParseException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         }
 
     }
@@ -145,7 +145,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
                         new MarkerOptions()
                                 .title(places.get(i).getName())
                                 .snippet(places.get(i).getAddress())
-                                .position(new LatLng(places.get(i).getLatitude(), places.get(i).getLongitude()))
+                                .position(new LatLng(places.get(i).getLatitude(), places.get(i).getLongitude())) //create the markers on the map according to the user's preferences
                 );
             }
         }
@@ -170,9 +170,9 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
         try 
         {
             selectedPlaceId = foundPlaces.getJSONObject(Integer.toString(id)).getInt("idPlace");
-        } catch (JSONException e) 
+        } catch (JSONException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
         }
     }
     private void startShowInfoActivity() 

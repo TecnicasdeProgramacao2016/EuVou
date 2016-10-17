@@ -58,7 +58,7 @@ public class RemoveUserFragment extends android.support.v4.app.Fragment implemen
         {
             case R.id.button_disable_account_id:
                 fragmentTransaction.replace(R.id.content_frame, new OhGoshFragment());
-                fragmentTransaction.add(R.id.content_frame, new DisableAccountFragment(), String.valueOf(R.string.DISABLE_ACCOUNT_FRAGMENT_TAG));
+                fragmentTransaction.add(R.id.content_frame, new DisableAccountFragment(), String.valueOf(R.string.DISABLE_ACCOUNT_FRAGMENT_TAG));//starts process of deactivation when request
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.addToBackStack(String.valueOf(R.string.DISABLE_ACCOUNT_FRAGMENT_TAG));
                 fragmentTransaction.commit();

@@ -34,7 +34,7 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
          * @param savedInstanceState
          */
 
-        View view = inflater.inflate(R.layout.fragment_disable_account, container, false);
+        View view = inflater.inflate(R.layout.fragment_disable_account, container, false); // Inflate view when it is created
 
         Button yesButton = (Button)view.findViewById(R.id.button_yes_id);
         yesButton.setOnClickListener(this);
@@ -67,7 +67,7 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
                 return;
 
             case R.id.button_no_id:
-                android.support.v4.app.Fragment disableAccountFragment = activity.getSupportFragmentManager().findFragmentByTag(String.valueOf(R.string.DISABLE_ACCOUNT_FRAGMENT_TAG));
+                android.support.v4.app.Fragment disableAccountFragment = activity.getSupportFragmentManager().findFragmentByTag(String.valueOf(R.string.DISABLE_ACCOUNT_FRAGMENT_TAG)); //starts process of deactivation when request
                 fragmentTransaction.remove(disableAccountFragment);
                 fragmentTransaction.add(R.id.content_frame, new DisableAccountLoginConfirmation());
                 fragmentTransaction.addToBackStack(null);
