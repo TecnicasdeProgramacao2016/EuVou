@@ -25,7 +25,7 @@ public class EventRecommendationDAO extends DAO
         super(activity);
     }
 
-    public JSONObject recommendEvents(int idUser)
+    public JSONObject recommendEvents(final int idUser)
     {
         logger.log(Level.INFO,"entered in the method that gets the events that is recomended for an user");
         assert(idUser > 0);

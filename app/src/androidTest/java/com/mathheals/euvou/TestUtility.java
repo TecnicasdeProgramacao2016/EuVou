@@ -18,7 +18,7 @@ public class TestUtility
     /**
      * testing if the login is working well
      */
-    public static void makeUserLogIn()
+     public static void makeUserLogIn()
     {
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Entrar")).perform(click());
@@ -32,7 +32,7 @@ public class TestUtility
      * @param login  user's login
      * @param password - user's password
      */
-    public static void makeUserLogIn(String login, String password)
+    private static void makeUserLogIn(String login, String password)
     {
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Entrar")).perform(click());

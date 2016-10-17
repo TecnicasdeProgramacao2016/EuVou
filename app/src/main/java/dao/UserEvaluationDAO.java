@@ -45,7 +45,7 @@ public class UserEvaluationDAO extends DAO
         executeQuery(QUERY);
     }
 
-    public JSONObject searchUserEvaluation(int userEvaluatedtId, int userId)
+    public JSONObject searchUserEvaluation(final int userEvaluatedtId, final int userId)
     {
         assert(userId > 0);
         assert(userEvaluatedtId > 0);

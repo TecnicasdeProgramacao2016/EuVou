@@ -16,7 +16,7 @@ import model.Place;
 
 public class PlaceDAO extends DAO
 {
-    private  final static Logger logger = Logger.getLogger(PlaceDAO.class.getName());
+    private  final static Logger logger = Logger.getLogger(PlaceDAO.class.getName());//atribute to use loggin system
 
     public PlaceDAO(Activity currentActivity)
     {
@@ -28,7 +28,7 @@ public class PlaceDAO extends DAO
 
     };
 
-    public JSONObject searchPlaceByPartName(String name)
+    public JSONObject searchPlaceByPartName(final String name)
     {
         assert(name != null);
         logger.log(Level.INFO,"entered in the method that searches the place by part of its name");

@@ -41,10 +41,10 @@ import static org.hamcrest.Matchers.hasToString;
 public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<HomePage>
 {
 
-    private LoginUtility isLoged = null;
-    private TestUtility setLogin = null;
-    private UiDevice device = null;
-    private User user = null;
+    private LoginUtility isLoged = null;//reference to instanciate later to check if the user is logged
+    private TestUtility setLogin = null;//reference to make login
+    private UiDevice device = null; // makes reference to UiDevice to instanciate it later
+    private User user = null; //makes referênce of user to later instanciate it
 
 
     public RemoveEventControlTest()

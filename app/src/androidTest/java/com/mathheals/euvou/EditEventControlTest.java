@@ -31,26 +31,29 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
-/**
- * Created by julliana on 11/11/15.
- */
-public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomePage> {
-    LoginUtility isLoged;
-    EventDAO eventDAO = new EventDAO();
 
-    public EditEventControlTest() {
+public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomePage>
+{
+    private LoginUtility isLoged = null;//check if the user is logged or not
+    private EventDAO eventDAO = new EventDAO(); //instance of event to make the tests
+
+    public EditEventControlTest()
+    {
         super(HomePage.class);
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         super.setUp();
         getActivity();
         isLoged = new LoginUtility(getActivity());
     }
 
-    public void testIfEditUserOptionIsDisplayedForUserLoggedOut() {
-        if (isLoged.hasUserLoggedIn()) {
+    private void testIfEditUserOptionIsDisplayedForUserLoggedOut()
+    {
+        if (isLoged.hasUserLoggedIn())
+        {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
             onView(withText("Sair")).perform(click());
         }
@@ -58,8 +61,10 @@ public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomeP
         onView(withText("Alterar")).check((doesNotExist()));
     }
 
-    public void testIfEditUserOptionIsDisplayedForUserLoggedIn() throws ParseException, EventException {
-        if (!isLoged.hasUserLoggedIn()) {
+    private void testIfEditUserOptionIsDisplayedForUserLoggedIn() throws ParseException, EventException
+    {
+        if (!isLoged.hasUserLoggedIn())
+        {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
             onView(withText("Entrar")).perform(click());
             onView(withId(R.id.usernameField)).perform(typeText("igodudu"));
@@ -86,8 +91,10 @@ public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomeP
         eventDAO.updateEvent(event);
     }
 
-     public void testSelectCheckBoxCategories() throws ParseException, EventException {
-         if (!isLoged.hasUserLoggedIn()) {
+     private void testSelectCheckBoxCategories() throws ParseException, EventException
+     {
+         if (!isLoged.hasUserLoggedIn())
+         {
              openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
              onView(withText("Entrar")).perform(click());
              onView(withId(R.id.usernameField)).perform(typeText("igodudu"));
@@ -129,8 +136,10 @@ public class EditEventControlTest extends ActivityInstrumentationTestCase2<HomeP
          eventDAO.updateEvent(event);
      }
 
-     public void testNotSelectCheckBoxCategories() throws ParseException, EventException {
-         if (!isLoged.hasUserLoggedIn()) {
+     private void testNotSelectCheckBoxCategories() throws ParseException, EventException
+     {
+         if (!isLoged.hasUserLoggedIn())
+         {
              openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
              onView(withText("Entrar")).perform(click());
              onView(withId(R.id.usernameField)).perform(typeText("igodudu"));
