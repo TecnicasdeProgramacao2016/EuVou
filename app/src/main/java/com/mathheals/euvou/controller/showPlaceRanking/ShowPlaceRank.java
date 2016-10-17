@@ -52,6 +52,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
                              Bundle savedInstanceState)
     {
         View view = (View) inflater.inflate(R.layout.fragment_show_place_rank, container, false);
+        assert (view != null);
         // Inflate the layout for this fragment
         listView = (ListView) view.findViewById(R.id.listViewPlacesTotall);
         listView.setOnItemClickListener(this);
@@ -69,12 +70,14 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
      */
     public void populateArrayOfPlaces(JSONObject result,ArrayList<Place> places)
     {
+        assert(result != null);
+
         try
         {
             //Insert an id to any place found
             for (int i = 0; i < result.length(); i++)
             {
-                int idPlace = result.getJSONObject("" + i).getInt("idPlace");
+                int idPlace = result.getJSONObject("" + i).getInt("idPlace"); // idPlace must be greater than zero
 
                 assert (idPlace <  0);
 
@@ -133,7 +136,6 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
     }
 
@@ -150,6 +152,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     private void startShowInfoActivity(int id)
     {
         Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
+        assert(intent != null);
         intent.putExtras(getPlaceInfoAsBundle(id));
         startActivity(intent);
 
@@ -159,11 +162,12 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     //Fill a list according
     private void fillList()
     {
-        int id = (new LoginUtility(getActivity())).getUserId();
+        int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
 
         assert(id < 0);
 
         result = new PlaceDAO(getActivity()).searchAllPlaces();
+        assert(result != null);
         places = new ArrayList<>();
         populateArrayOfPlaces(result,places);
         PlaceAdapter placeAdapter = (PlaceAdapter) new PlaceAdapter(getActivity(),places);

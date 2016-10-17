@@ -62,8 +62,14 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
+
         // Inflate the layout for this fragment
         View view = (View) inflater.inflate(R.layout.fragment_show_top5_ranking, container, false);
+        assert(view != null);
+
         // Inflate the layout for this fragment
         listView = (ListView) view.findViewById(R.id.listViewPlaces5);
         listView.setOnItemClickListener(this);
@@ -100,21 +106,24 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     // Fill list with events
     private void fillList()
     {
-        JSONObject result;
-
         try
         {
-            int id = (new LoginUtility(getActivity())).getUserId();
-            result =(JSONObject) new PlaceDAO(getActivity()).searchTop5Places();
+            int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
+            JSONObject result =(JSONObject) new PlaceDAO(getActivity()).searchTop5Places();
+            assert(result != null);
+
             places = new ArrayList<>();
+
             //set list using an specific id
-            for (int i = 0; i < result.length(); i++)
+            final int findResultsLenght = result.length();
+
+            for (int i = 0; i < findResultsLenght; i++)
             {
-                int idPlace = result.getJSONObject("" + i).getInt("idPlace");
+                int idPlace = result.getJSONObject("" + i).getInt("idPlace"); // id must be greater than zero
 
-                assert(idPlace < 0);
+                assert(idPlace > 0);
 
-                String namePlace = result.getJSONObject("" + i).getString("namePlace");
+                String namePlace = result.getJSONObject("" + i).getString("namePlace"); // Setting a name place
                 Place aux = new Place(idPlace,
                         namePlace,
                         result.getJSONObject("" + i).getString("evaluate"),
@@ -152,10 +161,12 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     // Swow content about an event
     private void startShowInfoActivity(int id)
     {
-        assert(id < 0);
+        assert(id > 0);
 
         Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
-        intent.putExtras(getPlaceInfoAsBundle(id));
+        assert(intent != null);
+
+        intent.putExtras(getPlaceInfoAsBundle(id));// Present info in extra options
         startActivity(intent);
 
         Log.d("ShowTop5Ranking", "Show info has been inserted");
@@ -167,6 +178,8 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
     private Bundle getPlaceInfoAsBundle(int id)
     {
         Bundle placeInfo = new Bundle();
+        assert(placeInfo != null);
+
         Toast.makeText(getActivity(), "" + id, Toast.LENGTH_LONG);
         placeInfo.putString("name", places.get(id).getName());
         placeInfo.putString("phone", places.get(id).getPhone());
