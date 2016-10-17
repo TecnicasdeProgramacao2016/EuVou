@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class EventRecommendationDAO extends DAO
 {
-    private final static Logger logger = Logger.getLogger(EventRecommendationDAO.class.getName());
+    private final static Logger logger = Logger.getLogger(EventRecommendationDAO.class.getName());//atribute to use loggin system
     public EventRecommendationDAO()
     {
 

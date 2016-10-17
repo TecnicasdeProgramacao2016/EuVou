@@ -27,7 +27,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<HomePage>
 {
 
-    LoginUtility userIsLoged;
+    LoginUtility userIsLoged;//it checks if the user is logged
     public RemoveUserControlTest()
     {
         super(HomePage.class);

@@ -55,7 +55,7 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
     private ActionBarDrawerToggle drawerToggle = null;
     private String[] textOptions = null;
     private ActionBar actionBar = null;
-    private int USER_STATUS = 0;
+    private int USER_STATUS = 0; //status might be -1 not logged or 1 logged
     private final int LOGGED_OUT = -1;
 
     @Override

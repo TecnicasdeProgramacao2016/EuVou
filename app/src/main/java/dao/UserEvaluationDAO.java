@@ -12,7 +12,7 @@ import model.UserEvaluation;
 
 public class UserEvaluationDAO extends DAO
 {
-    private final static Logger logger = Logger.getLogger(UserEvaluationDAO.class.getName());
+    private final static Logger logger = Logger.getLogger(UserEvaluationDAO.class.getName());// atribute to use loggin system
     public UserEvaluationDAO()
     {
 

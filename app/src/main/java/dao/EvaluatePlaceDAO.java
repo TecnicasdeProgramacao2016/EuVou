@@ -17,7 +17,7 @@ import model.Evaluation;
 
 public class EvaluatePlaceDAO extends DAO
 {
-    private final static Logger logger = Logger.getLogger(EvaluatePlaceDAO.class.getName());
+    private final static Logger logger = Logger.getLogger(EvaluatePlaceDAO.class.getName()); //atribute to use loggin system
     public EvaluatePlaceDAO()
     {
 

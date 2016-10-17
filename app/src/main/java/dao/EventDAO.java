@@ -20,7 +20,7 @@ import model.Event;
 
 public class EventDAO extends DAO
 {
-    private final  static Logger logger = Logger.getLogger(EventDAO.class.getName());
+    private final  static Logger logger = Logger.getLogger(EventDAO.class.getName());//atribute to use loggin system
     public EventDAO(Activity currentActivity)
     {
         super(currentActivity);

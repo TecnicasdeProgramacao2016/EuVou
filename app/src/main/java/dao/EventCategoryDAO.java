@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class EventCategoryDAO extends DAO
 {
-    private  final static Logger logger = Logger.getLogger(EventCategoryDAO.class.getName());
+    private  final static Logger logger = Logger.getLogger(EventCategoryDAO.class.getName());//atribute to use loggin system
     public EventCategoryDAO(Activity currentActivity)
     {
         super(currentActivity);

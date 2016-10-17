@@ -35,7 +35,8 @@ public class Consult
     private boolean isDoing;
     private String query = DEFALT_STRING_MESSAGE;
     private final String PARAM = "query";
-    private final static Logger logger = Logger.getLogger(Consult.class.getName());
+    private final static Logger logger = Logger.getLogger(Consult.class.getName());//atribute to use loggin system
+
     public Consult(String query, String url)
     {
         assert(query != null);
