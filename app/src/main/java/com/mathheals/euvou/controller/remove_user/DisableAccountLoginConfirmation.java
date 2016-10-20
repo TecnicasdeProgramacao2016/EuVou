@@ -98,7 +98,7 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
         fragmentManager.popBackStack();
     }
 
-    public boolean isLoginConfirmationValid() 
+    public boolean isLoginConfirmationValid()
     {
         /**
          * method check the confirmation of user login
@@ -116,13 +116,27 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
 
         boolean isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
+        isUsernameValid = checkIfUserNameIsValid (isUsernameValid, typedUsername, typedPassword, loginValidation, passwordField, usernameField);
+
+        if (isUsernameValid)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    public boolean checkIfUserNameIsValid (boolean isUsernameValid, String typedUsername, String typedPassword,
+                                           LoginValidation loginValidation, EditText passwordField, EditText usernameField)
+    {
         if(isUsernameValid==true)
         {
-            boolean isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+            boolean isPasswordValid = loginValidation.checkPassword(typedUsername, typedPassword);
 
             if(isPasswordValid==true)
             {
-                Log.d("DisableAccountLoginConfirmation", "Login valid");
+                Log.d("checkIfUserNameIsValid", "Login valid");
                 return true;
             }
             else

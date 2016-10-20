@@ -122,31 +122,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
         checkIfUsernameAndPasswordAreValid(isUsernameValid, isPasswordValid, typedUsername);
-        checkIfUsernameAndloginValidationAreTrue(typedUsername, loginValidation, typedPassword, passwordField, usernameField);
-        checkIfUsernameAndloginValidationAreFalse();
-
-
-        if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
-        {
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-        } else
-        {
-            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
-
-            if(isPasswordValid==false)
-            {
-                passwordField.requestFocus();
-                passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            } else
-            {
-                //NOTHING TO DO
-            }
-        }
+        checkIfUsernameAndloginValidationAreTrue(isUsernameValid, isPasswordValid, typedUsername, loginValidation, typedPassword, passwordField, usernameField);
+        checkIfUsernameAndloginValidationAreFalse(isUsernameValid, isPasswordValid, typedUsername, loginValidation, typedPassword, passwordField, usernameField);
 
     }
 
-    public static void checkIfUsernameAndPasswordAreValid (boolean isUsernameValid, boolean isPasswordValid, String typedUsername)
+    public void checkIfUsernameAndPasswordAreValid (boolean isUsernameValid, boolean isPasswordValid, String typedUsername)
     {
         if(isUsernameValid && isPasswordValid)
         {
@@ -172,7 +153,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public static void checkIfUsernameAndloginValidationAreTrue (boolean isUsernameValid, boolean isPasswordValid,
+    public void checkIfUsernameAndloginValidationAreTrue (boolean isUsernameValid, boolean isPasswordValid,
                                                     String typedUsername, LoginValidation loginValidation,
                                                     String typedPassword, EditText passwordField,
                                                     EditText usernameField)
@@ -199,30 +180,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public static void checkIfUsernameAndloginValidationAreFalse (boolean isUsernameValid, boolean isPasswordValid,
+    public void checkIfUsernameAndloginValidationAreFalse (boolean isUsernameValid, boolean isPasswordValid,
                                                                  String typedUsername, LoginValidation loginValidation,
                                                                  String typedPassword, EditText passwordField,
                                                                  EditText usernameField)
     {
-        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
+        if (isUsernameValid == false || !loginValidation.isActivity(typedUsername))
         {
-            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+        } else
+        {
+            isPasswordValid = loginValidation.checkPassword(typedUsername, typedPassword);
 
-            if(isPasswordValid==false)
+            if (isPasswordValid == false)
             {
                 passwordField.requestFocus();
                 passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            } else
-            {
+            } else {
                 //NOTHING TO DO
             }
-
-        } else
-        {
-
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-
         }
     }
 }

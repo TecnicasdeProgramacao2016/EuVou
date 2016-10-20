@@ -59,6 +59,7 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         Context homePageContext = activity.getBaseContext();
 
+        //check if button was selected
         switch(view.getId())
         {
             case R.id.button_yes_id:
