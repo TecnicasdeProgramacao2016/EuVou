@@ -89,7 +89,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     private void setUpMap() 
     {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(-15.7941454, -47.8825479), 9));
+                new LatLng(-15.7941454, -47.8825479), 9)); // put the gps to start in the center of Brasilia
         setFilter(getIntent().getStringExtra("query"));
         foundPlaces = searchPlaces();
 
@@ -120,7 +120,11 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
             Toast.makeText(this, "Sem Resultados", Toast.LENGTH_LONG).show();
             Log.d("SearchPlaceMaps", "No results");
             return;
+        } else
+        {
+            //NOTHING TO DO
         }
+
         for (int i = 0; i < result.length(); i++) 
         {
             Place aux;
@@ -147,7 +151,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
                         new MarkerOptions()
                                 .title(places.get(i).getName())
                                 .snippet(places.get(i).getAddress())
-                                .position(new LatLng(places.get(i).getLatitude(), places.get(i).getLongitude()))
+                                .position(new LatLng(places.get(i).getLatitude(), places.get(i).getLongitude())) //create the markers on the map according to the user's preferences
                 );
             }
         }

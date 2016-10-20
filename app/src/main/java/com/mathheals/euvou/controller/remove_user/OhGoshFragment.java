@@ -29,7 +29,7 @@ public class OhGoshFragment extends android.support.v4.app.Fragment
          * @param savedInstanceState -
          */
 
-        return inflater.inflate(R.layout.fragment_oh_gosh, container, false);
+        return inflater.inflate(R.layout.fragment_oh_gosh, container, false);  // Inflate view when it is created
     }
 
 
