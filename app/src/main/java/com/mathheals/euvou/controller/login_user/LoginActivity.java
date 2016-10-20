@@ -121,6 +121,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
+        checkIfUsernameAndPasswordAreValid(isUsernameValid, isPasswordValid, typedUsername);
+        checkIfUsernameAndloginValidationAreTrue(typedUsername, loginValidation, typedPassword, passwordField, usernameField);
+        checkIfUsernameAndloginValidationAreFalse();
+
+
+        if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
+        {
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+        } else
+        {
+            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+
+            if(isPasswordValid==false)
+            {
+                passwordField.requestFocus();
+                passwordField.setError(loginValidation.getInvalidPasswordMessage());
+            } else
+            {
+                //NOTHING TO DO
+            }
+        }
+
+    }
+
+    public static void checkIfUsernameAndPasswordAreValid (boolean isUsernameValid, boolean isPasswordValid, String typedUsername)
+    {
         if(isUsernameValid && isPasswordValid)
         {
 
@@ -143,7 +170,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         {
             //NOTHING TO DO
         }
+    }
 
+    public static void checkIfUsernameAndloginValidationAreTrue (boolean isUsernameValid, boolean isPasswordValid,
+                                                    String typedUsername, LoginValidation loginValidation,
+                                                    String typedPassword, EditText passwordField,
+                                                    EditText usernameField)
+    {
         if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
         {
             isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
@@ -164,12 +197,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             usernameField.setError(loginValidation.getInvalidUsernameMessage());
 
         }
+    }
 
-        if(isUsernameValid==false || !loginValidation.isActivity(typedUsername))
-        {
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-        } else
+    public static void checkIfUsernameAndloginValidationAreFalse (boolean isUsernameValid, boolean isPasswordValid,
+                                                                 String typedUsername, LoginValidation loginValidation,
+                                                                 String typedPassword, EditText passwordField,
+                                                                 EditText usernameField)
+    {
+        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
         {
             isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
 
@@ -181,7 +216,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             {
                 //NOTHING TO DO
             }
-        }
 
+        } else
+        {
+
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+
+        }
     }
 }
