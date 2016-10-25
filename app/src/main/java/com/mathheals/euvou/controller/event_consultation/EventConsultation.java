@@ -31,8 +31,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import dao.EventDAO;
 import dao.UserDAO;
-import exception.EventException;
-import static junit.framework.Assert.assertFalse;
 
 /**
 *Class: public class EventConsultation extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
@@ -104,8 +102,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
                         String[] eventsFoundArray = eventsFound.toArray(new String[eventsFound.size()]);
                         showEventsAsList(eventsFoundArray);
-                    }
-                    catch (JSONException exceptionJSON)
+                    }catch (JSONException exceptionJSON)
                     {
                         exceptionJSON.printStackTrace();
                     }
@@ -212,7 +209,6 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
 
             public void onItemClick(AdapterView<?> parent, View clickView, int position, long id) {
                 final String ID_COLUMN = option=="event" ? "idEvent" : (option=="people" ? "idUser" : "idPlace");
-                boolean runningOK = true;
                 try
                 {
                     final android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -228,9 +224,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                 catch (JSONException exceptionOfJSON)
                 {
                     exceptionOfJSON.printStackTrace();
-                    runningOK = false;
                 }
-                assertFalse(runningOK);
             }
         });
     }
@@ -267,31 +261,18 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     */
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        boolean runningOK = true;
-        try
-        {
-            //Starts action selected on menu
-            if(item.getItemId() == android.R.id.home){
-                Intent intent = new Intent(this, HomePage.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-            }
-            else if(HomePage.class == null){
-                throw new EventException("Home Page é nulo");
-            }
-            else
-            {
-                return super.onOptionsItemSelected(item);
-            }
+        //Starts action selected on menu
+        if(item.getItemId() == android.R.id.home){
+            Intent intent = new Intent(this, HomePage.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
         }
-        catch(EventException eventException)
+        else
         {
-            runningOK = false;
+            return super.onOptionsItemSelected(item);
         }
-        assertFalse(runningOK);
 
-        return super.onOptionsItemSelected(item);
     }
 
     /**

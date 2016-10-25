@@ -128,11 +128,9 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
                     .getSupportFragmentManager().beginTransaction();
             eventId = new Integer(eventDATA.getJSONObject(Integer.toString(position)).getString(ID_COLUMN));
             bundle.putString("idEventSearch", Integer.toString(eventId));
-
             event.setArguments(bundle);
-            fragmentTransaction.add(R.id.content_frame, event);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            setFragmentTransactionsToContentFrameOfEvent(fragmentTransaction, event);
+
         }
         catch (JSONException exceptionOnItemClick)
         {
@@ -142,6 +140,14 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         assertFalse(runningOK);
 
 
+    }
+
+    //Sets content to frame of event
+    private void setFragmentTransactionsToContentFrameOfEvent(final android.support.v4.app.FragmentTransaction fragmentTransaction,
+                                                              final ShowEvent event){
+        fragmentTransaction.add(R.id.content_frame, event);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     /**

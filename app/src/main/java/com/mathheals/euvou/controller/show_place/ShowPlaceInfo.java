@@ -72,6 +72,7 @@ public class ShowPlaceInfo extends FragmentActivity
         boolean runningOK = true;
         try
         {
+
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_show_place_info);
             setShowMapButton((Button) findViewById(R.id.button_show_map));
@@ -85,7 +86,7 @@ public class ShowPlaceInfo extends FragmentActivity
             setRatingMessage(isUserLoggedIn);
             setRatingBarIfNeeded();
         }
-        catch(EventException eventException)
+        catch(Exception exceptionOnCreate)
         {
             runningOK = false;
         }

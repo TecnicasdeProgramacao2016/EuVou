@@ -29,7 +29,6 @@ public class EventEvaluationDAOTest extends TestCase
         final Integer USER_ID = 1;
         final Integer EVENT_ID = 1;
 
-
         EventEvaluationDAO eventEvaluationDAO = new EventEvaluationDAO();
         try
         {
