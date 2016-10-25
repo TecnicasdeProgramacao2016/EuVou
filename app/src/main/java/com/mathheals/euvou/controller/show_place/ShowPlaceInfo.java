@@ -26,7 +26,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.utility.LoginUtility;
 import dao.EvaluatePlaceDAO;
+import exception.EventException;
 import model.Evaluation;
+import static junit.framework.Assert.assertFalse;
 
 /**
  *Class: public class ShowPlaceInfo extends FragmentActivity
@@ -67,22 +69,27 @@ public class ShowPlaceInfo extends FragmentActivity
      */
     protected void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_place_info);
-
-        setShowMapButton((Button) findViewById(R.id.button_show_map));
-        setHideMapButton((Button) findViewById(R.id.button_hide_map));
-
-        setUserId(new LoginUtility(this).getUserId());
-        setIsUserLoggedIn(userId != LOGGED_OUT);
-
-        setPlaceInfo();
-        setAllTextViews();
-        setUpMapIfNeeded();
-        mMapFragment.getView().setVisibility(View.INVISIBLE);
-
-        setRatingMessage(isUserLoggedIn);
-        setRatingBarIfNeeded();
+        boolean runningOK = true;
+        try
+        {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_show_place_info);
+            setShowMapButton((Button) findViewById(R.id.button_show_map));
+            setHideMapButton((Button) findViewById(R.id.button_hide_map));
+            setUserId(new LoginUtility(this).getUserId());
+            setIsUserLoggedIn(userId != LOGGED_OUT);
+            setPlaceInfo();
+            setAllTextViews();
+            setUpMapIfNeeded();
+            mMapFragment.getView().setVisibility(View.INVISIBLE);
+            setRatingMessage(isUserLoggedIn);
+            setRatingBarIfNeeded();
+        }
+        catch(EventException eventException)
+        {
+            runningOK = false;
+        }
+        assertFalse(runningOK);
     }
 
     //If user are logged sets rating bar

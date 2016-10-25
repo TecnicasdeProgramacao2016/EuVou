@@ -6,24 +6,20 @@
 package com.mathheals.euvou.controller.event_recommendation;
 
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
+import static junit.framework.Assert.assertFalse;
 import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.show_event.ShowEvent;
 import com.mathheals.euvou.controller.utility.LoginUtility;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.ParseException;
 import java.util.ArrayList;
-
 import dao.EventRecommendationDAO;
 import exception.EventException;
 import model.Event;
@@ -122,7 +118,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
         final String ID_COLUMN = "idEvent";
-
+        boolean runningOK = true;
         int eventId = 0;
         final Bundle bundle = new Bundle();
         final ShowEvent event = new ShowEvent();
@@ -137,10 +133,14 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
             fragmentTransaction.add(R.id.content_frame, event);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
-        } catch (JSONException exceptionOnItemClick)
+        }
+        catch (JSONException exceptionOnItemClick)
         {
             exceptionOnItemClick.printStackTrace();
+            runningOK = false;
         }
+        assertFalse(runningOK);
+
 
     }
 
