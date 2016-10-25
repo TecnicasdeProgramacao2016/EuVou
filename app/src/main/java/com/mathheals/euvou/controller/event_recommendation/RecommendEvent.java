@@ -78,6 +78,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         EventAdapter eventAdapter = new EventAdapter(getActivity(),events);
 
         listView.setAdapter(eventAdapter);
+        finalizeObject(eventAdapter);
     }
 
     private int idUser = 0;
@@ -150,5 +151,11 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
     public RecommendEvent()
     {
         //Required empty public constructor
+    }
+
+    //Free objects to garbage collector take it easyer
+    private void finalizeObject(Object object)
+    {
+        object = null;
     }
 }

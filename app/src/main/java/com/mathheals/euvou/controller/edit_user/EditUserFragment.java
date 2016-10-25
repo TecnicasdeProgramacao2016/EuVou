@@ -133,6 +133,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         {
             String message = (String) messageOfError.getMessage();
             seeErrorOnAnyMessage(message);
+            finalizeObject(message);
         }
     }
 
@@ -233,6 +234,12 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     public EditUserFragment()
     {
         //Requires a empty public constructor
+    }
+
+    //Free objects to garbage collector take it easyer
+    private void finalizeObject(Object object)
+    {
+        object = null;
     }
 
 }

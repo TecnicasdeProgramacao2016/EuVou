@@ -244,6 +244,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EventConsultation.this,
                 R.layout.event_consultation_list_view, peopleNames);
         listView.setAdapter(adapter);
+        finalizeObject(adapter);
     }
 
     //Configures color of action bar
@@ -292,5 +293,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
             default:
                 //NOTHING TO DO
         }
+    }
+
+    //Free objects to garbage collector take it easyer
+    private void finalizeObject(Object object)
+    {
+        object = null;
     }
 }

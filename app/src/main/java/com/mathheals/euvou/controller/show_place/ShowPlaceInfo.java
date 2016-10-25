@@ -132,7 +132,7 @@ public class ShowPlaceInfo extends FragmentActivity
         if (mMap == null)
         {
             mMapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id
-                    .fragment_show_place_info_map));
+                            .fragment_show_place_info_map));
             mMap = mMapFragment.getMap();
             if (mMap != null)
             {
@@ -152,8 +152,8 @@ public class ShowPlaceInfo extends FragmentActivity
     //sets map
     private void setUpMap()
     {
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(getLatitude(), getLongitude()), 9));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(getLatitude(),
+                        getLongitude()), 9));
         markPlaceOnMap();
     }
 
@@ -161,11 +161,8 @@ public class ShowPlaceInfo extends FragmentActivity
     private void markPlaceOnMap()
     {
 
-        mMap.addMarker(
-                new MarkerOptions()
-                        .title(getName())
-                        .snippet(getAddress())
-                        .position(new LatLng(getLatitude(), getLongitude()))
+        mMap.addMarker(new MarkerOptions().title(getName()).snippet(getAddress())
+                       .position(new LatLng(getLatitude(), getLongitude()))
         );
     }
 
@@ -334,6 +331,7 @@ public class ShowPlaceInfo extends FragmentActivity
         String message = isUserLoggedIn ? "Sua avaliação:" : "Faça login para avaliar!";
         ratingMessage = (TextView) findViewById(R.id.rate_it_text);
         ratingMessage.setText(message);
+        finalizeObject(message);
     }
 
     private void setUserId(int userId)
@@ -388,5 +386,11 @@ public class ShowPlaceInfo extends FragmentActivity
         assert(idUser > 0);
         this.ratingEvaluation = new Evaluation(idPlace, idUser, grade);
         Log.d("ShowPlaceInfo", "rating evaluation has been set");
+    }
+
+    //Free objects to garbage collector take it easyer
+    private void finalizeObject(Object object)
+    {
+        object = null;
     }
 }
