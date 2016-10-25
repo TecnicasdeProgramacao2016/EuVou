@@ -109,6 +109,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         try
         {
             int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
+
             JSONObject result =(JSONObject) new PlaceDAO(getActivity()).searchTop5Places();
             assert(result != null);
 
@@ -116,7 +117,6 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
 
             //set list using an specific id
             final int findResultsLenght = result.length();
-
             for (int i = 0; i < findResultsLenght; i++)
             {
                 int idPlace = result.getJSONObject("" + i).getInt("idPlace"); // id must be greater than zero
@@ -137,8 +137,8 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
                 places.add(aux);
 
             }
-            PlaceAdapter placeAdapter = (PlaceAdapter) new PlaceAdapter(getActivity(),places);
 
+            PlaceAdapter placeAdapter = (PlaceAdapter) new PlaceAdapter(getActivity(),places);
             listView.setAdapter(placeAdapter);
 
         }catch (JSONException exception)
@@ -165,7 +165,6 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
 
         Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
         assert(intent != null);
-
         intent.putExtras(getPlaceInfoAsBundle(id));// Present info in extra options
         startActivity(intent);
 

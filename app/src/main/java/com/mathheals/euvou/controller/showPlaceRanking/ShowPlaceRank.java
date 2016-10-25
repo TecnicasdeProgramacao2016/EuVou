@@ -57,6 +57,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         listView = (ListView) view.findViewById(R.id.listViewPlacesTotall);
         listView.setOnItemClickListener(this);
         fillList();
+
         return  view;
     }
 
@@ -78,7 +79,6 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
             for (int i = 0; i < result.length(); i++)
             {
                 int idPlace = result.getJSONObject("" + i).getInt("idPlace"); // idPlace must be greater than zero
-
                 assert (idPlace <  0);
 
                 String namePlace = result.getJSONObject("" + i).getString("namePlace");
@@ -163,13 +163,14 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     private void fillList()
     {
         int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
-
         assert(id < 0);
 
         result = new PlaceDAO(getActivity()).searchAllPlaces();
         assert(result != null);
+
         places = new ArrayList<>();
         populateArrayOfPlaces(result,places);
+
         PlaceAdapter placeAdapter = (PlaceAdapter) new PlaceAdapter(getActivity(),places);
         listView.setAdapter(placeAdapter);
     }

@@ -64,8 +64,7 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-
-       View view;
+        View view;
 
         // Inflate the layout for this fragment
         view = (View) inflater.inflate(R.layout.fragment_show_top5_rank, container, false);
@@ -73,7 +72,6 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
 
         Button bt = (Button) view.findViewById(R.id.more);
         assert(bt != null);
-
         bt.setOnClickListener(this);
 
         Log.d("ShowTop5Rank", "The view has been inflated");
@@ -90,6 +88,7 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
     public void onClick(View v)
     {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();// Android tool to allow transaction
+
         fragmentTransaction.replace(R.id.content_frame, new ShowPlaceRanking());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
