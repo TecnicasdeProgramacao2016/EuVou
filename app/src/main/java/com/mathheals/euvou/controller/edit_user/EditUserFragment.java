@@ -50,7 +50,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View viewOfEditUser = inflater.inflate(R.layout.fragment_edit_user, container, false);//Returns view from main layout
+        View viewOfEditUser = inflater.inflate(R.layout.fragment_edit_user, container, false);//This line Returns view from main layout
 
         UserDAO userDAO = new UserDAO(this.getActivity());
 
@@ -60,7 +60,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
         USER_STATUS = loginUtility.getUserId();
 
-        final String stringUserStatus = userDAO.searchUserById(USER_STATUS);//Searchs user by id on database
+        final String stringUserStatus = userDAO.searchUserById(USER_STATUS);//This line Searchs user by id on database
         JSONObject json = null;
         try
         {
@@ -77,7 +77,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             String mail = (String)json.getJSONObject("0").getString("email");
 
             String[] birthDateSplit = birthDate.split("-");
-            birthDate = birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];//Format of date mm/dd/yyyy
+            birthDate = birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];//This information in this line is on Format of date mm/dd/yyyy
 
             nameField.setText(nameUser);
             birthDateField.setText(birthDate);
@@ -122,7 +122,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             User userUpdate = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password, passwordConfirm);
             updateUser(userUpdate);
             Toast.makeText(this.getActivity().getBaseContext(),
-                           "Usuário alterado com sucesso", Toast.LENGTH_LONG).show();//Quick message with Toast of alteration of user
+                           "Usuário alterado com sucesso", Toast.LENGTH_LONG).show();//This line shows a quick message with Toast of alteration of user
 
             Activity activity = getActivity();
             Intent intent = activity.getIntent();

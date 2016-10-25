@@ -42,7 +42,7 @@ public class EventAdapter extends ArrayAdapter<Event>
         {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_recommend_event,
-                          parent, false);//Takes view from recommended event
+                          parent, false);//This line takes view from recommended event
             viewHolder.eventName = (TextView) convertView.findViewById(R.id.eventName);
             viewHolder.eventEvaluation = (TextView) convertView.findViewById(R.id.eventEvaluation);
             convertView.setTag(viewHolder);

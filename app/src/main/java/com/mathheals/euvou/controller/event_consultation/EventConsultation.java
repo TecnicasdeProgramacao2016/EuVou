@@ -186,13 +186,13 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     */
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_event_consultation, menu); //Takes view from menu of consultation
+        getMenuInflater().inflate(R.menu.menu_event_consultation, menu); //This line takes the view from menu of consultation
         actionBar = (ActionBar) getSupportActionBar();
 
         setSearchBar(menu);
         configActionBar();
 
-        radioGroup = (RadioGroup) findViewById(R.id.search_radio_group); //Button selected by field of menu selected
+        radioGroup = (RadioGroup) findViewById(R.id.search_radio_group); //This line sets button selected by field of menu selected
         radioGroup.setOnCheckedChangeListener(this);
         return true;
     }

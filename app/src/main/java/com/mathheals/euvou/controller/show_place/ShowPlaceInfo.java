@@ -130,7 +130,7 @@ public class ShowPlaceInfo extends FragmentActivity
     {
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable(); //draw stars of rating saved before
         stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getBaseContext(), R.color.turquesa_app),
-                PorterDuff.Mode.SRC_ATOP);//Puts Color on rating bar
+                PorterDuff.Mode.SRC_ATOP);//This line puts Color on rating bar
     }
 
     protected GoogleMap mMap = null;
