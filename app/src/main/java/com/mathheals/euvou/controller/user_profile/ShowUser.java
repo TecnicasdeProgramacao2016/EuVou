@@ -30,6 +30,8 @@ import exception.UserEvaluationException;
 import model.UserEvaluation;
 
 public class ShowUser extends android.support.v4.app.Fragment {
+
+    //Instance user's atributtes values
     private UserEvaluation userEvaluation = null; //User evaluation
     private final String SUCCESSFULL_EVALUATION_MESSAGE = "Avaliação cadastrada com sucesso"; //Constant do indicate success
     private RatingBar ratingBar = null; //User rate ba
@@ -39,6 +41,8 @@ public class ShowUser extends android.support.v4.app.Fragment {
     private static boolean isUserLoggedIn = true; //Constant to indicate if user is logged in
     private TextView ratingMessage = null;  //Rate text display
     private final Integer LOGGED_OUT = -1; //Constant to indicate if user is logged out
+
+
 
     public ShowUser()
     {
@@ -53,16 +57,17 @@ public class ShowUser extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-
+        //Sets User's values
         setShowUserView(inflater.inflate(R.layout.show_user, container, false));
-        userEvaluatedId=this.getArguments().getString("id");
         setCurrentUserId(new LoginUtility(getActivity()).getUserId());
-
-        getDBValuesToSetView();
-
         setIsUserLoggedIn(currentUserId != LOGGED_OUT);
         setRatingMessage(isUserLoggedIn);
         setRatingBarIfNeeded();
+
+
+        //Gets values to create the view
+        userEvaluatedId=this.getArguments().getString("id");
+        getDBValuesToSetView();
 
         Log.d("ShowUser", "User logged in");
 
@@ -84,13 +89,17 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
         try
         {
+            //Gets atributte's values
             String nameUserDB = userData.getJSONObject("0").getString("nameUser");
             String birthDateDB = userData.getJSONObject("0").getString("birthDate");
             String mailDB = userData.getJSONObject("0").getString("email");
 
-            TextView name= (TextView) showUserView.findViewById(R.id.labelName);
+            //Instance texts values for the view
+            TextView name = (TextView) showUserView.findViewById(R.id.labelName);
             TextView date = (TextView) showUserView.findViewById(R.id.labelBirthDate);
             TextView mail = (TextView) showUserView.findViewById(R.id.labelMail);
+
+            //Sets texts values
             name.setText(nameUserDB);
             date.setText(birthDateDB);
             mail.setText(mailDB);

@@ -46,23 +46,24 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        //Instance of atributte's values
         View view = inflater.inflate(R.layout.edit_or_remove_event_fragment, container, false); //App view
-
         Button editOrRemoveButton = (Button) view.findViewById(R.id.editRemoveButton); //Edit button
-        editOrRemoveButton.setOnClickListener(this);
-
         String eventName = evento.getNameEvent(); //Event Name content
         String eventDescription = evento.getDescription(); //Event description content
         String eventDateTime = evento.getDateTimeEvent(); //Event dateTime content
         Integer eventPrice = evento.getPrice(); //Event price content
         String eventAddress = evento.getAddress(); //Event adress content
-
         TextView name1Event = (TextView) view.findViewById(R.id.nameEventShow);  //Event name display
         TextView dateEvent = (TextView) view.findViewById(R.id.dateEvent); //Event date display
         TextView description = (TextView) view.findViewById(R.id.descriptionEvent); //Event description  display
         TextView eventAddres = (TextView) view.findViewById(R.id.eventPlaces); //Event adress  display
         TextView eventPriceText = (TextView) view.findViewById(R.id.eventPrice); //Event price  display
         eventCategoriesText = (TextView) view.findViewById(R.id.eventCategories);
+
+
+        //Sets atributte's values
+        editOrRemoveButton.setOnClickListener(this);
         name1Event.setText(eventName);
         description.setText(eventDescription);
         dateEvent.setText(Mask.getDateTimeInBrazilianFormat(eventDateTime));

@@ -44,6 +44,7 @@ public class SearchUser extends ActionBarActivity implements View.OnClickListene
          */
         int id = item.getItemId(); //Clicked Item ID
 
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings)
         {
@@ -62,10 +63,9 @@ public class SearchUser extends ActionBarActivity implements View.OnClickListene
     //Override view creation
     public void onClick(View view)
     {
-
+        //Instance Searchers
         EditText searchName = (EditText) findViewById(R.id.searchNameField);
         String searchNameStr = searchName.getText().toString();
-
         /*
          * As default, the fragment transaction is gotten by the system, but in this line it is
          * gotten from the support libary. Both of them achieve the same purpose, but they cannot be
@@ -74,6 +74,8 @@ public class SearchUser extends ActionBarActivity implements View.OnClickListene
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().
                                                                                     beginTransaction();
 
+
+        //Searchs
         if(view.getId() == R.id.btnSearch)
         {
             fragmentTransaction.replace(R.id.content_frame, new ShowUser());
