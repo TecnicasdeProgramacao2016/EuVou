@@ -30,15 +30,15 @@ import exception.UserEvaluationException;
 import model.UserEvaluation;
 
 public class ShowUser extends android.support.v4.app.Fragment {
-    private UserEvaluation userEvaluation = null;
-    private final String SUCCESSFULL_EVALUATION_MESSAGE = "Avaliação cadastrada com sucesso";
-    private RatingBar ratingBar = null;
-    private View showUserView = null;
-    private String userEvaluatedId = null;
+    private UserEvaluation userEvaluation = null; //User evaluation
+    private final String SUCCESSFULL_EVALUATION_MESSAGE = "Avaliação cadastrada com sucesso"; //Constant do indicate success
+    private RatingBar ratingBar = null; //User rate ba
+    private View showUserView = null; //User view
+    private String userEvaluatedId = null; //Id of user's evaluation
     private int currentUserId = 0;  //This variable has the pourpose to check if current user is logged, as it compares with LOGGED_OUT
-    private static boolean isUserLoggedIn = true;
-    private TextView ratingMessage = null;
-    private final Integer LOGGED_OUT = -1;
+    private static boolean isUserLoggedIn = true; //Constant to indicate if user is logged in
+    private TextView ratingMessage = null;  //Rate text display
+    private final Integer LOGGED_OUT = -1; //Constant to indicate if user is logged out
 
     public ShowUser()
     {

@@ -21,11 +21,11 @@ public class PlaceTest extends TestCase
     //Test if got name value
     public void testGetName()
     {
-        boolean ok = true;
+        boolean ok = true;  //Checks if there is an exception
         try
         {
             Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
-                    "rua das flores","33613110");
+                    "rua das flores","33613110"); //Object place to be tested
             assertTrue(place.getName().equals("Nome"));
 
         } catch (PlaceException placeException)
@@ -42,11 +42,11 @@ public class PlaceTest extends TestCase
     //Test if place's name is empty
     public void testEmptyName()
     {
-        boolean ok = false;
+        boolean ok = false;  //Checks if there is an exception
         try
         {
             Place place= new Place(null,"2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             ok = true;
         } catch (Exception exception)
         {
@@ -60,11 +60,11 @@ public class PlaceTest extends TestCase
     //Test if place's name is valid
     public void testValidName()
     {
-        boolean ok = false;
+        boolean ok = false;  //Checks if there is an exceptio
         try
         {
             Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             ok = true;
         } catch (Exception exception)
         {
@@ -78,11 +78,11 @@ public class PlaceTest extends TestCase
     //Test if place's latitude is empty
     public void testEmptyLatitude()
     {
-        boolean ok = false;
+        boolean ok = false;  //Checks if there is an exceptio
         try
         {
             Place place= new Place("Pizza","2",null,"14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             ok = true;
         } catch (Exception eception)
         {
@@ -96,11 +96,11 @@ public class PlaceTest extends TestCase
     //Test if place's longitude is empty
     public void testEmptyLongitude()
     {
-        boolean ok = false;
+        boolean ok = false;  //Checks if there is an exceptio
         try
         {
             Place place= new Place("Pizza","2","14.0025",null,"8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             ok = true;
         } catch (Exception exception)
         {
@@ -114,11 +114,11 @@ public class PlaceTest extends TestCase
     //Test if latitude is valid
     public void testValidLatitude()
     {
-        boolean ok = false;
+        boolean ok = false;  //Checks if there is an exceptio
         try
         {
             Place place = new Place("Pizza","2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             ok = true;
         } catch (Exception exception)
         {
@@ -132,11 +132,11 @@ public class PlaceTest extends TestCase
     //Test if place's longitude is valid
     public void testValidLongitude()
     {
-        boolean ok = false;
+        boolean ok = false;  //Checks if there is an exceptio
         try
         {
             Place place= new Place("Pizza","2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             ok = true;
         } catch (Exception exception)
         {
@@ -150,11 +150,11 @@ public class PlaceTest extends TestCase
     //Test if latitude's convertion is valid
     public void testConvertLatitude()
     {
-        boolean ok = false;
+        boolean ok = false;  //Checks if there is an exceptio
         try
         {
             Place place= new Place("Pizza","2","","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             ok = true;
         } catch (Exception exception)
         {
@@ -168,11 +168,11 @@ public class PlaceTest extends TestCase
     //Test if longitude's convertion is valid
     public void testConvertLongitude()
     {
-        boolean ok = false;
+        boolean ok = false;  //Checks if there is an exceptio
         try
         {
             Place place= new Place("Pizza","2","14.0025","","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             ok = true;
         } catch (Exception exception)
         {
@@ -186,11 +186,11 @@ public class PlaceTest extends TestCase
     //Test if latitude value was gotten
     public void testGetLatitude()
     {
-        boolean ok = true;
+        boolean ok = true;  //Checks if there is an exceptio
         try
         {
             Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             assertTrue(place.getLatitude() == 14.0025);
 
         } catch (PlaceException placeException)
@@ -209,7 +209,7 @@ public class PlaceTest extends TestCase
         try
         {
             Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             assertTrue(place.getLongitude() == 14.0025);
 
         } catch (PlaceException placeException)
@@ -227,7 +227,7 @@ public class PlaceTest extends TestCase
         try
         {
             Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             assertTrue(place.getAddress().equals("rua das flores"));
 
         } catch (PlaceException placeException)
@@ -245,7 +245,7 @@ public class PlaceTest extends TestCase
         try
         {
             Place place= new Place("","2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
 
             assertFalse(true);
         } catch (PlaceException placeException)
@@ -263,7 +263,7 @@ public class PlaceTest extends TestCase
         try
         {
             Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             place.addComment("numero1");
             place.addComment("numero2");
             assertTrue(place.getComment().size() == 2);
@@ -282,7 +282,8 @@ public class PlaceTest extends TestCase
     {
         try
         {
-            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
+            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
+                                    "rua das flores","33613110"); //Object place to be tested
             place.addComment(null);
             assertFalse(place.getComment().size() == 1);
 
@@ -300,7 +301,8 @@ public class PlaceTest extends TestCase
     {
         try
         {
-            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição","rua das flores","33613110");
+            Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
+                                "rua das flores","33613110"); //Object place to be tested
             place.addComment("");
             assertFalse(place.getComment().size() == 1);
 
@@ -319,7 +321,7 @@ public class PlaceTest extends TestCase
         try
         {
             Place place= new Place("Nome","2","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             place.addComment("numero1");
             place.addComment("numero2");
             assertTrue(place.getComment().get(0).equals("numero1") &&
@@ -340,7 +342,7 @@ public class PlaceTest extends TestCase
         try
         {
             Place place= new Place("Nome","ghj","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             assertFalse(true);
         } catch (PlaceException placeException)
         {
@@ -360,7 +362,7 @@ public class PlaceTest extends TestCase
         try
         {
             Place place= new Place("Nome","4.5","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             assertTrue(true);
         } catch (PlaceException placeException)
         {
@@ -377,11 +379,11 @@ public class PlaceTest extends TestCase
     //Test if evaluation string can be null
     public void testSetNullStringEvaluated()
     {
-        boolean ok = true;
+        boolean ok = true;  //Checks if there is an exceptio
         try
         {
             Place place= new Place("Nome","null","14.0025","14.0025","8h às 12h","Descrição",
-                                    "rua das flores","33613110");
+                                    "rua das flores","33613110"); //Object place to be tested
             assertTrue(true);
         } catch (PlaceException placeException)
         {

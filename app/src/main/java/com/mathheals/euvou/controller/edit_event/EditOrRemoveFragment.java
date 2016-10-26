@@ -46,22 +46,22 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.edit_or_remove_event_fragment, container, false);
+        View view = inflater.inflate(R.layout.edit_or_remove_event_fragment, container, false); //App view
 
-        Button editOrRemoveButton = (Button) view.findViewById(R.id.editRemoveButton);
+        Button editOrRemoveButton = (Button) view.findViewById(R.id.editRemoveButton); //Edit button
         editOrRemoveButton.setOnClickListener(this);
 
-        String eventName = evento.getNameEvent();
-        String eventDescription = evento.getDescription();
-        String eventDateTime = evento.getDateTimeEvent();
-        Integer eventPrice = evento.getPrice();
-        String eventAddress = evento.getAddress();
+        String eventName = evento.getNameEvent(); //Event Name content
+        String eventDescription = evento.getDescription(); //Event description content
+        String eventDateTime = evento.getDateTimeEvent(); //Event dateTime content
+        Integer eventPrice = evento.getPrice(); //Event price content
+        String eventAddress = evento.getAddress(); //Event adress content
 
-        TextView name1Event = (TextView) view.findViewById(R.id.nameEventShow);
-        TextView dateEvent = (TextView) view.findViewById(R.id.dateEvent);
-        TextView description = (TextView) view.findViewById(R.id.descriptionEvent);
-        TextView eventAddres = (TextView) view.findViewById(R.id.eventPlaces);
-        TextView eventPriceText = (TextView) view.findViewById(R.id.eventPrice);
+        TextView name1Event = (TextView) view.findViewById(R.id.nameEventShow);  //Event name display
+        TextView dateEvent = (TextView) view.findViewById(R.id.dateEvent); //Event date display
+        TextView description = (TextView) view.findViewById(R.id.descriptionEvent); //Event description  display
+        TextView eventAddres = (TextView) view.findViewById(R.id.eventPlaces); //Event adress  display
+        TextView eventPriceText = (TextView) view.findViewById(R.id.eventPrice); //Event price  display
         eventCategoriesText = (TextView) view.findViewById(R.id.eventCategories);
         name1Event.setText(eventName);
         description.setText(eventDescription);

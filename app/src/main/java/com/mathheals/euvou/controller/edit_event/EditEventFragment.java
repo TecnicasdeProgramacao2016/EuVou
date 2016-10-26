@@ -51,7 +51,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     private EditText nameField = null, dateField = null, hourField = null,
             descriptionField = null, addressField = null,
-            priceDecimalField = null, priceRealField = null;
+            priceDecimalField = null, priceRealField = null; //Class to edit event content
 
 
     //Sets Text
@@ -68,13 +68,13 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Log.d("EditEventFragment", "Edit text sucessfuly setted");
     }
 
-    private String latitude = null;
-    private String longitude = null;
+    private String latitude = null; //Event's latitude
+    private String longitude = null; //Event's longitude
 
-    private int idEvent = 0;
+    private int idEvent = 0; //Event's ID
     private CheckBox showCheckBox = null, expositionCheckBox = null, cinemaCheckBox = null,
             museumCheckBox = null, theaterCheckBox = null, educationCheckBox = null,
-            othersCheckBox = null,sportsCheckBox = null, partyCheckBox = null;
+            othersCheckBox = null,sportsCheckBox = null, partyCheckBox = null; //Event's categorie
 
 
     @Override
@@ -232,14 +232,14 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     public void formatDate(JSONObject jsonEvent) throws JSONException
     {
 
-        String dateHourEvent = jsonEvent.getJSONObject("0").getString("dateTimeEvent");
-        String[] dateHourEventSplit = dateHourEvent.split(" ");
+        String dateHourEvent = jsonEvent.getJSONObject("0").getString("dateTimeEvent"); //Date and hour content
+        String[] dateHourEventSplit = dateHourEvent.split(" "); //Date and hour content splitted in 2
 
-        String dateEvent = dateHourEventSplit[0];
-        String[] dateEventSplit = dateEvent.split("-");
+        String dateEvent = dateHourEventSplit[0]; //Date content
+        String[] dateEventSplit = dateEvent.split("-"); //Date content splitted in 3: day, mounth and year
         dateEvent = dateEventSplit[2] + "/" + dateEventSplit[1] + "/" + dateEventSplit[0];
 
-        String hourEvent = dateHourEventSplit[1];
+        String hourEvent = dateHourEventSplit[1]; //Hour content;
 
         this.dateField.setText(dateEvent);
         this.hourField.setText(hourEvent);

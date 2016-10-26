@@ -23,7 +23,7 @@ public class SetRating implements ViewAction
         setRating(rating);
     }
 
-    private static Integer rating;
+    private static Integer rating; //Event rate
 
     @Override
     //Checks if raiting bar is constrint

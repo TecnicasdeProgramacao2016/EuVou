@@ -45,8 +45,8 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
     }
 
 
-    private Event event;
-    private UiDevice device;
+    private Event event; //Nem event to be tested
+    private UiDevice device; //Instance new UI device that further will become an UIObject
     private static LoginUtility isLoged; //Check if user's is logged in
 
     @Before

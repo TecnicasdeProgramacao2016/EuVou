@@ -21,7 +21,8 @@ public class EventRecommendationDAOTest extends TestCase
 
         final JSONObject jsonObject = (JSONObject) eventRecommendationDAO.recommendEvents(3);
 
-        boolean check;
+        boolean check; //Is used to check if there's an exception
+
         try
         {
             jsonObject.getJSONObject("0").getString("nameEvent");
