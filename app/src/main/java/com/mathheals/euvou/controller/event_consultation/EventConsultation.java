@@ -187,8 +187,8 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_event_consultation, menu); //This line takes the view from menu of consultation
-        actionBar = (ActionBar) getSupportActionBar();
 
+        actionBar = (ActionBar) getSupportActionBar();
         setSearchBar(menu);
         configActionBar();
 
@@ -214,9 +214,9 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                     final android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     idItem = new Integer((option=="event" ? eventDATA : peopleDATA).getJSONObject(Integer.toString(position)).getString(ID_COLUMN));
                     bundle.putString("id", Integer.toString(idItem));
-
                     event.setArguments(bundle);
                     user.setArguments(bundle);
+
                     fragmentTransaction.replace(R.id.content, option == "event" ? event : user);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();

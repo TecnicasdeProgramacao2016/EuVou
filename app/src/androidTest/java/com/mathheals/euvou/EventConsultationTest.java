@@ -84,9 +84,8 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     {
         onView(withId(R.id.search)).perform(click());
         onView(isAssignableFrom(EditText.class)).perform(typeText("t"), pressKey(66));
-        onData(hasToString(containsString("t")))
-                .inAdapterView(withId(R.id.events_list)).atPosition(0)
-                .perform(click());
+        onData(hasToString(containsString("t"))).inAdapterView(withId(R.id.events_list)).atPosition(0)
+               .perform(click());
         onView(withId(R.id.event_name_text)).check(matches(isDisplayed()));
     }
 
@@ -122,9 +121,8 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     {
         onView(withId(R.id.search)).perform(click());
         onView(isAssignableFrom(EditText.class)).perform(typeText("t"), pressKey(66));
-        onData(hasToString(containsString("t")))
-                .inAdapterView(withId(R.id.events_list)).atPosition(0)
-                .perform(click());
+        onData(hasToString(containsString("t"))).inAdapterView(withId(R.id.events_list)).atPosition(0)
+               .perform(click());
         onView(withId(R.id.showEventOnMapButton)).perform(click());
         onView(withId(R.id.map)).check(matches(isDisplayed()));
     }
@@ -200,9 +198,8 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     {
         onView(withId(R.id.search)).perform(click());
         onView(isAssignableFrom(EditText.class)).perform(typeText("t"), pressKey(66));
-        onData(hasToString(containsString("t")))
-                .inAdapterView(withId(R.id.events_list)).atPosition(0)
-                .perform(click());
+        onData(hasToString(containsString("t"))).inAdapterView(withId(R.id.events_list)).atPosition(0)
+               .perform(click());
     }
 
     /**
@@ -253,8 +250,7 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
 
         onView(withId(R.id.search)).perform(click());
         onView(isAssignableFrom(EditText.class)).perform(typeText("t"), pressKey(66));
-        onData(hasToString(containsString("t")))
-                .inAdapterView(withId(R.id.events_list)).atPosition(0)
+        onData(hasToString(containsString("t"))).inAdapterView(withId(R.id.events_list)).atPosition(0)
                 .perform(click());
         onView(withId(R.id.EuVou)).check(matches(not(isDisplayed())));
     }
@@ -264,9 +260,8 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
     {
         onView(withId(R.id.search)).perform(click());
         onView(isAssignableFrom(EditText.class)).perform(typeText("t"), pressKey(66));
-        onData(hasToString(containsString("t")))
-                .inAdapterView(withId(R.id.events_list)).atPosition(0)
-                .perform(click());
+        onData(hasToString(containsString("t"))).inAdapterView(withId(R.id.events_list)).atPosition(0)
+               .perform(click());
     }
 
     /**
@@ -291,10 +286,10 @@ public class EventConsultationTest extends ActivityInstrumentationTestCase2<Home
         markClick();
         onView(withId(R.id.EuVou)).perform(click());
         onView(withId(R.id.EuVou)).perform(click());
-
         onView(withId(R.id.search)).perform(click());
         onView(withContentDescription("Navigate up")).perform(click());
         onView(withText("EuVou")).check(matches(isDisplayed()));
+
         markClick();
         onView(withId(R.id.EuVou)).perform(click());
         onView(withId(R.id.EuVou)).perform(click());

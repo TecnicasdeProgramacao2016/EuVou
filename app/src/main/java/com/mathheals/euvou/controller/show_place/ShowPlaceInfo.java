@@ -72,7 +72,6 @@ public class ShowPlaceInfo extends FragmentActivity
         boolean runningOK = true;
         try
         {
-
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_show_place_info);
             setShowMapButton((Button) findViewById(R.id.button_show_map));
@@ -123,6 +122,7 @@ public class ShowPlaceInfo extends FragmentActivity
                 evaluatePlaceDAO.evaluatePlace(ratingEvaluation);
             }
         });
+
         setRatingBarStyle();
     }
     //sets style to rate bar
@@ -130,7 +130,7 @@ public class ShowPlaceInfo extends FragmentActivity
     {
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable(); //draw stars of rating saved before
         stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getBaseContext(), R.color.turquesa_app),
-                PorterDuff.Mode.SRC_ATOP);//This line puts Color on rating bar
+                                            PorterDuff.Mode.SRC_ATOP);//This line puts Color on rating bar
     }
 
     protected GoogleMap mMap = null;
@@ -142,6 +142,7 @@ public class ShowPlaceInfo extends FragmentActivity
             mMapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id
                             .fragment_show_place_info_map));
             mMap = mMapFragment.getMap();
+
             if (mMap != null)
             {
                 setUpMap();
@@ -160,18 +161,15 @@ public class ShowPlaceInfo extends FragmentActivity
     //sets map
     private void setUpMap()
     {
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(getLatitude(),
-                        getLongitude()), 9));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(getLatitude(), getLongitude()), 9));
         markPlaceOnMap();
     }
 
     //marks a place on map
     private void markPlaceOnMap()
     {
-
         mMap.addMarker(new MarkerOptions().title(getName()).snippet(getAddress())
-                       .position(new LatLng(getLatitude(), getLongitude()))
-        );
+                       .position(new LatLng(getLatitude(), getLongitude())));
     }
 
 
@@ -184,18 +182,22 @@ public class ShowPlaceInfo extends FragmentActivity
     */
     public void showPlaceInfoOnClick(View view)
     {
-        switch(view.getId()) {
+        switch(view.getId())
+        {
+
             case R.id.button_show_map:
                 setUpMapIfNeeded();
                 hideMapButton.setVisibility(View.VISIBLE);
                 showMapButton.setVisibility(View.GONE);
                 mMapFragment.getView().setVisibility(View.VISIBLE);
                 break;
+
             case R.id.button_hide_map:
                 hideMapButton.setVisibility(View.GONE);
                 showMapButton.setVisibility(View.VISIBLE);
                 mMapFragment.getView().setVisibility(View.GONE);
                 break;
+
             default:
                 //NOTHING TO DO
         }

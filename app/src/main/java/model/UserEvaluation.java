@@ -66,6 +66,7 @@ public class UserEvaluation
     {
         assert(userId > 0);
         final int validId = 1;
+
         if(userId <= Integer.MAX_VALUE && userId >= validId)
         {
             this.userId = userId;
@@ -85,6 +86,7 @@ public class UserEvaluation
     public void setUserEvaluatedId(Integer userEvaluatedId) throws UserEvaluationException
     {
         final int validId = 1;
+
         if(userEvaluatedId <= Integer.MAX_VALUE && userEvaluatedId >= validId)
         {
             this.userEvaluatedId = userEvaluatedId;

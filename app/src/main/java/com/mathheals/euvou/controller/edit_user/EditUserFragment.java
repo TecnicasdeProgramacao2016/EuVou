@@ -121,8 +121,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         {
             User userUpdate = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password, passwordConfirm);
             updateUser(userUpdate);
-            Toast.makeText(this.getActivity().getBaseContext(),
-                           "Usuário alterado com sucesso", Toast.LENGTH_LONG).show();//This line shows a quick message with Toast of alteration of user
+            Toast.makeText(this.getActivity().getBaseContext(),"Usuário alterado com sucesso", Toast.LENGTH_LONG).show();//This line shows a quick message with Toast of alteration of user
 
             Activity activity = getActivity();
             Intent intent = activity.getIntent();

@@ -99,7 +99,8 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         if(idUser != -1)
         {
             fillList();
-        }else
+        }
+        else
         {
             Toast.makeText(getActivity().getBaseContext(), "Sem eventos recomendados!", Toast.LENGTH_LONG).show(); //Quick message with Toast of no recommended events
         }
@@ -122,6 +123,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         int eventId = 0;
         final Bundle bundle = new Bundle();
         final ShowEvent event = new ShowEvent();
+
         try
         {
             final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity()
@@ -137,6 +139,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
             exceptionOnItemClick.printStackTrace();
             runningOK = false;
         }
+
         assertFalse(runningOK);
 
 

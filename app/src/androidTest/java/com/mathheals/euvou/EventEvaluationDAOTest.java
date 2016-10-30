@@ -30,9 +30,9 @@ public class EventEvaluationDAOTest extends TestCase
         final Integer EVENT_ID = 1;
 
         EventEvaluationDAO eventEvaluationDAO = new EventEvaluationDAO();
+
         try
         {
-
             eventEvaluationDAO.evaluateEvent(new EventEvaluation(RATING, USER_ID, EVENT_ID));
         }catch(EventEvaluationException exception)
         {
