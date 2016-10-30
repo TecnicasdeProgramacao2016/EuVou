@@ -49,6 +49,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
     {
         final String SEARCH_VIEW_HINT = "Pesquisar";
 
+        //sets the search bar
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menuSearchBar.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -71,9 +72,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                     case R.id.radio_events:
                         ifCheckButtonIsEvents(query);
                         break;
+
                     case R.id.radio_people:
                         ifCheckButtonIsPeople(query);
                         break;
+
                     default:
                         //NOTHING TO DO
                 }
@@ -212,6 +215,7 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                 try
                 {
                     final android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    //Takes information of event or people and set them on view
                     idItem = new Integer((option=="event" ? eventDATA : peopleDATA).getJSONObject(Integer.toString(position)).getString(ID_COLUMN));
                     bundle.putString("id", Integer.toString(idItem));
                     event.setArguments(bundle);

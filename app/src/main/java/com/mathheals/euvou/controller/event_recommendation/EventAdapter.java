@@ -51,7 +51,9 @@ public class EventAdapter extends ArrayAdapter<Event>
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        if(event.getNameEvent().length() > eventNameMaxLength){
+        //Name length of event bigger than maximun length of name are reduced and finished with ...
+        if(event.getNameEvent().length() > eventNameMaxLength)
+        {
             viewHolder.eventName.setText(event.getNameEvent().substring(eventNameMinLenghtPossible, eventNameMaxLengthPossible)
                                          .concat("..."));
         }

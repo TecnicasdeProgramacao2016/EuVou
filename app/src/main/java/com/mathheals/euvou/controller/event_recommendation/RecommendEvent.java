@@ -45,6 +45,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
             //Recomends an Event
             for(int i = 0 ; i < eventDATA.length() ; i++)
             {
+                //Gets events on server and sets on a new Event
                 final int idEvent = eventDATA.getJSONObject(Integer.toString(i)).getInt("idEvent");
                 final String nameEvent = eventDATA.getJSONObject(Integer.toString(i)).getString("nameEvent");
                 final int eventEvaluation = 4;
@@ -89,13 +90,12 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        //See if user are logged and set list of events
         View viewOfList = inflater.inflate(R.layout.fragment_recommend_event, container, false);
         listView = (ListView) viewOfList.findViewById(R.id.list_view_event_recomendations);
         listView.setOnItemClickListener(this);
-
         LoginUtility loginUtility = new LoginUtility(getActivity());
         idUser = loginUtility.getUserId();
-
         if(idUser != -1)
         {
             fillList();
@@ -126,6 +126,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
 
         try
         {
+            //puts arguments based on id on event
             final android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity()
                     .getSupportFragmentManager().beginTransaction();
             eventId = new Integer(eventDATA.getJSONObject(Integer.toString(position)).getString(ID_COLUMN));

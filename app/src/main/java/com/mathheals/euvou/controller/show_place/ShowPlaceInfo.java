@@ -72,6 +72,7 @@ public class ShowPlaceInfo extends FragmentActivity
         boolean runningOK = true;
         try
         {
+            //Sets data to place
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_show_place_info);
             setShowMapButton((Button) findViewById(R.id.button_show_map));
@@ -184,7 +185,7 @@ public class ShowPlaceInfo extends FragmentActivity
     {
         switch(view.getId())
         {
-
+            //shows map
             case R.id.button_show_map:
                 setUpMapIfNeeded();
                 hideMapButton.setVisibility(View.VISIBLE);
@@ -192,6 +193,7 @@ public class ShowPlaceInfo extends FragmentActivity
                 mMapFragment.getView().setVisibility(View.VISIBLE);
                 break;
 
+            //hide map
             case R.id.button_hide_map:
                 hideMapButton.setVisibility(View.GONE);
                 showMapButton.setVisibility(View.VISIBLE);

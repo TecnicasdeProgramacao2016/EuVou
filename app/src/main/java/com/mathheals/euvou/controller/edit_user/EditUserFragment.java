@@ -50,13 +50,11 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        //takes the view and user status
         View viewOfEditUser = inflater.inflate(R.layout.fragment_edit_user, container, false);//This line Returns view from main layout
-
         UserDAO userDAO = new UserDAO(this.getActivity());
-
         setingEditText(viewOfEditUser);
         birthDateField.addTextChangedListener(Mask.insert("##/##/####", birthDateField));
-
         LoginUtility loginUtility = new LoginUtility(this.getActivity());
         USER_STATUS = loginUtility.getUserId();
 
@@ -72,13 +70,12 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
 
         try
         {
+            //gets info of user and set them
             String nameUser = (String)json.getJSONObject("0").getString("nameUser");
             String birthDate = (String)json.getJSONObject("0").getString("birthDate");
             String mail = (String)json.getJSONObject("0").getString("email");
-
             String[] birthDateSplit = birthDate.split("-");
             birthDate = birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];//This information in this line is on Format of date mm/dd/yyyy
-
             nameField.setText(nameUser);
             birthDateField.setText(birthDate);
             mailField.setText(mail);
@@ -119,10 +116,12 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         //Validates and set user alteration
         try
         {
+            //Updates user
             User userUpdate = new User(USER_STATUS, name, birthDate, mail, mailConfirm, password, passwordConfirm);
             updateUser(userUpdate);
             Toast.makeText(this.getActivity().getBaseContext(),"Usuário alterado com sucesso", Toast.LENGTH_LONG).show();//This line shows a quick message with Toast of alteration of user
 
+            //Start activity based on witch activity has been selected
             Activity activity = getActivity();
             Intent intent = activity.getIntent();
             activity.finish();
