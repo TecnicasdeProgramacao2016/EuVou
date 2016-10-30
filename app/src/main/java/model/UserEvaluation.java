@@ -65,6 +65,7 @@ public class UserEvaluation
     public void setUserId(Integer userId) throws UserEvaluationException
     {
         assert(userId > 0);
+        assert(userId < 2147483647);
         final int validId = 1;
 
         if(userId <= Integer.MAX_VALUE && userId >= validId)

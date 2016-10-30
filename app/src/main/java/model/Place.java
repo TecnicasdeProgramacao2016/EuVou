@@ -295,9 +295,10 @@ public class Place
         return id;
     }
 
-    private void setId(int id)
+    private void setId(final int id)
     {
-        assert(id > 0);
+        assert( id > 0);
+        assert( id < 2147483647);
         this.id = id;
         Log.d("Place", "id has been set");
     }

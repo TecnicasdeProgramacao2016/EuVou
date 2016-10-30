@@ -79,6 +79,7 @@ public class EventEvaluation
     public void setUserId(Integer userId) throws EventEvaluationException
     {
         assert(userId > 0);
+        assert(userId < 2147483647);
 
         //Alterates user identification
         if(userId <= Integer.MAX_VALUE && userId >= 1)

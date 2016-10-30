@@ -406,9 +406,10 @@ public class Event
     *Description: set id of event
     *@param idEvent has to be above 0
     */
-    public void setIdEvent(int idEvent)
+    public void setIdEvent(final int idEvent)
     {
         assert( idEvent > 0);
+        assert( idEvent < 2147483647);
         this.idEvent = idEvent;
         Log.d("Event", "idEvent has been set");
     }
@@ -597,9 +598,10 @@ public class Event
     *Description: sets id of owner
     *@param idOwner has to be above 0
     */
-    public void setIdOwner(int idOwner)
+    public void setIdOwner(final int idOwner)
     {
-        assert(idOwner > 0);
+        assert( idOwner > 0);
+        assert( idOwner < 2147483647);
         this.idOwner = idOwner;
         Log.d("Event", "idOwner has been set");
     }

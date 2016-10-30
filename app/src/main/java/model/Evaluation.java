@@ -39,6 +39,8 @@ public class Evaluation
     private void setIdUser(final int idUser)
     {
         assert( idUser > 0);
+        assert( idUser < 2147483647);
+
         this.idUser = idUser;
         Log.d("Evaluation", "idUser has been setted");
     }
@@ -46,6 +48,7 @@ public class Evaluation
     private void setIdPlace(final int idPlace)
     {
         assert( idPlace > 0);
+        assert( idPlace < 2147483647);
         this.idPlace = idPlace;
         Log.d("Evaluation", "idPlace has been setted");
     }

@@ -186,6 +186,7 @@ public class User
     private void setIdUser(int idUser) throws UserException
     {
         assert(idUser > 0);
+        assert(idUser < 2147483647);
         if(idUser <= Integer.MAX_VALUE && idUser >= 1){
             this.idUser = idUser;
         }
