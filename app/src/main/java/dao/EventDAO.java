@@ -61,6 +61,10 @@ public class EventDAO extends DAO
 
         Vector<String> categories = event.getCategory();
 
+        /*
+            executes the query for the expecific categories of the application
+         */
+
         for(int i=0; i<categories.size(); i++)
         {
             String query = "INSERT INTO event_category(idEvent, idCategory) VALUES(\"" + idEvent + "\", " +
@@ -97,6 +101,9 @@ public class EventDAO extends DAO
 
         executeQuery("delete from event_category where idEvent ="+event.getIdEvent());
 
+        /*
+            execute the query for each event in the category.
+         */
         for (String category : event.getCategory())
         {
             String query = "INSERT INTO event_category VALUES("+event.getIdEvent() +","

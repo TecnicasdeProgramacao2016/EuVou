@@ -96,6 +96,9 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         assert(item != null);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
+        /*
+            checker to the possible options
+         */
         switch(item.getItemId())
         {
             case R.id.edit_register:
@@ -154,6 +157,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         logger.log(Level.INFO,"entered in the method that shows the options for the users logged out");
         assert(item != null);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        /*
+            checker to the possible options
+         */
         switch (item.getItemId())
         {
             case R.id.registration:
@@ -203,6 +210,9 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
         logger.log(Level.INFO,"search place method inicializated");
 
+        /*
+            it checks if the filter is empty to show the options
+         */
         if(!(filter.isEmpty()))
         {
             map.putExtra(QUERY, filter);
@@ -289,6 +299,10 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
 
         USER_STATUS = loginUtility.getUserId();
 
+        /*
+            Its supposed to check if the user is logged or not
+            to dispose the options of the menu
+         */
         if(USER_STATUS != LOGGED_OUT)
         {
             inflater.inflate(R.menu.home_page_logged_in, menu);
@@ -347,7 +361,11 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
         {
             //NOTHING TO DO
         }
-        // Handle your other action bar items...
+
+        /*
+             it checks the state of the user, if it is logged or not
+             to dispose the options
+         */
 
         if(USER_STATUS != LOGGED_OUT)
         {
@@ -408,6 +426,8 @@ public class HomePage extends ActionBarActivity implements AdapterView.OnItemCli
             assert(view != null);
 
             String aux = "";
+
+            // it identifies the category to declare aux with it's value
             switch (position)
             {
                 case 1:

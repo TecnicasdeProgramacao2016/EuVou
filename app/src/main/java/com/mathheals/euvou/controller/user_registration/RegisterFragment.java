@@ -176,6 +176,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     public void UserRegisterErrorMessage(final String message)
     {
         assert(message != null);
+
+        //it verifies whats the source of the error to send the right error message
         if (message.equals(User.NAME_CANT_BE_EMPTY_NAME))
         {
             editAndRegisterUtility.setMessageError(nameField, message);

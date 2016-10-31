@@ -63,6 +63,9 @@ public abstract class DAO {
 
         long timeLimit = currentTime + LIMITCONECTIONTIME;
 
+        /*
+            get the current lasting of  the attempt to connect to the dataBase
+         */
         while(!consult.getIsDoing() && currentTime < timeLimit)
         {
             currentTime = Calendar.getInstance().getTime().getTime();
