@@ -100,6 +100,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addCinemaToCategory method");
         CheckBox cinemaCheckBox = (CheckBox) view;
 
+        /*
+            It verifies if the checkbox is checked or not
+         */
         if(cinemaCheckBox.isChecked())
         {
             String cinemaText = (String) cinemaCheckBox.getText().toString();
@@ -122,6 +125,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToEducationCategory method");
         CheckBox educationCheckBox = (CheckBox) view;
 
+        /*
+            It verifies if the checkbox is checked or not
+         */
         if(educationCheckBox.isChecked())
         {
             categories.add("Educacao");
@@ -142,6 +148,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         Log.d("01","started the addToExpositionCategory method");
         CheckBox expositionCheckBox = (CheckBox) view;
 
+        /*
+            It verifies if the checkbox is checked or not
+         */
         if(expositionCheckBox.isChecked())
         {
             categories.add("Exposicao");
@@ -166,6 +175,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
 
         assert(nameMuseum != null);
 
+        /*
+            It verifies if the checkbox is checked or not
+         */
         if(museumCheckBox.isChecked())
         {
             categories.add(nameMuseum);
@@ -186,6 +198,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         CheckBox othersCheckBox = (CheckBox) view;
 
         String othersString = (String) othersCheckBox.getText().toString();
+        /*
+            It verifies if the checkbox is checked or not
+         */
         if(othersCheckBox.isChecked())
         {
             categories.add(othersString);
@@ -209,6 +224,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         String partyString = (String) partyCheckBox.getText().toString();
         assert(partyString != null);
 
+        /*
+            It verifies if the checkbox is checked or not
+         */
         if(partyCheckBox.isChecked())
         {
             categories.add(partyString);
@@ -229,6 +247,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         CheckBox sportsCheckBox = (CheckBox) view;
 
         String sportsString = (String) sportsCheckBox.getText().toString();
+        /*
+            It verifies if the checkbox is checked or not
+         */
         if(sportsCheckBox.isChecked())
         {
             categories.add(sportsString);
@@ -252,6 +273,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         String theaterString = (String) theaterCheckBox.getText().toString();
         assert(theaterString != null);
 
+        /*
+            It verifies if the checkbox is checked or not
+         */
         if(theaterCheckBox.isChecked())
         {
             categories.add(theaterString);
@@ -273,6 +297,10 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
         CheckBox showCheckBOx = (CheckBox) view;
 
         String showString = (String) showCheckBOx.getText().toString();
+
+        /*
+            It verifies if the checkbox is checked or not
+         */
         if(showCheckBOx.isChecked())
         {
             categories.add(showString);
@@ -290,6 +318,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     {
         assert(view != null);
         Log.d("01","started the addEventCategories method");
+        /*
+            verifies what option is selected
+         */
         if(view.getId() == R.id.optionCinema)
         {
             addCinemaToCategory(view);
@@ -331,6 +362,9 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     {
         assert(view != null);
 
+        /*
+            verifies the button pressed and makes the action for the option
+         */
         if(view.getId() == R.id.saveEvent)
         {
             setEditTextView();
@@ -440,6 +474,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     {
 
         super.onActivityResult(requestCode, resultCode, data);
+       // checks
         switch(requestCode)
         {
             case (2) :
@@ -557,7 +592,7 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
                                               EditText descriptionEventField, EditText dateEventField,EditText nameEventField,
                                               EditText priceEventRealField, EditText priceEventDecimalField)
     {
-        //Verify address field
+        //Verifies the error to send the message
         if(message.equals(Event.ADDRESS_IS_EMPTY))
         {
             addressEventField.requestFocus();
