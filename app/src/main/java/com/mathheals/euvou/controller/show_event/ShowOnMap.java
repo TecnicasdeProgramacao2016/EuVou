@@ -24,8 +24,10 @@ public class ShowOnMap extends FragmentActivity
 {
     // Might be null if Google Play services APK is not available.
     protected GoogleMap mMap;
+
     private Double latitude;
     private Double longitude;
+
     private String filter;
 
     /**
@@ -56,7 +58,7 @@ public class ShowOnMap extends FragmentActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        Bundle b=this.getIntent().getExtras();
+        Bundle b = this.getIntent().getExtras();
         String[] array = b.getStringArray("LatitudeAndLongitude");
         latitude = Double.parseDouble(array[0]);
         longitude = Double.parseDouble(array[1]);
@@ -77,7 +79,6 @@ public class ShowOnMap extends FragmentActivity
         // Do a null check to confirm that we have not already instantiated the map.
         if(mMap != null)
         {
-            //NOTHING TO DO
             Log.d("ShowOnMap", "Map is not null");
         }
         //Create a map if it is null
@@ -109,6 +110,7 @@ public class ShowOnMap extends FragmentActivity
     {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(latitude, longitude), 9));
+
         setFilter(getIntent().getStringExtra("query"));
         addMarkerPlace(latitude,longitude);
 

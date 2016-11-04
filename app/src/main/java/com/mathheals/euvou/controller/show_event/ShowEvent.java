@@ -78,6 +78,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
                              Bundle savedInstanceState)
     {
         setShowEventView(inflater.inflate(R.layout.fragment_show_event, container, false));
+
         showEventOnMapButton = (Button) showEventView.findViewById(R.id.showEventOnMapButton);
         participateButton = (Button) showEventView.findViewById(R.id.EuVou);
         showEventOnMapButton.setOnClickListener(this);
@@ -88,6 +89,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         JSONObject eventDATA = (JSONObject) eventDAO.searchEventById(Integer.parseInt(eventId)); // create a JSON for event content
 
         setUserId(new LoginUtility(getActivity()).getUserId()); // userId must be greater than zero
+
         if(userId == LOGGED_OUT)
         {
             participateButton.setVisibility(showEventView.GONE);
@@ -119,6 +121,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
             String eventAdress = eventDATA.getJSONObject("0").getString("address");
             String eventDescription = eventDATA.getJSONObject("0").getString("description");
             String eventDateTime = eventDATA.getJSONObject("0").getString("dateTimeEvent");
+
             eventPrice = eventDATA.getJSONObject("0").getString(PRICE_COLUMN);
             eventLongitude = eventDATA.getJSONObject("0").getString("longitude");
             eventLatitude = eventDATA.getJSONObject("0").getString("latitude");
@@ -127,8 +130,10 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
             TextView dateEvent = (TextView) showEventView.findViewById(R.id.dateEvent);
             TextView description = (TextView) showEventView.findViewById(R.id.descriptionEvent);
             TextView addressShow = (TextView) showEventView.findViewById(R.id.eventPlaces);
+
             eventCategoriesText = (TextView) showEventView.findViewById(R.id.eventCategories);
             eventPriceText = (TextView) showEventView.findViewById(R.id.eventPrice);
+
             name1Event.setText(eventNameDB);
             description.setText(eventDescription);
             dateEvent.setText(Mask.getDateTimeInBrazilianFormat(eventDateTime));
@@ -314,6 +319,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
             try
             {
                 int categoryId = eventCategoryJSON.getJSONObject(Integer.toString(i)).getInt(ID_CATEGORY); // CategoryId must be greater than one
+
                 JSONObject categoryJSON = (JSONObject) categoryDAO.searchCategoryById(categoryId);
                 String categoryName = categoryJSON.getJSONObject(FIRST_COLUMN).getString(NAME_CATEGORY); // Insert a catergory name from JSON
                 categories.add(categoryName);
@@ -339,6 +345,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     {
         Bundle latitudeAndLongitude = (Bundle) new Bundle();
         latitudeAndLongitude.putStringArray("LatitudeAndLongitude", new String[]{eventLatitude, eventLongitude});
+
         Intent intent = (Intent) new Intent(getContext(), ShowOnMap.class);
         intent.putExtras(latitudeAndLongitude);
         startActivity(intent);

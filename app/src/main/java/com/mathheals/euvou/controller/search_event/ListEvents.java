@@ -99,7 +99,6 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
         assert(view != null);
-
         assert(id > 0);
 
         Event clicked;
@@ -111,6 +110,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
 
         EditOrRemoveFragment editOrRemoveFragment = new EditOrRemoveFragment();
         editOrRemoveFragment.evento = clicked;
+
         fragmentTransaction.replace(R.id.content_frame, editOrRemoveFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -161,7 +161,9 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
             else
             {
                 Toast.makeText(getContext(), "Você ainda não criou nenhum evento, que tal criar um agora?", Toast.LENGTH_LONG).show();
+
                 android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction(); //Andoroid functionality to support a transaction
+
                 fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -195,6 +197,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     private HashMap<String, String> createEvent(String name, String number)
     {
         HashMap<String, String> eventName = new HashMap<String, String>();//Create a hash to event
+
         eventName.put(name, number);
 
         Log.d("ListEvents", "A event has been created");

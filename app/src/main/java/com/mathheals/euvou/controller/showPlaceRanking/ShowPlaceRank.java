@@ -182,6 +182,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
 
         Bundle placeInfo = (Bundle) new Bundle();
         Toast.makeText(getActivity(),"" + id,Toast.LENGTH_LONG);
+
         placeInfo.putString("name", places.get(id).getName());
         placeInfo.putString("phone", places.get(id).getPhone());
         placeInfo.putString("address", places.get(id).getAddress());

@@ -165,6 +165,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
 
         Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
         assert(intent != null);
+
         intent.putExtras(getPlaceInfoAsBundle(id));// Present info in extra options
         startActivity(intent);
 
@@ -180,6 +181,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         assert(placeInfo != null);
 
         Toast.makeText(getActivity(), "" + id, Toast.LENGTH_LONG);
+
         placeInfo.putString("name", places.get(id).getName());
         placeInfo.putString("phone", places.get(id).getPhone());
         placeInfo.putString("address", places.get(id).getAddress());

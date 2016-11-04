@@ -52,18 +52,24 @@ public class PlaceAdapter extends ArrayAdapter<Place>
         {
             viewHolder = new ViewHolder();
             assert(viewHolder != null);
+
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_show_place_rank, parent, false); // Convert view to layout that is requested
+
             viewHolder.placeName = (TextView) convertView.findViewById(R.id.placeName);
             viewHolder.placeEvaluation = (TextView) convertView.findViewById(R.id.placeEvaluation);
+
             convertView.setTag(viewHolder);
             Log.d("PlaceAdapter", "Setting ViewHolder");
         }
 
 
         final int LengthPlaceName = place.getName().length();
+
         viewHolder.placeName.setText(
                 (LengthPlaceName > 40) ? place.getName().substring(0, 39).concat("...") : place.getName());
+
         viewHolder.placeEvaluation.setText(place.getEvaluate().toString());
+
         return convertView;
 
 
