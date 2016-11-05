@@ -48,8 +48,9 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     protected GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) 
+    protected void onCreate(Bundle savedInstanceState)
     {
+        assert(savedInstanceState != null);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
@@ -160,6 +161,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     @Override
     public boolean onMarkerClick(final Marker marker)
     {
+        assert(marker != null);
         String marke = (String) marker.getId().substring(1);
         int id = Integer.parseInt(marke);
         select(id);

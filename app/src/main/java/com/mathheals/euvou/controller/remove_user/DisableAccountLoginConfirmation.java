@@ -38,6 +38,10 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
                              ViewGroup container,
                              Bundle savedInstanceState) 
     {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
+
         /**
          * method inflate the layout for this fragment
          * @param inflater -

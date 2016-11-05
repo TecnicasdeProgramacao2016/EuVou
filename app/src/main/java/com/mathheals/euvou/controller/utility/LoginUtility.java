@@ -115,6 +115,7 @@ public class LoginUtility
 
     public void setUserLogIn(int userId) 
     {
+        assert(userId > 0);
         /**
          * method sets current user's ID
          */

@@ -27,6 +27,9 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
                              ViewGroup container,
                              Bundle savedInstanceState) 
     {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
         /**
          * method inflate the layout for this fragment
          * @param inflater
@@ -49,6 +52,8 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
     @Override
     public void onClick(View view) 
     {
+        assert(view != null);
+
         /**
          * method that gets the informations and create the event
          * @param view

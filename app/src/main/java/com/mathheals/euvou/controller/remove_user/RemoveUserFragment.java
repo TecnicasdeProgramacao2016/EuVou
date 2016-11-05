@@ -46,6 +46,8 @@ public class RemoveUserFragment extends android.support.v4.app.Fragment implemen
     @Override
     public void onClick(View view) 
     {
+        assert(view != null);
+
         /**
          * method that gets the informations and create the event
          * @param view

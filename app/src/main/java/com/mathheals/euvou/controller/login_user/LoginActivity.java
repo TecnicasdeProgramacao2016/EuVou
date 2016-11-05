@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     {
+        assert(savedInstanceState != null);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -60,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onCreateOptionsMenu(final Menu menu)
     {
+        assert(menu != null);
         /**
              * This method inflate the menu and add items to the action bar if it is present.
              * @param menu -
@@ -95,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#008B8B"))); //Set the color blue onde parse
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#008B8B"))); //Set the color blue on parse
 
     }
 
@@ -106,6 +108,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view)
     {
+
+        assert(view != null);
         /**
          * method that gets the informations and create the event
          * @param view
