@@ -164,6 +164,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
 
                 android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction(); //Andoroid functionality to support a transaction
 
+                //Setting list
                 fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

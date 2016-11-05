@@ -111,6 +111,7 @@ public class ShowOnMap extends FragmentActivity
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(latitude, longitude), 9));
 
+        //Getting extra info
         setFilter(getIntent().getStringExtra("query"));
         addMarkerPlace(latitude,longitude);
 

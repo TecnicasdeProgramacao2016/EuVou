@@ -47,6 +47,7 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        //Verifying params
         assert(inflater != null);
         assert(container != null);
         assert(savedInstanceState != null);

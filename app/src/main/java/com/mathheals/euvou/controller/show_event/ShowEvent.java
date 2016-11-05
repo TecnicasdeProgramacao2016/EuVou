@@ -314,6 +314,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
         final int categoriesNumber = eventCategoryJSON.length();
 
+        //Adding categories names
         for(int i = 0; i < categoriesNumber; ++i)
         {
             try
@@ -343,9 +344,11 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
     private void showEventOnMap()
     {
+        //Insert latitude and longitude
         Bundle latitudeAndLongitude = (Bundle) new Bundle();
         latitudeAndLongitude.putStringArray("LatitudeAndLongitude", new String[]{eventLatitude, eventLongitude});
 
+        //Start to show event
         Intent intent = (Intent) new Intent(getContext(), ShowOnMap.class);
         intent.putExtras(latitudeAndLongitude);
         startActivity(intent);
@@ -379,6 +382,17 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     {
         final String LOGGED_IN_MESSAGE = "Sua avaliação:";
         final String LOGGED_OUT_MESSAGE = "Faça login para avaliar este evento!";
+
+        /*
+         String message = " ";
+
+         if(message.Equals(LOGGED_IN_MESSAGE))
+            message =
+         else
+            message = LOGGED_OUT_MESSAGE;
+         */
+
+
         String message = isUserLoggedIn ? LOGGED_IN_MESSAGE : LOGGED_OUT_MESSAGE;
 
         ratingMessage = (TextView) showEventView.findViewById(R.id.rate_event_text);
@@ -395,6 +409,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
     private void setRatingBar()
     {
+        //Setting bar for rate
         ratingBar = (RatingBar) showEventView.findViewById(R.id.ratingBar);
         ratingBar.setVisibility(View.VISIBLE);
 

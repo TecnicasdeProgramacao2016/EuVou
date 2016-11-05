@@ -32,7 +32,7 @@ public class PlaceAdapter extends ArrayAdapter<Place>
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-
+        //Validate method params
         assert(position > 0);
         assert(convertView != null);
         assert(parent != null);
@@ -65,6 +65,13 @@ public class PlaceAdapter extends ArrayAdapter<Place>
 
         final int LengthPlaceName = place.getName().length();
 
+        /*
+        if(LengthPlaceName > 40)
+            viewHolder.placeName.setText(place.getName().substring(0, 39).concat("..."));
+        else
+            viewHolder.placeName.setText(place.getName());
+        */
+        
         viewHolder.placeName.setText(
                 (LengthPlaceName > 40) ? place.getName().substring(0, 39).concat("...") : place.getName());
 

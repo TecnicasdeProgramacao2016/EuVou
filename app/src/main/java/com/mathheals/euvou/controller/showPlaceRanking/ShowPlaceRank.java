@@ -52,7 +52,10 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
                              Bundle savedInstanceState)
     {
         View view = (View) inflater.inflate(R.layout.fragment_show_place_rank, container, false);
+
         assert (view != null);
+
+
         // Inflate the layout for this fragment
         listView = (ListView) view.findViewById(R.id.listViewPlacesTotall);
         listView.setOnItemClickListener(this);
@@ -82,8 +85,9 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
                 assert (idPlace <  0);
 
                 String namePlace = result.getJSONObject("" + i).getString("namePlace");
-                Place aux = new Place(idPlace,
-                        namePlace,
+
+                //Adding info into a place for place Rank
+                Place aux = new Place(idPlace, namePlace,
                         result.getJSONObject("" + i).getString("evaluate"),
                         result.getJSONObject("" + i).getString("longitude"),
                         result.getJSONObject("" + i).getString("latitude"),
@@ -101,13 +105,11 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         {
             exception.printStackTrace();
             Log.d("ShowPlaceRank", "JSONException");
-        }
-        catch(PlaceException exception)
+        }catch(PlaceException exception)
         {
             exception.printStackTrace();
             Log.d("ShowPlaceRank", "PlaceException");
-        }
-        catch (ParseException exception)
+        }catch (ParseException exception)
         {
             exception.printStackTrace();
             Log.d("ShowPlaceRank", "ParseException");
@@ -151,8 +153,11 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     //Present information about an event
     private void startShowInfoActivity(int id)
     {
+
         Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
         assert(intent != null);
+
+        //Present info about place
         intent.putExtras(getPlaceInfoAsBundle(id));
         startActivity(intent);
 
@@ -165,6 +170,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
         assert(id < 0);
 
+        //Fill it up a list
         result = new PlaceDAO(getActivity()).searchAllPlaces();
         assert(result != null);
 
@@ -183,6 +189,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         Bundle placeInfo = (Bundle) new Bundle();
         Toast.makeText(getActivity(),"" + id,Toast.LENGTH_LONG);
 
+        //Inserting info about places
         placeInfo.putString("name", places.get(id).getName());
         placeInfo.putString("phone", places.get(id).getPhone());
         placeInfo.putString("address", places.get(id).getAddress());

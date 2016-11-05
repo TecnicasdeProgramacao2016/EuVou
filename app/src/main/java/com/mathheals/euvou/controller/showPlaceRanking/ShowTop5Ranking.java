@@ -110,6 +110,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         {
             int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
 
+            //Setting top 5 places to search to JSON
             JSONObject result =(JSONObject) new PlaceDAO(getActivity()).searchTop5Places();
             assert(result != null);
 
@@ -119,11 +120,13 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
             final int findResultsLenght = result.length();
             for (int i = 0; i < findResultsLenght; i++)
             {
-                int idPlace = result.getJSONObject("" + i).getInt("idPlace"); // id must be greater than zero
+                // id must be greater than zero
+                int idPlace = result.getJSONObject("" + i).getInt("idPlace");
 
                 assert(idPlace > 0);
 
-                String namePlace = result.getJSONObject("" + i).getString("namePlace"); // Setting a name place
+                //Setting place name
+                String namePlace = result.getJSONObject("" + i).getString("namePlace");
                 Place aux = new Place(idPlace,
                         namePlace,
                         result.getJSONObject("" + i).getString("evaluate"),
@@ -166,7 +169,8 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         Intent intent = (Intent) new Intent(getActivity(), ShowPlaceInfo.class);
         assert(intent != null);
 
-        intent.putExtras(getPlaceInfoAsBundle(id));// Present info in extra options
+        // Present info in extra options
+        intent.putExtras(getPlaceInfoAsBundle(id));
         startActivity(intent);
 
         Log.d("ShowTop5Ranking", "Show info has been inserted");
@@ -182,6 +186,7 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
 
         Toast.makeText(getActivity(), "" + id, Toast.LENGTH_LONG);
 
+        //Inserting info into place info
         placeInfo.putString("name", places.get(id).getName());
         placeInfo.putString("phone", places.get(id).getPhone());
         placeInfo.putString("address", places.get(id).getAddress());
