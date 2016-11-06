@@ -29,7 +29,8 @@ public class UserDAOTest extends TestCase
     {
             UserDAO userDAO = new UserDAO();
             User user;
-            user = new User("marceloChavosaao","marceloChavosaao","marceloChavosao@euvou.com","marceloChavosao@euvou.com","123456","123456","11/09/2015");
+            user = new User("marceloChavosaao","marceloChavosaao","marceloChavosao@euvou.com",
+                            "marceloChavosao@euvou.com","123456","123456","11/09/2015");
             if(user == null)
             {
                 throw new UserException("Usuário nulo");
@@ -132,8 +133,8 @@ public class UserDAOTest extends TestCase
     public void testDisableLogin() throws ParseException, UserException, JSONException
     {
         UserDAO userDAO = new UserDAO();
-        User user = new User(1,"Vinicius Pinheiro", "umteste", "14/02/1995", "viny-pinheiro@hotmail.com",
-                "viny-pinheiro@hotmail.com", "123456", "123456");
+        User user = new User(1,"Vinicius Pinheiro", "umteste", "14/02/1995",
+                             "viny-pinheiro@hotmail.com", "viny-pinheiro@hotmail.com", "123456", "123456");
 
         if(user == null)
         {

@@ -128,8 +128,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //do the operation if username and password are valids
 
         checkIfUsernameAndPasswordAreValid(isUsernameValid, isPasswordValid, typedUsername);
-        checkIfUsernameAndloginValidationAreTrue(isUsernameValid, isPasswordValid, typedUsername, loginValidation, typedPassword, passwordField, usernameField);
-        checkIfUsernameAndloginValidationAreFalse(isUsernameValid, isPasswordValid, typedUsername, loginValidation, typedPassword, passwordField, usernameField);
+        checkIfUsernameAndloginValidationAreTrue(isUsernameValid, isPasswordValid,
+                                                 typedUsername, typedPassword,
+                                                 passwordField, usernameField,
+                                                 loginValidation);
+        checkIfUsernameAndloginValidationAreFalse(isUsernameValid, isPasswordValid,
+                                                 typedUsername, typedPassword,
+                                                 passwordField, usernameField,
+                                                 loginValidation);
 
     }
 
@@ -162,9 +168,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // do the operation if username and login validation are valids
     public void checkIfUsernameAndloginValidationAreTrue (boolean isUsernameValid, boolean isPasswordValid,
-                                                    String typedUsername, LoginValidation loginValidation,
-                                                    String typedPassword, EditText passwordField,
-                                                    EditText usernameField)
+                                                          String typedUsername, String typedPassword,
+                                                          EditText passwordField, EditText usernameField,
+                                                          LoginValidation loginValidation)
     {
         if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
         {
@@ -190,10 +196,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // show message when username and login validation are false
 
-    public static void checkIfUsernameAndloginValidationAreFalse (boolean isUsernameValid, boolean isPasswordValid,
-                                                                  String typedUsername, LoginValidation loginValidation,
-                                                                  String typedPassword, EditText passwordField,
-                                                                  EditText usernameField)
+    public static void checkIfUsernameAndloginValidationAreFalse(boolean isUsernameValid, boolean isPasswordValid,
+                                                                 String typedUsername, String typedPassword,
+                                                                 EditText passwordField, EditText usernameField,
+                                                                 LoginValidation loginValidation)
     {
         if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
         {

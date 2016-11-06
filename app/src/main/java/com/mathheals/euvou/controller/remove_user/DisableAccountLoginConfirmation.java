@@ -124,7 +124,10 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
 
         //check if username is valid to login
 
-        isUsernameValid = checkIfUserNameIsValid (isUsernameValid, typedUsername, typedPassword, loginValidation, passwordField, usernameField);
+        isUsernameValid = checkIfUserNameIsValid (isUsernameValid,
+                                                  typedUsername, typedPassword,
+                                                  passwordField, usernameField,
+                                                  loginValidation);
 
         if (isUsernameValid)
         {
@@ -135,8 +138,10 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
         }
     }
 
-    public boolean checkIfUserNameIsValid (boolean isUsernameValid, String typedUsername, String typedPassword,
-                                           LoginValidation loginValidation, EditText passwordField, EditText usernameField)
+    public boolean checkIfUserNameIsValid (boolean isUsernameValid,
+                                           String typedUsername, String typedPassword,
+                                           EditText passwordField, EditText usernameField,
+                                           LoginValidation loginValidation)
     {
         if(isUsernameValid==true)
         {
