@@ -33,8 +33,14 @@ public class UserEvaluationTest extends TestCase
         }
 
         assertTrue(isUserEvaluationValid);
+        finalizeUserEvaluation(isUserEvaluationValid);
+
+
 
     }
+
+
+
 
     public void testUserEvaluationWithInvalidUserId() 
     {
@@ -50,6 +56,7 @@ public class UserEvaluationTest extends TestCase
         }
 
         assertFalse(isUserEvaluationValid);
+        finalizeUserEvaluation(isUserEvaluationValid);
 
     }
 
@@ -67,6 +74,7 @@ public class UserEvaluationTest extends TestCase
         }
 
         assertFalse(isUserEvaluationValid);
+        finalizeUserEvaluation(isUserEvaluationValid);
 
     }
 
@@ -84,6 +92,7 @@ public class UserEvaluationTest extends TestCase
         }
 
         assertFalse(isUserEvaluationValid);
+        finalizeUserEvaluation(isUserEvaluationValid);
 
     }
 
@@ -101,6 +110,11 @@ public class UserEvaluationTest extends TestCase
         }
 
         assertFalse(isUserEvaluationValid);
+        finalizeUserEvaluation(isUserEvaluationValid);
+    }
+
+    private void finalizeUserEvaluation(boolean isUserEvaluationValid) {
+        this.userEvaluation = null;
     }
 
 }

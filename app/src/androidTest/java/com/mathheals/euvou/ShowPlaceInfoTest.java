@@ -141,6 +141,7 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
             result = false;
         }
         assertTrue(result);
+        finalize(result);
     }
 
     private void clickOnTodosPlaceCategory() {
@@ -173,5 +174,11 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
     public void setIsUserLoggedIn(boolean isUserLoggedIn) 
     {
         this.isUserLoggedIn = isUserLoggedIn;
+    }
+
+
+    private void finalize(boolean result)
+    {
+        result = Boolean.parseBoolean(null);
     }
 }

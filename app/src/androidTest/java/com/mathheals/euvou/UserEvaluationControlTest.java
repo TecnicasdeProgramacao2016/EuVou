@@ -111,7 +111,6 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
             result = false;
         }
         assertTrue(result);
-
     }
 
     public void searchForUserUsedForTest()

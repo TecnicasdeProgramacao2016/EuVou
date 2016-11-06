@@ -14,108 +14,126 @@ import static junit.framework.Assert.assertEquals;
 public class ShowEventTest extends TestCase 
 {
 
+    private EventDAO eventDAO;
+
     public void testEventName()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
-        boolean ok = true;
+        boolean isNameValid = true;
         try
         {
             String nameEventDB = eventData.getJSONObject("0").getString("nameEvent");
             assertEquals("Tes",nameEventDB);
         }catch(JSONException ex)
         {
-            ok = false;
+            isNameValid = false;
         }catch(NullPointerException exception)
         {
-            ok = false;
+            isNameValid = false;
         }
-        assertTrue(ok);
+        assertTrue(isNameValid);
+        finalize(isNameValid);
     }
+
     public void testEventDescription()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
-        boolean ok = true;
+        boolean isDescriptionValid = true;
         try
         {
             String eventDescription = eventData.getJSONObject("0").getString("description");
             assertEquals("evento Teste",eventDescription);
         }catch(JSONException ex)
         {
-            ok = false;
+            isDescriptionValid = false;
         }catch(NullPointerException exception)
         {
-            ok = false;
+            isDescriptionValid = false;
         }
-        assertTrue(ok);
+        assertTrue(isDescriptionValid);
+        finalize(isDescriptionValid);
     }
+
     public void testEventDate()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
-        boolean ok = true;
+        boolean isDateValid = true;
         try
         {
             String eventDateTime = eventData.getJSONObject("0").getString("dateTimeEvent");
             assertEquals("2016-02-29 00:00:00",eventDateTime.toString());
         }catch(JSONException ex)
         {
-            ok = false;
+            isDateValid = false;
         }catch(NullPointerException exception)
         {
-            ok = false;
+            isDateValid = false;
         }
-        assertTrue(ok);
+        assertTrue(isDateValid);
+        finalize(isDateValid);
     }
+
     public void testEventLatitude()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
-        boolean ok = true;
+        boolean isLatitudeValid = true;
         try
         {
             String eventlatitude = eventData.getJSONObject("0").getString("latitude");
             assertEquals(23.342300,Double.parseDouble(eventlatitude));
         }catch(JSONException ex)
         {
-            ok = false;
+            isLatitudeValid = false;
         }catch(NullPointerException exception)
         {
-            ok = false;
+            isLatitudeValid = false;
         }
-        assertTrue(ok);
+        assertTrue(isLatitudeValid);
+        finalize(isLatitudeValid);
     }
+
     public void testEventLongitude()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
-        boolean ok = true;
+        boolean isEventLongitude = true;
         try
         {
             String eventlongitude = eventData.getJSONObject("0").getString("longitude");
             assertEquals(12.121300,Double.parseDouble(eventlongitude));
         }catch(JSONException ex)
         {
-            ok = false;
+            isEventLongitude = false;
         }catch(NullPointerException exception)
         {
-            ok = false;
+            isEventLongitude = false;
         }
-        assertTrue(ok);
+        assertTrue(isEventLongitude);
+        finalize(isEventLongitude);
     }
+
     public void testEventPrice()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(1);
-        boolean ok = true;
+        boolean isPriceValid = true;
         try{
             String eventPrice = eventData.getJSONObject("0").getString("price");
             assertEquals(10010,Integer.parseInt(eventPrice));
         }catch(JSONException ex)
         {
-            ok = false;
+            isPriceValid = false;
         }
-        assertTrue(ok);
+        assertTrue(isPriceValid);
+        finalize(isPriceValid);
+    }
+
+    private void finalize(boolean isValid)
+    {
+        this.eventDAO = null;
     }
 }
