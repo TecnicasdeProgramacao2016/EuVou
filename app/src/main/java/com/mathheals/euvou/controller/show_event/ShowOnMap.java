@@ -87,7 +87,7 @@ public class ShowOnMap extends FragmentActivity
             Log.d("ShowOnMap", "Map is null");
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
+                     .getMap();
             assert(mMap != null);
 
             // Check if we were successful in obtaining the map.
@@ -108,8 +108,8 @@ public class ShowOnMap extends FragmentActivity
     //Set a map with latitude and logitude
     private void setUpMap()
     {
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(latitude, longitude), 9));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                         (new LatLng(latitude, longitude), 9));
 
         //Getting extra info
         setFilter(getIntent().getStringExtra("query"));

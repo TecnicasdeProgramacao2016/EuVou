@@ -53,7 +53,8 @@ public class PlaceAdapter extends ArrayAdapter<Place>
             viewHolder = new ViewHolder();
             assert(viewHolder != null);
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_show_place_rank, parent, false); // Convert view to layout that is requested
+            // Convert view to layout that is requested
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_show_place_rank, parent, false);
 
             viewHolder.placeName = (TextView) convertView.findViewById(R.id.placeName);
             viewHolder.placeEvaluation = (TextView) convertView.findViewById(R.id.placeEvaluation);
@@ -73,7 +74,8 @@ public class PlaceAdapter extends ArrayAdapter<Place>
         */
         
         viewHolder.placeName.setText(
-                (LengthPlaceName > 40) ? place.getName().substring(0, 39).concat("...") : place.getName());
+                (LengthPlaceName > 40) ? place.getName()
+                        .substring(0, 39).concat("...") : place.getName());
 
         viewHolder.placeEvaluation.setText(place.getEvaluate().toString());
 

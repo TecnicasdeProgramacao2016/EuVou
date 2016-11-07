@@ -86,9 +86,12 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
         eventDAO = new EventDAO(this.getActivity());
         eventId = this.getArguments().getString("id");
-        JSONObject eventDATA = (JSONObject) eventDAO.searchEventById(Integer.parseInt(eventId)); // create a JSON for event content
 
-        setUserId(new LoginUtility(getActivity()).getUserId()); // userId must be greater than zero
+        // create a JSON for event content
+        JSONObject eventDATA = (JSONObject) eventDAO.searchEventById(Integer.parseInt(eventId));
+
+        // userId must be greater than zero
+        setUserId(new LoginUtility(getActivity()).getUserId());
 
         if(userId == LOGGED_OUT)
         {
@@ -177,9 +180,9 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         }catch (EventEvaluationException exception)
         {
 
-            if(     exception.getMessage() == EventEvaluation.EVALUATION_IS_INVALID ||
-                    exception.getMessage() == EventEvaluation.EVENT_ID_IS_INVALID ||
-                    exception.getMessage() == EventEvaluation.USER_ID_IS_INVALID )
+            if( exception.getMessage() == EventEvaluation.EVALUATION_IS_INVALID ||
+                exception.getMessage() == EventEvaluation.EVENT_ID_IS_INVALID ||
+                exception.getMessage() == EventEvaluation.USER_ID_IS_INVALID )
             {
                 Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -227,7 +230,8 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     }
 
     /**
-     *
+     * Method: public EventEvaluation getEventEvaluation()
+     * Description:
      * @param view
      */
     public void onClick(View view)
@@ -255,7 +259,6 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
      */
     public void setShowEventView(View showEventView)
     {
-
         this.showEventView = showEventView;
     }
 
@@ -266,7 +269,6 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     // private int userId;
     public void setUserId(int userId)
     {
-
         this.userId = userId; // userId must be greater than zero
     }
 
@@ -306,7 +308,9 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         final String FIRST_COLUMN = "0";
 
         EventCategoryDAO eventCategoryDAO = (EventCategoryDAO) new EventCategoryDAO(getActivity());
-        JSONObject eventCategoryJSON = (JSONObject) eventCategoryDAO.searchCategoriesByEventId(eventId); // Create a JSON for event category
+
+        // Create a JSON for event category
+        JSONObject eventCategoryJSON = (JSONObject) eventCategoryDAO.searchCategoriesByEventId(eventId);
         CategoryDAO categoryDAO = (CategoryDAO) new CategoryDAO(getActivity());
 
 
@@ -319,10 +323,12 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         {
             try
             {
-                int categoryId = eventCategoryJSON.getJSONObject(Integer.toString(i)).getInt(ID_CATEGORY); // CategoryId must be greater than one
+                // CategoryId must be greater than one
+                int categoryId = eventCategoryJSON.getJSONObject(Integer.toString(i)).getInt(ID_CATEGORY);
 
+                // Insert a catergory name from JSON
                 JSONObject categoryJSON = (JSONObject) categoryDAO.searchCategoryById(categoryId);
-                String categoryName = categoryJSON.getJSONObject(FIRST_COLUMN).getString(NAME_CATEGORY); // Insert a catergory name from JSON
+                String categoryName = categoryJSON.getJSONObject(FIRST_COLUMN).getString(NAME_CATEGORY);
                 categories.add(categoryName);
             }catch (JSONException exception)
             {
@@ -383,17 +389,16 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         final String LOGGED_IN_MESSAGE = "Sua avaliação:";
         final String LOGGED_OUT_MESSAGE = "Faça login para avaliar este evento!";
 
-        /*
-         String message = " ";
 
-         if(message.Equals(LOGGED_IN_MESSAGE))
-            message =
+         String message = "";
+
+         if(isUserLoggedIn)
+            message = LOGGED_IN_MESSAGE;
          else
             message = LOGGED_OUT_MESSAGE;
-         */
 
 
-        String message = isUserLoggedIn ? LOGGED_IN_MESSAGE : LOGGED_OUT_MESSAGE;
+        //String message = isUserLoggedIn ? LOGGED_IN_MESSAGE : LOGGED_OUT_MESSAGE;
 
         ratingMessage = (TextView) showEventView.findViewById(R.id.rate_event_text);
         ratingMessage.setText(message);
