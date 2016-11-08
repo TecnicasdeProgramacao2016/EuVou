@@ -59,6 +59,11 @@ public class ShowUser extends android.support.v4.app.Fragment {
     {
         //Sets User's values
         setShowUserView(inflater.inflate(R.layout.show_user, container, false));
+
+        //Tests User's Id
+        if(currentUserId < 0)
+            Log.d("ShowUser", "Invalid User ID");
+
         setCurrentUserId(new LoginUtility(getActivity()).getUserId());
         setIsUserLoggedIn(currentUserId != LOGGED_OUT);
         setRatingMessage(isUserLoggedIn);

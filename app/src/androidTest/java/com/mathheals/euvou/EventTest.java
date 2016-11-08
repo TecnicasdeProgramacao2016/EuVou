@@ -32,6 +32,10 @@ public class EventTest extends TestCase
             {
                 throw new EventException("Evento nulo");
             }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
+            }
             else
             {
                 //NOTHINHG TO DO
@@ -47,7 +51,6 @@ public class EventTest extends TestCase
         }
 
         assertFalse(ok);
-        finilize(categories);
     }
 
     //Test if event's category is empty
@@ -64,6 +67,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -98,6 +105,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -135,6 +146,10 @@ public class EventTest extends TestCase
             {
                 throw new EventException("Evento nulo");
             }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
+            }
             else
             {
                 //NOTHINHG TO DO
@@ -168,6 +183,10 @@ public class EventTest extends TestCase
             {
                 throw new EventException("Evento nulo");
             }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
+            }
             else
             {
                 //NOTHINHG TO DO
@@ -200,6 +219,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -236,6 +259,10 @@ public class EventTest extends TestCase
             {
                 throw new EventException("Evento nulo");
             }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
+            }
             else
             {
                 //NOTHINHG TO DO
@@ -268,6 +295,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {

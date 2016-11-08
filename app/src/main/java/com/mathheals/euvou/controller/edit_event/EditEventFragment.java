@@ -239,6 +239,10 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
         //Sets date and hour
         this.dateField.setText(dateEvent);
+        if(Integer.parseInt(hourEvent) < 0 || Integer.parseInt(hourEvent) > 24)
+        {
+            Log.d("EditEventFragment", "Invalid Time");
+        }
         this.hourField.setText(hourEvent);
 
         Log.d("EditEventFragment", "Date sucessfuly formated");
