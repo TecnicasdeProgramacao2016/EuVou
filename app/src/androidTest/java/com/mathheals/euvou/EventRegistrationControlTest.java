@@ -89,9 +89,15 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
 
         final String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";
 
+        //On view method displays a message or and object to the user, is this case, the text
         onView(withText(SUCESSFULL_CHOICE_MESSAGE))
+                /*checks back-end to see if the decorView, or decoration view, gets user's
+                  activities (if clicks or rolls the page) */
                 .inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView()))))
+                //checks if content is displayed
                 .check(matches(isDisplayed()));
+
+
 
         finilizeObject(SUCESSFULL_CHOICE_MESSAGE);
     }
@@ -167,7 +173,10 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
             interruptedException.printStackTrace();
         }
 
-        onView(withId(R.id.eventAddress)).check(matches(hasErrorText(event.ADDRESS_IS_EMPTY)));
+        //Gets event that os shown on view
+        onView(withId(R.id.eventAddress))
+                //Compares the event show if it's empty
+                .check(matches(hasErrorText(event.ADDRESS_IS_EMPTY)));
     }
 
     //Test if registred event is funcional

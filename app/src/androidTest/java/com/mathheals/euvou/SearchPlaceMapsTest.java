@@ -49,10 +49,16 @@ public class SearchPlaceMapsTest extends ActivityInstrumentationTestCase2<HomePa
     //Test if first option is valid
     public void testSelectOption0()
     {
-        onView(withContentDescription("Navigate up")).perform(click());
+        final String content = "Navigate up";
 
+        //Gets view button to execute an action
+        onView(withContentDescription(content)).perform(click());
+
+        //Acess database and puts some content
         onData(hasToString(containsString("")))
+                //Displays this option in a select field
                 .inAdapterView(withId(R.id.left_drawer_list)).atPosition(0)
+                //Clicks and selects this filed
                 .perform(click());
 
         onView(withId(R.id.map)).check(matches(isDisplayed()));

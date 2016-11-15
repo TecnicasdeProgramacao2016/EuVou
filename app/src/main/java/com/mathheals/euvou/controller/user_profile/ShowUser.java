@@ -83,10 +83,14 @@ public class ShowUser extends android.support.v4.app.Fragment {
     {
         UserDAO userDAO = new UserDAO(getActivity());
         JSONObject userData = null;
+        Integer userEvaluatedIdInteger;
 
         try
         {
-            userData = new JSONObject(userDAO.searchUserById(Integer.parseInt(userEvaluatedId)));
+            userEvaluatedIdInteger = Integer.parseInt(userEvaluatedId);
+            //Using database searchs user's event evaluation
+            userData = new JSONObject(userDAO.searchUserById(userEvaluatedIdInteger));
+
         } catch (JSONException jsonException)
         {
             jsonException.printStackTrace();

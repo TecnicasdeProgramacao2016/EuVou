@@ -159,13 +159,23 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         try {
             Vector <Integer> idCategories = new Vector<>();
             String idCategory;
+            String counterString;
+            final String ID_CATEGORY = "idCategory";
+            JSONObject vector;
 
             /*
              * As known, events can have many categories, this structure get all chosed
              * options and save then ad idCategories
              */
             for (int counter = 0; counter < jsonEventCategory.length(); counter++) {
-                idCategory = jsonEventCategory.getJSONObject(Integer.toString(counter)).getString("idCategory");
+
+                //Parses Counter do String
+                counterString = Integer.toString(counter);
+                //Get Categories from DataBase
+                vector = jsonEventCategory.getJSONObject(counterString);
+                //Get Categorie ID
+                idCategory = vector.getString(ID_CATEGORY);
+                //Add id Category to the vector of Categories IDs
                 idCategories.add(Integer.parseInt(idCategory));
             }
 
@@ -603,8 +613,13 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         if(eventDAO.deleteEvent(eventId).contains("Salvo"))
         {
             Toast.makeText(getActivity(), "Deletado com sucesso", Toast.LENGTH_LONG).show();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().
-                    getSupportFragmentManager().beginTransaction();
+
+            //Andoid Suport libary contains a manegment libary for applications
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    /* Get this management libary to rearrange events top five if an event
+                       is deleted */
+                    getActivity().getSupportFragmentManager().beginTransaction();
+
             fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
