@@ -136,6 +136,30 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         onView(withId(R.id.optionTheater)).check(matches(isChecked()));
     }
 
+    //Test if event can be register passing adress bigger than it should
+    public void testEventAdress()
+    {
+        if(!isLoged.hasUserLoggedIn())
+        {
+            setLogin.makeUserLogIn();
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+
+        final int MAXIMUM_EVENT_ADRESS_SIZE = 300;
+        Object event_adress_object = R.id.event_adress_txt;
+        String event_adress_string = event_adress_object.toString();
+        int event_adress_size = Integer.parseInt(event_adress_string);
+        if(event_adress_size > MAXIMUM_EVENT_ADRESS_SIZE)
+        {
+            assertTrue(false); //Stop the program, this error can cause security problems.
+        }
+
+
+    }
+
     //Test if can register a event without and adress
     public void testRegisterEventButtonWithEmptyAddress()
     {

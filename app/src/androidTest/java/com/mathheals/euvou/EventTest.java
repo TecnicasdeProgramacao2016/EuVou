@@ -142,6 +142,13 @@ public class EventTest extends TestCase
                                 "e trenzinho e eu fico no meio", "50.01",
                                 "60.002", categories);
 
+            String event_name = event.getNameEvent();
+            int event_name_size = event_name.length();
+            final int NAME_MAX_SIZE = 30;
+            if(event_name_size > NAME_MAX_SIZE)
+            {
+                assertTrue(false); //Name bigger than allowed can indicate security failure
+            }
             if(event == null)
             {
                 throw new EventException("Evento nulo");

@@ -28,6 +28,14 @@ public class PlaceTest extends TestCase
                     "rua das flores","33613110"); //Object place to be tested
             assertTrue(place.getName().equals("Nome"));
 
+            String place_name = place.getName();
+            int place_name_size = place_name.length();
+            final int NAME_MAX_SIZE = 30;
+            if(place_name_size > NAME_MAX_SIZE)
+            {
+                assertTrue(false); //Name bigger than allowed can indicate security failure
+            }
+
         } catch (PlaceException placeException)
         {
             ok = false;
