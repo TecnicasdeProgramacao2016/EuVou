@@ -82,7 +82,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
             for (int i = 0; i < result.length(); i++)
             {
                 int idPlace = result.getJSONObject("" + i).getInt("idPlace"); // idPlace must be greater than zero
-                assert (idPlace <  0);
+                assert (idPlace >=  0);
 
                 String namePlace = result.getJSONObject("" + i).getString("namePlace");
 
@@ -168,7 +168,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     private void fillList()
     {
         int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
-        assert(id < 0);
+        assert(id >= 0);
 
         //Fill it up a list
         result = new PlaceDAO(getActivity()).searchAllPlaces();
@@ -184,12 +184,21 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
     //Insert information in events
     private Bundle getPlaceInfoAsBundle(int id)
     {
-        assert(id < 0);
+        assert(id >= 0);
 
         Bundle placeInfo = (Bundle) new Bundle();
         Toast.makeText(getActivity(),"" + id,Toast.LENGTH_LONG);
 
-        //Inserting info about places
+        addingPlaceInfoToABundle(placeInfo, id);
+
+        Log.d("ShowPlaceRank", "PlaceInfo has been injected");
+
+        return placeInfo;
+    }
+
+    //Inserting info about places
+    private void addingPlaceInfoToABundle(Bundle placeInfo, int id)
+    {
         placeInfo.putString("name", places.get(id).getName());
         placeInfo.putString("phone", places.get(id).getPhone());
         placeInfo.putString("address", places.get(id).getAddress());
@@ -198,9 +207,5 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         placeInfo.putDouble("longitude", places.get(id).getLongitude());
         placeInfo.putString("operation", places.get(id).getOperation());
         placeInfo.putInt("idPlace", places.get(id).getId());
-
-        Log.d("ShowPlaceRank", "PlaceInfo has been injected");
-
-        return placeInfo;
     }
 }

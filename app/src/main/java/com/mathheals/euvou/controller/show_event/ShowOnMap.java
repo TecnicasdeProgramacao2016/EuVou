@@ -60,6 +60,7 @@ public class ShowOnMap extends FragmentActivity
         setContentView(R.layout.activity_maps);
         Bundle b = this.getIntent().getExtras();
         String[] array = b.getStringArray("LatitudeAndLongitude");
+
         latitude = Double.parseDouble(array[0]);
         longitude = Double.parseDouble(array[1]);
     }
@@ -113,6 +114,7 @@ public class ShowOnMap extends FragmentActivity
 
         //Getting extra info
         setFilter(getIntent().getStringExtra("query"));
+
         addMarkerPlace(latitude,longitude);
 
         Log.d("ShowOnMap", "Map has been setted up");

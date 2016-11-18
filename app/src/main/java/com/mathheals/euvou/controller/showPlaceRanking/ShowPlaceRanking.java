@@ -48,9 +48,7 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
                              Bundle savedInstanceState)
     {
         //Verifying params
-        assert(inflater != null);
-        assert(container != null);
-        assert(savedInstanceState != null);
+        verifyingParamsOnCreateView( inflater, container, savedInstanceState);
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_show_place_ranking, container, false); // inflate a view when it is created
@@ -63,5 +61,16 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
     public ShowPlaceRanking()
     {
         // Required empty public constructor
+    }
+
+
+    // Verify params to method OnCreateView
+    private void verifyingParamsOnCreateView(LayoutInflater inflater, ViewGroup container,
+                                             Bundle savedInstanceState)
+    {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
+
     }
 }

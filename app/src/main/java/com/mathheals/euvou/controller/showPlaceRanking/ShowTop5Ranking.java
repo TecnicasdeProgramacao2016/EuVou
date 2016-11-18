@@ -187,6 +187,17 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         Toast.makeText(getActivity(), "" + id, Toast.LENGTH_LONG);
 
         //Inserting info into place info
+        insertPlaceInfoIntoAsBundle(placeInfo, id);
+
+        Log.d("ShowTop5Ranking", "Inserting info in PlaceInfo");
+
+
+        return placeInfo;
+    }
+
+    //Inserting info into place info in method getPlaceInfoAsBundle
+    private void insertPlaceInfoIntoAsBundle(Bundle placeInfo, int id)
+    {
         placeInfo.putString("name", places.get(id).getName());
         placeInfo.putString("phone", places.get(id).getPhone());
         placeInfo.putString("address", places.get(id).getAddress());
@@ -195,11 +206,6 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         placeInfo.putDouble("longitude", places.get(id).getLongitude());
         placeInfo.putString("operation", places.get(id).getOperation());
         placeInfo.putInt("idPlace", places.get(id).getId());
-
-        Log.d("ShowTop5Ranking", "Inserting info in PlaceInfo");
-
-
-        return placeInfo;
     }
 
 }

@@ -70,9 +70,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        assert(inflater != null);
-        assert(container != null);
-        assert(savedInstanceState != null);
+        verifyParamsToOnCreateView(inflater, container, savedInstanceState);
 
         View view =(View) inflater.inflate(R.layout.fragment_list_events, container, false); // Inflate view when it is created
         assert(view != null);
@@ -138,7 +136,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
         {
             int id = (new LoginUtility(getActivity())).getUserId(); // id must be greater than zero
 
-            assert(id > 0);
+            assert(id >= 0);
 
             events = new EventDAO(getActivity()).searchEventByOwner(id);
 
@@ -210,4 +208,12 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
         return eventName;
     }
 
+    // Function that verify params to method onCreateView
+    private void verifyParamsToOnCreateView(LayoutInflater inflater, ViewGroup container,
+                                            Bundle savedInstanceState)
+    {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
+    }
 }

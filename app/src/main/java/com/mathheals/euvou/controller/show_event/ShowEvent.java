@@ -223,11 +223,12 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
 
         final int CategoriesNumber = eventCategories.length;
 
-        for(int i = 1; i < CategoriesNumber; ++i)
-            text += (", " + eventCategories[i]);
+        text = addSpace(eventCategories ,CategoriesNumber);
 
         eventCategoriesText.setText(text);
     }
+
+
 
     /**
      * Method: public EventEvaluation getEventEvaluation()
@@ -456,5 +457,17 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     private void setRatingBarStyle()
     {
         //NOTHING TO DO
+    }
+
+
+    private String  addSpace(String[] eventCategories ,final int length)
+    {
+        String newEventCategorieName = new String();
+
+        for(int i = 0; i < length; ++i)
+            newEventCategorieName += ", " + eventCategories[i];
+
+        return newEventCategorieName;
+
     }
 }

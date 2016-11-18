@@ -33,10 +33,7 @@ public class PlaceAdapter extends ArrayAdapter<Place>
     public View getView(int position, View convertView, ViewGroup parent)
     {
         //Validate method params
-        assert(position > 0);
-        assert(convertView != null);
-        assert(parent != null);
-
+        verifyParamsToGetView(position, convertView, parent);
 
         Place place = (Place) getItem(position);
         ViewHolder viewHolder;
@@ -64,25 +61,15 @@ public class PlaceAdapter extends ArrayAdapter<Place>
         }
 
 
-        final int LengthPlaceName = place.getName().length();
+        setNameAndEvaluate(place, viewHolder);
 
-        /*
-        if(LengthPlaceName > 40)
-            viewHolder.placeName.setText(place.getName().substring(0, 39).concat("..."));
-        else
-            viewHolder.placeName.setText(place.getName());
-        */
-        
-        viewHolder.placeName.setText(
-                (LengthPlaceName > 40) ? place.getName()
-                        .substring(0, 39).concat("...") : place.getName());
-
-        viewHolder.placeEvaluation.setText(place.getEvaluate().toString());
 
         return convertView;
 
 
     }
+
+
 
     /**
      * Method: public PlaceAdapter(Context context, List<Place> places)
@@ -103,6 +90,33 @@ public class PlaceAdapter extends ArrayAdapter<Place>
         TextView placeName;
         TextView placeEvaluation;
     }
+
+
+    // verify params to method getView
+    private void verifyParamsToGetView(int position, View convertView, ViewGroup parent)
+    {
+
+        assert(position >= 0);
+        assert(convertView != null);
+        assert(parent != null);
+    }
+
+    // Set name and evaluate in getView
+    private void setNameAndEvaluate(Place place, ViewHolder viewHolder)
+    {
+        final int LengthPlaceName = place.getName().length();
+
+
+        if(LengthPlaceName > 40)
+            viewHolder.placeName.setText(place.getName().substring(0, 39).concat("..."));
+        else
+            viewHolder.placeName.setText(place.getName());
+
+        viewHolder.placeEvaluation.setText(place.getEvaluate().toString());
+    }
+
+
+
 
 
 }
