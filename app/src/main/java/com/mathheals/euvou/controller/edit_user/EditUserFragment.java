@@ -24,6 +24,8 @@ import org.json.JSONObject;
 import dao.UserDAO;
 import model.User;
 
+import static junit.framework.Assert.assertTrue;
+
 
 /**
 *Class: EditUserFragment extends Fragment implements View.OnClickListener
@@ -76,6 +78,7 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             String mail = (String)json.getJSONObject("0").getString("email");
             String[] birthDateSplit = birthDate.split("-");
             birthDate = birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];//This information in this line is on Format of date mm/dd/yyyy
+            testIfNameAreValid(nameUser);
             nameField.setText(nameUser);
             birthDateField.setText(birthDate);
             mailField.setText(mail);
@@ -90,6 +93,19 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         update.setOnClickListener(this);
 
         return viewOfEditUser;
+    }
+
+    //Check if name of user are valid to be setted, if are not, there is a problem with data, program must shut down
+    private void testIfNameAreValid(String nameUser){
+        final int userNameMaxLength = 300;
+
+        int nameSize = Integer.parseInt((nameUser));
+
+        if(nameSize > userNameMaxLength)
+        {
+            assertTrue(false); //Stop the program, this error can cause security problems.
+        }
+
     }
 
     private EditAndRegisterUtility editAndRegisterUtility = new EditAndRegisterUtility();

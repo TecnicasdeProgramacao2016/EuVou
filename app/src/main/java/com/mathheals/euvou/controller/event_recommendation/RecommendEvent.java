@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import dao.EventRecommendationDAO;
 import exception.EventException;
 import model.Event;
+import static junit.framework.Assert.assertTrue;
 
 /**
 *Class: public class RecommendEvent extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener
@@ -51,7 +52,7 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
                 final int eventEvaluation = 4;
 
                 Event event = new Event(idEvent, nameEvent, eventEvaluation);
-
+                testEventAdressSize(nameEvent);
                 events.add(event);
             }
         }
@@ -76,6 +77,19 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
 
         listView.setAdapter(eventAdapter);
         finalizeObject(eventAdapter);
+    }
+
+    //Test if event can be register passing name of event bigger than it should
+    public void testEventAdressSize(String nameEvent)
+    {
+        final int MAXIMUM_EVENT_ADRESS_SIZE = 300;
+        int event_adress_size = Integer.parseInt(nameEvent);
+        if(event_adress_size > MAXIMUM_EVENT_ADRESS_SIZE)
+        {
+            assertTrue(false); //Stop the program, this error can cause security problems.
+        }
+
+
     }
 
     private int idUser = 0;

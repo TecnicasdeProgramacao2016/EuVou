@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.mathheals.euvou.R;
 import java.util.List;
 import model.Event;
+import static junit.framework.Assert.assertTrue;
 
 /**
 *Class: public class EventAdapter extends ArrayAdapter<Event>
@@ -62,7 +63,7 @@ public class EventAdapter extends ArrayAdapter<Event>
         {
             event.getNameEvent();
         }
-
+        testSizeName();
         viewHolder.eventEvaluation.setText(event.getEvaluation().toString());
 
         return convertView;
@@ -83,5 +84,23 @@ public class EventAdapter extends ArrayAdapter<Event>
     {
         TextView eventName;
         TextView eventEvaluation;
+    }
+
+
+    //If Name passed with size more than allowed, causes error on program
+    private void testSizeName()
+    {
+        final int eventNameMaxLength = 45;
+
+        Object eventName = R.id.eventName;
+        String eventNameString = eventName.toString();
+
+        int nameSize = Integer.parseInt((eventNameString));
+
+        if(nameSize > eventNameMaxLength)
+        {
+            assertTrue(false); //Stop the program, this error can cause security problems.
+        }
+
     }
 }
