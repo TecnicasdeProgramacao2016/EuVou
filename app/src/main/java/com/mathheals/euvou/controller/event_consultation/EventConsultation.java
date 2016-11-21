@@ -100,7 +100,8 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                         //Find events
                         for(int i = 0; i < eventDATA.length(); ++i)
                         {
-                            eventsFound.add(eventDATA.getJSONObject(new Integer(i).toString()).getString(EVENT_COLUMN));
+                            eventsFound.add(eventDATA.getJSONObject(new Integer(i).toString())
+                                    .getString(EVENT_COLUMN));
                         }
 
                         String[] eventsFoundArray = eventsFound.toArray(new String[eventsFound.size()]);
@@ -134,7 +135,8 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                         //Finds People
                         for(int i = 0; i < peopleDATA.length(); i++)
                         {
-                            peopleFound.add(peopleDATA.getJSONObject(new Integer(i).toString()).getString(NAME_USER_COLUMN));
+                            peopleFound.add(peopleDATA.getJSONObject(new Integer(i).toString())
+                                    .getString(NAME_USER_COLUMN));
                         }
 
                         String[] peopleFoundArray = peopleFound.toArray(new String[peopleFound.size()]);
@@ -214,9 +216,11 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                 final String ID_COLUMN = option=="event" ? "idEvent" : (option=="people" ? "idUser" : "idPlace");
                 try
                 {
-                    final android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    final android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+                            .beginTransaction();
                     //Takes information of event or people and set them on view
-                    idItem = new Integer((option=="event" ? eventDATA : peopleDATA).getJSONObject(Integer.toString(position)).getString(ID_COLUMN));
+                    idItem = new Integer((option=="event" ? eventDATA : peopleDATA)
+                            .getJSONObject(Integer.toString(position)).getString(ID_COLUMN));
                     bundle.putString("id", Integer.toString(idItem));
                     event.setArguments(bundle);
                     user.setArguments(bundle);

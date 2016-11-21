@@ -41,7 +41,8 @@ public class EventAdapter extends ArrayAdapter<Event>
         if(convertView == null)
         {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_recommend_event, parent, false);//This line takes view from recommended event
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout
+                    .fragment_recommend_event, parent, false);//This line takes view from recommended event
             viewHolder.eventName = (TextView) convertView.findViewById(R.id.eventName);
             viewHolder.eventEvaluation = (TextView) convertView.findViewById(R.id.eventEvaluation);
             convertView.setTag(viewHolder);
@@ -54,8 +55,8 @@ public class EventAdapter extends ArrayAdapter<Event>
         //Name length of event bigger than maximun length of name are reduced and finished with ...
         if(event.getNameEvent().length() > eventNameMaxLength)
         {
-            viewHolder.eventName.setText(event.getNameEvent().substring(eventNameMinLenghtPossible, eventNameMaxLengthPossible)
-                                         .concat("..."));
+            viewHolder.eventName.setText(event.getNameEvent().substring(eventNameMinLenghtPossible,
+                    eventNameMaxLengthPossible).concat("..."));
         }
         else
         {

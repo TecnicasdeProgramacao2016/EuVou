@@ -102,7 +102,8 @@ public class RecommendEvent extends android.support.v4.app.Fragment implements A
         }
         else
         {
-            Toast.makeText(getActivity().getBaseContext(), "Sem eventos recomendados!", Toast.LENGTH_LONG).show(); //Quick message with Toast of no recommended events
+            Toast.makeText(getActivity().getBaseContext(), "Sem eventos recomendados!",
+                    Toast.LENGTH_LONG).show(); //Quick message with Toast of no recommended events
         }
         return  viewOfList;
     }
