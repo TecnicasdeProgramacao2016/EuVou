@@ -126,6 +126,15 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
             //NOTHING TO DO
         }
 
+        if (result.length() < 0){
+            throw new PlaceException("Invalid Evaluation");
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+
+
         for (int i = 0; i < result.length(); i++) 
         {
             Place aux;
@@ -145,7 +154,8 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
 
     private void addMarkerPlace() 
     {
-        if(places != null) {
+        if(places != null)
+        {
             for (int i = 0; i < places.size(); ++i) 
             {
                 mMap.addMarker(
@@ -155,7 +165,12 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
                                 .position(new LatLng(places.get(i).getLatitude(), places.get(i).getLongitude())) //create the markers on the map according to the user's preferences
                 );
             }
+        } else
+        {
+         //NOTHING TO DO
         }
+
+
     }
 
     @Override
@@ -174,6 +189,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
 
     private void select(int id)
     {
+        assert(id > 0);
         clickedPlace = places.get(id);
         try 
         {

@@ -39,6 +39,14 @@ public class UserDAOTest extends TestCase
             {
                 //NOTHINHG TO
             }
+
+            if (user.getIdUser()<0)
+            {
+                throw new UserException("Invalid Evaluation");
+            } else {
+                //NOTHING TO DO
+            }
+
             assertTrue(userDAO.save(user).contains("Salvo"));
             userDAO.delete("marceloChavosaao");
     }
@@ -55,6 +63,13 @@ public class UserDAOTest extends TestCase
         else
         {
             //NOTHINHG TO
+        }
+
+        if (user.getIdUser()<0)
+        {
+            throw new UserException("Invalid Evaluation");
+        } else {
+            //NOTHING TO DO
         }
 
         //check if user is saved
@@ -83,6 +98,12 @@ public class UserDAOTest extends TestCase
             //NOTHINHG TO
         }
 
+        if (user.getIdUser()<0)
+        {
+            throw new UserException("Invalid Evaluation");
+        } else {
+            //NOTHING TO DO
+        }
 
         //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
@@ -116,6 +137,13 @@ public class UserDAOTest extends TestCase
             //NOTHINHG TO
         }
 
+        if (user.getIdUser()<0)
+        {
+            throw new UserException("Invalid Evaluation");
+        } else {
+            //NOTHING TO DO
+        }
+
         //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
         {
@@ -143,6 +171,13 @@ public class UserDAOTest extends TestCase
         else
         {
             //NOTHINHG TO
+        }
+
+        if (user.getIdUser()<0)
+        {
+            throw new UserException("Invalid Evaluation");
+        } else {
+            //NOTHING TO DO
         }
 
         //check if user is saved

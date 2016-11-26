@@ -18,15 +18,12 @@ import com.mathheals.euvou.controller.home_page.HomePage;
 import com.mathheals.euvou.controller.utility.LoginUtility;
 
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 
-import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.pressKey;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
@@ -148,18 +145,10 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
     }
 
     private void clickOnTodosPlaceCategory() {
-
-        try
-        {
-            onView(withContentDescription("Navigate up")).perform(click());
-            onData(hasToString(containsString("")))
-                    .inAdapterView(withId(R.id.left_drawer_list)).atPosition(0)
-                    .perform(click());
-        } catch (UiObjectNotFoundException uiObjectNotFoundException)
-        {
-            uiObjectNotFoundException.printStackTrace();
-        }
-
+        onView(withContentDescription("Navigate up")).perform(click());
+        onData(hasToString(containsString("")))
+                .inAdapterView(withId(R.id.left_drawer_list)).atPosition(0)
+                .perform(click());
     }
 
     private void startShowPlaceInfoForSettedUpPlace() 
