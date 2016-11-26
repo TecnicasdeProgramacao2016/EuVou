@@ -115,12 +115,20 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
 
     public void searchForUserUsedForTest()
     {
-        onView(withId(R.id.search)).perform(click());
-        onView(withId(R.id.radio_people)).perform(click());
-        onView(withId(R.id.search_src_text)).perform(typeText("t"), pressKey(66));
-        onData(hasToString(containsString("Igor Duarte")))
-                .inAdapterView(withId(R.id.events_list)).atPosition(0)
-                .perform(click());
-        closeSoftKeyboard();
+
+        try
+        {
+            onView(withId(R.id.search)).perform(click());
+            onView(withId(R.id.radio_people)).perform(click());
+            onView(withId(R.id.search_src_text)).perform(typeText("t"), pressKey(66));
+            onData(hasToString(containsString("Igor Duarte")))
+                    .inAdapterView(withId(R.id.events_list)).atPosition(0)
+                    .perform(click());
+            closeSoftKeyboard();
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 }
