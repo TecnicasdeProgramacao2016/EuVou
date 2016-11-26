@@ -100,8 +100,9 @@ public class EventConsultation extends AppCompatActivity implements RadioGroup.O
                         //Find events
                         for(int i = 0; i < eventDATA.length(); ++i)
                         {
-                            eventsFound.add(eventDATA.getJSONObject(new Integer(i).toString())
-                                    .getString(EVENT_COLUMN));
+                            String idOfEvent = Integer.toString(i);
+                            String eventInformationBasedOnId = eventDATA.getJSONObject(idOfEvent).getString(EVENT_COLUMN);
+                            eventsFound.add(eventInformationBasedOnId);
                         }
 
                         String[] eventsFoundArray = eventsFound.toArray(new String[eventsFound.size()]);

@@ -73,11 +73,15 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
         try
         {
             //gets info of user and set them
-            String nameUser = (String)json.getJSONObject("0").getString("nameUser");
+            final String nameUser = (String)json.getJSONObject("0").getString("nameUser");
             String birthDate = (String)json.getJSONObject("0").getString("birthDate");
-            String mail = (String)json.getJSONObject("0").getString("email");
-            String[] birthDateSplit = birthDate.split("-");
-            birthDate = birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];//This information in this line is on Format of date mm/dd/yyyy
+            final String mail = (String)json.getJSONObject("0").getString("email");
+            final String[] birthDateSplit = birthDate.split("-");
+            final int fieldZeroOfDate = 0;
+            final int fieldOneOfDate = 1;
+            final int fieldTwoOfDate = 2;
+
+            birthDate = birthDateSplit[fieldTwoOfDate]+"/"+birthDateSplit[fieldOneOfDate]+"/"+birthDateSplit[fieldZeroOfDate];//This information in this line is on Format of date mm/dd/yyyy
             testIfNameAreValid(nameUser);
             nameField.setText(nameUser);
             birthDateField.setText(birthDate);
@@ -89,7 +93,8 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
             exceptionJSON.printStackTrace();
         }
 
-        Button update = (Button)viewOfEditUser.findViewById(R.id.updateButton);
+        final int idToUpdateButton = R.id.updateButton;
+        Button update = (Button)viewOfEditUser.findViewById(idToUpdateButton);
         update.setOnClickListener(this);
 
         return viewOfEditUser;
@@ -99,12 +104,9 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     private void testIfNameAreValid(String nameUser){
         final int userNameMaxLength = 300;
 
-        int nameSize = Integer.parseInt((nameUser));
+        int nameSize = nameUser.length();
 
-        if(nameSize > userNameMaxLength)
-        {
-            assertTrue(false); //Stop the program, this error can cause security problems.
-        }
+        assertTrue(nameSize <= userNameMaxLength);
 
     }
 
@@ -221,13 +223,19 @@ public class EditUserFragment extends Fragment implements View.OnClickListener
     //Sets user data
     private void setingEditText(View viewOfSettingEditText)
     {
-        this.nameField = (EditText) viewOfSettingEditText.findViewById(R.id.nameField);
-        this.birthDateField = (EditText) viewOfSettingEditText.findViewById(R.id.dateField);
-        this.mailField = (EditText) viewOfSettingEditText.findViewById(R.id.mailField);
-        this.passwordField = (EditText) viewOfSettingEditText.findViewById(R.id.passwordField);
-        this.mailConfirmationField = (EditText) viewOfSettingEditText.findViewById(R.id.confirmMailField);
-        this.passwordConfirmField = (EditText) viewOfSettingEditText.findViewById(R.id.confirmPasswordField);
-        this.birthDateField = (EditText) viewOfSettingEditText.findViewById(R.id.dateField);
+        final int IdNameField = R.id.nameField;
+        final int IdDateField = R.id.dateField;
+        final int IdMailField = R.id.mailField;
+        final int IdMailConfirmationField = R.id.confirmMailField;
+        final int IdPasswordField = R.id.passwordField;
+        final int IdPasswordConfirmField = R.id.confirmPasswordField;
+
+        this.nameField = (EditText) viewOfSettingEditText.findViewById(IdNameField);
+        this.mailField = (EditText) viewOfSettingEditText.findViewById(IdMailField);
+        this.passwordField = (EditText) viewOfSettingEditText.findViewById(IdPasswordField);
+        this.mailConfirmationField = (EditText) viewOfSettingEditText.findViewById(IdMailConfirmationField);
+        this.passwordConfirmField = (EditText) viewOfSettingEditText.findViewById(IdPasswordConfirmField);
+        this.birthDateField = (EditText) viewOfSettingEditText.findViewById(IdDateField);
     }
 
     //sets the text typed

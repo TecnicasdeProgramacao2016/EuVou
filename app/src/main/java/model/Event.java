@@ -252,7 +252,8 @@ public class Event
 
             try
             {
-                SimpleDateFormat formatHour = new SimpleDateFormat("hh:mm:ss");
+                String formatOfDate = "hh:mm:ss";
+                SimpleDateFormat formatHour = new SimpleDateFormat(formatOfDate);
                 formatHour.setLenient(false);
                 formatHour.parse(hour);
 
