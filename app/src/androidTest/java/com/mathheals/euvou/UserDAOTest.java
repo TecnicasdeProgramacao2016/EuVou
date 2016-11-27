@@ -51,6 +51,43 @@ public class UserDAOTest extends TestCase
             userDAO.delete("marceloChavosaao");
     }
 
+    public void testDisableLogin() throws ParseException, UserException, JSONException
+    {
+        UserDAO userDAO = new UserDAO();
+        User user = new User(1,"Vinicius Pinheiro", "umteste", "14/02/1995",
+                "viny-pinheiro@hotmail.com", "viny-pinheiro@hotmail.com", "123456", "123456");
+
+        if(user == null)
+        {
+            throw new UserException("Usuário nulo");
+        }
+        else
+        {
+            //NOTHINHG TO
+        }
+
+        if (user.getIdUser()<0)
+        {
+            throw new UserException("Invalid Evaluation");
+        } else {
+            //NOTHING TO DO
+        }
+
+        //check if user is saved
+        if(!userDAO.save(user).contains("Salvo"))
+        {
+            assertTrue(false);
+            userDAO.delete("umteste");
+        } else
+        {
+            //NOTHING TO DO
+        }
+        int id = userDAO.searchUserByUsername("umteste").getJSONObject("0").getInt("idUser");
+        assertTrue(userDAO.disableUser(id).contains("Salvo"));
+        userDAO.delete("umteste");
+
+    }
+
     public void testDeleteByName() throws ParseException, UserException
     {
 
@@ -118,10 +155,7 @@ public class UserDAOTest extends TestCase
         userDAO.delete("viny");
     }
 
-    public void testeSearchUserById()
-    {
-        assertFalse(new UserDAO().searchUserById(3) == null);
-    }
+
 
     public void testUpdateUser() throws ParseException, UserException, JSONException
     {
@@ -158,41 +192,9 @@ public class UserDAOTest extends TestCase
 
     }
 
-    public void testDisableLogin() throws ParseException, UserException, JSONException
+    public void testeSearchUserById()
     {
-        UserDAO userDAO = new UserDAO();
-        User user = new User(1,"Vinicius Pinheiro", "umteste", "14/02/1995",
-                             "viny-pinheiro@hotmail.com", "viny-pinheiro@hotmail.com", "123456", "123456");
-
-        if(user == null)
-        {
-            throw new UserException("Usuário nulo");
-        }
-        else
-        {
-            //NOTHINHG TO
-        }
-
-        if (user.getIdUser()<0)
-        {
-            throw new UserException("Invalid Evaluation");
-        } else {
-            //NOTHING TO DO
-        }
-
-        //check if user is saved
-        if(!userDAO.save(user).contains("Salvo"))
-        {
-            assertTrue(false);
-            userDAO.delete("umteste");
-        } else
-        {
-            //NOTHING TO DO
-        }
-        int id = userDAO.searchUserByUsername("umteste").getJSONObject("0").getInt("idUser");
-        assertTrue(userDAO.disableUser(id).contains("Salvo"));
-        userDAO.delete("umteste");
-
+        assertFalse(new UserDAO().searchUserById(3) == null);
     }
 
 

@@ -49,6 +49,21 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
         isLoged = new LoginUtility(getActivity());
     }
 
+    public void testIfRatingBarIsAvailableForLoggedInUser()
+    {
+        //check if user is logged
+        if(!isLoged.hasUserLoggedIn())
+        {
+            TestUtility.makeUserLogIn();
+        } else
+        {
+            //NOTHING TO DO
+        }
+        searchForUserUsedForTest();
+        onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+
+    }
+
     public void testIfRatingBarIsAvailableForLoggedOutUser() 
     {
         //check if user is logged
@@ -61,21 +76,6 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
         }
         searchForUserUsedForTest();
         onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
-
-    }
-
-    public void testIfRatingBarIsAvailableForLoggedInUser() 
-    {
-        //check if user is logged
-        if(!isLoged.hasUserLoggedIn()) 
-        {
-            TestUtility.makeUserLogIn();
-        } else
-        {
-            //NOTHING TO DO
-        }
-        searchForUserUsedForTest();
-        onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
     }
 

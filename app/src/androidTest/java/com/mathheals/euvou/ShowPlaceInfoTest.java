@@ -70,6 +70,26 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
         onView(withId(R.id.address)).check(matches(isDisplayed()));
     }
 
+    private void startShowPlaceInfoForSettedUpPlace()
+    {
+        clickOnTodosPlaceCategory();
+        try
+        {
+            Thread.sleep(4000);
+        } catch (InterruptedException interruptedException)
+        {
+            interruptedException.printStackTrace();
+        }
+        UiObject marker = device.findObject(new UiSelector().descriptionContains(SELECTED_PLACE_NAME));
+        try
+        {
+            marker.click();
+        } catch (UiObjectNotFoundException interruptedException)
+        {
+            interruptedException.printStackTrace();
+        }
+    }
+
     public void testShowMapForSelectedPlace() 
     {
         startShowPlaceInfoForSettedUpPlace();
@@ -84,6 +104,44 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
         onView(withId(R.id.button_hide_map)).perform(click());
         onView(withId(R.id.fragment_show_place_info_map)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
     }
+
+    public void testIfRatingBarIsAvailableForLoggedInUser()
+    {
+        boolean result;
+
+        //check if user is logged
+        if(isUserLoggedIn)
+        {
+            //NOTHING TO DO
+        } else
+        {
+            TestUtility.makeUserLogIn();
+            isUserLoggedIn = true;
+        }
+        startShowPlaceInfoForSettedUpPlace();
+        try
+        {
+            final int[] ratingNumbersForTest = new int[]{1, 3, 5};
+
+            //inserting test numbers in SetRating
+            for(Integer ratingNumber : ratingNumbersForTest)
+                onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
+            try
+            {
+                Thread.sleep(1000);
+            } catch (InterruptedException interruptedException)
+            {
+                interruptedException.printStackTrace();
+            }
+            result = true;
+        } catch (PerformException performException)
+        {
+            result = false;
+        }
+        assertTrue(result);
+        finalize(result);
+    }
+
 
     public void testIfRatingBarIsAvailableForLoggedOutUser() 
     {
@@ -107,69 +165,16 @@ public class ShowPlaceInfoTest extends ActivityInstrumentationTestCase2<HomePage
         onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
     }
 
-    public void testIfRatingBarIsAvailableForLoggedInUser() 
+
+    private void clickOnTodosPlaceCategory()
     {
-        boolean result;
-
-        //check if user is logged
-        if(isUserLoggedIn)
-        {
-            //NOTHING TO DO
-        } else
-        {
-            TestUtility.makeUserLogIn();
-            isUserLoggedIn = true;
-        }
-        startShowPlaceInfoForSettedUpPlace();
-        try 
-        {
-            final int[] ratingNumbersForTest = new int[]{1, 3, 5};
-
-            //inserting test numbers in SetRating
-            for(Integer ratingNumber : ratingNumbersForTest)
-                onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
-            try 
-            {
-                Thread.sleep(1000);
-            } catch (InterruptedException interruptedException)
-            {
-                interruptedException.printStackTrace();
-            }
-            result = true;
-        } catch (PerformException performException) 
-        {
-            result = false;
-        }
-        assertTrue(result);
-        finalize(result);
-    }
-
-    private void clickOnTodosPlaceCategory() {
         onView(withContentDescription("Navigate up")).perform(click());
         onData(hasToString(containsString("")))
                 .inAdapterView(withId(R.id.left_drawer_list)).atPosition(0)
                 .perform(click());
     }
 
-    private void startShowPlaceInfoForSettedUpPlace() 
-    {
-        clickOnTodosPlaceCategory();
-        try 
-        {
-            Thread.sleep(4000);
-        } catch (InterruptedException interruptedException)
-        {
-            interruptedException.printStackTrace();
-        }
-        UiObject marker = device.findObject(new UiSelector().descriptionContains(SELECTED_PLACE_NAME));
-        try 
-        {
-            marker.click();
-        } catch (UiObjectNotFoundException interruptedException)
-        {
-            interruptedException.printStackTrace();
-        }
-    }
+
 
     public void setIsUserLoggedIn(boolean isUserLoggedIn) 
     {

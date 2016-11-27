@@ -42,6 +42,7 @@ public class ShowPlaceRankingTest extends ActivityInstrumentationTestCase2<HomeP
         onView(withId(R.id.labelRankingPlace)).check(matches(isDisplayed()));
 
     }
+
     public void testIfPlaceRakingIsDisplayed()
     {
         testIfTopFiveIsDisplayed();
