@@ -25,7 +25,8 @@ import model.User;
 
 public class UserDAOTest extends TestCase 
 {
-    public void testSave() throws ParseException, UserException
+
+    public void testShouldSaveAValidUser() throws ParseException, UserException
     {
             UserDAO userDAO = new UserDAO();
             User user;
@@ -51,7 +52,7 @@ public class UserDAOTest extends TestCase
             userDAO.delete("marceloChavosaao");
     }
 
-    public void testDisableLogin() throws ParseException, UserException, JSONException
+    public void testShouldDisableAUserLogin() throws ParseException, UserException, JSONException
     {
         UserDAO userDAO = new UserDAO();
         User user = new User(1,"Vinicius Pinheiro", "umteste", "14/02/1995",
@@ -88,7 +89,7 @@ public class UserDAOTest extends TestCase
 
     }
 
-    public void testDeleteByName() throws ParseException, UserException
+    public void testShouldDeleteUserByName() throws ParseException, UserException
     {
 
         UserDAO userDAO = new UserDAO();
@@ -121,7 +122,7 @@ public class UserDAOTest extends TestCase
     }
 
 
-    public void testDeleteById() throws ParseException, UserException, JSONException
+    public void testShouldDeleteUserById() throws ParseException, UserException, JSONException
     {
 
         UserDAO userDAO = new UserDAO();
@@ -157,7 +158,7 @@ public class UserDAOTest extends TestCase
 
 
 
-    public void testUpdateUser() throws ParseException, UserException, JSONException
+    public void testShouldUpdateUser() throws ParseException, UserException, JSONException
     {
         UserDAO userDAO = new UserDAO();
         User user = new User(1,"Vinicius ppp", "umteste", "14/02/1995", "viny-pinheiro@hotmail.com",

@@ -16,7 +16,7 @@ public class ShowEventTest extends TestCase
 
     private EventDAO eventDAO;
 
-    public void testEventName()
+    public void testIfEventNameIsBeingShown()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
@@ -36,7 +36,7 @@ public class ShowEventTest extends TestCase
         finalize(isNameValid);
     }
 
-    public void testEventDescription()
+    public void testIfEventDescriptionIsBeingShown()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
@@ -56,7 +56,7 @@ public class ShowEventTest extends TestCase
         finalize(isDescriptionValid);
     }
 
-    public void testEventDate()
+    public void testIfEventDateIsBeingShown()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
@@ -76,7 +76,7 @@ public class ShowEventTest extends TestCase
         finalize(isDateValid);
     }
 
-    public void testEventLatitude()
+    public void testIfEventLatitudeIsBeingShown()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
@@ -96,7 +96,7 @@ public class ShowEventTest extends TestCase
         finalize(isLatitudeValid);
     }
 
-    public void testEventLongitude()
+    public void testIfEventLongitudeIsBeingShown()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(2);
@@ -116,7 +116,7 @@ public class ShowEventTest extends TestCase
         finalize(isEventLongitude);
     }
 
-    public void testEventPrice()
+    public void testIfEventPriceIsBeingShown()
     {
         EventDAO eventDAO = new EventDAO();
         JSONObject eventData = (JSONObject) eventDAO.searchEventById(1);
