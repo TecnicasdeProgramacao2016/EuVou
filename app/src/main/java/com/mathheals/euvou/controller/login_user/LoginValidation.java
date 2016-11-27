@@ -115,9 +115,7 @@ public class LoginValidation
         return checkUsernameCharacters(username) && isUsernameRegistred(username);
     }
 
-    private final String JSON_FORMAT = "0";
 
-    private final String PASSWORD_USER = "passwordUser";
 
     public boolean checkPassword(String validUsername, String passwordTyped)
     {
@@ -145,6 +143,12 @@ public class LoginValidation
         }
 
     }
+
+    //Messages for the user
+
+    private final String JSON_FORMAT = "0";
+
+    private final String PASSWORD_USER = "passwordUser";
 
     private final String INVALID_USERNAME_MESSAGE = "Ops, acho que você digitou o login errado";
 

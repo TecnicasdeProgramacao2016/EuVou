@@ -61,12 +61,7 @@ public class LoginUtility
         return Integer.parseInt(jsonObject.getJSONObject("0").getString(COLUMN_USER_ID));
     }
 
-    //declaring important user's information
-    private static final String COLUMN_USER_NAME = "nameUser";
-    private static final String COLUMN_USER_LOGIN = "login";
-    private static final String COLUMN_USER_EMAIL = "email";
-    private static final String COLUMN_USER_PASSWORD = "passwordUser";
-    private static final String COLUMN_USER_BIRTHDATE = "birthDate";
+
 
     public User getUser(String username)
     {
@@ -167,6 +162,13 @@ public class LoginUtility
         String[] birthDateSplit = birthDate.split("-");
         return birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];
     }
+
+    //declaring important user's information
+    private static final String COLUMN_USER_NAME = "nameUser";
+    private static final String COLUMN_USER_LOGIN = "login";
+    private static final String COLUMN_USER_EMAIL = "email";
+    private static final String COLUMN_USER_PASSWORD = "passwordUser";
+    private static final String COLUMN_USER_BIRTHDATE = "birthDate";
 
 }
 

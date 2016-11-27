@@ -134,7 +134,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
             //NOTHING TO DO
         }
 
-
+        //set places information in array
         for (int i = 0; i < result.length(); i++) 
         {
             Place aux;
@@ -156,6 +156,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     {
         if(places != null)
         {
+            //insert the catched information in each marker
             for (int i = 0; i < places.size(); ++i) 
             {
                 mMap.addMarker(

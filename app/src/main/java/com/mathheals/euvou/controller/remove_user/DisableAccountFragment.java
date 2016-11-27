@@ -39,11 +39,14 @@ public class DisableAccountFragment extends android.support.v4.app.Fragment impl
 
         View view = inflater.inflate(R.layout.fragment_disable_account, container, false); // Inflate view when it is created
 
+
+        //Init buttons functions
         Button yesButton = (Button)view.findViewById(R.id.button_yes_id);
         yesButton.setOnClickListener(this);
 
         Button noButton = (Button)view.findViewById(R.id.button_no_id);
         noButton.setOnClickListener(this);
+
 
         return view;
     }
