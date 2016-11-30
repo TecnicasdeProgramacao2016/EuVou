@@ -179,6 +179,8 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
 
         PlaceAdapter placeAdapter = (PlaceAdapter) new PlaceAdapter(getActivity(),places);
         listView.setAdapter(placeAdapter);
+
+
     }
 
     //Insert information in events
@@ -207,5 +209,23 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         placeInfo.putDouble("longitude", places.get(id).getLongitude());
         placeInfo.putString("operation", places.get(id).getOperation());
         placeInfo.putInt("idPlace", places.get(id).getId());
+
+
+        placeInfo.finalize();
     }
+
+
+    protected void finalize() throws Throwable
+    {
+        try
+        {
+            close(); // close open files
+        }finally
+        {
+            super.finalize();
+        }
+    }
+
+    places.finalize();
+
 }

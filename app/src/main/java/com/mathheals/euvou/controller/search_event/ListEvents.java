@@ -216,4 +216,15 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
         assert(container != null);
         assert(savedInstanceState != null);
     }
+
+    protected void finalize() throws Throwable
+    {
+        try
+        {
+            close(); // close open files
+        }finally
+        {
+            super.finalize();
+        }
+    }
 }

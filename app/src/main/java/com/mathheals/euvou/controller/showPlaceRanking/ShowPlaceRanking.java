@@ -73,4 +73,16 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
         assert(savedInstanceState != null);
 
     }
+
+    protected void finalize() throws Throwable
+    {
+        try
+        {
+            close(); // close open files
+        }finally
+        {
+            super.finalize();
+        }
+    }
+
 }

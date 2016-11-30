@@ -133,5 +133,19 @@ public class ShowOnMap extends FragmentActivity
                         .position(new LatLng(latitude, longitude))
         );
         Log.d("ShowOnMap", "Add a marker in a specific location");
+
+        latitude.finalize();
+        longitude.finalize();
+    }
+
+    protected void finalize() throws Throwable
+    {
+        try
+        {
+            close(); // close open files
+        }finally
+        {
+            super.finalize();
+        }
     }
 }

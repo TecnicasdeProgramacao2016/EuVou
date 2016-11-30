@@ -205,6 +205,9 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
         final String CENTS_PART = CENTS.length() > 1 ? CENTS : "0" + CENTS;
         eventPriceText.setText("R$ " + REAIS_PART + "," + CENTS_PART);
 
+        eventPriceText.finalize();
+        eventPriceText.finalize();
+
         return;
     }
 
@@ -216,7 +219,7 @@ public class ShowEvent extends android.support.v4.app.Fragment implements View.O
     public void setCategoriesText(int eventId, TextView eventCategoriesText)
     {
         assert(eventCategoriesText != null);
-        assert(eventId > 0);
+        assert(eventId >= 0);
 
         String[] eventCategories = getEventCategoriesById(eventId);
         String text = eventCategories[0];

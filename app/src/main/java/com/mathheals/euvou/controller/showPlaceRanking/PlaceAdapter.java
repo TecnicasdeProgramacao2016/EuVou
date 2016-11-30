@@ -63,10 +63,7 @@ public class PlaceAdapter extends ArrayAdapter<Place>
 
         setNameAndEvaluate(place, viewHolder);
 
-
         return convertView;
-
-
     }
 
 
@@ -89,6 +86,9 @@ public class PlaceAdapter extends ArrayAdapter<Place>
     {
         TextView placeName;
         TextView placeEvaluation;
+
+        placeName.finalize();
+        placeEvaluation.finalize();
     }
 
 
@@ -106,17 +106,25 @@ public class PlaceAdapter extends ArrayAdapter<Place>
     {
         final int LengthPlaceName = place.getName().length();
 
-
         if(LengthPlaceName > 40)
             viewHolder.placeName.setText(place.getName().substring(0, 39).concat("..."));
         else
             viewHolder.placeName.setText(place.getName());
 
         viewHolder.placeEvaluation.setText(place.getEvaluate().toString());
+
+        place.finalize();
     }
 
-
-
-
+    protected void finalize() throws Throwable
+    {
+        try
+        {
+            close(); // close open files
+        }finally
+        {
+            super.finalize();
+        }
+    }
 
 }
