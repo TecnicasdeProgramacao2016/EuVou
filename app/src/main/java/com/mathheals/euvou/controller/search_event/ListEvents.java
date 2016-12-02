@@ -130,7 +130,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
 
 
     //Add event to event list
-    private void populaList()
+    private void populaList()gl
     {
         try
         {
