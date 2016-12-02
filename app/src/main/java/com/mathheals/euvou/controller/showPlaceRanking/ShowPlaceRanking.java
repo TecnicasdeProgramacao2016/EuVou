@@ -74,6 +74,7 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
 
     }
 
+    /*
     protected void finalize() throws Throwable
     {
         try
@@ -84,5 +85,6 @@ public class ShowPlaceRanking extends android.support.v4.app.Fragment
             super.finalize();
         }
     }
+    */
 
 }

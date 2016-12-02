@@ -211,9 +211,10 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         placeInfo.putInt("idPlace", places.get(id).getId());
 
 
-        placeInfo.finalize();
+        //placeInfo.finalize();
     }
 
+    /*
 
     protected void finalize() throws Throwable
     {
@@ -226,6 +227,7 @@ public class ShowPlaceRank extends android.support.v4.app.Fragment implements Ad
         }
     }
 
-    places.finalize();
+    */
+  //  places.finalize();
 
 }

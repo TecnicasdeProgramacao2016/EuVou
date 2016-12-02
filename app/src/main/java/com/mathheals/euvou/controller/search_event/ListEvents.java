@@ -217,6 +217,7 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
         assert(savedInstanceState != null);
     }
 
+    /*
     protected void finalize() throws Throwable
     {
         try
@@ -227,4 +228,5 @@ public class ListEvents extends android.support.v4.app.Fragment implements Adapt
             super.finalize();
         }
     }
+    */
 }

@@ -134,10 +134,11 @@ public class ShowOnMap extends FragmentActivity
         );
         Log.d("ShowOnMap", "Add a marker in a specific location");
 
-        latitude.finalize();
-        longitude.finalize();
+        //latitude.finalize();
+        //longitude.finalize();
     }
 
+    /*
     protected void finalize() throws Throwable
     {
         try
@@ -148,4 +149,5 @@ public class ShowOnMap extends FragmentActivity
             super.finalize();
         }
     }
+    */
 }

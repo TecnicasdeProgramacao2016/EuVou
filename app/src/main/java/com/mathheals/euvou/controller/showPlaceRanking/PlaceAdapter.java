@@ -87,8 +87,8 @@ public class PlaceAdapter extends ArrayAdapter<Place>
         TextView placeName;
         TextView placeEvaluation;
 
-        placeName.finalize();
-        placeEvaluation.finalize();
+        //placeName.finalize();
+        //placeEvaluation.finalize();
     }
 
 
@@ -113,9 +113,10 @@ public class PlaceAdapter extends ArrayAdapter<Place>
 
         viewHolder.placeEvaluation.setText(place.getEvaluate().toString());
 
-        place.finalize();
+        //place.finalize();
     }
 
+    /*
     protected void finalize() throws Throwable
     {
         try
@@ -126,5 +127,6 @@ public class PlaceAdapter extends ArrayAdapter<Place>
             super.finalize();
         }
     }
+    */
 
 }

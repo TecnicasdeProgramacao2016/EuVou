@@ -77,9 +77,9 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
 
         Log.d("ShowTop5Ranking", "The view has been setted");
 
-        container.finalize();
-        inflater.finalize();
-        savedInstanceState.finalize();
+        //container.finalize();
+        //inflater.finalize();
+        //savedInstanceState.finalize();
 
         return  view;
     }
@@ -211,9 +211,10 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
         placeInfo.putString("operation", places.get(id).getOperation());
         placeInfo.putInt("idPlace", places.get(id).getId());
 
-        placeInfo.finalize();
+        //placeInfo.finalize();
     }
 
+    /*
     protected void finalize() throws Throwable
     {
         try
@@ -224,5 +225,6 @@ public class ShowTop5Ranking extends android.support.v4.app.Fragment implements 
             super.finalize();
         }
     }
+    */
 
 }

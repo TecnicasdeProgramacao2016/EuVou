@@ -77,9 +77,9 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
 
         Log.d("ShowTop5Rank", "The view has been inflated");
 
-        inflater.finalize();
-        container.finalize();
-        savedInstanceState.finalize();
+        //inflater.finalize();
+        //container.finalize();
+        //savedInstanceState.finalize();
 
         return view;
     }
@@ -102,9 +102,10 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
 
         Log.d("ShowTop5Rank", "Action to click is commited");
 
-        v.finalize();
+        //v.finalize();
     }
 
+    /*
     protected void finalize() throws Throwable
     {
         try
@@ -115,4 +116,5 @@ public class ShowTop5Rank extends android.support.v4.app.Fragment implements OnC
             super.finalize();
         }
     }
+    */
 }
