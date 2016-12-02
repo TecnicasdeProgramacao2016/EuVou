@@ -17,7 +17,7 @@ import model.EventEvaluation;
 
 public class EventEvaluationDAO extends DAO
 {
-    private  final  static Logger logger = Logger.getLogger(EventEvaluationDAO.class.getName());
+    private  final  static Logger logger = Logger.getLogger(EventEvaluationDAO.class.getName()); //atribute to use loggin system
     public EventEvaluationDAO()
     {
 
@@ -51,7 +51,7 @@ public class EventEvaluationDAO extends DAO
         executeQuery(QUERY);
     }
 
-    public JSONObject searchEventEvaluation(int eventId, int userId)
+    public JSONObject searchEventEvaluation(final int eventId, final int userId)
     {
         assert( eventId > 0);
         assert( userId > 0);

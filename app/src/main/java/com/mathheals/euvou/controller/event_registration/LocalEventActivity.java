@@ -20,7 +20,7 @@ import com.mathheals.euvou.R;
 public class LocalEventActivity extends FragmentActivity implements GoogleMap.OnMapClickListener
 {
 
-    private GoogleMap mMap = null;
+    private GoogleMap mMap = null; //instance of the maps and it might be null
 
     /**
      * main method of an Activity on Android, it creates the Activity.

@@ -17,7 +17,7 @@ import model.Evaluation;
 
 public class EvaluatePlaceDAO extends DAO
 {
-    private final static Logger logger = Logger.getLogger(EvaluatePlaceDAO.class.getName());
+    private final static Logger logger = Logger.getLogger(EvaluatePlaceDAO.class.getName()); //atribute to use loggin system
     public EvaluatePlaceDAO()
     {
 
@@ -41,7 +41,8 @@ public class EvaluatePlaceDAO extends DAO
                 evaluation.getIdPlace() + "\" " +
                 "AND idUser = \"" + evaluation.getIdUser() + "\"");
 
-        if(findEvaluation==null)
+        //verification of the result of the database
+        if(findEvaluation == null)
         {
             QUERY = "INSERT INTO evaluate_place(grade, idUser, idPlace) VALUES (\"" + evaluation.getgrade() +
                                                                                 "\"," + "\"" + evaluation.getIdUser() +

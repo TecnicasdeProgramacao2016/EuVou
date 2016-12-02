@@ -15,7 +15,7 @@ import model.User;
 
 public class UserDAO extends DAO
 {
-    private final static Logger logger = Logger.getLogger(UserDAO.class.getName());
+    private final static Logger logger = Logger.getLogger(UserDAO.class.getName());//atribute to use loggin system
 
     public UserDAO(Activity currentActivity)
     {
@@ -27,7 +27,7 @@ public class UserDAO extends DAO
 
     }
 
-    public String save(User user)
+    public String save(final User user)
     {
         assert(user != null);
         logger.log(Level.INFO,"entered in the method that saves the user in the database");
@@ -36,21 +36,21 @@ public class UserDAO extends DAO
                 " STR_TO_DATE(\"" + user.getBirthDate() + "\",'%d/%m/%Y'),\"" + user.getEmail() + "\")");
     }
 
-    public JSONObject searchUserByName(String name)
+    public JSONObject searchUserByName(final String name)
     {
         assert(name != null);
         logger.log(Level.INFO,"entered in the method that searches the user by it's name");
         return this.executeConsult("SELECT * FROM vw_user WHERE nameUser LIKE \"%" + name + "%\"");
     }
 
-    public JSONObject searchUserByUsername(String username)
+    public JSONObject searchUserByUsername(final String username)
     {
         assert(username != null);
         logger.log(Level.INFO,"entered in the method that searches an user by it's username");
         return this.executeConsult("SELECT * FROM vw_user WHERE login=\"" + username + "\"");
     }
 
-    public String searchUserById(int idUser)
+    public String searchUserById(final int idUser)
     {
         assert(idUser > 0);
         logger.log(Level.INFO,"entered in the method that searches the user in the database by it's id");
@@ -58,21 +58,21 @@ public class UserDAO extends DAO
     }
 
     //This method is just used on the tests
-    public String delete(String username)
+    public String delete(final String username)
     {
         assert(username != null);
         logger.log(Level.INFO,"entered in the method that deletes the user from the database");
         return this.executeQuery("DELETE FROM tb_user WHERE login=\"" + username + "\"");
     }
 
-    public String delete(int idUser)
+    public String delete(final int idUser)
     {
         assert(idUser > 0);
         logger.log(Level.INFO,"entered in the method that deletes an user from the database by it's id");
         return this.executeQuery("DELETE FROM tb_user WHERE idUser=\"" +idUser+ "\"");
     }
 
-    public String update(User user)
+    public String update(final User user)
     {
         assert(user != null);
         logger.log(Level.INFO,"entered in the method that updates user on the database ");
@@ -82,7 +82,7 @@ public class UserDAO extends DAO
                 " WHERE idUser=\""+user.getIdUser()+"\"");
     }
 
-    public String disableUser(int idUser)
+    public String disableUser(final int idUser)
     {
         assert(idUser > 0);
         logger.log(Level.INFO,"entered in the method that disables the user from the database");

@@ -41,10 +41,10 @@ import static org.hamcrest.Matchers.hasToString;
 public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<HomePage>
 {
 
-    private LoginUtility isLoged = null;
-    private TestUtility setLogin = null;
-    private UiDevice device = null;
-    private User user = null;
+    private LoginUtility isLoged = null;//reference to instanciate later to check if the user is logged
+    private TestUtility setLogin = null;//reference to make login
+    private UiDevice device = null; // makes reference to UiDevice to instanciate it later
+    private User user = null; //makes referênce of user to later instanciate it
 
 
     public RemoveEventControlTest()
@@ -71,6 +71,7 @@ public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<Hom
      */
     public void testIfRemoveEventOptionIsDisplayedForUserLoggedOut()
     {
+        //It checks if the user is already logged in, if so, he/she is logged out to make the test
         if(isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogOut();
@@ -89,7 +90,7 @@ public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<Hom
      */
     public void testRemoveEventButton() throws ParseException, EventException
     {
-
+        //it checks if the user is not logged in, if so, makes the login
         if(!isLoged.hasUserLoggedIn())
         {
             setLogin.makeUserLogIn();

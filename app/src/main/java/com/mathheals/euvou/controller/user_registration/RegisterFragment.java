@@ -24,8 +24,8 @@ import model.User;
 
 public class RegisterFragment extends Fragment implements View.OnClickListener
 {
-    private final String DEFAULT_STRING_MESSAGE = " ";
-    private static final String SUCCESSFULL_CADASTRATION_MESSAGE = "Bem vindo ao #EuVou :)";
+    private final String DEFAULT_STRING_MESSAGE = " "; //default message to strings
+    private static final String SUCCESSFULL_CADASTRATION_MESSAGE = "Bem vindo ao #EuVou :)";//message to show when an user completes the register
     private EditText nameField = null;
     private EditText birthDateField = null;
     private EditText mailField = null;
@@ -141,7 +141,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
      * method that sets the editText on the atributes that have already been created
      * @param view - view that has the editTexts
      */
-    private void setingEditText(View view)
+    private void setingEditText(final View view)
     {
         assert(view != null);
         this.nameField = (EditText) view.findViewById(R.id.nameField);

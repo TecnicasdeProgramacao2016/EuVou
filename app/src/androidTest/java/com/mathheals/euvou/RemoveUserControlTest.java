@@ -27,7 +27,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<HomePage>
 {
 
-    LoginUtility userIsLoged;
+    LoginUtility userIsLoged;//it checks if the user is logged
     public RemoveUserControlTest()
     {
         super(HomePage.class);
@@ -51,16 +51,18 @@ public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<Home
      */
     public void testIfConfigureOptionIsDisplayedForUserLoggedOut()
     {
+        //it checks if the user is logged in, if so, it's needed to logout to make the test
         if(userIsLoged.hasUserLoggedIn())
         {
             TestUtility setLogin = null;
             setLogin.makeUserLogOut();
         }else
         {
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-            onView(withText("Configurações")).check(doesNotExist());
+            //NOTHING TO DO
         }
 
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        onView(withText("Configurações")).check(doesNotExist());
     }
 
     /**
@@ -69,16 +71,18 @@ public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<Home
      */
     public void testIfConfigureOptionIsDisplayedForUserLoggedIn()
     {
+        //it checks if the user is logged out, if so, it's necessary to make the login
         if(!userIsLoged.hasUserLoggedIn())
         {
             TestUtility setLogin = null;
             setLogin.makeUserLogIn();
         }else
         {
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-            onView(withText("Configurações")).check(matches(isDisplayed()));
+            //NOTHING TO DO
 
         }
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        onView(withText("Configurações")).check(matches(isDisplayed()));
     }
 
     /**
@@ -86,21 +90,23 @@ public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<Home
      */
     public void testRemoveWithInvalidLoginConfirmation()
     {
+        //it checks if the user is logged in, if its not, it's needed to make the login to make the test
         if(!userIsLoged.hasUserLoggedIn())
         {
             TestUtility setLogin = null;
             setLogin.makeUserLogIn();
         }else
         {
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-            onView(withText("Configurações")).perform(click());
-            onView(withText("DESATIVAR")).perform(click());
-            onView(withText("Não")).perform(click());
-            onView(withId(R.id.edit_text_login_id)).perform(typeText("izacris"));
-            onView(withId(R.id.edit_text_password_id)).perform(typeText("123456"));
-            onView(withId(R.id.button_disable_account_confirmation_id)).perform(click());
-            onView(withId(R.id.edit_text_login_id)).check(matches(hasErrorText("Ops, acho que você digitou o login errado")));
+            //NOTHING TO DO
         }
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        onView(withText("Configurações")).perform(click());
+        onView(withText("DESATIVAR")).perform(click());
+        onView(withText("Não")).perform(click());
+        onView(withId(R.id.edit_text_login_id)).perform(typeText("izacris"));
+        onView(withId(R.id.edit_text_password_id)).perform(typeText("123456"));
+        onView(withId(R.id.button_disable_account_confirmation_id)).perform(click());
+        onView(withId(R.id.edit_text_login_id)).check(matches(hasErrorText("Ops, acho que você digitou o login errado")));
 
     }
 
@@ -109,6 +115,7 @@ public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<Home
      */
     public void testRemoveButton()
     {
+        //it checks if the user is logged in, if its not, it's needed to make the login to make the test
         if(!userIsLoged.hasUserLoggedIn())
         {
             TestUtility setLogin = null;
@@ -116,14 +123,16 @@ public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<Home
         }else
         {
 
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-            onView(withText("Configurações")).perform(click());
-            onView(withText("Desativar conta")).check(matches(isDisplayed()));
-            onView(withText("DESATIVAR")).check(matches(isDisplayed()));
-            onView(withText("DESATIVAR")).perform(click());
-            onView(withText("Sim")).check(matches(isDisplayed()));
-            onView(withText("Não")).check(matches(isDisplayed()));
+            //NOTHING TO DO
         }
+
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        onView(withText("Configurações")).perform(click());
+        onView(withText("Desativar conta")).check(matches(isDisplayed()));
+        onView(withText("DESATIVAR")).check(matches(isDisplayed()));
+        onView(withText("DESATIVAR")).perform(click());
+        onView(withText("Sim")).check(matches(isDisplayed()));
+        onView(withText("Não")).check(matches(isDisplayed()));
 
     }
 
@@ -132,20 +141,21 @@ public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<Home
      */
     public void testRemoveConfirmationButton()
     {
+        //it checks if the user is logged in, if its not, it's needed to make the login to make the test
         if(!userIsLoged.hasUserLoggedIn())
         {
             TestUtility setLogin = null;
             setLogin.makeUserLogIn();
         }else
         {
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-            onView(withText("Configurações")).perform(click());
-            onView(withText("DESATIVAR")).perform(click());
-            onView(withText("Não")).perform(click());
-            onView(withId(R.id.button_disable_account_confirmation_id)).check(matches(isDisplayed()));
-            onView(withId(R.id.button_disable_account_confirmation_id)).check(matches(withText("DESATIVAR")));
+           //NOTHING TO DO
         }
-
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        onView(withText("Configurações")).perform(click());
+        onView(withText("DESATIVAR")).perform(click());
+        onView(withText("Não")).perform(click());
+        onView(withId(R.id.button_disable_account_confirmation_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.button_disable_account_confirmation_id)).check(matches(withText("DESATIVAR")));
     }
 
     /**
@@ -153,21 +163,23 @@ public class RemoveUserControlTest extends ActivityInstrumentationTestCase2<Home
      */
     public void testRemoveWithInvalidPasswordConfirmation()
     {
+        //it checks if the user is logged in, if its not, it's needed to make the login to make the test
         if(!userIsLoged.hasUserLoggedIn())
         {
             TestUtility setLogin = null;
             setLogin.makeUserLogIn();
         }else
         {
-            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-            onView(withText("Configurações")).perform(click());
-            onView(withText("DESATIVAR")).perform(click());
-            onView(withText("Não")).perform(click());
-            onView(withId(R.id.edit_text_login_id)).perform(typeText("igodudu"));
-            onView(withId(R.id.edit_text_password_id)).perform(typeText("1234567"));
-            onView(withId(R.id.button_disable_account_confirmation_id)).perform(click());
-            onView(withId(R.id.edit_text_password_id)).check(matches(hasErrorText("Ops, acho que você digitou a senha errada")));
+            //NOTHING TO DO
         }
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        onView(withText("Configurações")).perform(click());
+        onView(withText("DESATIVAR")).perform(click());
+        onView(withText("Não")).perform(click());
+        onView(withId(R.id.edit_text_login_id)).perform(typeText("igodudu"));
+        onView(withId(R.id.edit_text_password_id)).perform(typeText("1234567"));
+        onView(withId(R.id.button_disable_account_confirmation_id)).perform(click());
+        onView(withId(R.id.edit_text_password_id)).check(matches(hasErrorText("Ops, acho que você digitou a senha errada")));
 
     }
 

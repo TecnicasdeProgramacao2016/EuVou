@@ -12,7 +12,7 @@ import model.UserEvaluation;
 
 public class UserEvaluationDAO extends DAO
 {
-    private final static Logger logger = Logger.getLogger(UserEvaluationDAO.class.getName());
+    private final static Logger logger = Logger.getLogger(UserEvaluationDAO.class.getName());// atribute to use loggin system
     public UserEvaluationDAO()
     {
 
@@ -45,7 +45,7 @@ public class UserEvaluationDAO extends DAO
         executeQuery(QUERY);
     }
 
-    public JSONObject searchUserEvaluation(int userEvaluatedtId, int userId)
+    public JSONObject searchUserEvaluation(final int userEvaluatedtId, final int userId)
     {
         assert(userId > 0);
         assert(userEvaluatedtId > 0);

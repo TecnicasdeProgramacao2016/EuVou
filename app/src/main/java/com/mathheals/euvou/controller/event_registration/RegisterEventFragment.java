@@ -44,11 +44,11 @@ public class RegisterEventFragment extends android.support.v4.app.Fragment imple
     private String addressEvent = null;
     private String priceEventReal = null;
     private String priceEventDecimal = null;
-    private final String DEFAULT_MESSAGE = " ";
-    private static final String SUCCESSFULL_CADASTRATION_MESSAGE = "Evento cadastrado com sucesso :)";
+    private final String DEFAULT_MESSAGE = " "; //message to iniciate strings
+    private static final String SUCCESSFULL_CADASTRATION_MESSAGE = "Evento cadastrado com sucesso :)"; //message to show a successful registration
     private String latitude = DEFAULT_MESSAGE;
     private String longitude = DEFAULT_MESSAGE;
-    private Vector<String> categories= new Vector<>();
+    private Vector<String> categories= new Vector<>();//the categories will be getistered in this vector
 
     public RegisterEventFragment()
     {

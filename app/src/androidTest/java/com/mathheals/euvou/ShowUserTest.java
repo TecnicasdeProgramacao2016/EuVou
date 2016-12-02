@@ -17,10 +17,12 @@ public class ShowUserTest extends TestCase
     /**
      * testing if the user name is correct
      */
-    public void testShowUserName()
+    private void testShowUserName()
     {
 
         UserDAO userDAO = new UserDAO();
+
+        assert(userDAO != null);
 
         JSONObject userData = (JSONObject )userDAO.searchUserByUsername("igodudu");
 
@@ -42,9 +44,11 @@ public class ShowUserTest extends TestCase
     /**
      * testing if the user's birthday is correct
      */
-    public void testShowUserBirthDate()
+    private void testShowUserBirthDate()
     {
         UserDAO userDAO = new UserDAO();
+
+        assert(userDAO != null);
 
         JSONObject userData = (JSONObject) userDAO.searchUserByUsername("igodudu");
 
@@ -66,9 +70,10 @@ public class ShowUserTest extends TestCase
     /**
      * testing if the user's e-mail is correct
      */
-    public void testShowUserEmail()
+    private void testShowUserEmail()
     {
         UserDAO userDAO = new UserDAO();
+        assert(userDAO != null);
 
         JSONObject userData = (JSONObject) userDAO.searchUserByUsername("igodudu");
 

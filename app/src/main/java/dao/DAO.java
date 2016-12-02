@@ -15,10 +15,10 @@ import java.util.logging.Logger;
 
 public abstract class DAO {
 
-    private final String URLQUERY = "http://euvou.esy.es/query.php";
-    private final String URLCONSULT = "http://euvou.esy.es/consult.php";;
-    private final static Logger logger = Logger.getLogger(DAO.class.getName());
-    private final int LIMITCONECTIONTIME = 15000;
+    private final String URLQUERY = "http://euvou.esy.es/query.php";//link to the database to execute queries
+    private final String URLCONSULT = "http://euvou.esy.es/consult.php";; //link to the database to use the consult
+    private final static Logger logger = Logger.getLogger(DAO.class.getName()); //atribute to use loggin system
+    private final int LIMITCONECTIONTIME = 15000;//maximum time to try to connect to the database
     protected Activity currentActivity = null;
 
     public DAO(Activity currentActivity)
@@ -68,11 +68,16 @@ public abstract class DAO {
             currentTime = Calendar.getInstance().getTime().getTime();
         }
 
+        //verification of the current time used
         if(limitExceded(timeLimit,currentTime))
         {
             Toast.makeText(currentActivity,"Problema de conexão com o servidor (verifique se esta "+
                                             "conectado a internet)", Toast.LENGTH_LONG).show();
             return null;
+        }
+        else
+        {
+            //NOTHING TO DO
         }
 
 
