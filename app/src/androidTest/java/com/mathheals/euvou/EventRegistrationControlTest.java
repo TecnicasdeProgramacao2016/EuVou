@@ -1,3 +1,8 @@
+    /*
+* File name: EventRegistrationControlTest.
+* File pourpose: Test if an event can be registred.
+*/
+
 package com.mathheals.euvou;
 
 import android.support.test.InstrumentationRegistry;
@@ -31,32 +36,78 @@ import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
-/**
- * Created by izabela on 29/11/15.
- */
-public class EventRegistrationControlTest extends ActivityInstrumentationTestCase2<HomePage> {
 
-    private LoginUtility isLoged;
-    private TestUtility setLogin;
-    private UiDevice device;
-    private Event event;
-
-    public EventRegistrationControlTest(){
+public class EventRegistrationControlTest extends ActivityInstrumentationTestCase2<HomePage>
+{
+    public EventRegistrationControlTest()
+    {
         super(HomePage.class);
     }
 
+
+    private Event event;
+    private UiDevice device;
+    private static LoginUtility isLoged; //Check if user's is logged in
+
     @Before
-    public void setUp() throws Exception {
+    //Set up user.
+    public void setUp() throws Exception
+    {
         super.setUp();
         getActivity();
         isLoged = new LoginUtility(getActivity());
         device = UiDevice.getInstance(getInstrumentation());
     }
 
-    public void testCategoriesCheckBox(){
-        if(!isLoged.hasUserLoggedIn()){
+    private TestUtility setLogin;
+
+    //Test Choosen Place to the event
+    public void testChoosePlaceOnMap()
+    {
+
+        if(!isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogIn();
         }
+        else
+        {
+            //NOTHING TO DO
+        }
+
+        openRegisterEvent();
+        onView(withId(R.id.eventLocal)).perform(click());
+        onView(withId(R.id.map)).perform(click());
+
+        //This try-catch structure forces the application principal thread to stop for a while
+        try
+        {
+            Thread.sleep(3000);
+        } catch (InterruptedException interruptedException)
+        {
+            interruptedException.printStackTrace();
+        }
+
+        final String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";
+
+        onView(withText(SUCESSFULL_CHOICE_MESSAGE))
+                .inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView()))))
+                .check(matches(isDisplayed()));
+
+        finilizeObject(SUCESSFULL_CHOICE_MESSAGE);
+    }
+
+    //Test Categories Checkbox return
+    public void testCategoriesCheckBox()
+    {
+        if(!isLoged.hasUserLoggedIn())
+        {
+            setLogin.makeUserLogIn();
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar Evento")).perform(click());
         onView(withId(R.id.optionShow)).perform(click());
@@ -79,10 +130,18 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         onView(withId(R.id.optionTheater)).check(matches(isChecked()));
     }
 
-    public void testRegisterEventButtonWithEmptyAddress(){
-        if(!isLoged.hasUserLoggedIn()){
+    //Test if can register a event without and adress
+    public void testRegisterEventButtonWithEmptyAddress()
+    {
+        if(!isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogIn();
         }
+        else
+        {
+            //NOTHING TO DO
+        }
+
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar Evento")).perform(click());
         onView(withId(R.id.eventName)).perform(typeText("Cine Drive-In"));
@@ -93,42 +152,34 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         onView(withId(R.id.eventPriceDecimal)).perform(typeText("00"));
         onView(withText("Cadastrar")).perform(scrollTo());
         UiObject marker = device.findObject(new UiSelector().textContains("Cadastrar"));
-        try {
+        try
+        {
             marker.click();
-        } catch (UiObjectNotFoundException e) {
-            e.printStackTrace();
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
         }
-        try {
+        try
+        {
             Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } catch (InterruptedException interruptedException)
+        {
+            interruptedException.printStackTrace();
         }
 
         onView(withId(R.id.eventAddress)).check(matches(hasErrorText(event.ADDRESS_IS_EMPTY)));
     }
 
-    public void testChoosePlaceOnMap() {
-        final String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";
-        if(!isLoged.hasUserLoggedIn()){
-            setLogin.makeUserLogIn();
-        }
-        openRegisterEvent();
-        onView(withId(R.id.eventLocal)).perform(click());
-        onView(withId(R.id.map)).perform(click());
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        onView(withText(SUCESSFULL_CHOICE_MESSAGE))
-                .inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView()))))
-                .check(matches(isDisplayed()));
-    }
-
-    private void openRegisterEvent() {
+    //Test if registred event is funcional
+    private void openRegisterEvent()
+    {
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         onView(withText("Cadastrar Evento")).perform(click());
+    }
+
+    //Free object's memory to make it easyer to the garbage collector get it
+    private void finilizeObject(Object object)
+    {
+        object = null;
     }
 }

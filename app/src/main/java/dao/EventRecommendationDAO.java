@@ -1,20 +1,34 @@
+/**
+ * file: EventRecommendationDAO.java
+ * purpose: make the conection of the class EventRecommendation to the database
+ */
 package dao;
 
 import android.app.Activity;
 
 import org.json.JSONObject;
 
-/**
- * Created by igor on 27/11/15.
- */
-public class EventRecommendationDAO extends DAO {
-    public EventRecommendationDAO() {}
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-    public EventRecommendationDAO(Activity activity) {
+
+public class EventRecommendationDAO extends DAO
+{
+    private final static Logger logger = Logger.getLogger(EventRecommendationDAO.class.getName());
+    public EventRecommendationDAO()
+    {
+
+    }
+
+    public EventRecommendationDAO(Activity activity)
+    {
         super(activity);
     }
 
-    public JSONObject recommendEvents(int idUser){
+    public JSONObject recommendEvents(int idUser)
+    {
+        logger.log(Level.INFO,"entered in the method that gets the events that is recomended for an user");
+        assert(idUser > 0);
         String QUERY =
                 "SELECT DISTINCT V.idEvent, V.nameEvent,\n" +
                 "(SELECT AVG(v.evaluate) FROM participate p \n" +

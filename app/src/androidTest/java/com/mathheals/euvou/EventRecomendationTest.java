@@ -1,7 +1,14 @@
+/*
+* File name: EventRecomendationTest.
+* File pourpose: Test user's log status and test set list new list of recommended events.
+*/
+
+
 package com.mathheals.euvou;
 
 import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.ListView;
 
 import com.mathheals.euvou.controller.home_page.HomePage;
 import com.mathheals.euvou.controller.utility.LoginUtility;
@@ -9,68 +16,88 @@ import com.mathheals.euvou.controller.utility.LoginUtility;
 import org.junit.Before;
 import org.junit.Test;
 
-import android.widget.ListView;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
-/**
- * Created by marlonmendes on 28/11/15.
- */
-public class EventRecomendationTest  extends ActivityInstrumentationTestCase2<HomePage> {
+public class EventRecomendationTest  extends ActivityInstrumentationTestCase2<HomePage>
+{
 
-    public final String TOP_ONE_EVENT_NAME = "Festa";
-    private Activity activity;
-    private ListView list;
     private static final int USER_LOGGED_OUT = -1;
-    private boolean isUserLoggedIn;
+    private Activity activity;
 
-    public EventRecomendationTest() {
+    //Constructor Method.
+    public EventRecomendationTest()
+    {
         super(HomePage.class);
     }
 
+
     @Before
-    public void setUp() throws Exception {
+    //Set user's status to logged in.
+    public void setUp() throws Exception
+    {
         super.setUp();
         activity = getActivity();
         setIsUserLoggedIn(new LoginUtility(activity).getUserId() != USER_LOGGED_OUT);
     }
 
+    private ListView list;
+
     @Test
-    public void testIfAnyEventIsRecommended() {
+    //Test events and evaluate if its recommended.
+    public void testIfAnyEventIsRecommended()
+    {
         list = (ListView) activity.findViewById(R.id.list_view_event_recomendations);
         assertNotNull("The list was not loaded", list);
         openTopOneEvent();
         onView(withId(R.id.event_name_text)).check(matches(isDisplayed()));
     }
 
-    private void openTopOneEvent() {
-        getInstrumentation().runOnMainSync(new Runnable() {
-            @Override
-            public void run() {
-                int position = 0;
-                list.performItemClick(list.getAdapter().getView(position, null, null),
-                        position, list.getAdapter().getItemId(position));
-            }
+    //Open first event after evaluation.
+    private void openTopOneEvent()
+    {
+        getInstrumentation().runOnMainSync(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    int position = 0;
+                    list.performItemClick(list.getAdapter().getView(position, null, null),
+                          position, list.getAdapter().getItemId(position));
+                }
 
-        });
+            });
+
         getInstrumentation().waitForIdleSync();
     }
 
-    public void testUserWithoutRecomendations() {
+    private boolean isUserLoggedIn;
+
+    //Test if user can loggin and sets a new list of events.
+    public void testUserWithoutRecomendations()
+    {
         final String LOGIN = "izabiza";
         final String PASSWORD = "123456";
 
         if(isUserLoggedIn)
+        {
             TestUtility.makeUserLogOut();
+        }
+        else
+        {
+            //nothing to do
+        }
+
         TestUtility.makeUserLogIn(LOGIN, PASSWORD);
 
-        try {
+        try
+        {
             Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } catch (InterruptedException interrupted)
+        {
+            interrupted.printStackTrace();
         }
 
         boolean result = false;
@@ -79,11 +106,18 @@ public class EventRecomendationTest  extends ActivityInstrumentationTestCase2<Ho
         list = (ListView) activity.findViewById(R.id.list_view_event_recomendations);
 
         if(list == null)
+        {
             result = true;
+        }
         else
+        {
             numberOfEVentsRecomended = list.getAdapter().getCount();
+        }
+
         if(numberOfEVentsRecomended == 0)
+        {
             result = true;
+        }
 
         TestUtility.makeUserLogOut();
         TestUtility.makeUserLogIn();
@@ -92,7 +126,9 @@ public class EventRecomendationTest  extends ActivityInstrumentationTestCase2<Ho
         assertTrue(result);
     }
 
-    public void setIsUserLoggedIn(boolean isUserLoggedIn) {
+
+    public void setIsUserLoggedIn(boolean isUserLoggedIn)
+    {
         this.isUserLoggedIn = isUserLoggedIn;
     }
 }

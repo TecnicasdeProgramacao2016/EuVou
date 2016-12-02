@@ -1,3 +1,7 @@
+/**
+ *  file: RegisterFragment.java
+ *  purpose: fragment to register a new user to the database
+ */
 package com.mathheals.euvou.controller.user_registration;
 import android.app.Activity;
 import android.content.Intent;
@@ -20,23 +24,22 @@ import model.User;
 
 public class RegisterFragment extends Fragment implements View.OnClickListener
 {
-
-
+    private final String DEFAULT_STRING_MESSAGE = " ";
     private static final String SUCCESSFULL_CADASTRATION_MESSAGE = "Bem vindo ao #EuVou :)";
-    private EditText nameField;
-    private EditText birthDateField;
-    private EditText mailField;
-    private EditText mailConfirmationField;
-    private EditText usernameField;
-    private EditText passwordField;
-    private EditText passwordConfirmField;
-    private String name;
-    private String birthDate;
-    private String username;
-    private String mail;
-    private String password;
-    private String passwordConfirm;
-    private String mailConfirm;
+    private EditText nameField = null;
+    private EditText birthDateField = null;
+    private EditText mailField = null;
+    private EditText mailConfirmationField = null;
+    private EditText usernameField = null;
+    private EditText passwordField = null;
+    private EditText passwordConfirmField = null;
+    private String name = DEFAULT_STRING_MESSAGE;
+    private String birthDate = DEFAULT_STRING_MESSAGE;
+    private String username = DEFAULT_STRING_MESSAGE;
+    private String mail = DEFAULT_STRING_MESSAGE;
+    private String password = DEFAULT_STRING_MESSAGE;
+    private String passwordConfirm = DEFAULT_STRING_MESSAGE;
+    private String mailConfirm = DEFAULT_STRING_MESSAGE;
     private EditAndRegisterUtility editAndRegisterUtility = new EditAndRegisterUtility();
 
 
@@ -46,34 +49,101 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
+    /**
+     * main method of the activity, it happens when the activity stats
+     * @param inflater - inflater for the layout
+     * @param conteiner - group the objects of the view
+     * @param savedInstanceState - a bundle of the instance
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.register_user, container, false);
+        assert(inflater != null);
+        View view = (View) inflater.inflate(R.layout.register_user, container, false);
+        assert(view != null);
+
         Button register = (Button) view.findViewById(R.id.saveButton);
+        assert(register != null);
+
         register.setOnClickListener(this);
         setingEditText(view);
+
         birthDateField.addTextChangedListener(Mask.insert("##/##/####", birthDateField));
 
         return view;
     }
 
-    private void registerUser(User user)
+    @Override
+    /**
+     * method that is executed when the click is made in the Activity
+     */
+    public void onClick(View view)
     {
-        UserDAO userDAO = new UserDAO(getActivity());
-        userDAO.save(user);
+        assert(view != null);
+        setingTextTyped();
+
+        try
+        {
+            User user = new User(name,
+                    username,
+                    mail,
+                    mailConfirm,
+                    password,
+                    passwordConfirm,
+                    birthDate);
+            assert(user != null);
+            registerUser(user);
+
+            Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE,
+                    Toast.LENGTH_LONG).show();
+            startLoginActivity();
+
+        } catch (Exception exception)
+        {
+
+            String message = (String) exception.getMessage();
+            assert(message != null);
+            UserRegisterErrorMessage(message);
+
+        }
     }
 
+
+    /**
+     * method that registers an user to the database
+     * @param user - user to be saved
+     */
+    private void registerUser(final User user)
+    {
+        assert(user != null);
+        UserDAO userDAO = new UserDAO(getActivity());
+
+        assert(userDAO != null);
+
+        userDAO.save(user);
+
+    }
+
+    /**
+     * method that starts the login activity
+     */
     private void startLoginActivity()
     {
         Activity activity = getActivity();
         Intent myIntent = new Intent(activity, LoginActivity.class);
+
+        assert(myIntent != null);
         activity.startActivity(myIntent);
 
     }
 
+    /**
+     * method that sets the editText on the atributes that have already been created
+     * @param view - view that has the editTexts
+     */
     private void setingEditText(View view)
     {
+        assert(view != null);
         this.nameField = (EditText) view.findViewById(R.id.nameField);
         this.birthDateField = (EditText) view.findViewById(R.id.dateField);
         this.mailField = (EditText) view.findViewById(R.id.mailField);
@@ -84,50 +154,28 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
         this.birthDateField = (EditText) view.findViewById(R.id.dateField);
     }
 
+    /**
+     * method that casts the editText and turns it into String
+     */
     private void setingTextTyped()
     {
-        this.name = nameField.getText().toString();
-        this.username = usernameField.getText().toString();
-        this.mail = mailField.getText().toString();
-        this.mailConfirm = mailConfirmationField.getText().toString();
-        this.password = passwordField.getText().toString();
-        this.passwordConfirm = passwordConfirmField.getText().toString();
-        this.birthDate = birthDateField.getText().toString();
+        this.name = (String) nameField.getText().toString();
+        this.username = (String) usernameField.getText().toString();
+        this.mail = (String) mailField.getText().toString();
+        this.mailConfirm = (String) mailConfirmationField.getText().toString();
+        this.password = (String) passwordField.getText().toString();
+        this.passwordConfirm = (String) passwordConfirmField.getText().toString();
+        this.birthDate = (String) birthDateField.getText().toString();
     }
 
-    @Override
-    public void onClick(View v)
+
+    /**
+     * method that shows the message of an error ocurred
+     * @param message - message of the error
+     */
+    public void UserRegisterErrorMessage(final String message)
     {
-
-        setingTextTyped();
-
-        try
-        {
-            User user = new User(name, 
-                                 username,
-                                 mail,
-                                 mailConfirm,
-                                 password,
-                                 passwordConfirm,
-                                 birthDate);
-
-            registerUser(new User(name, username, mail, password, birthDate));
-
-            Toast.makeText(getActivity().getBaseContext(), SUCCESSFULL_CADASTRATION_MESSAGE,
-                           Toast.LENGTH_LONG).show();
-            startLoginActivity();
-
-        } catch (Exception e) //Verificar esse tipo de exceção
-        {
-
-            String message = e.getMessage();
-            errorMessage(message);
-
-        }
-    }
-
-    public void errorMessage(final String message)
-    {
+        assert(message != null);
         if (message.equals(User.NAME_CANT_BE_EMPTY_NAME))
         {
             editAndRegisterUtility.setMessageError(nameField, message);
@@ -194,7 +242,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener
 
         }else
         {
-            //nothing to do
+            //NOTHING TO DO
         }
     }
 }

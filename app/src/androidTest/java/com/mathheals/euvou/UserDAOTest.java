@@ -1,7 +1,8 @@
 package com.mathheals.euvou;
 
-/**
- * Created by igor on 01/10/15.
+ /**
+  * File name: UserDAOTest.
+  * File pourpose: Test of Data Access Object - DAD  with true and falses parameters.
  */
 
 import com.mathheals.euvou.controller.utility.LoginUtility;
@@ -22,40 +23,74 @@ import dao.UserDAO;
 import exception.UserException;
 import model.User;
 
-public class UserDAOTest extends TestCase {
-    private static final String ID_FIELD =  "idField";
-    private static final String COLUMN_USER_ID = "idUser";
-    private static final String COLUMN_USER_NAME = "nameUser";
-    private static final String COLUMN_USER_LOGIN = "login";
-    private static final String COLUMN_USER_EMAIL = "email";
-    private static final String COLUMN_USER_PASSWORD = "passwordUser";
-    private static final String COLUMN_USER_BIRTHDATE = "birthDate";
-    private static final String COLUMN_USER_STATE = "isActivity";
-
-    public void testSave() throws ParseException, UserException {
+public class UserDAOTest extends TestCase 
+{
+    public void testSave() throws ParseException, UserException
+    {
             UserDAO userDAO = new UserDAO();
             User user;
-        user = new User("marceloChavosaao","marceloChavosaao","marceloChavosao@euvou.com","marceloChavosao@euvou.com","123456","123456","11/09/2015");
-        assertTrue(userDAO.save(user).contains("Salvo"));
+            user = new User("marceloChavosaao","marceloChavosaao","marceloChavosao@euvou.com","marceloChavosao@euvou.com","123456","123456","11/09/2015");
+            if(user == null)
+            {
+                throw new UserException("Usuário nulo");
+            }
+            else
+            {
+                //NOTHINHG TO
+            }
+            assertTrue(userDAO.save(user).contains("Salvo"));
             userDAO.delete("marceloChavosaao");
     }
 
-    public void testDeleteByName() throws ParseException, UserException  {
+    public void testDeleteByName() throws ParseException, UserException
+    {
 
         UserDAO userDAO = new UserDAO();
         User user = new User("Marcelo", "marceloChavosaoa", "galudo11cm@uol.com", "123456", "24/11/1969");
+        if(user == null)
+        {
+            throw new UserException("Usuário nulo");
+        }
+        else
+        {
+            //NOTHINHG TO
+        }
+
+        //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
+        {
             assertTrue(false);
+        } else
+        {
+            //NOTHING TO DO
+        }
         assertTrue(userDAO.delete("marceloChavosaoa").contains("Salvo"));
     }
 
 
-    public void testDeleteById() throws ParseException, UserException, JSONException {
+    public void testDeleteById() throws ParseException, UserException, JSONException
+    {
 
         UserDAO userDAO = new UserDAO();
         User user = new User("VIny", "viny", "viny@uol.com", "123456", "14/02/1995");
+        if(user == null)
+        {
+            throw new UserException("Usuário nulo");
+        }
+        else
+        {
+            //NOTHINHG TO
+        }
+
+
+        //check if user is saved
         if(!userDAO.save(user).contains("Salvo"))
+        {
             assertTrue(false);
+        } else
+        {
+            //NOTHING TO DO
+        }
         int id = userDAO.searchUserByUsername("viny").getJSONObject("0").getInt("idUser");
         assertTrue(userDAO.delete(id).contains("Salvo"));
         userDAO.delete("viny");
@@ -66,32 +101,63 @@ public class UserDAOTest extends TestCase {
         assertFalse(new UserDAO().searchUserById(3) == null);
     }
 
-    public void testUpdateUser() throws ParseException, UserException, JSONException {
+    public void testUpdateUser() throws ParseException, UserException, JSONException
+    {
         UserDAO userDAO = new UserDAO();
         User user = new User(1,"Vinicius ppp", "umteste", "14/02/1995", "viny-pinheiro@hotmail.com",
                 "viny-pinheiro@hotmail.com", "123456", "123456");
-        if(!userDAO.save(user).contains("Salvo")) {
+        if(user == null)
+        {
+            throw new UserException("Usuário nulo");
+        }
+        else
+        {
+            //NOTHINHG TO
+        }
+
+        //check if user is saved
+        if(!userDAO.save(user).contains("Salvo"))
+        {
             assertTrue(false);
             userDAO.delete("umteste");
+        } else
+        {
+            //NOTHING TO DO
         }
         assertTrue(userDAO.update(user).contains("Salvo"));
         userDAO.delete("umteste");
 
     }
 
-    public void testDisableLogin() throws ParseException, UserException, JSONException {
+    public void testDisableLogin() throws ParseException, UserException, JSONException
+    {
         UserDAO userDAO = new UserDAO();
         User user = new User(1,"Vinicius Pinheiro", "umteste", "14/02/1995", "viny-pinheiro@hotmail.com",
                 "viny-pinheiro@hotmail.com", "123456", "123456");
-        if(!userDAO.save(user).contains("Salvo")) {
+
+        if(user == null)
+        {
+            throw new UserException("Usuário nulo");
+        }
+        else
+        {
+            //NOTHINHG TO
+        }
+
+        //check if user is saved
+        if(!userDAO.save(user).contains("Salvo"))
+        {
             assertTrue(false);
             userDAO.delete("umteste");
+        } else
+        {
+            //NOTHING TO DO
         }
         int id = userDAO.searchUserByUsername("umteste").getJSONObject("0").getInt("idUser");
         assertTrue(userDAO.disableUser(id).contains("Salvo"));
         userDAO.delete("umteste");
 
     }
-    
+
 
 }

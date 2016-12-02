@@ -1,41 +1,82 @@
+/*
+* File name: Evaluation.
+* File pourpose: Set grade, place id and user id.
+*/
+
 package model;
 
+import android.util.Log;
+
 /**
- * Created by igor on 06/11/15.
- */
-public class Evaluation {
-
-    private float grade;
-    private int idPlace;
-    private int idUser;
-
-    public Evaluation(int idPlace, int idUser, float grade){
+*Class: public class Evaluation
+*Description: class to set evaluation
+*/
+public class Evaluation
+{
+    private float grade = 0;
+    private int idPlace = 0;//has to be above 0
+    private int idUser = 0;//has to be above 0
+    /**
+    *Method: public Evaluation(int idPlace, int idUser, float grade)
+    *Description: sets values to evaluation
+    *@param idPlace
+    *@param idUser
+    *@param grade
+    */
+    public Evaluation(final int idPlace, final int idUser, final float grade)
+    {
         setIdPlace(idPlace);
         setIdUser(idUser);
         setGrade(grade);
     }
 
-    private void setGrade(float grade) {
+    private void setGrade(final float grade)
+    {
         this.grade = grade;
+        Log.d("Evaluation", "Grade has been setted");
     }
 
-    private  void setIdUser(int idUser) {
+    private void setIdUser(final int idUser)
+    {
+        assert( idUser > 0);
+        assert( idUser < 2147483647);
+
         this.idUser = idUser;
+        Log.d("Evaluation", "idUser has been setted");
     }
 
-    private void setIdPlace(int idPlace) {
+    private void setIdPlace(final int idPlace)
+    {
+        assert( idPlace > 0);
+        assert( idPlace < 2147483647);
         this.idPlace = idPlace;
+        Log.d("Evaluation", "idPlace has been setted");
     }
 
-    public float getgrade() {
+    /**
+    *Method: public float getgrade()
+    *Description: get grade
+    */
+    public float getgrade()
+    {
         return grade;
     }
 
-    public int getIdPlace() {
+    /**
+    *Method: public int getIdPlace()
+    *Description: get id of place
+    */
+    public int getIdPlace()
+    {
         return idPlace;
     }
 
-    public int getIdUser() {
+    /**
+    *Method: public int getIdUser()
+    *Description: get id of user
+    */
+    public int getIdUser()
+    {
         return idUser;
     }
 }

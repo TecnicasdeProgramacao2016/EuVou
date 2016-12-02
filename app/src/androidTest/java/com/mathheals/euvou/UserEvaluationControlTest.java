@@ -24,67 +24,98 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
-/**
- * Created by izabela on 23/11/15.
+
+ /**
+  * File name: UserEvolationControlTest.
+  * File pourpose: Test user's evaluation with true and falses parameters.
  */
-public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<HomePage> {
+
+
+public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<HomePage> 
+{
 
     LoginUtility isLoged;
 
-    public UserEvaluationControlTest(){
+    public UserEvaluationControlTest()
+    {
         super(HomePage.class);
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception 
+    {
         super.setUp();
         getActivity();
         isLoged = new LoginUtility(getActivity());
     }
 
-    public void testIfRatingBarIsAvailableForLoggedOutUser() {
-        if(isLoged.hasUserLoggedIn()) {
+    public void testIfRatingBarIsAvailableForLoggedOutUser() 
+    {
+        //check if user is logged
+        if(isLoged.hasUserLoggedIn()) 
+        {
             TestUtility.makeUserLogOut();
+        } else
+        {
+            //NOTHING TO DO
         }
         searchForUserUsedForTest();
         onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
 
     }
 
-    public void testIfRatingBarIsAvailableForLoggedInUser() {
-        if(!isLoged.hasUserLoggedIn()) {
+    public void testIfRatingBarIsAvailableForLoggedInUser() 
+    {
+        //check if user is logged
+        if(!isLoged.hasUserLoggedIn()) 
+        {
             TestUtility.makeUserLogIn();
+        } else
+        {
+            //NOTHING TO DO
         }
         searchForUserUsedForTest();
         onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
     }
 
-    public void testIfRatingBarIsSetingEvaluation() {
+    public void testIfRatingBarIsSetingEvaluation() 
+    {
         boolean result;
-        if(!isLoged.hasUserLoggedIn()) {
+        //check if user is logged
+        if(!isLoged.hasUserLoggedIn()) 
+        {
             TestUtility.makeUserLogIn();
+        } else
+        {
+            //NOTHING TO DO
         }
         searchForUserUsedForTest();
-        try {
+        try 
+        {
             int[] ratingNumbersForTest = new int[]{1, 3, 5};
 
+            //inserting test numbers in SetRating
             for(Integer ratingNumber : ratingNumbersForTest)
                 onView(withId(R.id.ratingBar)).perform(new SetRating(ratingNumber));
-            try {
+            try 
+            {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (InterruptedException interruptedException)
+            {
+                interruptedException.printStackTrace();
             }
             result = true;
-        } catch (PerformException performException) {
+        } catch (PerformException performException) 
+        {
             result = false;
         }
         assertTrue(result);
 
     }
 
-    public void searchForUserUsedForTest(){
+    public void searchForUserUsedForTest()
+    {
         onView(withId(R.id.search)).perform(click());
         onView(withId(R.id.radio_people)).perform(click());
         onView(withId(R.id.search_src_text)).perform(typeText("t"), pressKey(66));

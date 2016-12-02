@@ -1,15 +1,23 @@
+/*
+* File name: Event.
+* File pourpose: Model of Event.
+*/
+
 package model;
 
-import java.text.DecimalFormat;
+import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
-//confirmar restrições de tamanho
 import exception.EventException;
 
-public class Event {
-
+/**
+*Class: public class Event
+*Description: Class of event
+*/
+public class Event
+{
     public static final String EVENT_NAME_CANT_BE_EMPTY_NAME = "Hey, acho que você está esquecendo de nos informar o nome do evento.";
     public static final String NAME_CANT_BE_GREATER_THAN_50 = "Hey, você ultrapassou o número de caracteres permitido para o nome do evento, tente novamente.";
     public static final String DESCRIPTION_CANT_BE_EMPTY = "Hey, acho que você esqueu de informar a descrição do evento.";
@@ -28,23 +36,45 @@ public class Event {
     public static final String EVENT_HOUR_IS_EMPTY = "Hey, você esqueceu de informar a hora";
     public static final String CATEGORY_IS_INVALID = "Hey, você esqueceu de informar a categoria do evento, preenche ela aí vai!";
 
-
-    private int idEvent;
-    private String nameEvent;
-    private String dateTimeEvent;
-    private String description;
-    private Double latitude;
-    private Double longitude;
-    private String adress;
-    private Integer evaluation;
-    private Integer price;
-    private Vector<String> category;
-
+    private int idEvent = 0;//has to be above 0
+    private String nameEvent = "nameEvent";
+    private String dateTimeEvent = "dateTimeEvent";
+    private String description = "description";
+    private Double latitude = 0.0;
+    private Double longitude = 0.0;
+    private String adress = "adress";
+    private Integer evaluation = null;
+    private Integer price = null;
+    private Vector<String> category = null;
     private static final int MAX_LENGTH_NAME = 50;
     private static final int MAX_LENGTH_DESCRIPTION = 500;
-    private int idOwner;
+    private int idOwner = 0;
 
-    public Event(int idOwner, String nameEvent, String date, String hour, String priceReal, String priceDecimal, String address, String description, String latitude, String longitude, Vector<String> category) throws EventException, ParseException{
+    /**
+    * Method: public Event(int idOwner, String nameEvent, String date,
+    *                      String hour, String priceReal, String priceDecimal,
+    *                      String address, String description, String latitude,
+    *                      String longitude, Vector<String> category) throws EventException, ParseException
+    *Description: sets fields of event
+    * @param idOwner has to be above 0
+    * @param nameEvent
+    * @param date
+    * @param hour
+    * @param priceReal
+    * @param priceDecimal
+    * @param address
+    * @param description
+    * @param latitude
+    * @param longitude
+    * @param category
+    * @throws EventException
+    * @throws ParseException
+    */
+    public Event(int idOwner, String nameEvent, String date,
+                      String hour, String priceReal, String priceDecimal,
+                      String address, String description, String latitude,
+                      String longitude, Vector<String> category) throws EventException, ParseException
+    {
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
         setDateTimeEvent(date, hour);
@@ -56,7 +86,29 @@ public class Event {
         setCategory(category);
     }
 
-    public Event(int idOwner, String nameEvent, String dateTimeEvent, Integer price, String address, String description, String latitude, String longitude, Vector<String> category) throws EventException, ParseException{
+    /**
+     *Method: public Event(int idOwner, String nameEvent, String dateTimeEvent,
+     *                     Integer price, String address, String description,
+     *                     String latitude, String longitude,
+     *                     Vector<String> category) throws EventException, ParseException
+     *Description: sets fields of event
+     * @param idOwner has to be above 0
+     * @param nameEvent
+     * @param dateTimeEvent
+     * @param price
+     * @param address
+     * @param description
+     * @param latitude
+     * @param longitude
+     * @param category
+     * @throws EventException
+     * @throws ParseException
+     */
+    public Event(int idOwner, String nameEvent, String dateTimeEvent,
+                      Integer price, String address, String description,
+                      String latitude, String longitude,
+                      Vector<String> category) throws EventException, ParseException
+    {
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
         setDateTimeEvent(dateTimeEvent);
@@ -68,13 +120,43 @@ public class Event {
         setCategory(category);
     }
 
-    public Event(int idOwner, String nameEvent, int eventEvaluation) throws EventException, ParseException{
+    /**
+    *Method: public Event(int idOwner, String nameEvent,
+    *                              int eventEvaluation) throws EventException, ParseException
+    *Description: sets fields of event
+    *@param idOwner has to be above 0
+    *@param nameEvent
+    *@param eventEvaluation
+    */
+    public Event(int idOwner, String nameEvent,
+                      int eventEvaluation) throws EventException, ParseException
+    {
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
         setEvaluation(eventEvaluation);
     }
 
-    public Event(int idEvent, int idOwner, String nameEvent, String dateTimeEvent, Integer price, String address, String description, String latitude, String longitude) throws EventException, ParseException{
+    /**
+    *Method: public Event(int idEvent, int idOwner, String nameEvent,
+    *                              String dateTimeEvent, Integer price,
+    *                              String address, String description,
+    *                              String latitude, String longitude) throws EventException, ParseException
+    *Description: sets fields of event
+    *@param idEvent has to be above 0
+    *@param idOwner has to be above 0
+    *@param nameEvent
+    *@param dateTimeEvent
+    *@param price
+    *@param address
+    *@param description
+    *@param latitude
+    *@param longitude
+    */
+    public Event(int idEvent, int idOwner, String nameEvent,
+                 String dateTimeEvent, Integer price,
+                 String address, String description,
+                 String latitude, String longitude) throws EventException, ParseException
+    {
         setIdEvent(idEvent);
         setIdOwner(idOwner);
         setNameEvent(nameEvent);
@@ -86,7 +168,27 @@ public class Event {
         setLongitude(longitude);
     }
 
-    public Event(int idEvent, String nameEvent, Integer price, String address, String dateTimeEvent, String description,String latitude, String longitude, Vector<String> category) throws EventException, ParseException {
+    /**
+    *Method: public Event(int idEvent, int idOwner, String nameEvent,
+    *                              String dateTimeEvent, Integer price,
+    *                              String address, String description,
+    *                              String latitude, String longitude) throws EventException, ParseException
+    *Description: sets fields of event
+    *@param idEvent has to be above 0
+    *@param nameEvent
+    *@param price
+    *@param address
+    *@param dateTimeEvent
+    *@param description
+    *@param latitude
+    *@param longitude
+    *@param category
+    */
+    public Event(int idEvent, String nameEvent, Integer price,
+                      String address, String dateTimeEvent,
+                      String description,String latitude,
+                      String longitude, Vector<String> category) throws EventException, ParseException
+    {
         setIdEvent(idEvent);
         setNameEvent(nameEvent);
         setAddress(address);
@@ -98,58 +200,106 @@ public class Event {
         setCategory(category);
     }
 
-    public String getDateTimeEvent() {
+    /**
+    *Method: public String getDateTimeEvent()
+    *Description: get date time event
+    */
+    public String getDateTimeEvent()
+    {
         return dateTimeEvent;
     }
 
-    public void setDateTimeEvent(String dateTimeEvent){
+    /**
+    *Method: public void setDateTimeEvent(String dateTimeEvent)
+    *Description: sets date time of event
+    *@param dateTimeEvent
+    */
+    public void setDateTimeEvent(String dateTimeEvent)
+    {
         this.dateTimeEvent=dateTimeEvent;
+        Log.d("Event", "dateTimeEvent has been setted");
     }
 
-    public void setDateTimeEvent(String date, String hour) throws ParseException, EventException {
-        if(!date.isEmpty() && date!=null && !hour.isEmpty() && hour!=null) {
-            try{
-                SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+    /**
+    *Method: public void setDateTimeEvent(String date, String hour) throws ParseException, EventException
+    *Description: sets date time of event
+    *@param date
+    *@param hour
+    */
+    public void setDateTimeEvent(String date, String hour) throws ParseException, EventException
+    {
+        if(!date.isEmpty() && date != null && !hour.isEmpty() && hour!=null)
+        {
+            try
+            {
+                SimpleDateFormat formatDate = new SimpleDateFormat("dd/mm/yyyy");
                 formatDate.setLenient(false);
                 Date eventDate = formatDate.parse(date);
 
-                if(eventDate.after(new Date())) {
+                if(eventDate.after(new Date()))
+                {
                     String[] dateEventSplit = date.split("/");
                     date = dateEventSplit[2]+"-"+dateEventSplit[1]+"-"+dateEventSplit[0];
-                }else {
+                }
+                else
+                {
                     throw new EventException(INVALID_EVENT_DATE);
                 }
-            }catch (ParseException exception){
+            } catch (ParseException exception)
+            {
                 throw new EventException(INVALID_EVENT_DATE);
             }
 
-            try{
-                SimpleDateFormat formatHour = new SimpleDateFormat("HH:mm:ss");
+            try
+            {
+                String formatOfDate = "hh:mm:ss";
+                SimpleDateFormat formatHour = new SimpleDateFormat(formatOfDate);
                 formatHour.setLenient(false);
                 formatHour.parse(hour);
 
                 this.dateTimeEvent = date + " " + hour;
-            }catch (ParseException exception){
+            } catch (ParseException exception)
+            {
                 throw new EventException(INVALID_EVENT_HOUR);
             }
-        } else {
-            if(date.isEmpty() || date==null) {
+        }
+        else
+        {
+            if(date.isEmpty() || date==null)
+            {
                 throw new EventException(EVENT_DATE_IS_EMPTY);
             }
-
-            if(hour.isEmpty() || hour==null){
+            else if(hour.isEmpty() || hour==null)
+            {
                 throw new EventException(EVENT_HOUR_IS_EMPTY);
             }
+            else
+            {
+                //NOTHING TO DO
+            }
         }
-
+        Log.d("Event", "dateTimeEvent has been setted");
     }
 
-    public Integer getEvaluation() {
+    /**
+    *Method: public Integer getEvaluation()
+    *Description: get evaluation
+    */
+    public Integer getEvaluation()
+    {
         return evaluation;
     }
 
-    public void setEvaluation(Integer evaluation) throws  EventException{
-        if(evaluation >=1 && evaluation<=5)
+    /**
+    *Method: public void setEvaluation(Integer evaluation) throws  EventException
+    *Description: sets evaluation
+    *@param evaluation
+    */
+    public void setEvaluation(Integer evaluation) throws  EventException
+    {
+        final int minEvaluation = 1;
+        final int maxEvaluation = 5;
+        if(evaluation >= minEvaluation && evaluation <= maxEvaluation)
         {
             this.evaluation = evaluation;
         }
@@ -157,161 +307,303 @@ public class Event {
         {
             throw new EventException(INVALID_EVALUATION);
         }
-
+        Log.d("Event", "evaluation has been set");
     }
 
-    public void setPrice(String priceReal, String priceDecimal) throws EventException{
-        if(priceReal!=null && priceDecimal!=null && !priceReal.isEmpty() && !priceDecimal.isEmpty()){
+    /**
+    *Method: public void setPrice(String priceReal, String priceDecimal) throws EventException
+    *Description: sets price
+    *@param priceReal
+    *@param priceDecimal
+    */
+    public void setPrice(String priceReal, String priceDecimal) throws EventException
+    {
+        if(priceReal != null && priceDecimal != null && !priceReal.isEmpty() && !priceDecimal.isEmpty())
+        {
             Integer priceEventReal = Integer.parseInt(priceReal);
             Integer priceEventDecimal = Integer.parseInt(priceDecimal);
 
             Integer price = priceEventReal * 100 + priceEventDecimal;
 
             this.price=price;
-        }else{
-            if(priceReal==null || priceReal.isEmpty()){
+        }
+        else
+        {
+            if(priceReal == null || priceReal.isEmpty())
+            {
                 throw new EventException(PRICE_REAL_IS_EMPTY);
             }
-
-            if(priceDecimal==null || priceDecimal.isEmpty()){
+            else if(priceDecimal == null || priceDecimal.isEmpty())
+            {
                 throw new EventException(PRICE_DECIMAL_IS_EMPTY);
             }
+            else
+            {
+                //NOTHING TO DO
+            }
         }
+        Log.d("Event", "price has been set");
     }
 
-    public void setPrice(Integer price){
+    /**
+    *Method: public void setPrice(Integer price)
+    *Description: sets price
+    *@param price
+    */
+    public void setPrice(Integer price)
+    {
         this.price=price;
+        Log.d("Event", "price has been set");
     }
 
-    public Integer getPrice(){
+    /**
+    *Method: public Integer getPrice()
+    *Description: gets price
+    */
+    public Integer getPrice()
+    {
         return price;
     }
 
-    public String getAddress() {
+    /**
+    *Method: public String getAddress()
+    *Description: get adress
+    */
+    public String getAddress()
+    {
         return adress;
     }
 
-    public void setAddress(String adress) throws EventException{
-        if(!(adress.isEmpty()) && adress!=null)
+    /**
+    *Method: public void setAddress(String adress) throws EventException
+    *Description: sets adress
+    *@param adress
+    */
+    public void setAddress(String adress) throws EventException
+    {
+        if(!(adress.isEmpty()) && adress != null)
         {
             this.adress = adress;
-        }else{
+        }
+        else
+        {
             throw new EventException(ADDRESS_IS_EMPTY);
         }
+        Log.d("Event", "address has been set");
 
     }
 
-    public int getIdEvent() {
+    /**
+    *Method: public int getIdEvent()
+    *Description: gets id of event
+    */
+    public int getIdEvent()
+    {
         return idEvent;
     }
 
-    public void setIdEvent(int idEvent) {
+    /**
+    *Method: public void setIdEvent(int idEvent)
+    *Description: set id of event
+    *@param idEvent has to be above 0
+    */
+    public void setIdEvent(final int idEvent)
+    {
+        assert( idEvent > 0);
+        assert( idEvent < 2147483647);
         this.idEvent = idEvent;
+        Log.d("Event", "idEvent has been set");
     }
 
-    public Double getLongitude() {
+    /**
+    *Method: Double getLongitude()
+    *Description: get longitude
+    */
+    public Double getLongitude()
+    {
         return longitude;
     }
 
-    public void setLongitude(String longitude) throws EventException{
-        if(!(longitude.toString().isEmpty()) && longitude!=null)
+    /**
+    *Method: public void setLongitude(String longitude) throws EventException
+    *Description: sets longitude
+    *@param longitude
+    */
+    public void setLongitude(String longitude) throws EventException
+    {
+        final int minLongitude = -180;
+        final int maxLongitude = 180;
+        if(!(longitude.toString().isEmpty()) && longitude != null)
         {
             Double longitudeDouble = Double.parseDouble(longitude);
-            if(longitudeDouble >= -180 && longitudeDouble <= 180) {
+            if(longitudeDouble >= minLongitude && longitudeDouble <= maxLongitude)
+            {
                 this.longitude = longitudeDouble;
 
-            }else
+            }
+            else
             {
                 throw  new EventException(LONGITUDE_IS_INVALID);
             }
-        }else
+        }
+        else
         {
             throw new EventException(LONGITUDE_IS_EMPTY);
         }
-
+        Log.d("Event", "longitude has been set");
     }
 
-    public String getNameEvent(){
+    /**
+    *Method: public String getNameEvent()
+    *Description: get name of event
+    */
+    public String getNameEvent()
+    {
         return nameEvent;
     }
 
-    public void setNameEvent(String nameEvent) throws EventException {
-        if(!nameEvent.isEmpty() && nameEvent!= null) {
+    /**
+    *Method: public void setNameEvent(String nameEvent) throws EventException
+    *Description: sets name of event
+    *@param nameEvent
+    */
+    public void setNameEvent(String nameEvent) throws EventException
+    {
+        if(!nameEvent.isEmpty() && nameEvent != null)
+        {
 
             if(nameEvent.length() <= MAX_LENGTH_NAME)
             {
                 this.nameEvent = nameEvent;
-            }else
+            }
+            else
             {
                 throw new EventException(NAME_CANT_BE_GREATER_THAN_50);
             }
-        }else{
+        }
+        else
+        {
             throw new EventException(EVENT_NAME_CANT_BE_EMPTY_NAME);
         }
     }
 
-    public String getDescription() {
+    /**
+    *Method: public String getDescription()
+    *Description: gets description
+    */
+    public String getDescription()
+    {
         return description;
     }
 
-    public void setDescription(String description) throws EventException{
-        if(!description.isEmpty() && description !=null)
+    /**
+    *Method: public void setDescription(String description) throws EventException
+    *Description: sets description
+    *@param description
+    */
+    public void setDescription(String description) throws EventException
+    {
+        if(!description.isEmpty() && description != null)
         {
             if(description.length() < MAX_LENGTH_DESCRIPTION)
             {
                 this.description = description;
-            }else
+            }
+            else
             {
                 throw new EventException(DESCRIPTION_CANT_BE_GREATER_THAN);
             }
 
-        }else
+        }
+        else
         {
             throw new EventException(DESCRIPTION_CANT_BE_EMPTY);
         }
 
     }
 
-    public Double getLatitude() {
+    /**
+    *Method: public Double getLatitude()
+    *Description: gets latitude
+    */
+    public Double getLatitude()
+    {
         return latitude;
     }
 
-    public void setLatitude(String latitude) throws EventException{
+    /**
+    *Method: public void setLatitude(String latitude) throws EventException
+    *Description: sets latitude
+    *@param latitude
+    */
+    public void setLatitude(String latitude) throws EventException
+    {
+        final int minLatitude = -90;
+        final int maxLatitude = 90;
         if(!(latitude.toString().isEmpty()) && latitude!=null)
         {
             Double latitudeDouble = Double.parseDouble(latitude);
-            if(latitudeDouble >= -90 && latitudeDouble <= 90)
+            if(latitudeDouble >= minLatitude && latitudeDouble <= maxLatitude)
             {
                 this.latitude = latitudeDouble;
-            }else
+            }
+            else
             {
                 throw  new EventException(LATITUDE_IS_INVALID);
             }
-        }else
+        }
+        else
         {
             throw  new EventException(LANTITUDE_IS_EMPTY);
         }
     }
 
-    public void setCategory(Vector<String> category) throws EventException{
-        if(category!=null && !category.isEmpty()){
+    /**
+    *Method: public void setCategory(Vector<String> category) throws EventException
+    *Description: sets category
+    *@param category
+    */
+    public void setCategory(Vector<String> category) throws EventException
+    {
+        if(category != null && !category.isEmpty())
+        {
             this.category = category;
-        }else{
+        }
+        else
+        {
             throw  new EventException(CATEGORY_IS_INVALID);
         }
     }
 
+    /**
+    *Method: public Vector<String> getCategory()
+    *Description: gets category
+    */
     public Vector<String> getCategory()
     {
         return category;
     }
 
 
-    public int getIdOwner() {
+    /**
+    *Method: public int getIdOwner()
+    *Description: gets id of owner
+    */
+    public int getIdOwner()
+    {
         return idOwner;
     }
 
-    public void setIdOwner(int idOwner) {
+    /**
+    *Method: public void setIdOwner(int idOwner)
+    *Description: sets id of owner
+    *@param idOwner has to be above 0
+    */
+    public void setIdOwner(final int idOwner)
+    {
+        assert( idOwner > 0);
+        assert( idOwner < 2147483647);
         this.idOwner = idOwner;
+        Log.d("Event", "idOwner has been set");
     }
 }

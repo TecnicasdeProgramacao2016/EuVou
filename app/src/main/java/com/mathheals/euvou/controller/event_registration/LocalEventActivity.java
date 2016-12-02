@@ -1,3 +1,9 @@
+/**
+    file: LocalEventActivity.java
+    Purpose: class to get the local of the event on Google Maps
+ */
+
+
 package com.mathheals.euvou.controller.event_registration;
 
 import android.app.Activity;
@@ -11,73 +17,81 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mathheals.euvou.R;
 
-public class LocalEventActivity extends FragmentActivity implements GoogleMap.OnMapClickListener{
+public class LocalEventActivity extends FragmentActivity implements GoogleMap.OnMapClickListener
+{
 
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private GoogleMap mMap = null;
 
+    /**
+     * main method of an Activity on Android, it creates the Activity.
+     * @param savedInstanceState -
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        assert(savedInstanceState != null);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_event);
         setUpMapIfNeeded();
         mMap.setOnMapClickListener(this);
     }
 
+    /**
+     * it inflates the map if it is not inflated yet
+     */
+    private void setUpMapIfNeeded()
+    {
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (mMap == null)
+        {
+            // Try to obtain the map from the SupportMapFragment.
+            mMap = ((SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map))
+                    .getMap();
+            // Check if we were successful in obtaining the map.
+            if (mMap != null)
+            {
+                setUpMap();
+            }
+            else
+            {
+                //NOTHING TO DO
+            }
+        }else
+        {
+            //NOTHING TO DO
+        }
+    }
+    /**
+     * it sets the latitude and the longitude to mark a point on the map
+     * @param latLng - coodenates of the point
+     */
     @Override
+    public void onMapClick(LatLng latLng)
+    {
+        assert(latLng != null);
+        Intent resultado = new Intent();
+        assert(resultado == new Intent());
+        resultado.putExtra("longitude", " " + latLng.longitude);
+        resultado.putExtra("latitude", " " + latLng.latitude);
+        setResult(Activity.RESULT_OK, resultado);
+        finish();
+    }
+
+    @Override
+    /**
+     * method that gets a paused screen and continues it.
+     */
     protected void onResume()
     {
         super.onResume();
         setUpMapIfNeeded();
     }
 
-    /**
-     * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
-     * <p/>
-     * If it isn't installed {@link SupportMapFragment} (and
-     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
-     * install/update the Google Play services APK on their device.
-     * <p/>
-     * A user can return to this FragmentActivity after following the prompt and correctly
-     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
-     * have been completely destroyed during this process (it is likely that it would only be
-     * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called.
-     */
-    private void setUpMapIfNeeded()
-    {
-        // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
-            // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                setUpMap();
-            }
-        }
-    }
 
-    /**
-     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
-     * just add a marker near Africa.
-     * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
-     */
     private void setUpMap()
     {
 
     }
 
-    @Override
-    public void onMapClick(LatLng latLng)
-    {
-        Intent resultado = new Intent();
-        resultado.putExtra("longitude", " " + latLng.longitude);
-        resultado.putExtra("latitude", " " + latLng.latitude);
-        setResult(Activity.RESULT_OK, resultado);
-        finish();
-    }
 }

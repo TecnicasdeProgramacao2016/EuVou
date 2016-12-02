@@ -14,19 +14,25 @@ import android.widget.EditText;
 
 import com.mathheals.euvou.R;
 
-/**
- * A simple {@link Fragment} subclass.
+/*
+ * File name: RemoveUserFragment.
+ * File pourpose: This file have the pourpose to remove any user fragment.
  */
-public class RemoveUserFragment extends android.support.v4.app.Fragment implements View.OnClickListener{
 
-    public RemoveUserFragment() {
-        // Required empty public constructor
-    }
+public class RemoveUserFragment extends android.support.v4.app.Fragment implements View.OnClickListener
+{
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) 
+    {
+        /**
+         * method inflate the layout for this fragment
+         * @param inflater -
+         * @param container -
+         * @param savedInstanceState -
+         */
 
         View view = inflater.inflate(R.layout.fragment_remove_user, container, false);
 
@@ -38,12 +44,19 @@ public class RemoveUserFragment extends android.support.v4.app.Fragment implemen
 
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View view) 
+    {
+        /**
+         * method that gets the informations and create the event
+         * @param view
+         */
 
         FragmentActivity activity = this.getActivity();
         android.support.v4.app.FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
 
-        switch(view.getId()) {
+        //check if disable acount was pressed
+        switch(view.getId()) 
+        {
             case R.id.button_disable_account_id:
                 fragmentTransaction.replace(R.id.content_frame, new OhGoshFragment());
                 fragmentTransaction.add(R.id.content_frame, new DisableAccountFragment(), String.valueOf(R.string.DISABLE_ACCOUNT_FRAGMENT_TAG));
@@ -51,6 +64,8 @@ public class RemoveUserFragment extends android.support.v4.app.Fragment implemen
                 fragmentTransaction.addToBackStack(String.valueOf(R.string.DISABLE_ACCOUNT_FRAGMENT_TAG));
                 fragmentTransaction.commit();
                 return;
+            default:
+                //NOTHING TO DO
         }
     }
 }

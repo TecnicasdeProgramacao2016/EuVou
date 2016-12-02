@@ -1,3 +1,7 @@
+/**
+ * file:RemoveEventControlTest.java
+ * purpose: test the class RemoveEvent control
+ */
 package com.mathheals.euvou;
 
 import android.support.test.InstrumentationRegistry;
@@ -10,10 +14,8 @@ import com.mathheals.euvou.controller.utility.LoginUtility;
 import org.junit.Before;
 
 import java.text.ParseException;
-import java.util.Vector;
 
 import dao.EventDAO;
-import dao.UserDAO;
 import exception.EventException;
 import model.Event;
 import model.User;
@@ -35,48 +37,72 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasToString;
 
-/**
- * Created by izabela on 29/11/15.
- */
-public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<HomePage> {
 
-    private LoginUtility isLoged;
-    private TestUtility setLogin;
-    private UiDevice device;
-    private User user;
-    private EventDAO eventDao = new EventDAO();
+public class RemoveEventControlTest extends ActivityInstrumentationTestCase2<HomePage>
+{
 
-    public RemoveEventControlTest() {
+    private LoginUtility isLoged = null;
+    private TestUtility setLogin = null;
+    private UiDevice device = null;
+    private User user = null;
+
+
+    public RemoveEventControlTest()
+    {
         super(HomePage.class);
     }
 
+    /**
+     * set the logint to the test class
+     * @throws Exception
+     */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         super.setUp();
         getActivity();
         isLoged = new LoginUtility(getActivity());
         device = UiDevice.getInstance(getInstrumentation());
     }
 
-    public void testIfRemoveEventOptionIsDisplayedForUserLoggedOut(){
-        if(isLoged.hasUserLoggedIn()){
+    /**
+     * Test if the options to remove an event is shown for the user that is not
+     * logged in the application
+     */
+    public void testIfRemoveEventOptionIsDisplayedForUserLoggedOut()
+    {
+        if(isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogOut();
+        }else
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Meus Eventos")).check(doesNotExist());
+
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Meus Eventos")).check(doesNotExist());
     }
 
-    public void testRemoveEventButton() throws ParseException, EventException {
+    /**
+     *  testing if the button to remove an event is shown.
+     * @throws ParseException
+     * @throws EventException
+     */
+    public void testRemoveEventButton() throws ParseException, EventException
+    {
 
-        if(!isLoged.hasUserLoggedIn()){
+        if(!isLoged.hasUserLoggedIn())
+        {
             setLogin.makeUserLogIn();
+        }else
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Meus Eventos")).perform(click());
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Meus Eventos")).perform(click());
 
-        onData(hasToString(containsString("Teste")))
-                .inAdapterView(withId(R.id.eventList)).atPosition(0)
-                .perform(click());
+
+        onData(hasToString(containsString("Teste"))).inAdapterView(withId(R.id.eventList)).atPosition(0)
+                                                    .perform(click());
+
         onView(withId(R.id.editRemoveButton)).perform(click());
         onView(withId(R.id.removeEvent)).perform(scrollTo());
         onView(withId(R.id.removeEvent)).perform(click());

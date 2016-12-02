@@ -1,42 +1,48 @@
+/*
+* File name: EditOrRemoveFragment.
+* File pourpose: Edit or remove fragments.
+*/
+
+
 package com.mathheals.euvou.controller.edit_event;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.support.v4.app.Fragment;
-import android.widget.Toast;
 
 import com.mathheals.euvou.R;
-import com.mathheals.euvou.controller.search_event.ListEvents;
 import com.mathheals.euvou.controller.show_event.ShowEvent;
-import com.mathheals.euvou.controller.user_registration.RegisterFragment;
 import com.mathheals.euvou.controller.utility.Mask;
 
 import model.Event;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-
 public class EditOrRemoveFragment extends android.support.v4.app.Fragment  implements View.OnClickListener
 {
-
+    //Public Constructor
     public EditOrRemoveFragment()
     {
         // Required empty public constructor
     }
 
-    public Event evento;
-    private TextView eventCategoriesText, eventPriceText;
+    public Event evento = null;
+    private TextView eventCategoriesText = null, eventPriceText = null;
     private ShowEvent showEvent = new ShowEvent();
 
+    /**
+     * Method: public View onCreateView
+     * Overrides are used to rewrite methods.
+     * This override shows to user an event.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     */
+
     @Override
+    //Override view
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
@@ -61,13 +67,23 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
         description.setText(eventDescription);
         dateEvent.setText(Mask.getDateTimeInBrazilianFormat(eventDateTime));
         eventAddres.setText(eventAddress);
-        showEvent.setPriceText(eventPriceText, eventPrice+"");
-        showEvent.setCategoriesText(new Integer(evento.getIdEvent()), eventCategoriesText);
+        setShowEvent(eventPrice);
 
         return view;
     }
 
+    //Sets atributtes for event's show
+    private void setShowEvent(Integer eventPrice)
+    {
+        showEvent.setPriceText(eventPriceText, eventPrice+"");
+        showEvent.setCategoriesText(new Integer(evento.getIdEvent()), eventCategoriesText);
+    }
+
     @Override
+    /*
+     * Override onClick method to relace the content previouslly filled by
+     * the content that is shown
+     */
     public void onClick(View view)
     {
         if(view.getId()==R.id.editRemoveButton)
@@ -75,7 +91,13 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
             EditEventFragment editEventFragment = new EditEventFragment();
             Bundle bundle = new Bundle();
 
+            /*
+             * As default, the fragment transaction is gotten by the system, but in this line it is
+             * gotten from the support libary. Both of them achieve the same purpose, but they cannot be
+             * replaced with one another in code.
+             */
             android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
             bundle.putInt("idEvent", evento.getIdEvent());
             editEventFragment.setArguments(bundle);
 
@@ -83,6 +105,10 @@ public class EditOrRemoveFragment extends android.support.v4.app.Fragment  imple
             fragmentTransaction.replace(R.id.content_frame, editEventFragment);
 
             fragmentTransaction.commit();
+        }
+        else
+        {
+            //NOTHING TO DO
         }
 
     }

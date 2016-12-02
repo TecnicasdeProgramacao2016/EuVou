@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.util.Log;
 
 import com.mathheals.euvou.R;
 import com.mathheals.euvou.controller.home_page.HomePage;
@@ -22,13 +23,25 @@ import com.mathheals.euvou.controller.utility.LoginUtility;
 
 import org.json.JSONException;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private boolean isUsernameValid;
-    private boolean isPasswordValid;
+ /*
+ * File name: LoginActivity.
+ * File pourpose: This file have the pourpose to active the login.
+ */
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener 
+{
+
     private ActionBar actionBar;
 
+    /**
+        * Overrides are used to rewrite methods.
+        * This override saves the state of writh instances
+        * @param savedInstanceState
+     */
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -38,34 +51,46 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         onConfigActionBar();
     }
 
-    private void initViews(){
+    private void initViews()
+    {
         actionBar = getSupportActionBar();
     }
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+    public boolean onCreateOptionsMenu(final Menu menu)
+    {
+        /**
+             * This method inflate the menu and add items to the action bar if it is present.
+             * @param menu -
+         */
+
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        int userId = (int)item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (userId == R.id.action_settings)
+        {
             return true;
+        } else 
+        {
+            //NOTHING TO DO
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void onConfigActionBar(){
+    private void onConfigActionBar()
+    {
 
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
@@ -74,43 +99,92 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    private boolean isUsernameValid = false;
+    private boolean isPasswordValid = false;
+
     @Override
-    public void onClick(View v) {
+    public void onClick(View view)
+    {
+        /**
+         * method that gets the informations and create the event
+         * @param view
+         */
+
         EditText usernameField = (EditText) findViewById(R.id.usernameField);
-        String typedUsername = usernameField.getText().toString();
+        String typedUsername = (String) usernameField.getText().toString();
 
         EditText passwordField = (EditText) findViewById(R.id.passwordField);
-        String typedPassword = passwordField.getText().toString();
+        String typedPassword = (String) passwordField.getText().toString();
 
         LoginValidation loginValidation = new LoginValidation(LoginActivity.this);
 
-        isUsernameValid=loginValidation.isUsernameValid(typedUsername);
+        isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
-        if(isUsernameValid==false || !loginValidation.isActivity(typedUsername)){
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-        }else{
-            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
-
-            if(isPasswordValid==false){
-                passwordField.requestFocus();
-                passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            }
-        }
-
-        if(isUsernameValid && isPasswordValid){
+        //do the operation if username and password are valids
+        if(isUsernameValid && isPasswordValid)
+        {
+            
             LoginUtility loginUtility = new LoginUtility(LoginActivity.this);
 
-            try {
-                int idUser = loginUtility.getUserId(typedUsername);
+            try 
+            {
+                int idUser = (int)loginUtility.getUserId(typedUsername);
                 loginUtility.setUserLogIn(idUser);
                 Intent i = new Intent(this, HomePage.class);
                 finish();
                 startActivityForResult(i, 1);
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } catch (JSONException exception)
+            {
+                exception.printStackTrace();
+            }
+            Log.d("LoginActivity", "User is logged");
+
+        } else 
+        {
+            //NOTHING TO DO
+        }
+
+        // do the operation if username and login validation are valids
+        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
+        {
+            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+
+            if(isPasswordValid==false)
+            {
+                passwordField.requestFocus();
+                passwordField.setError(loginValidation.getInvalidPasswordMessage());
+            } else 
+            {
+                //NOTHING TO DO
             }
 
+        } else
+        {
+
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+            
         }
+
+        // show message when username and login validation are false
+        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
+        {
+            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+
+            if(isPasswordValid==false)
+            {
+                passwordField.requestFocus();
+                passwordField.setError(loginValidation.getInvalidPasswordMessage());
+            } else
+            {
+                //NOTHING TO DO
+            }
+        } else
+        {
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+            Log.d("LoginActivity", "Login failed");
+        }
+
     }
 }

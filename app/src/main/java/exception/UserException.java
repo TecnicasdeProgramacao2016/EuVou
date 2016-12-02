@@ -1,8 +1,14 @@
+/**
+ * file: UserException.java
+ * purpose: class to make exception to the user class
+ */
 package exception;
 
-public class UserException extends Exception{
+public class UserException extends Exception
+{
 
-    public UserException(String message){
+    public UserException(final String message)
+    {
         super(message);
     }
 }
