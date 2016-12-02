@@ -22,7 +22,7 @@ public class EventTest extends TestCase
     //Test if event's category is null
     public void testIfCategoryIsNull ()
     {
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
         try
         {
             event = new Event(3,"Swing na casa do Miranda",  10010, "casa do miranda",
@@ -31,6 +31,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -47,14 +51,13 @@ public class EventTest extends TestCase
         }
 
         assertFalse(ok);
-        finilize(categories);
     }
 
     //Test if event's category is empty
     public void testIfCategoryIsEmpty()
     {
-        Vector<String> categories = new Vector<>();
-        boolean ok = true;
+        Vector<String> categories = new Vector<>(); //List with all categories
+        boolean ok = true; //Checks if there is an exception
         try
         {
             event = new Event(3,"Swing na casa do Miranda", 10010, "casa do miranda",
@@ -64,6 +67,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -85,8 +92,8 @@ public class EventTest extends TestCase
     //Test if event's category is not null
     public void testIfCategoryIsNotNull ()
     {
-        boolean ok = true;
-        Vector<String> categories = new Vector<String >();
+        boolean ok = true; //Checks if there is an exception
+        Vector<String> categories = new Vector<String >(); //List with all the categories
         categories.add("Museus");
 
         try
@@ -98,6 +105,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -120,10 +131,10 @@ public class EventTest extends TestCase
     //Test if event's name is empty
     public void testNameEmpty() throws ParseException
     {
-        Vector<String> categories = new Vector<String >();
+        Vector<String> categories = new Vector<String >(); //List with all the categories
         categories.add("Educacao");
 
-        boolean ok = true;
+        boolean ok = true;  //Checks if there is an exception //List with all the categories
 
         try
         {
@@ -131,9 +142,20 @@ public class EventTest extends TestCase
                                 "e trenzinho e eu fico no meio", "50.01",
                                 "60.002", categories);
 
+            String event_name = event.getNameEvent();
+            int event_name_size = event_name.length();
+            final int NAME_MAX_SIZE = 30;
+            if(event_name_size > NAME_MAX_SIZE)
+            {
+                assertTrue(false); //Name bigger than allowed can indicate security failure
+            }
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -154,9 +176,9 @@ public class EventTest extends TestCase
     //Test if event's name is not empty
     public void testNameIsNotEmpty()
     {
-        Vector<String> categories = new Vector<String >();
+        Vector<String> categories = new Vector<String >(); //List with all the categories
         categories.add("Balada");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
 
         try
         {
@@ -167,6 +189,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -187,9 +213,9 @@ public class EventTest extends TestCase
     //Test name's length
     public void testNameIsBiggerThanMax()
     {
-        Vector<String> categories = new Vector<String >();
+        Vector<String> categories = new Vector<String >(); //List with all the categories
         categories.add("Museus");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
 
         try
         {
@@ -200,6 +226,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -222,9 +252,9 @@ public class EventTest extends TestCase
     //Test if event's description is empty
     public void testIfDescriptionIsEmpty()
     {
-        Vector<String> categories = new Vector<String >();
+        Vector<String> categories = new Vector<String >(); //List with all the categories
         categories.add("Show");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
 
         try
         {
@@ -235,6 +265,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -256,9 +290,9 @@ public class EventTest extends TestCase
     //Test if event's description if not empty
     public void testIfDescriptionIsNotEmpty()
     {
-        Vector<String> categories = new Vector<String>();
+        Vector<String> categories = new Vector<String>();  //List with all the categories
         categories.add("Cinema");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
         try
         {
             event = new Event(3,"FG a Party",10010, "FGA","10/10/2016",
@@ -268,6 +302,10 @@ public class EventTest extends TestCase
             if(event == null)
             {
                 throw new EventException("Evento nulo");
+            }
+            if(event.getEvaluation()>10 || event.getEvaluation()<0)
+            {
+                throw new EventException("Invalid Evaluation");
             }
             else
             {
@@ -289,9 +327,9 @@ public class EventTest extends TestCase
     //Test if event's description is bigger than possivel
     public void testifDescriptionGoesOverTheMaximumValue()
     {
-        Vector<String> categories = new Vector<String >();
+        Vector<String> categories = new Vector<String >(); //List with all the categories
         categories.add("Teatro");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
 
         try
         {
@@ -323,9 +361,9 @@ public class EventTest extends TestCase
     //Test latitude is too big
     public void testIfLatitudeIsUnderMinus90()
     {
-        Vector<String> categories = new Vector<String >();
+        Vector<String> categories = new Vector<String >();  //List with all the categories
         categories.add("Esportes");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
 
         try
         {
@@ -355,9 +393,9 @@ public class EventTest extends TestCase
     //Test if latitude is too small
     public void testIfLatitudeIsAbove90()
     {
-        Vector<String> categories = new Vector<String >();
+        Vector<String> categories = new Vector<String >(); //List with all the categories
         categories.add("Museus");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
 
         try
         {
@@ -387,9 +425,9 @@ public class EventTest extends TestCase
     //Test if latitude is valid
     public void testIfLatitudeIsOk()
     {
-        Vector<String> categories = new Vector<String >();
+        Vector<String> categories = new Vector<String >(); //List with all the categories
         categories.add("Museus");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
         try
         {
             event = new Event(3,"Evento teste",10010, "endereco", "12/12/2016",
@@ -419,9 +457,9 @@ public class EventTest extends TestCase
     //Test if longitude is too small
     public void testIfLongitudeIsUnderMinus180()
     {
-        Vector<String> categories = new Vector<String >();
+        Vector<String> categories = new Vector<String >(); //List with all the categories
         categories.add("Outros");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
 
         try
         {
@@ -452,9 +490,9 @@ public class EventTest extends TestCase
     //Test if longitude is too big
     public void testIfLongitudeIsAbove180()
     {
-        Vector<String> categories = new Vector<String >();
+        Vector<String> categories = new Vector<String >(); //List with all the categories
         categories.add("Museus");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
 
         try
         {
@@ -485,9 +523,9 @@ public class EventTest extends TestCase
     //Test if longitude if valid
     public void testIfLongitudeIsOk()
     {
-        Vector<String> categories = new Vector<>();
+        Vector<String> categories = new Vector<>(); //List with all the categories
         categories.add("Museus");
-        boolean ok = true;
+        boolean ok = true; //Checks if there is an exception
 
         try
         {
@@ -519,9 +557,10 @@ public class EventTest extends TestCase
     //Test if event constructor add's event's id
     public void testEventConstructorWithId() throws ParseException, EventException
     {
-        Vector<String> categories = new Vector<>();
+        Vector<String> categories = new Vector<>();  //List with all the categories
         categories.add("Esporte");
-        Event event = new Event(1,"nome",10010, "endereco", "14/02/2020 20:15:10","DESCRICAO", "12.20","78.41520", categories);
+        Event event = new Event(1,"nome",10010, "endereco", "14/02/2020 20:15:10","DESCRICAO",
+                                "12.20","78.41520", categories); //Event to be tested
         assertEquals("nome",event.getNameEvent());
 
         finilize(categories);

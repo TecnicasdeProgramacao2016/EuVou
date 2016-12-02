@@ -42,7 +42,6 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     private EditAndRegisterUtility  editAndRegisterUtility =
             new EditAndRegisterUtility();  //This variable is responsable for showing error mesages to the user
 
-
     //Constructor
     public EditEventFragment()
     {
@@ -51,7 +50,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
 
     private EditText nameField = null, dateField = null, hourField = null,
             descriptionField = null, addressField = null,
-            priceDecimalField = null, priceRealField = null;
+            priceDecimalField = null, priceRealField = null; //Class to edit event content
 
 
     //Sets Text
@@ -68,14 +67,13 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         Log.d("EditEventFragment", "Edit text sucessfuly setted");
     }
 
-    private String latitude = null;
-    private String longitude = null;
+    private String latitude = null; //Event's latitude
+    private String longitude = null; //Event's longitude
 
-    private int idEvent = 0;
+    private int idEvent = 0; //Event's ID
     private CheckBox showCheckBox = null, expositionCheckBox = null, cinemaCheckBox = null,
             museumCheckBox = null, theaterCheckBox = null, educationCheckBox = null,
-            othersCheckBox = null,sportsCheckBox = null, partyCheckBox = null;
-
+            othersCheckBox = null,sportsCheckBox = null, partyCheckBox = null; //Event's categorie
 
     @Override
     /*
@@ -85,24 +83,22 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+
+        //Instancing View Elements
         idEvent = this.getArguments().getInt("idEvent");
-
         View view = inflater.inflate(R.layout.fragment_edit_event, container, false);
-
-        setingEditText(view);
-        dateField.addTextChangedListener(Mask.insert("##/##/####", dateField));
-        setingCheckBoxs(view);
-
         EventDAO eventDAO = new EventDAO(getActivity());
         EventCategoryDAO eventCategoryDAO = new EventCategoryDAO(getActivity());
         CategoryDAO categoryDAO = new CategoryDAO(getActivity());
-
-        //Change the value of idEvent when the consultEvent was finished
         JSONObject jsonEvent = eventDAO.searchEventById(idEvent);
         JSONObject jsonEventCategory = eventCategoryDAO.searchCategoriesByEventId(idEvent);
 
+        //Setting elements on view
         setEventsAtributtesButCategory (jsonEvent);
         setEventsCategory(jsonEventCategory, categoryDAO);
+        setingEditText(view);
+        dateField.addTextChangedListener(Mask.insert("##/##/####", dateField));
+        setingCheckBoxs(view);
 
 
         //Adding listener to eventLocal EditText
@@ -112,11 +108,12 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         //Adding listener to CheckBoxs to verify if each CheckBox is checked or not
         addCheckBoxListeners(view);
 
+        //Adding buttons to remove and Add events
         Button removeEvent = (Button)view.findViewById(R.id.removeEvent);
         removeEvent.setOnClickListener(this);
-
         Button updateEvent = (Button)view.findViewById(R.id.updateEvent);
         updateEvent.setOnClickListener(this);
+
 
         return view;
     }
@@ -126,13 +123,14 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     {
         try
         {
+            //This block intances event atributtes
             String nameEvent = jsonEvent.getJSONObject("0").getString("nameEvent");
-            nameField.setText(nameEvent);
-
             String descriptionEvent = jsonEvent.getJSONObject("0").getString("description");
-            descriptionField.setText(descriptionEvent);
-
             String addressEvent = jsonEvent.getJSONObject("0").getString("address");
+
+            //Atributtes are setted
+            nameField.setText(nameEvent);
+            descriptionField.setText(descriptionEvent);
             addressField.setText(addressEvent);
 
             formatDate(jsonEvent);
@@ -161,13 +159,23 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         try {
             Vector <Integer> idCategories = new Vector<>();
             String idCategory;
+            String counterString;
+            final String ID_CATEGORY = "idCategory";
+            JSONObject vector;
 
             /*
              * As known, events can have many categories, this structure get all chosed
              * options and save then ad idCategories
              */
             for (int counter = 0; counter < jsonEventCategory.length(); counter++) {
-                idCategory = jsonEventCategory.getJSONObject(Integer.toString(counter)).getString("idCategory");
+
+                //Parses Counter do String
+                counterString = Integer.toString(counter);
+                //Get Categories from DataBase
+                vector = jsonEventCategory.getJSONObject(counterString);
+                //Get Categorie ID
+                idCategory = vector.getString(ID_CATEGORY);
+                //Add id Category to the vector of Categories IDs
                 idCategories.add(Integer.parseInt(idCategory));
             }
 
@@ -231,17 +239,20 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     //Format Date
     public void formatDate(JSONObject jsonEvent) throws JSONException
     {
-
-        String dateHourEvent = jsonEvent.getJSONObject("0").getString("dateTimeEvent");
-        String[] dateHourEventSplit = dateHourEvent.split(" ");
-
-        String dateEvent = dateHourEventSplit[0];
-        String[] dateEventSplit = dateEvent.split("-");
+        //Atributtes used to format date
+        String dateHourEvent = jsonEvent.getJSONObject("0").getString("dateTimeEvent"); //Date and hour content
+        String[] dateHourEventSplit = dateHourEvent.split(" "); //Date and hour content splitted in 2
+        String dateEvent = dateHourEventSplit[0]; //Date content
+        String[] dateEventSplit = dateEvent.split("-"); //Date content splitted in 3: day, mounth and year
         dateEvent = dateEventSplit[2] + "/" + dateEventSplit[1] + "/" + dateEventSplit[0];
+        String hourEvent = dateHourEventSplit[1]; //Hour content;
 
-        String hourEvent = dateHourEventSplit[1];
-
+        //Sets date and hour
         this.dateField.setText(dateEvent);
+        if(Integer.parseInt(hourEvent) < 0 || Integer.parseInt(hourEvent) > 24)
+        {
+            Log.d("EditEventFragment", "Invalid Time");
+        }
         this.hourField.setText(hourEvent);
 
         Log.d("EditEventFragment", "Date sucessfuly formated");
@@ -251,10 +262,10 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     public void formatPrice(JSONObject jsonEvent) throws JSONException
     {
         Integer priceEvent = jsonEvent.getJSONObject("0").getInt("price");
-        this.priceRealField.setText(Integer.toString(priceEvent / 100));
 
         //At this line, gets the price of the field, turn into string with the right value
         this.priceDecimalField.setText(Integer.toString(priceEvent - priceEvent / 100 * 100));
+        this.priceRealField.setText(Integer.toString(priceEvent / 100));
         Log.d("EditEventFragment", "Price sucessfuly formated");
     }
 
@@ -433,24 +444,19 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
     //Update event
     public void updateEvent()
     {
-
+        //Create fields for atributtes
         String nameEvent = nameField.getText().toString();
         String dateEvent = dateField.getText().toString();
-
         String[] dateEventSplit = dateEvent.split("/");
         dateEvent = dateEventSplit[2] + "-" + dateEventSplit[1] + "-" + dateEventSplit[0];
-
         String hourEvent = hourField.getText().toString();
-
         String dateHourEvent = dateEvent + " " + hourEvent;
-
         String descriptionEvent = descriptionField.getText().toString();
-
         String addresEvent = addressField.getText().toString();
-
         Integer eventPriceReal = Integer.parseInt(priceRealField.getText().toString());
         Integer eventPriceDecimal = Integer.parseInt(priceDecimalField.getText().toString());
         Integer priceEvent = eventPriceReal * 100 + eventPriceDecimal;
+
 
         checksValuesNotNull(nameEvent, dateEvent, hourEvent, descriptionEvent, addresEvent, priceEvent);
 
@@ -607,8 +613,13 @@ public class EditEventFragment extends Fragment implements View.OnClickListener
         if(eventDAO.deleteEvent(eventId).contains("Salvo"))
         {
             Toast.makeText(getActivity(), "Deletado com sucesso", Toast.LENGTH_LONG).show();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().
-                    getSupportFragmentManager().beginTransaction();
+
+            //Andoid Suport libary contains a manegment libary for applications
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    /* Get this management libary to rearrange events top five if an event
+                       is deleted */
+                    getActivity().getSupportFragmentManager().beginTransaction();
+
             fragmentTransaction.replace(R.id.content_frame, new ShowTop5Rank());
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();

@@ -30,15 +30,19 @@ import exception.UserEvaluationException;
 import model.UserEvaluation;
 
 public class ShowUser extends android.support.v4.app.Fragment {
-    private UserEvaluation userEvaluation = null;
-    private final String SUCCESSFULL_EVALUATION_MESSAGE = "Avaliação cadastrada com sucesso";
-    private RatingBar ratingBar = null;
-    private View showUserView = null;
-    private String userEvaluatedId = null;
+
+    //Instance user's atributtes values
+    private UserEvaluation userEvaluation = null; //User evaluation
+    private final String SUCCESSFULL_EVALUATION_MESSAGE = "Avaliação cadastrada com sucesso"; //Constant do indicate success
+    private RatingBar ratingBar = null; //User rate ba
+    private View showUserView = null; //User view
+    private String userEvaluatedId = null; //Id of user's evaluation
     private int currentUserId = 0;  //This variable has the pourpose to check if current user is logged, as it compares with LOGGED_OUT
-    private static boolean isUserLoggedIn = true;
-    private TextView ratingMessage = null;
-    private final Integer LOGGED_OUT = -1;
+    private static boolean isUserLoggedIn = true; //Constant to indicate if user is logged in
+    private TextView ratingMessage = null;  //Rate text display
+    private final Integer LOGGED_OUT = -1; //Constant to indicate if user is logged out
+
+
 
     public ShowUser()
     {
@@ -53,16 +57,22 @@ public class ShowUser extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-
+        //Sets User's values
         setShowUserView(inflater.inflate(R.layout.show_user, container, false));
-        userEvaluatedId=this.getArguments().getString("id");
+
+        //Tests User's Id
+        if(currentUserId < 0)
+            Log.d("ShowUser", "Invalid User ID");
+
         setCurrentUserId(new LoginUtility(getActivity()).getUserId());
-
-        getDBValuesToSetView();
-
         setIsUserLoggedIn(currentUserId != LOGGED_OUT);
         setRatingMessage(isUserLoggedIn);
         setRatingBarIfNeeded();
+
+
+        //Gets values to create the view
+        userEvaluatedId=this.getArguments().getString("id");
+        getDBValuesToSetView();
 
         Log.d("ShowUser", "User logged in");
 
@@ -73,10 +83,14 @@ public class ShowUser extends android.support.v4.app.Fragment {
     {
         UserDAO userDAO = new UserDAO(getActivity());
         JSONObject userData = null;
+        Integer userEvaluatedIdInteger;
 
         try
         {
-            userData = new JSONObject(userDAO.searchUserById(Integer.parseInt(userEvaluatedId)));
+            userEvaluatedIdInteger = Integer.parseInt(userEvaluatedId);
+            //Using database searchs user's event evaluation
+            userData = new JSONObject(userDAO.searchUserById(userEvaluatedIdInteger));
+
         } catch (JSONException jsonException)
         {
             jsonException.printStackTrace();
@@ -84,13 +98,17 @@ public class ShowUser extends android.support.v4.app.Fragment {
 
         try
         {
+            //Gets atributte's values
             String nameUserDB = userData.getJSONObject("0").getString("nameUser");
             String birthDateDB = userData.getJSONObject("0").getString("birthDate");
             String mailDB = userData.getJSONObject("0").getString("email");
 
-            TextView name= (TextView) showUserView.findViewById(R.id.labelName);
+            //Instance texts values for the view
+            TextView name = (TextView) showUserView.findViewById(R.id.labelName);
             TextView date = (TextView) showUserView.findViewById(R.id.labelBirthDate);
             TextView mail = (TextView) showUserView.findViewById(R.id.labelMail);
+
+            //Sets texts values
             name.setText(nameUserDB);
             date.setText(birthDateDB);
             mail.setText(mailDB);

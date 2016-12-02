@@ -7,6 +7,7 @@ package com.mathheals.euvou;
 
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
+import android.util.Log;
 import android.view.View;
 import android.widget.RatingBar;
 
@@ -23,7 +24,7 @@ public class SetRating implements ViewAction
         setRating(rating);
     }
 
-    private static Integer rating;
+    private static Integer rating; //Event rate
 
     @Override
     //Checks if raiting bar is constrint
@@ -46,6 +47,10 @@ public class SetRating implements ViewAction
     public void perform(UiController uiController, View view)
     {
         RatingBar ratingBar = (RatingBar) view;
+        if(getRating()>10 || getRating()<0)
+        {
+            Log.d("SetRating Class", "Rate not allowed");
+        }
         ratingBar.setRating(getRating());
     }
 

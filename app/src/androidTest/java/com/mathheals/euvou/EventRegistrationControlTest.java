@@ -45,8 +45,8 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
     }
 
 
-    private Event event;
-    private UiDevice device;
+    private Event event; //Nem event to be tested
+    private UiDevice device; //Instance new UI device that further will become an UIObject
     private static LoginUtility isLoged; //Check if user's is logged in
 
     @Before
@@ -89,9 +89,15 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
 
         final String SUCESSFULL_CHOICE_MESSAGE = "Local selecionado com sucesso";
 
+        //On view method displays a message or and object to the user, is this case, the text
         onView(withText(SUCESSFULL_CHOICE_MESSAGE))
+                /*checks back-end to see if the decorView, or decoration view, gets user's
+                  activities (if clicks or rolls the page) */
                 .inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView()))))
+                //checks if content is displayed
                 .check(matches(isDisplayed()));
+
+
 
         finilizeObject(SUCESSFULL_CHOICE_MESSAGE);
     }
@@ -128,6 +134,30 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
         onView(withId(R.id.optionParty)).check(matches(isChecked()));
         onView(withId(R.id.optionTheater)).perform(click());
         onView(withId(R.id.optionTheater)).check(matches(isChecked()));
+    }
+
+    //Test if event can be register passing adress bigger than it should
+    public void testEventAdress()
+    {
+        if(!isLoged.hasUserLoggedIn())
+        {
+            setLogin.makeUserLogIn();
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+
+        final int MAXIMUM_EVENT_ADRESS_SIZE = 300;
+        Object event_adress_object = R.id.event_adress_txt;
+        String event_adress_string = event_adress_object.toString();
+        int event_adress_size = Integer.parseInt(event_adress_string);
+        if(event_adress_size > MAXIMUM_EVENT_ADRESS_SIZE)
+        {
+            assertTrue(false); //Stop the program, this error can cause security problems.
+        }
+
+
     }
 
     //Test if can register a event without and adress
@@ -167,7 +197,10 @@ public class EventRegistrationControlTest extends ActivityInstrumentationTestCas
             interruptedException.printStackTrace();
         }
 
-        onView(withId(R.id.eventAddress)).check(matches(hasErrorText(event.ADDRESS_IS_EMPTY)));
+        //Gets event that os shown on view
+        onView(withId(R.id.eventAddress))
+                //Compares the event show if it's empty
+                .check(matches(hasErrorText(event.ADDRESS_IS_EMPTY)));
     }
 
     //Test if registred event is funcional
