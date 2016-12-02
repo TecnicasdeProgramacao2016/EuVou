@@ -36,8 +36,10 @@ public class EventEvaluationDAO extends DAO
         JSONObject findEvaluation = searchEventEvaluation(evaluation.getEventId(), evaluation.getUserId());
 
         String QUERY = " defaultValue";
-
-        if(findEvaluation==null)
+        /*
+            checks if the result from the database, if the result is null the query is made and aftwards is executed.
+         */
+        if(findEvaluation == null)
         {
             QUERY = "INSERT INTO participate(grade, idUser, idEvent) VALUES (\"" + evaluation.getRating() + "\"," +
                     "\"" + evaluation.getUserId() + "\"," +

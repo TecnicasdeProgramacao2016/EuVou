@@ -42,7 +42,7 @@ public class Consult
         assert(query != null);
         assert(url != null);
 
-        this.query= query;
+        this.query = query;
         this.url = url;
 
         setIsDoing(false);
@@ -130,6 +130,9 @@ public class Consult
 
             StringBuilder answer = new StringBuilder();
 
+            /*
+                populate the stringBuilder with the result of the method
+             */
             while ((rLine = rd.readLine()) != null)
             {
                 answer.append(rLine);
