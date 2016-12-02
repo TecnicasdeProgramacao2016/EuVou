@@ -49,6 +49,21 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
         isLoged = new LoginUtility(getActivity());
     }
 
+    public void testIfRatingBarIsAvailableForLoggedInUser()
+    {
+        //check if user is logged
+        if(!isLoged.hasUserLoggedIn())
+        {
+            TestUtility.makeUserLogIn();
+        } else
+        {
+            //NOTHING TO DO
+        }
+        searchForUserUsedForTest();
+        onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+
+    }
+
     public void testIfRatingBarIsAvailableForLoggedOutUser() 
     {
         //check if user is logged
@@ -61,21 +76,6 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
         }
         searchForUserUsedForTest();
         onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
-
-    }
-
-    public void testIfRatingBarIsAvailableForLoggedInUser() 
-    {
-        //check if user is logged
-        if(!isLoged.hasUserLoggedIn()) 
-        {
-            TestUtility.makeUserLogIn();
-        } else
-        {
-            //NOTHING TO DO
-        }
-        searchForUserUsedForTest();
-        onView(withId(R.id.ratingBar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
     }
 
@@ -111,17 +111,24 @@ public class UserEvaluationControlTest extends ActivityInstrumentationTestCase2<
             result = false;
         }
         assertTrue(result);
-
     }
 
     public void searchForUserUsedForTest()
     {
-        onView(withId(R.id.search)).perform(click());
-        onView(withId(R.id.radio_people)).perform(click());
-        onView(withId(R.id.search_src_text)).perform(typeText("t"), pressKey(66));
-        onData(hasToString(containsString("Igor Duarte")))
-                .inAdapterView(withId(R.id.events_list)).atPosition(0)
-                .perform(click());
-        closeSoftKeyboard();
+
+        try
+        {
+            onView(withId(R.id.search)).perform(click());
+            onView(withId(R.id.radio_people)).perform(click());
+            onView(withId(R.id.search_src_text)).perform(typeText("t"), pressKey(66));
+            onData(hasToString(containsString("Igor Duarte")))
+                    .inAdapterView(withId(R.id.events_list)).atPosition(0)
+                    .perform(click());
+            closeSoftKeyboard();
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 }

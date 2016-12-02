@@ -13,6 +13,8 @@ public class EditAndRegisterUtility
 
     public void setMessageError(EditText editText, final String message)
     {
+        assert(editText != null);
+        assert(message != null);
         /**
          * method that show errors message
          * @param editText -

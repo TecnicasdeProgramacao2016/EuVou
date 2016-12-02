@@ -20,6 +20,59 @@ import model.UserEvaluation;
 public class UserEvaluationDAOTest extends TestCase 
 {
 
+    public void  testIfUserIdIsBeingSavedCorrectly()
+    {
+        final Float RATING = 3.5F;
+        final Integer USER_ID = 3;
+        final Integer EVALUATED_USER_ID = 1;
+
+        UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
+        try
+        {
+            userEvaluationDAO.evaluateUser(new UserEvaluation(RATING, USER_ID, EVALUATED_USER_ID));
+        } catch (UserEvaluationException userEvaluationException)
+        {
+            userEvaluationException.printStackTrace();
+        }
+        JSONObject jsonObject = (JSONObject) userEvaluationDAO.searchUserEvaluation(EVALUATED_USER_ID, USER_ID);
+
+        try
+        {
+            Integer userId = jsonObject.getJSONObject("0").getInt("idUser");
+            assertEquals(userId, USER_ID);
+        } catch (JSONException jsonException)
+        {
+            jsonException.printStackTrace();
+        }
+    }
+
+    public void  testIfEvaluatedUserIdIsBeingSavedCorrectly()
+    {
+        final Float RATING = 3.5F;
+        final Integer USER_ID = 3;
+        final Integer EVALUATED_USER_ID = 1;
+
+        UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
+        try
+        {
+            userEvaluationDAO.evaluateUser(new UserEvaluation(RATING, USER_ID, EVALUATED_USER_ID));
+        } catch (UserEvaluationException userEvaluationException)
+        {
+            userEvaluationException.printStackTrace();
+        }
+        JSONObject jsonObject = (JSONObject) userEvaluationDAO.searchUserEvaluation(EVALUATED_USER_ID, USER_ID);
+
+        try
+        {
+            Integer evaluatedUserId = jsonObject.getJSONObject("0").getInt("idUserEvaluated");
+
+            assertEquals(evaluatedUserId, EVALUATED_USER_ID);
+        } catch (JSONException jsonException)
+        {
+            jsonException.printStackTrace();
+        }
+    }
+
     public void testIfRatingIsBeingSavedCorrectly() 
     {
         final Float RATING = 3.5F;
@@ -48,56 +101,6 @@ public class UserEvaluationDAOTest extends TestCase
         }
     }
 
-    public void  testIfUserIdIsBeingSavedCorrectly() 
-    {
-        final Float RATING = 3.5F;
-        final Integer USER_ID = 3;
-        final Integer EVALUATED_USER_ID = 1;
 
-        UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
-        try 
-        {
-            userEvaluationDAO.evaluateUser(new UserEvaluation(RATING, USER_ID, EVALUATED_USER_ID));
-        } catch (UserEvaluationException userEvaluationException)
-        {
-            userEvaluationException.printStackTrace();
-        }
-        JSONObject jsonObject = (JSONObject) userEvaluationDAO.searchUserEvaluation(EVALUATED_USER_ID, USER_ID);
 
-        try 
-        {
-            Integer userId = jsonObject.getJSONObject("0").getInt("idUser");
-            assertEquals(userId, USER_ID);
-        } catch (JSONException jsonException)
-        {
-            jsonException.printStackTrace();
-        }
-    }
-
-    public void  testIfEvaluatedUserIdIsBeingSavedCorrectly() 
-    {
-        final Float RATING = 3.5F;
-        final Integer USER_ID = 3;
-        final Integer EVALUATED_USER_ID = 1;
-
-        UserEvaluationDAO userEvaluationDAO = new UserEvaluationDAO();
-        try 
-        {
-            userEvaluationDAO.evaluateUser(new UserEvaluation(RATING, USER_ID, EVALUATED_USER_ID));
-        } catch (UserEvaluationException userEvaluationException)
-        {
-            userEvaluationException.printStackTrace();
-        }
-        JSONObject jsonObject = (JSONObject) userEvaluationDAO.searchUserEvaluation(EVALUATED_USER_ID, USER_ID);
-
-        try 
-        {
-            Integer evaluatedUserId = jsonObject.getJSONObject("0").getInt("idUserEvaluated");
-
-            assertEquals(evaluatedUserId, EVALUATED_USER_ID);
-        } catch (JSONException jsonException)
-        {
-            jsonException.printStackTrace();
-        }
-    }
 }

@@ -63,10 +63,18 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.saveButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.saveButton)).check(matches(withText("Cadastrar")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.saveButton)).check(matches(isDisplayed()));
+            onView(withId(R.id.saveButton)).check(matches(withText("Cadastrar")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
     
     public void testIfNameLabelIsCorrect() 
@@ -79,10 +87,19 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.userNameLabel)).check(matches(isDisplayed()));
-        onView(withId(R.id.userNameLabel)).check(matches(withText("Nome")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.userNameLabel)).check(matches(isDisplayed()));
+            onView(withId(R.id.userNameLabel)).check(matches(withText("Nome")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
+
     }
 
     public void testNameField()
@@ -95,12 +112,21 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.nameField)).check(matches(isDisplayed()));
-        onView(withId(R.id.nameField)).perform(typeText("Ju Almeida"));
-        onView(withId(R.id.dateField)).perform(click());
-        onView(withId(R.id.nameField)).check(matches(withText("Ju Almeida")));
+
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.nameField)).check(matches(isDisplayed()));
+            onView(withId(R.id.nameField)).perform(typeText("Ju Almeida"));
+            onView(withId(R.id.dateField)).perform(click());
+            onView(withId(R.id.nameField)).check(matches(withText("Ju Almeida")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 
     public void testIfDateLabelIsCorrect() 
@@ -113,10 +139,18 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.birthDateLabel)).check(matches(isDisplayed()));
-        onView(withId(R.id.birthDateLabel)).check(matches(withText("Data de Nascimento")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.birthDateLabel)).check(matches(isDisplayed()));
+            onView(withId(R.id.birthDateLabel)).check(matches(withText("Data de Nascimento")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 
     public void testDateField()
@@ -129,12 +163,20 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.dateField)).check(matches(isDisplayed()));
-        onView(withId(R.id.dateField)).perform(typeText("22/12/2000"));
-        onView(withId(R.id.mailField)).perform(click());
-        onView(withId(R.id.dateField)).check(matches(withText("22/12/2000")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.dateField)).check(matches(isDisplayed()));
+            onView(withId(R.id.dateField)).perform(typeText("22/12/2000"));
+            onView(withId(R.id.mailField)).perform(click());
+            onView(withId(R.id.dateField)).check(matches(withText("22/12/2000")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 
     public void testIfMailLabelIsCorrect() 
@@ -148,10 +190,17 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
             //NOTHING TO DO
         }
 
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.userMailLabel)).check(matches(isDisplayed()));
-        onView(withId(R.id.userMailLabel)).check(matches(withText("E-mail")));
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.userMailLabel)).check(matches(isDisplayed()));
+            onView(withId(R.id.userMailLabel)).check(matches(withText("E-mail")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 
     public void testMailField()
@@ -164,12 +213,20 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.mailField)).check(matches(isDisplayed()));
-        onView(withId(R.id.mailField)).perform(typeText("oi-xau@voltei.com"));
-        onView(withId(R.id.confirmMailField)).perform(click());
-        onView(withId(R.id.mailField)).check(matches(withText("oi-xau@voltei.com")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.mailField)).check(matches(isDisplayed()));
+            onView(withId(R.id.mailField)).perform(typeText("oi-xau@voltei.com"));
+            onView(withId(R.id.confirmMailField)).perform(click());
+            onView(withId(R.id.mailField)).check(matches(withText("oi-xau@voltei.com")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 
     public void testIfMailConfirmationLabelIsCorrect() 
@@ -182,10 +239,18 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.confirmUserMailLabel)).check(matches(isDisplayed()));
-        onView(withId(R.id.confirmUserMailLabel)).check(matches(withText("Confirme o e-mail")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.confirmUserMailLabel)).check(matches(isDisplayed()));
+            onView(withId(R.id.confirmUserMailLabel)).check(matches(withText("Confirme o e-mail")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 
     public void testMailConfirmationField()
@@ -198,12 +263,21 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.confirmMailField)).check(matches(isDisplayed()));
-        onView(withId(R.id.confirmMailField)).perform(typeText("oi-xau@voltei.com"));
-        onView(withId(R.id.loginField)).perform(click());
-        onView(withId(R.id.confirmMailField)).check(matches(withText("oi-xau@voltei.com")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.confirmMailField)).check(matches(isDisplayed()));
+            onView(withId(R.id.confirmMailField)).perform(typeText("oi-xau@voltei.com"));
+            onView(withId(R.id.loginField)).perform(click());
+            onView(withId(R.id.confirmMailField)).check(matches(withText("oi-xau@voltei.com")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
+
     }
 
     public void testIfLoginLabelIsCorrect() 
@@ -216,11 +290,19 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.userLoginLabel)).check(matches(isDisplayed()));
-        onView(withId(R.id.userLoginLabel)).check(matches(withText("Login")));
-    }
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.userLoginLabel)).check(matches(isDisplayed()));
+            onView(withId(R.id.userLoginLabel)).check(matches(withText("Login")));
+        }
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
 
     public void testLoginField()
     {
@@ -232,12 +314,21 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.loginField)).check(matches(isDisplayed()));
-        onView(withId(R.id.loginField)).perform(typeText("oioioi123"));
-        onView(withId(R.id.passwordField)).perform(click());
-        onView(withId(R.id.loginField)).check(matches(withText("oioioi123")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.loginField)).check(matches(isDisplayed()));
+            onView(withId(R.id.loginField)).perform(typeText("oioioi123"));
+            onView(withId(R.id.passwordField)).perform(click());
+            onView(withId(R.id.loginField)).check(matches(withText("oioioi123")));
+
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 
     public void testIfPasswordLabelIsCorrect() 
@@ -250,10 +341,19 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.userPasswordLabel)).check(matches(isDisplayed()));
-        onView(withId(R.id.userPasswordLabel)).check(matches(withText("Senha")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.userPasswordLabel)).check(matches(isDisplayed()));
+            onView(withId(R.id.userPasswordLabel)).check(matches(withText("Senha")));
+
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 
     public void testPasswordField()
@@ -266,12 +366,20 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.passwordField)).check(matches(isDisplayed()));
-        onView(withId(R.id.passwordField)).perform(typeText("1234567"));
-        onView(withId(R.id.confirmPasswordField)).perform(click());
-        onView(withId(R.id.passwordField)).check(matches(withText("1234567")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.passwordField)).check(matches(isDisplayed()));
+            onView(withId(R.id.passwordField)).perform(typeText("1234567"));
+            onView(withId(R.id.confirmPasswordField)).perform(click());
+            onView(withId(R.id.passwordField)).check(matches(withText("1234567")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 
     public void testIfConfirmPasswordLabelIsCorrect() 
@@ -284,10 +392,18 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.userConfirmPasswordLabel)).check(matches(isDisplayed()));
-        onView(withId(R.id.userConfirmPasswordLabel)).check(matches(withText("Confirme a senha")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.userConfirmPasswordLabel)).check(matches(isDisplayed()));
+            onView(withId(R.id.userConfirmPasswordLabel)).check(matches(withText("Confirme a senha")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
     }
 
     public void testConfirmPasswordField()
@@ -300,12 +416,21 @@ public class UserRegistrationControlTest extends ActivityInstrumentationTestCase
         {
             //NOTHING TO DO
         }
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText("Cadastrar")).perform(click());
-        onView(withId(R.id.confirmPasswordField)).check(matches(isDisplayed()));
-        onView(withId(R.id.confirmPasswordField)).perform(typeText("1234567"));
-        onView(withId(R.id.passwordField)).perform(click());
-        onView(withId(R.id.confirmPasswordField)).check(matches(withText("1234567")));
+
+        try
+        {
+            openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+            onView(withText("Cadastrar")).perform(click());
+            onView(withId(R.id.confirmPasswordField)).check(matches(isDisplayed()));
+            onView(withId(R.id.confirmPasswordField)).perform(typeText("1234567"));
+            onView(withId(R.id.passwordField)).perform(click());
+            onView(withId(R.id.confirmPasswordField)).check(matches(withText("1234567")));
+        } catch (UiObjectNotFoundException uiObjectNotFoundException)
+        {
+            uiObjectNotFoundException.printStackTrace();
+        }
+
+
     }
 
     public void testRegisterUserButtonWithEmptyName()

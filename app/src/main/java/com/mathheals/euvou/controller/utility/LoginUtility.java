@@ -36,7 +36,7 @@ public class LoginUtility
 
     private Activity activity = null;
 
-    private static final int LOGGED_OUT = -1;
+    private static final int LOGGED_OUT = -1; // flag that accuse when the user is logged out
 
     public boolean hasUserLoggedIn() 
     {
@@ -61,11 +61,7 @@ public class LoginUtility
         return Integer.parseInt(jsonObject.getJSONObject("0").getString(COLUMN_USER_ID));
     }
 
-    private static final String COLUMN_USER_NAME = "nameUser";
-    private static final String COLUMN_USER_LOGIN = "login";
-    private static final String COLUMN_USER_EMAIL = "email";
-    private static final String COLUMN_USER_PASSWORD = "passwordUser";
-    private static final String COLUMN_USER_BIRTHDATE = "birthDate";
+
 
     public User getUser(String username)
     {
@@ -114,6 +110,7 @@ public class LoginUtility
 
     public void setUserLogIn(int userId) 
     {
+        assert(userId > 0);
         /**
          * method sets current user's ID
          */
@@ -165,6 +162,13 @@ public class LoginUtility
         String[] birthDateSplit = birthDate.split("-");
         return birthDateSplit[2]+"/"+birthDateSplit[1]+"/"+birthDateSplit[0];
     }
+
+    //declaring important user's information
+    private static final String COLUMN_USER_NAME = "nameUser";
+    private static final String COLUMN_USER_LOGIN = "login";
+    private static final String COLUMN_USER_EMAIL = "email";
+    private static final String COLUMN_USER_PASSWORD = "passwordUser";
+    private static final String COLUMN_USER_BIRTHDATE = "birthDate";
 
 }
 

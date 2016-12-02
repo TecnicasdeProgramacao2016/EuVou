@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     {
+        assert(savedInstanceState != null);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -60,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onCreateOptionsMenu(final Menu menu)
     {
+        assert(menu != null);
         /**
              * This method inflate the menu and add items to the action bar if it is present.
              * @param menu -
@@ -95,16 +97,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#008B8B")));
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#008B8B"))); //Set the color blue on parse
 
     }
 
+    //flags to charge when the User can not log
     private boolean isUsernameValid = false;
     private boolean isPasswordValid = false;
 
     @Override
     public void onClick(View view)
     {
+
+        assert(view != null);
         /**
          * method that gets the informations and create the event
          * @param view
@@ -121,12 +126,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
         //do the operation if username and password are valids
+
+        checkIfUsernameAndPasswordAreValid(isUsernameValid, isPasswordValid, typedUsername);
+        checkIfUsernameAndloginValidationAreTrue(isUsernameValid, isPasswordValid,
+                                                 typedUsername, typedPassword,
+                                                 passwordField, usernameField,
+                                                 loginValidation);
+        checkIfUsernameAndloginValidationAreFalse(isUsernameValid, isPasswordValid,
+                                                 typedUsername, typedPassword,
+                                                 passwordField, usernameField,
+                                                 loginValidation);
+
+    }
+
+    public void checkIfUsernameAndPasswordAreValid (boolean isUsernameValid, boolean isPasswordValid, String typedUsername)
+    {
+
         if(isUsernameValid && isPasswordValid)
         {
-            
+
             LoginUtility loginUtility = new LoginUtility(LoginActivity.this);
 
-            try 
+            try
             {
                 int idUser = (int)loginUtility.getUserId(typedUsername);
                 loginUtility.setUserLogIn(idUser);
@@ -139,34 +160,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             Log.d("LoginActivity", "User is logged");
 
-        } else 
+        } else
         {
             //NOTHING TO DO
         }
+    }
 
         // do the operation if username and login validation are valids
-        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
-        {
-            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
-
-            if(isPasswordValid==false)
-            {
-                passwordField.requestFocus();
-                passwordField.setError(loginValidation.getInvalidPasswordMessage());
-            } else 
-            {
-                //NOTHING TO DO
-            }
-
-        } else
-        {
-
-            usernameField.requestFocus();
-            usernameField.setError(loginValidation.getInvalidUsernameMessage());
-            
-        }
-
-        // show message when username and login validation are false
+    public void checkIfUsernameAndloginValidationAreTrue (boolean isUsernameValid, boolean isPasswordValid,
+                                                          String typedUsername, String typedPassword,
+                                                          EditText passwordField, EditText usernameField,
+                                                          LoginValidation loginValidation)
+    {
         if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
         {
             isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
@@ -179,12 +184,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             {
                 //NOTHING TO DO
             }
+
         } else
         {
+
             usernameField.requestFocus();
             usernameField.setError(loginValidation.getInvalidUsernameMessage());
-            Log.d("LoginActivity", "Login failed");
-        }
 
+        }
+    }
+
+        // show message when username and login validation are false
+
+    public static void checkIfUsernameAndloginValidationAreFalse(boolean isUsernameValid, boolean isPasswordValid,
+                                                                 String typedUsername, String typedPassword,
+                                                                 EditText passwordField, EditText usernameField,
+                                                                 LoginValidation loginValidation)
+    {
+        if(isUsernameValid==true || loginValidation.isActivity(typedUsername))
+        {
+            isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+
+            if(isPasswordValid==false)
+            {
+                passwordField.requestFocus();
+                passwordField.setError(loginValidation.getInvalidPasswordMessage());
+            } else
+            {
+                //NOTHING TO DO
+            }
+
+        } else
+        {
+
+            usernameField.requestFocus();
+            usernameField.setError(loginValidation.getInvalidUsernameMessage());
+
+        }
     }
 }

@@ -48,8 +48,9 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     protected GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) 
+    protected void onCreate(Bundle savedInstanceState)
     {
+        assert(savedInstanceState != null);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
@@ -89,7 +90,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
     private void setUpMap() 
     {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(-15.7941454, -47.8825479), 9));
+                new LatLng(-15.7941454, -47.8825479), 9)); // put the gps to start in the center of Brasilia
         setFilter(getIntent().getStringExtra("query"));
         foundPlaces = searchPlaces();
 
@@ -120,7 +121,20 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
             Toast.makeText(this, "Sem Resultados", Toast.LENGTH_LONG).show();
             Log.d("SearchPlaceMaps", "No results");
             return;
+        } else
+        {
+            //NOTHING TO DO
         }
+
+        if (result.length() < 0){
+            throw new PlaceException("Invalid Evaluation");
+        }
+        else
+        {
+            //NOTHING TO DO
+        }
+
+        //set places information in array
         for (int i = 0; i < result.length(); i++) 
         {
             Place aux;
@@ -140,22 +154,30 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
 
     private void addMarkerPlace() 
     {
-        if(places != null) {
+        if(places != null)
+        {
+            //insert the catched information in each marker
             for (int i = 0; i < places.size(); ++i) 
             {
                 mMap.addMarker(
                         new MarkerOptions()
                                 .title(places.get(i).getName())
                                 .snippet(places.get(i).getAddress())
-                                .position(new LatLng(places.get(i).getLatitude(), places.get(i).getLongitude()))
+                                .position(new LatLng(places.get(i).getLatitude(), places.get(i).getLongitude())) //create the markers on the map according to the user's preferences
                 );
             }
+        } else
+        {
+         //NOTHING TO DO
         }
+
+
     }
 
     @Override
     public boolean onMarkerClick(final Marker marker)
     {
+        assert(marker != null);
         String marke = (String) marker.getId().substring(1);
         int id = Integer.parseInt(marke);
         select(id);
@@ -168,6 +190,7 @@ public class SearchPlaceMaps extends FragmentActivity implements GoogleMap.OnMar
 
     private void select(int id)
     {
+        assert(id > 0);
         clickedPlace = places.get(id);
         try 
         {

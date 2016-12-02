@@ -19,28 +19,32 @@ public class UserEvaluationTest extends TestCase
 
     private UserEvaluation userEvaluation;
 
-    public void testUserEvaluationWithValidParameters() 
+    // Tests with valids Parameters
+    public void testUserEvaluationWithValidParameters()
     {
         boolean isUserEvaluationValid;
 
-        try 
+        try
         {
             userEvaluation = new UserEvaluation(3f, 3, 1);
             isUserEvaluationValid = true;
         } catch (UserEvaluationException userEvaluationException)
         {
-           isUserEvaluationValid = false;
+            isUserEvaluationValid = false;
         }
 
         assertTrue(isUserEvaluationValid);
+        finalizeUserEvaluation(isUserEvaluationValid);
 
     }
 
-    public void testUserEvaluationWithInvalidUserId() 
+
+    // Tests with invalids Id's
+    public void testUserEvaluationWithInvalidUserId()
     {
         boolean isUserEvaluationValid;
 
-        try 
+        try
         {
             userEvaluation = new UserEvaluation(3f, -3, 1);
             isUserEvaluationValid = true;
@@ -50,14 +54,15 @@ public class UserEvaluationTest extends TestCase
         }
 
         assertFalse(isUserEvaluationValid);
+        finalizeUserEvaluation(isUserEvaluationValid);
 
     }
 
-    public void testUserEvaluationWithInvalidUserEvaluatedId() 
+    public void testUserEvaluationWithInvalidUserEvaluatedId()
     {
         boolean isUserEvaluationValid;
 
-        try 
+        try
         {
             userEvaluation = new UserEvaluation(3f, 3, -1);
             isUserEvaluationValid = true;
@@ -67,25 +72,11 @@ public class UserEvaluationTest extends TestCase
         }
 
         assertFalse(isUserEvaluationValid);
+        finalizeUserEvaluation(isUserEvaluationValid);
 
     }
 
-    public void testUserEvaluationWithNegativeRating() 
-    {
-        boolean isUserEvaluationValid;
-
-        try 
-        {
-            userEvaluation = new UserEvaluation(3f, -3, 1);
-            isUserEvaluationValid = true;
-        } catch (UserEvaluationException userEvaluationException)
-        {
-            isUserEvaluationValid = false;
-        }
-
-        assertFalse(isUserEvaluationValid);
-
-    }
+    //Tests with values ​​outside the range
 
     public void testUserEvaluationWithEvaluationBiggerThanFive() 
     {
@@ -101,6 +92,29 @@ public class UserEvaluationTest extends TestCase
         }
 
         assertFalse(isUserEvaluationValid);
+        finalizeUserEvaluation(isUserEvaluationValid);
+    }
+
+    public void testUserEvaluationWithNegativeRating()
+    {
+        boolean isUserEvaluationValid;
+
+        try
+        {
+            userEvaluation = new UserEvaluation(3f, -3, 1);
+            isUserEvaluationValid = true;
+        } catch (UserEvaluationException userEvaluationException)
+        {
+            isUserEvaluationValid = false;
+        }
+
+        assertFalse(isUserEvaluationValid);
+        finalizeUserEvaluation(isUserEvaluationValid);
+
+    }
+
+    private void finalizeUserEvaluation(boolean isUserEvaluationValid) {
+        this.userEvaluation = null;
     }
 
 }

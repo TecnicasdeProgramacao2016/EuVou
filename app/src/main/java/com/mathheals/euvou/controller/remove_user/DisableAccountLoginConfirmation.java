@@ -38,6 +38,10 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
                              ViewGroup container,
                              Bundle savedInstanceState) 
     {
+        assert(inflater != null);
+        assert(container != null);
+        assert(savedInstanceState != null);
+
         /**
          * method inflate the layout for this fragment
          * @param inflater -
@@ -46,7 +50,7 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
          */
 
         homePage = getActivity();
-        View view = (View) inflater.inflate(R.layout.fragment_disable_account_login_confirmation, container, false);
+        View view = (View) inflater.inflate(R.layout.fragment_disable_account_login_confirmation, container, false);// Inflate view when it is created
 
         Button backButton = (Button)view.findViewById(R.id.button_back_id);
         backButton.setOnClickListener(this);
@@ -100,7 +104,7 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
         fragmentManager.popBackStack();
     }
 
-    public boolean isLoginConfirmationValid() 
+    public boolean isLoginConfirmationValid()
     {
         /**
          * method check the confirmation of user login
@@ -119,14 +123,34 @@ public class DisableAccountLoginConfirmation extends android.support.v4.app.Frag
         boolean isUsernameValid = loginValidation.isUsernameValid(typedUsername);
 
         //check if username is valid to login
+
+        isUsernameValid = checkIfUserNameIsValid (isUsernameValid,
+                                                  typedUsername, typedPassword,
+                                                  passwordField, usernameField,
+                                                  loginValidation);
+
+        if (isUsernameValid)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    public boolean checkIfUserNameIsValid (boolean isUsernameValid,
+                                           String typedUsername, String typedPassword,
+                                           EditText passwordField, EditText usernameField,
+                                           LoginValidation loginValidation)
+    {
         if(isUsernameValid==true)
         {
-            boolean isPasswordValid=loginValidation.checkPassword(typedUsername, typedPassword);
+            boolean isPasswordValid = loginValidation.checkPassword(typedUsername, typedPassword);
 
             //check if passoword is valid to login
             if(isPasswordValid==true)
             {
-                Log.d("DisableAccountLoginConfirmation", "Login valid");
+                Log.d("checkIfUserNameIsValid", "Login valid");
                 return true;
             }
             else

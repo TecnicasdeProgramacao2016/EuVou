@@ -81,7 +81,7 @@ public abstract class Mask
 
         String brazilianDateFormat = dateSplit[2] + "-" +
                 dateSplit[1] + "-" +
-                dateSplit[0];
+                dateSplit[0]; // tranform the date to the brazilian pattern
 
         return brazilianDateFormat + " " + dateAndTime[1];
     }
